@@ -15,5 +15,6 @@
     </head>
     <body>
         <a href="{{url('admin/superstar/create')}}"><button class="btn btn-lg btn-primary">Criar Superstar</button>
+        <a href="{{url('admin/superstar/edit')}}"><button class="btn btn-lg btn-primary">Editar Superstar</button>
     </body>
 </html>

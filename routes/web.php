@@ -22,6 +22,9 @@ Route::get('/admin', function() {
 Route::get('/admin/superstar/create', function() {
     return view('criarSuperstar');
 });
-
+Route::get('/admin/superstar/edit', function() {
+    return view('editarSuperstar');
+});
 
 Route::post('/admin/superstar/create/confirm','SuperstarsController@cadastrar');
+Route::post('/admin/superstar/edit/confirm','SuperstarsController@editar');

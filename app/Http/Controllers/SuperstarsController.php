@@ -29,4 +29,39 @@ class SuperstarsController extends Controller
         
 
     }
+
+    public function editar(Request $request){
+        $this->validate($request,[
+            'name'  => 'required',
+             'points' => 'required',
+             'price' => 'required'
+        ]);
+        
+        
+        $ult_pontos = DB::table('superstars')
+                        ->where('name',$request->get('name'))
+                        ->value('points');
+
+        DB::table('superstars')
+            ->where('name', $request->get('name'))
+            ->update([
+                'last_points' => $ult_pontos,
+                'points' => $request->get('points'),
+                'price' => $request->get('price'),
+                'last_show' => 1
+                ]);
+
+        return view('admin');
+    }
+
+   /* public function listar(){
+        $superstars = DB::table('superstars')->get();
+        echo '<select name="brand">';
+        foreach ($superstars as $superstar) {
+          echo '<option value="{{$superstar->name}}">' . $superstar->name . '</option>';
+        }
+        echo '</select>';
+        echo '<a href="/admin"><button class="btn btn-lg btn-primary">Editar</button>';
+
+    }*/
 }
