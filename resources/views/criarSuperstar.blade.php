@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Prova II</title>
+    <title>Cadastro de Superstar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,11 +21,11 @@
 </head>
 
 <body>
-    <div class="container">
+    <div    class="container">
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form action="{{ route('logar') }}" method="post" name="Login_Form" class="form-signin">       
-                <h3 class="header-login">Login - Prova II</h3>
+            <form action="{{url('admin/superstar/create/confirm')}}" method="post" name="Create_Superstar_Form" class="form-signin">       
+                <h3 class="header-login">Cadastro de Superstar</h3>
                 <hr class="colorgraph"><br>
                 {{ csrf_field()  }}
 
@@ -41,15 +41,15 @@
 
 
 
-                <!-- LOGIN -->  
-                <input type="text" name='login' class="form-control" placeholder="Login" autofocus="" />
-                
-                <!-- SENHA -->
-                <input type="password" name='senha' class="form-control" placeholder="Senha"/>
-                <input type="password" name='confirmar_senha' class="form-control" placeholder="Confirmar Senha"/> <br/>           
-                
+                <!-- Campos -->  
+                <font color="white">Name: </font><input type="text" name="name" placeholder="Name" autofocus=""/><br/>
+                <font color="white">Brand: </font><select name="brand">
+                    <option value="Raw">Raw</option>
+                    <option value="Smackdown">Smackdown</option>
+                </select><br/>
+
                 <!-- BOTÃO -->
-                <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Logar</button>     
+                <button class="btn btn-primary"  name="Submit" value="criar" type="Submit">Criar</button>     
 
             </form>         
             <!-- FORMULARIO [FIM] -->

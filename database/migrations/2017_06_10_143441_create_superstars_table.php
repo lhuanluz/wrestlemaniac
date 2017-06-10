@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class LutadoresTimes extends Migration
+class CreateSuperstarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class LutadoresTimes extends Migration
      */
     public function up()
     {
-        Schema::create('lutadores_times', function (Blueprint $table) {
+        Schema::create('superstars', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lutador_id')->unsigned();
-            $table->integer('time_id')->unsigned();
-            $table->foreign('lutador_id')->references('id')->on('lutadores');
-            $table->foreign('time_id')->references('id')->on('times');
+            $table->string('name');
+            $table->string('brand');
+            $table->double('points');
+            $table->double('last_points');
+            $table->double('price');
+            $table->boolean('last_show');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class LutadoresTimes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lutadores_times');
+        Schema::dropIfExists('superstars');
     }
 }
