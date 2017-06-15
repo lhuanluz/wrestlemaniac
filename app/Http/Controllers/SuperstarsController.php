@@ -67,9 +67,9 @@ class SuperstarsController extends Controller
         return view('admin');
     }
 
-    public function listar(){
+    public function mercado(){
         $superstars = DB::table('superstars')->get();
-        return view('listarSuperstars',['superstars' => $superstars]);
+        return view('mercadoHome',['superstars' => $superstars]);
     }
     public function editPage(){
         $superstars = DB::table('superstars')->get();

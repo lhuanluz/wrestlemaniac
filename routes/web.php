@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('inicio');
 
 Route::get('/admin','HomeController@adminPanel')->name('painelAdmin');
 
@@ -26,6 +26,7 @@ Route::get('/admin/superstar/edit','SuperstarsController@editPage')->name('edita
 Route::post('/admin/superstar/create/confirm','SuperstarsController@cadastrar');
 Route::post('/admin/superstar/edit/confirm','SuperstarsController@editar');
 Route::get('/admin/superstar/list','SuperstarsController@listar');
+Route::get('/market','SuperstarsController@mercado')->name('mercadoHome');
 
 Auth::routes();
 

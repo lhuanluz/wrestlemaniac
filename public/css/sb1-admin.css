@@ -1,0 +1,39 @@
+/*!
+ * Start Bootstrap - SB Admin (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/* Global Styles */
+
+
+
+ .lutador {
+     width:250px;
+     height: 430px;
+     border: 1px solid !important;
+     border-radius: 10px;
+     padding: 5px;
+     border-color: grey;
+     float:left;
+     margin: 50px 50px 0px 0px;
+ }
+
+ .lutador img {
+     width: 100%;
+     border-radius: 10px;
+ }
+.pontos {
+    /*border: 1px solid !important;*/
+    width: 100px;
+    margin-left:30%; 
+    margin-right:30%; 
+    /*background: grey;*/
+
+ }
+ .preço{
+    width: 100px;
+    margin-left:30%; 
+    margin-right:30%; 
+    color: darkgreen;
+ }

@@ -12,6 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url('css/sb1-admin.css') }}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -44,14 +52,18 @@
                         <!-- Authentication Links -->
 
                         @if (Auth::guest())
+                            <li><a href="{{ route('inicio') }}">Home</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <!-- Verificação Admin-->
+                            <li><a href="{{ route('mercadoHome') }}">Market</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">How to Play</a></li>
                             @if(Auth::user()->user_power == 1)
                             <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
                             @endif
-
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
