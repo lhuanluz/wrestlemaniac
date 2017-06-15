@@ -16,25 +16,27 @@ Route::get('/', function () {
 })->name('inicio');
 
 
-
+//Rota para todas as funções variadas ao painel de ADMIN
 Route::prefix('admin')->group(function (){
     Route::get('/','HomeController@adminPanel')->name('painelAdmin');
+
     Route::prefix('superstar')->group(function (){
         Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
-        Route::post('create/confirm','SuperstarsController@cadastrar');
-        Route::post('edit/confirm','SuperstarsController@editar');
-        Route::get('/list','SuperstarsController@listar');
+        Route::post('create/confirm','SuperstarsController@cadastrar')->name('confirmarCriação');
+        Route::post('edit/confirm','SuperstarsController@editar')->name('confirmarEdição');
         Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
 
     });
 });
-
+//Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {
     Route::get('/','SuperstarsController@mercado')->name('mercadoHome');
+    //Rotas para alterações na exbição de preço
     Route::prefix('price')->group(function () {
         Route::get('/asc','SuperstarsController@mercadoPreçoCrescente')->name('mercadoPriceAsc');
         Route::get('desc','SuperstarsController@mercadoPreçoDecrescente')->name('mercadoPriceDesc');
     });
+    //Rotas para alterações na exbição de Pontos
     Route::prefix('points')->group(function () {
         Route::get('asc','SuperstarsController@mercadoPontosCrescente')->name('mercadoPointsAsc');
         Route::get('desc','SuperstarsController@mercadoPontosDecrescente')->name('mercadoPointsDesc');

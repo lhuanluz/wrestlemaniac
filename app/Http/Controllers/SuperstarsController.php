@@ -11,6 +11,7 @@ class SuperstarsController extends Controller
     public function criarSuperstar(){
         return view('criarSuperstar');
     }
+
     public function cadastrar(Request $request){
          $this->validate($request,[
             'name'      => 'required',
@@ -113,24 +114,30 @@ class SuperstarsController extends Controller
         $superstars = DB::table('superstars')->orderBy('name', 'asc')->get();
         return view('mercadoHome',['superstars' => $superstars]);
     }
+
     public function mercadoPreçoCrescente(){
         $superstars = DB::table('superstars')->orderBy('price', 'asc')->get();
         return view('mercadoHome',['superstars' => $superstars]);
     }
+
     public function mercadoPreçoDecrescente(){
         $superstars = DB::table('superstars')->orderBy('price', 'desc')->get();
         return view('mercadoHome',['superstars' => $superstars]);
     }
+
     public function mercadoPontosCrescente(){
         $superstars = DB::table('superstars')->orderBy('points', 'asc')->get();
         return view('mercadoHome',['superstars' => $superstars]);
     }
+
     public function mercadoPontosDecrescente(){
         $superstars = DB::table('superstars')->orderBy('points', 'desc')->get();
         return view('mercadoHome',['superstars' => $superstars]);
     }
+
     public function editPage(){
         $superstars = DB::table('superstars')->get();
         return view('editarSuperstar',['superstars' => $superstars]);
     }
+    
 }
