@@ -19,21 +19,24 @@ class SuperstarsController extends Controller
         $imagem = $request->imagem;
         //$imagem->move('superstars',$nomeDaImagem);
         $imagem->storeAs('superstars',$nomeDaImagem,'public');
-        $lutador = DB::table('superstars')->insert([
+       /* $lutador = DB::table('superstars')->insert([
                         'name' => $request->get('name'), 
                         'brand' => $request->get('brand'),
                         'points' => 0.0,
                         'last_points' => 0.0,
                         'price' => 1000.00,
                         'last_show' => 0,
-                         /*if ($request->hasFile('imagem')) {
-                            $extension = $request->imagem->extension();
-                            $arquivo = 'lutador_' . $lutador->id . '.' . $extension;
-                            $lutador->imagem = $request->imagem->storeAs('lutadores', $arquivo, 'public');
-                            $lutador->save();
-                        }*/
                         'image' => $caminho,
-                        ]);
+                        ]);*/
+        $lutador = new superstar();
+            $lutador->name = $request->get('name');
+            $lutador->brand = $request->get('brand');
+            $lutador->points = 0.0;
+            $lutador->last_points = 0.0;
+            $lutador->price = 1000.00;
+            $lutador->last_show = 0;
+            $lutador->image = $caminho;
+            $lutador->save();
         return view('admin');
         
         
