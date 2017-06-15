@@ -15,19 +15,31 @@ Route::get('/', function () {
     return view('home');
 })->name('inicio');
 
-Route::get('/admin','HomeController@adminPanel')->name('painelAdmin');
 
-Route::get('/admin/superstar/create', function() {
-    return view('criarSuperstar');
-    })->name('criarSuperstar');
 
-Route::get('/admin/superstar/edit','SuperstarsController@editPage')->name('editarSuperstar');
+Route::prefix('admin')->group(function (){
+    Route::get('/','HomeController@adminPanel')->name('painelAdmin');
+    Route::prefix('superstar')->group(function (){
+        Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
+        Route::post('create/confirm','SuperstarsController@cadastrar');
+        Route::post('edit/confirm','SuperstarsController@editar');
+        Route::get('/list','SuperstarsController@listar');
+        Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
 
-Route::post('/admin/superstar/create/confirm','SuperstarsController@cadastrar');
-Route::post('/admin/superstar/edit/confirm','SuperstarsController@editar');
-Route::get('/admin/superstar/list','SuperstarsController@listar');
-Route::get('/market','SuperstarsController@mercado')->name('mercadoHome');
+    });
+});
 
+Route::prefix('market')->group(function () {
+    Route::get('/','SuperstarsController@mercado')->name('mercadoHome');
+    Route::prefix('price')->group(function () {
+        Route::get('/asc','SuperstarsController@mercadoPreçoCrescente')->name('mercadoPriceAsc');
+        Route::get('desc','SuperstarsController@mercadoPreçoDecrescente')->name('mercadoPriceDesc');
+    });
+    Route::prefix('points')->group(function () {
+        Route::get('asc','SuperstarsController@mercadoPontosCrescente')->name('mercadoPointsAsc');
+        Route::get('desc','SuperstarsController@mercadoPontosDecrescente')->name('mercadoPointsDesc');
+    });
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

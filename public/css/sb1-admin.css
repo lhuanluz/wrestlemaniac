@@ -10,24 +10,24 @@
 
  .lutador {
      width:250px;
-     height: 430px;
+     height: 460px;
      border: 1px solid !important;
      border-radius: 10px;
      padding: 5px;
      border-color: grey;
      float:left;
      margin: 50px 50px 0px 0px;
- }
+     background-color: #f7f7f7;
+}
 
  .lutador img {
-     width: 100%;
+     width: 238px;
+     height: 238px;
      border-radius: 10px;
  }
 .pontos {
     /*border: 1px solid !important;*/
-    width: 100px;
-    margin-left:30%; 
-    margin-right:30%; 
+    width: 150px; 
     /*background: grey;*/
 
  }
@@ -36,4 +36,7 @@
     margin-left:30%; 
     margin-right:30%; 
     color: darkgreen;
+ }
+ .controladores a{
+     border: 1px solid !important;
  }

@@ -36,7 +36,6 @@
                 
                 </datalist>
                 Points: <input type="number" name="points" min="0" step="any" class="pontos"><br/>
-                Price: <input type="number" name="price" min="0" step="any" class="preço"><br/><br/>
 
                 <!-- BOTÃO -->
                 <button class="btn btn-primary"  name="Submit" value="editar" type="Submit">Editar</button>     
