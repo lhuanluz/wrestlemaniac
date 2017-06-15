@@ -1,19 +1,17 @@
-<<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap Core CSS -->
-        <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
+@extends('layouts.app')
 
-        <!-- Custom CSS -->
-        <link href="{{ url('css/sb-admin.css') }}" rel="stylesheet">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dashboard</div>
 
-        <!-- Custom Fonts -->
-        <link href="{{ url('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-    
-    </body>
-</html>
+                <div class="panel-body">
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

@@ -1,32 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts/adminLayout')
 
-<head>
- 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('conteudo_principal')
 
-    <title>Cadastro de Superstar</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ url('css/sb-admin.css') }}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{ url('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-    <div    class="container">
+    <div class="container-fluid">
+    <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Criando Superstar
+                        </h1>
+                    </div>
+                </div>
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form action="{{url('admin/superstar/create/confirm')}}" method="post" name="Create_Superstar_Form" class="form-signin">       
-                <h3 class="header-login">Cadastro de Superstar</h3>
-                <hr class="colorgraph"><br>
+            <form action="{{url('admin/superstar/create/confirm')}}" method="post" name="Create_Superstar_Form" class="form-signin" enctype="multipart/form-data">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)
@@ -39,14 +25,13 @@
                     </div>
                 @endif
 
-
-
                 <!-- Campos -->  
-                <font color="white">Name: </font><input type="text" name="name" placeholder="Name" autofocus=""/><br/>
-                <font color="white">Brand: </font><select name="brand">
+                <font color="black">Name: </font><input type="text" name="name" placeholder="Name" autofocus=""/><br/>
+                <font color="black">Brand: </font><select name="brand">
                     <option value="Raw">Raw</option>
                     <option value="Smackdown">Smackdown</option>
                 </select><br/>
+                <font color="black">Imagem: </font><input type="file" name="imagem"/><br/>
 
                 <!-- BOTÃO -->
                 <button class="btn btn-primary"  name="Submit" value="criar" type="Submit">Criar</button>     
@@ -55,7 +40,4 @@
             <!-- FORMULARIO [FIM] -->
         </div>
     </div>
-
-</body>
-
-</html>
+@endsection 

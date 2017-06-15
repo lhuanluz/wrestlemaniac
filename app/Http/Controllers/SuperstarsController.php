@@ -10,22 +10,32 @@ class SuperstarsController extends Controller
 {
     public function cadastrar(Request $request){
          $this->validate($request,[
-            'name'  => 'required',
-             'brand' => 'required'
+            'name'      => 'required',
+             'brand'    => 'required',
+             'imagem'   => 'image|required'
         ]);
-
-         superstar::create(['name' => $request->get('name'), 
+        $nomeDaImagem = $request->imagem->getClientOriginalName();
+        $caminho = 'storage/superstars/'.$nomeDaImagem;
+        $imagem = $request->imagem;
+        //$imagem->move('superstars',$nomeDaImagem);
+        $imagem->storeAs('superstars',$nomeDaImagem,'public');
+        $lutador = DB::table('superstars')->insert([
+                        'name' => $request->get('name'), 
                         'brand' => $request->get('brand'),
                         'points' => 0.0,
                         'last_points' => 0.0,
                         'price' => 1000.00,
-                        'last_show' => 0
+                        'last_show' => 0,
+                         /*if ($request->hasFile('imagem')) {
+                            $extension = $request->imagem->extension();
+                            $arquivo = 'lutador_' . $lutador->id . '.' . $extension;
+                            $lutador->imagem = $request->imagem->storeAs('lutadores', $arquivo, 'public');
+                            $lutador->save();
+                        }*/
+                        'image' => $caminho,
                         ]);
         return view('admin');
         
-       /* $teste = DB::table('superstars')
-                    ->update(['points' => 9.5]);
-        echo $teste;*/
         
 
     }
@@ -54,14 +64,12 @@ class SuperstarsController extends Controller
         return view('admin');
     }
 
-   /* public function listar(){
+    public function listar(){
         $superstars = DB::table('superstars')->get();
-        echo '<select name="brand">';
-        foreach ($superstars as $superstar) {
-          echo '<option value="{{$superstar->name}}">' . $superstar->name . '</option>';
-        }
-        echo '</select>';
-        echo '<a href="/admin"><button class="btn btn-lg btn-primary">Editar</button>';
-
-    }*/
+        return view('listarSuperstars',['superstars' => $superstars]);
+    }
+    public function editPage(){
+        $superstars = DB::table('superstars')->get();
+        return view('editarSuperstar',['superstars' => $superstars]);
+    }
 }

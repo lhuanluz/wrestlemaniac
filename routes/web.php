@@ -15,16 +15,18 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/admin', function() {
-    return view('admin');
-});
+Route::get('/admin','HomeController@adminPanel')->name('painelAdmin');
 
 Route::get('/admin/superstar/create', function() {
     return view('criarSuperstar');
-});
-Route::get('/admin/superstar/edit', function() {
-    return view('editarSuperstar');
-});
+    })->name('criarSuperstar');
+
+Route::get('/admin/superstar/edit','SuperstarsController@editPage')->name('editarSuperstar');
 
 Route::post('/admin/superstar/create/confirm','SuperstarsController@cadastrar');
 Route::post('/admin/superstar/edit/confirm','SuperstarsController@editar');
+Route::get('/admin/superstar/list','SuperstarsController@listar');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
