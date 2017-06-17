@@ -1,0 +1,79 @@
+/*.container {
+    max-width: 960px;
+    margin: auto;
+}*/
+
+/*Cor do background do menu*/
+ .navbar-default {
+    background-color: #d7182a;
+ }
+
+/*CSS do nome da marca*/
+.navbar-brand {
+    font-weight: bold;
+    color: #fff !important;
+    font: 24px serif !important;
+    padding-top: 10px !important;
+}
+
+/*CSS do menu para resoluções desktop*/
+ul#menu a {
+    color: #fff;
+    padding: 5px;
+    margin: 8px;
+    border: 2px solid #d7182a;
+    font-size: 16px;
+}
+
+/*Efeito de bordas brancas do menu para resoluções desktop*/
+@media (min-width: 768px) {
+    ul#menu a:hover {
+        border: 2px solid #fff;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    /*CSS das li do menu hamburguer*/
+    ul#menu a {
+        color: #fff;
+        background-color: #d7182a;
+        text-align: center;
+        border-radius: 4px;
+    }
+
+    /*Bordas das li do menu hamburguer*/
+    ul#menu li:nth-child(1) a,
+    ul#menu li:nth-child(2) a {
+        border-bottom:  1px solid #fff;
+    } 
+
+    /*CSS do menu hamburguer*/
+    ul#menu {
+        background-color: #d7182a;
+    }
+
+    /*Borda do menu hamburguer*/
+    .navbar-default .navbar-toggle {
+        border-color: #fff;
+    }
+
+    /*Barrinhas do menu hamburguer*/
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+
+    /*Efeito do menu hamburguer clicado*/
+    .navbar-default .navbar-toggle:focus, 
+    .navbar-default .navbar-toggle:hover {
+        background-color: #fff;    
+    }
+
+    /*Efeito do menu hamburguer clicado*/
+    .navbar-default .navbar-toggle:focus .icon-bar,
+    .navbar-default .navbar-toggle:hover .icon-bar {
+        background-color: #d7182a;
+    }
+
+}

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -20,6 +21,10 @@
 
     <!-- Custom Fonts -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Home CSS -->
+    <link href="{{ url('css/home.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -37,18 +42,18 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        WRESTLEMANIAC
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
+                    <!--<ul class="nav navbar-nav">
                         &nbsp;
-                    </ul>
+                    </ul>-->
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul id="menu" class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
 
                         @if (Auth::guest())
