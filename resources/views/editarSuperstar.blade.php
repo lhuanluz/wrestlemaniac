@@ -25,20 +25,22 @@
 
 
                 <!-- Campos -->  
-                Name:
-                <input list="names" name="name"><br/>
-
-                <datalist id="names">
-                @foreach($superstars as $superstar){
-                    <option value="{{$superstar->name}}">
-                }
-                @endforeach
-                
-                </datalist>
-                Points: <input type="number" name="points" min="0" step="any" class="pontos"><br/>
-
+                <div class="form-group">
+                    <label>Name</label>
+                    <input list="names" name="name" class="form-control" autofocus="">
+                    <datalist id="names">
+                        @foreach($superstars as $superstar){
+                            <option value="{{$superstar->name}}">
+                        }
+                        @endforeach
+                    </datalist>
+                </div>
+                <div class="form-group">
+                <label>Points:</label>
+                <input type="number" name="points" min="0" step="any" class="pontos form-control">
+                </div>
                 <!-- BOTÃO -->
-                <button class="btn btn-primary"  name="Submit" value="editar" type="Submit">Editar</button>     
+                <button class="btn btn-primary bt-lg btn-block"  name="Submit" value="editar" type="Submit">Edit</button>     
 
             </form>
             <!-- FORMULARIO [FIM] -->

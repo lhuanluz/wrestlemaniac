@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class superstar extends Model
 {
-    protected $fillable = ['name','brand','points','last_points','price','last_show'];
+    protected $fillable = ['name','brand','points','last_points','price','last_show','champion','belt'];
 }

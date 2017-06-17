@@ -12,7 +12,7 @@
                 </div>
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form action="{{url('admin/superstar/create/confirm')}}" method="post" name="Create_Superstar_Form" class="form-signin" enctype="multipart/form-data">       
+            <form action="{{url('admin/superstar/create/confirm')}}" method="post" name="Create_Superstar_Form" class="form-create" enctype="multipart/form-data">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)
@@ -26,15 +26,25 @@
                 @endif
 
                 <!-- Campos -->  
-                <font color="black">Name: </font><input type="text" name="name" placeholder="Name" autofocus=""/><br/>
-                <font color="black">Brand: </font><select name="brand">
-                    <option value="Raw">Raw</option>
-                    <option value="Smackdown">Smackdown</option>
-                </select><br/>
-                <font color="black">Imagem: </font><input type="file" name="imagem"/><br/>
-
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Name" autofocus="" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label>Brand</label>
+                    <select name="brand" class="form-control">
+                        <option value="Raw">Raw</option>
+                        <option value="Smackdown">Smackdown</option>
+                        <option value="Raw">None</option>
+                    </select>
+                </div>
+                <div class="">
+                    <label>Image </label>
+                    <input type="file" name="imagem" />
+                </div>
                 <!-- BOTÃO -->
-                <button class="btn btn-primary"  name="Submit" value="criar" type="Submit">Criar</button>     
+                <br/>
+                <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Create</button>     
 
             </form>         
             <!-- FORMULARIO [FIM] -->

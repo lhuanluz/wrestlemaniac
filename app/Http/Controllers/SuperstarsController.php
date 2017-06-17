@@ -26,10 +26,6 @@ class SuperstarsController extends Controller
         $lutador = new superstar();
             $lutador->name = $request->get('name');
             $lutador->brand = $request->get('brand');
-            $lutador->points = 0.0;
-            $lutador->last_points = 0.0;
-            $lutador->price = 1000.00;
-            $lutador->last_show = 0;
             $lutador->image = $caminho;
             $lutador->save();
         return view('admin');

@@ -18,10 +18,12 @@ class CreateSuperstarsTable extends Migration
             $table->string('name');
             $table->string('brand');
             $table->string('image');
-            $table->double('points');
-            $table->double('last_points');
-            $table->double('price');
-            $table->boolean('last_show');
+            $table->double('points')->default(0.0);
+            $table->double('last_points')->default(0.0);
+            $table->double('price')->default(1000.00);
+            $table->boolean('champion')->default(0);
+            $table->string('belt')->default('none');
+            $table->boolean('last_show')->default(0);
             $table->timestamps();
         });
     }

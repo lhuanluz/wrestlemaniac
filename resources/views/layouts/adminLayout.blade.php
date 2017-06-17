@@ -17,74 +17,143 @@
 
     <!-- Custom Fonts -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-
+    
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- TOGGLE  -->
+    <!-- Navigation -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+   <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{route('painelAdmin')}}">Painel Admin</a>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ route('painelAdmin') }}">
+                    PAINEL ADMIN
+                </a>
             </div>
 
-            <!-- MENU DO USUÁRIO -->
-            <ul class="nav navbar-right top-nav">
-                <li><a href="{{ route('inicio') }}">Home</a></li>
-                <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <!--<ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>-->
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                <!-- Right Side Of Navbar -->
+                <ul id="menu" class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-            </ul>
-            <!-- MENU DO USUÁRIO[FIM] -->
+                        <li class="item-menu"><a href="{{ route('inicio') }}">Home</a></li>
 
-            <!-- SIDEBAR -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                @if(Route::is('criarSuperstar'))
-                    <li class="active">
-                @else
-                    <li class="">     
-                @endif
-                         <a href="{{url('admin/superstar/create')}}"><i class="fa fa-fw fa-table"></i> Criar Superstar</a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
-                @if(Route::is('editarSuperstar'))
-                    <li class="active">
-                @else
-                    <li class="">     
-                @endif
-                         <a href="{{url('/admin/superstar/edit')}}"><i class="fa fa-fw fa-table"></i> Editar Superstar</a>
-                    </li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="item-menu">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                 </ul>
             </div>
-            <!-- SIDEBAR[FIM] -->
-        </nav>
+        </div>
+    </nav>
 
+<div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+            
+            <ul id="menu-content" class="menu-content collapse out">
+                <ul class="dropdown-menu" role="menu">
+                                <li class="item-menu">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                <li class=" {{route::is('painelAdmin') ? 'active' : '' }}">
+                    <a href="{{ route('painelAdmin') }}">
+                        <i class="fa fa-dashboard fa-lg menu-item"></i> Dashboard
+                    </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#superstars" class="collapsed">
+                  <a href="#"><i class="fa fa-star-o fa-lg"></i> Superstars <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="superstars">
+                    <li class="{{route::is('criarSuperstar') ? 'active' : '' }}"><a href="{{route('criarSuperstar')}}"><i class="fa fa-plus icon"></i>Criar Superstar</a></li>
+                    <li class="{{route::is('editarSuperstar') ? 'active' : '' }}"><a href="{{route('editarSuperstar')}}"><i class="fa fa-pencil icon"></i>Editar Superstar</a></li>
+                </ul>
+
+                <!-- 
+                    EM TESTE 
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                </li>  
+                <ul class="sub-menu collapse" id="service">
+                  <li>New Service 1</li>
+                  <li>New Service 2</li>
+                  <li>New Service 3</li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                  <li>New New 1</li>
+                  <li>New New 2</li>
+                  <li>New New 3</li>
+                </ul>
+
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+                  -->
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-users fa-lg"></i> Users
+                  </a>
+                </li>
+                
+            </ul>
+     </div>
+</div>
+        
+        
         <!-- CONTEUDO PRINCIPAL -->
         <div id="page-wrapper">
             @yield('conteudo_principal')

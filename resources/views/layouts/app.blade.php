@@ -17,7 +17,7 @@
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ url('css/sb1-admin.css') }}" rel="stylesheet">
+    <link href="{{ url('css/lutador.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
