@@ -40,7 +40,7 @@
                 <input type="number" name="points" min="0" step="any" class="pontos form-control">
                 </div>
                 <!-- BOTÃO -->
-                <button class="btn btn-primary bt-lg btn-block"  name="Submit" value="editar" type="Submit">Edit</button>     
+                <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Edit</button>     
 
             </form>
             <!-- FORMULARIO [FIM] -->

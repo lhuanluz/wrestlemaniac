@@ -35,7 +35,7 @@
                     <select name="brand" class="form-control">
                         <option value="Raw">Raw</option>
                         <option value="Smackdown">Smackdown</option>
-                        <option value="Raw">None</option>
+                        <option value="None">None</option>
                     </select>
                 </div>
                 <div class="">

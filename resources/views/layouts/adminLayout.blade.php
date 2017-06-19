@@ -111,8 +111,11 @@
                   <a href="#"><i class="fa fa-star-o fa-lg"></i> Superstars <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="superstars">
-                    <li class="{{route::is('criarSuperstar') ? 'active' : '' }}"><a href="{{route('criarSuperstar')}}"><i class="fa fa-plus icon"></i>Criar Superstar</a></li>
-                    <li class="{{route::is('editarSuperstar') ? 'active' : '' }}"><a href="{{route('editarSuperstar')}}"><i class="fa fa-pencil icon"></i>Editar Superstar</a></li>
+                    <li class="{{route::is('criarSuperstar') ? 'active' : '' }}"><a href="{{route('criarSuperstar')}}"><i class="fa fa-plus icon"></i>Create Superstar</a></li>
+                    <li class="{{route::is('editarSuperstar') ? 'active' : '' }}"><a href="{{route('editarSuperstar')}}"><i class="fa fa-pencil icon"></i>Edit Superstar</a></li>
+                    <li class="{{route::is('editarChampionRedirect') ? 'active' : '' }}"><a href="{{route('editarChampionRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Champion</a></li>
+                    <li class="{{route::is('editarFotoRedirect') ? 'active' : '' }}"><a href="{{route('editarFotoRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Photo</a></li>
+                    <li class="{{route::is('editarBrandRedirect') ? 'active' : '' }}"><a href="{{route('editarBrandRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Brand</a></li>
                 </ul>
 
                 <!-- 

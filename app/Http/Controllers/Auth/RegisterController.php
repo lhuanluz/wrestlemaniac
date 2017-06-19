@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\raw_team;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -62,11 +64,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'user_power' => 0,
         ]);
+        $id_user = DB::table('users')
+                        ->where('email',$data['email'])
+                        ->value('id'); 
+                           
+        raw_team::create([
+            'user_id' => $id_user,
+            'team_points' => 0.0,
+            'team_cash' => 0.0,
+            'superstar01' => 999,
+            'superstar02' => 999,
+            'superstar03' => 999,
+            'superstar04' => 999,
+        ]);
+        return $user;
+        
     }
 }

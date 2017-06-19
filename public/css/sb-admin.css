@@ -168,4 +168,8 @@ a, a:hover, a:active, a:visited, a:focus,a:link {
 }
 .navbar {
   position: fixed;
+  width: 100%;
+}
+.row {
+  margin-top: 25px;
 }

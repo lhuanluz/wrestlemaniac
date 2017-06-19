@@ -25,6 +25,12 @@ Route::prefix('admin')->group(function (){
         Route::post('create/confirm','SuperstarsController@cadastrar')->name('confirmarCriação');
         Route::post('edit/confirm','SuperstarsController@editar')->name('confirmarEdição');
         Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
+        Route::get('/edit-champion','SuperstarsController@editarChampionRedirect')->name('editarChampionRedirect');
+        Route::post('/edit-champion/confirm','SuperstarsController@editarChampion')->name('editarChampion');
+        Route::get('/edit-photo','SuperstarsController@editarFotoRedirect')->name('editarFotoRedirect');
+        Route::post('/edit-photo/confirm','SuperstarsController@editarFoto')->name('editarFoto');
+        Route::get('/edit-brand','SuperstarsController@editarBrandRedirect')->name('editarBrandRedirect');
+        Route::post('/edit-brand/confirm','SuperstarsController@editarBrand')->name('editarBrand');
 
     });
 });

@@ -30,7 +30,8 @@
     </div>
     <!-- Listamento de Superstars-->
     @foreach($superstars as $superstar)
-        
+        @if($superstar->id == 999)
+        @else
         <div class="lutador">
             <img src="{{url($superstar->image)}}" alt="Card image cap">
             <form class="lutador-info">
@@ -67,5 +68,6 @@
                 </center>
             </form>
         </div>
+        @endif
     @endforeach
 @endsection
