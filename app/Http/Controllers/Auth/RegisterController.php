@@ -77,12 +77,10 @@ class RegisterController extends Controller
                            
         raw_team::create([
             'user_id' => $id_user,
-            'team_points' => 0.0,
-            'team_cash' => 0.0,
             'superstar01' => 999,
-            'superstar02' => 999,
-            'superstar03' => 999,
-            'superstar04' => 999,
+            'superstar02' => 998,
+            'superstar03' => 997,
+            'superstar04' => 996
         ]);
         return $user;
         

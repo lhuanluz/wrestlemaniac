@@ -17,8 +17,8 @@ class CreateRawTeamsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->double('team_points');
-            $table->double('team_cash');
+            $table->double('team_points')->default(0.0);
+            $table->double('team_cash')->default(4000.00);
             $table->integer('superstar01')->unsigned();
             $table->integer('superstar02')->unsigned();
             $table->integer('superstar03')->unsigned();

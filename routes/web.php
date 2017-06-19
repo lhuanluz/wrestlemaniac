@@ -25,27 +25,35 @@ Route::prefix('admin')->group(function (){
         Route::post('create/confirm','SuperstarsController@cadastrar')->name('confirmarCriação');
         Route::post('edit/confirm','SuperstarsController@editar')->name('confirmarEdição');
         Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
-        Route::get('/edit-champion','SuperstarsController@editarChampionRedirect')->name('editarChampionRedirect');
-        Route::post('/edit-champion/confirm','SuperstarsController@editarChampion')->name('editarChampion');
-        Route::get('/edit-photo','SuperstarsController@editarFotoRedirect')->name('editarFotoRedirect');
-        Route::post('/edit-photo/confirm','SuperstarsController@editarFoto')->name('editarFoto');
-        Route::get('/edit-brand','SuperstarsController@editarBrandRedirect')->name('editarBrandRedirect');
-        Route::post('/edit-brand/confirm','SuperstarsController@editarBrand')->name('editarBrand');
+        Route::get('edit-champion','SuperstarsController@editarChampionRedirect')->name('editarChampionRedirect');
+        Route::post('edit-champion/confirm','SuperstarsController@editarChampion')->name('editarChampion');
+        Route::get('edit-photo','SuperstarsController@editarFotoRedirect')->name('editarFotoRedirect');
+        Route::post('edit-photo/confirm','SuperstarsController@editarFoto')->name('editarFoto');
+        Route::get('edit-brand','SuperstarsController@editarBrandRedirect')->name('editarBrandRedirect');
+        Route::post('edit-brand/confirm','SuperstarsController@editarBrand')->name('editarBrand');
 
+    });
+    Route::prefix('market')->group(function (){
+        Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
     });
 });
 //Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {
     Route::get('/','SuperstarsController@mercado')->name('mercadoHome');
-    //Rotas para alterações na exbição de preço
-    Route::prefix('price')->group(function () {
-        Route::get('/asc','SuperstarsController@mercadoPreçoCrescente')->name('mercadoPriceAsc');
-        Route::get('desc','SuperstarsController@mercadoPreçoDecrescente')->name('mercadoPriceDesc');
-    });
+
+    Route::prefix('raw')->group(function () {
+        Route::get('/','SuperstarsController@mercadoRaw')->name('mercadoRawHome');
+        Route::post('buy','SuperstarsController@comprarSuperstarRaw')->name('comprarSuperstarRaw');
+        Route::post('sell','SuperstarsController@venderSuperstarRaw')->name('venderSuperstarRaw');
+        Route::prefix('price')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoRawPreçoCrescente')->name('mercadoRawPriceAsc');
+            Route::get('desc','SuperstarsController@mercadoRawPreçoDecrescente')->name('mercadoRawPriceDesc');
+        });
     //Rotas para alterações na exbição de Pontos
-    Route::prefix('points')->group(function () {
-        Route::get('asc','SuperstarsController@mercadoPontosCrescente')->name('mercadoPointsAsc');
-        Route::get('desc','SuperstarsController@mercadoPontosDecrescente')->name('mercadoPointsDesc');
+        Route::prefix('points')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoRawPontosCrescente')->name('mercadoRawPointsAsc');
+            Route::get('desc','SuperstarsController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
+        });
     });
 });
 Auth::routes();
