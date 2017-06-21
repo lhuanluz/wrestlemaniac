@@ -2,7 +2,7 @@
 
 @section('content')
 @if (Auth::guest())
-<div id="banner" class="container-fluid">
+<div id="banner" class="container">
     <div class="container main">
         <div class="row">
         <!--<div class="col-md-8 col-md-offset-2">
@@ -23,15 +23,15 @@
 
     </div>
 </div>
-        <div class="container play">
+        <!--<div class="container play">
             <h2>How to play</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="num">1</div>
-                    <div class="step">Create your account and receive a inicial amout of game money</div>                    
+                    <div class="num odd">1</div>
+                    <div class="step">Create your account and receive a inicial amout of game cash</div>                    
                 </div>
                 <div class="col-md-6">
-
+                    
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="num">3</div>
+                    <div class="num odd">3</div>
                     <div class="step">Enjoy WWE shows and cheers for your selected Superstars to performe well and win matches!</div>
                 </div>
                 <div class="col-md-6">
@@ -65,6 +65,42 @@
                 </div>
             </div>
         
+        </div>-->
+<div class="container weekly">
+    <h2>WEEKLY BEST</h2>
+    <div class="separador"></div>
+    <div class="best"></div>
+</div>
+
+<div class="container news">
+    <h2>NEWS</h2>
+    <div class="separador"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>WWE PREDICTIONS: Who is going to win Money in the Bank Contracts?</h3>
+            <p>After Shane McMahon makes the match official, tensions rise between the participants in the Money in the Bank Ladder Match.</p>
+            <p>by Rodolfo Alves <span>June 16, 2017</span></p>
         </div>
+        <div class="col-md-6">
+            <img src="{{ url('img/news_thumb.jpg') }}"/>
+        </div>
+
+    </div>
+    <div class="divisor"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>WWE PREDICTIONS: Who is going to win Money in the Bank Contracts?</h3>
+            <p>After Shane McMahon makes the match official, tensions rise between the participants in the Money in the Bank Ladder Match.</p>
+            <p>by Rodolfo Alves <span>June 16, 2017</span></p>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ url('img/news_thumb.jpg') }}"/>
+        </div>
+    </div>
+    <div class="divisor"></div>
+</div>
+
+
 @endif
 @endsection

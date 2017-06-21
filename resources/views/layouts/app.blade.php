@@ -42,7 +42,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ url('css/img/logo.png') }}"/>
+                        <img src="{{ url('img/logo.png') }}"/>
                         <!--WRESTLEMANIAC-->
                     </a>
                 </div>

@@ -3,23 +3,12 @@
     margin: auto;
 }*/
 
-
 /*CSS do menu*/
- .navbar {
+.navbar {
     background-color: #d7182a;
     margin-bottom: 0;
     border: none;
     padding-bottom: 8px;
- }
-
-
-
-/*CSS do nome da marca*/
-.navbar-brand {
-    font-weight: bold;
-    color: #fff !important;
-    font: 24px serif !important;
-    padding-top: 10px !important;
 }
 
 /*CSS do menu para resoluções desktop*/
@@ -32,11 +21,38 @@ ul#menu a {
     margin-top: 14px;
 }
 
+@media (min-width: 1200px) {
+
+    .container {
+        width: 1319px;
+    }
+}
+
 /*Efeito de bordas brancas do menu para resoluções desktop*/
 @media (min-width: 768px) {
+    
     ul#menu a:hover {
         border: 2px solid #fff;
     }
+
+    ul#menu {
+        margin-right: 61px;
+    }
+
+    /*CSS do nome da marca*/
+    .navbar-brand {
+        font-weight: bold;
+        color: #fff !important;
+        font: 24px serif !important;
+        padding-top: 10px !important;
+        margin-left: 61px !important;
+    }
+
+    #banner {
+        max-width: 1319px;
+    }
+
+
 }
 
 
@@ -87,8 +103,8 @@ ul#menu a {
 }
 /*CSS banner*/
 #banner {
-    background: url(../css/img/superstars.jpg) center center no-repeat;
-    height: 500px;
+    background: url(../img/superstars_bg2.jpg) center center no-repeat;
+    height: 413px;
 }
 
 /*CSS texto do banner*/
@@ -107,9 +123,9 @@ ul#menu a {
 /*CSS texto do banner*/
 .main .presentation {
     background: rgba(35, 40, 40, 0.8);
-    margin-top: 200px;
+    margin-top: 220px;
+    margin-left: 120px;
     display: inline-block;
-    overflow: hidden;
 }
 
 /*CSS do How to Play*/
@@ -125,12 +141,77 @@ ul#menu a {
 
 .num {
     padding-bottom: 50px;
+    margin-left: 100px;
+}
+
+.odd {
+    padding-left: 100px;
 }
 
 .step {
     width: 400px;
     margin-left: 20px;
 }
+
+.weekly,
+.news {
+    margin-top: 40px;
+    padding: 0;
+    max-width: 1140px;
+}
+
+.best {
+    background: url(../img/weekly_best_test2.jpg) center center no-repeat;
+    height: 297px;
+}
+
+.weekly h2,
+.news h2 {
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+    color: #141516;
+}
+
+.separador {
+    width: 100px;
+    height: 3px;
+    background-color: #141516;
+    margin: auto;
+    margin-top: 6px;
+}
+
+.divisor {
+    width: 855px;
+    margin-left: 110px;
+    height: 2px;
+    background-color: #d9e0e6;
+    margin-top: 30px;
+}
+
+.news .row {
+    margin-top: 10px;
+}
+
+.news img {
+    margin-top: 20px;
+    width: 380px;
+}
+
+.news h3 {
+    font-size: 31px;
+    padding-left: 110px;
+}
+
+.news p {
+    font-size: 16px;
+    padding-left: 110px;
+}
+
+
+
+
+
 
 /*CSS texto do rodapé*/
 footer .social {
