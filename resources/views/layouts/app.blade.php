@@ -42,7 +42,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        WRESTLEMANIAC
+                        <img src="{{ url('css/img/logo.png') }}"/>
+                        <!--WRESTLEMANIAC-->
                     </a>
                 </div>
 
@@ -58,8 +59,8 @@
 
                         @if (Auth::guest())
                             <li><a href="{{ route('inicio') }}">Home</a></li>
-                            <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Log In</a></li>
                         @else
                             <!-- Verificação Admin-->
                             <li><a href="{{ route('mercadoHome') }}">Market</a></li>
@@ -95,6 +96,11 @@
         </nav>
 
         @yield('content')
+    
+            <footer class="container-fluid footer">
+                <div class="row social"></div>
+                <div class="row copy"></div>
+            </footer>
     </div>
 
     <!-- Scripts -->
