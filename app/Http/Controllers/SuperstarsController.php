@@ -89,48 +89,48 @@ class SuperstarsController extends Controller
     public function mercadoRawPreçoCrescente(){
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
+                    ->orwhere('brand','Nenhuma')
                     ->orderBy('price', 'asc')->get();
         $userId = Auth::user()->id;
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        $supertarTime = [$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04];
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'superstarsTime' => $supertarTime]);
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
     }
 
     public function mercadoRawPreçoDecrescente(){
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
+                    ->orwhere('brand','Nenhuma')
                     ->orderBy('price', 'desc')->get();
         $userId = Auth::user()->id;
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        $supertarTime = [$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04];
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'superstarsTime' => $supertarTime]);
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
     }
 
     public function mercadoRawPontosCrescente(){
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
+                    ->orwhere('brand','Nenhuma')
                     ->orderBy('points', 'asc')->get();
         $userId = Auth::user()->id;
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        $supertarTime = [$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04];
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'superstarsTime' => $supertarTime]);
+       return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
     }
     public function mercadoRawPontosDecrescente(){
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
+                    ->orwhere('brand','Nenhuma')
                     ->orderBy('points', 'desc')->get();
         $userId = Auth::user()->id;
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        $supertarTime = [$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04];
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'superstarsTime' => $supertarTime]);
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
     }
 
     public function editPage(){

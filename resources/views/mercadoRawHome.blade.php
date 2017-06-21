@@ -5,7 +5,17 @@
     <!-- Botões de Controle de Visualização-->
     <div>
     @if(Auth::user())
-        <h1>Your Team</h1>
+    
+    <h1 class="title">Your Team</h1>
+    <div class="info">
+    <center>
+        <h3>Info</h3>
+        <h5 class="btn-info btn-lg btn-block"><span class="glyphicon glyphicon-star"> Points: {{$rawTeam->team_points}}</h5>
+        <h5 class="btn-success btn-lg btn-block"><span class="glyphicon glyphicon-usd"> Cash: {{$rawTeam->team_cash}}</h5>
+        
+       </center> 
+    </div>
+        
         @foreach($superstars as $superstar)
         @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
         @else
@@ -40,6 +50,7 @@
         </div>
         @endif
         @endforeach
+    @else
     @endif
 
     </div>
@@ -69,6 +80,7 @@
             <a href="{{route('mercadoRawPointsDesc')}}">Points▼</a>
         @endif      
     </div>
+    
     <!-- Listamento de Superstars-->
     @foreach($superstars as $superstar)
         @if($superstar->id == 999 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)

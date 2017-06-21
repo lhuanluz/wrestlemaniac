@@ -38,19 +38,19 @@
     color: darkgreen;
  }
 .meuTime{
-     width:250px;
-     height: 460px;
+     width:220px;
+     height: 423px;
      border: 1px solid !important;
      border-radius: 10px;
      padding: 5px;
      border-color: grey;
      float:left;
-     margin: 50px 50px 10px 0px;
+     margin: 25px 25px 0px 0px;
      background-color: #f7f7f7;
 }
 .meuTime img {
-     width: 238px;
-     height: 238px;
+     width: 210px;
+     height: 200px;
      border-radius: 10px;
  }
  .controladores a{
@@ -59,4 +59,18 @@
 .controladores {
      border: 1px solid !important;
      color: #f7f7f7;
+}
+.title {
+    margin-left: 5%; 
+}
+.info {
+    height: 420px;
+    width: 300px;
+    border: 1px solid black;
+    margin-right:5%;
+    float: right;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    padding: 5px;
+    border-color: grey;
 }
