@@ -208,19 +208,69 @@ ul#menu a {
     padding-left: 110px;
 }
 
+.footer .row {
+    width: 
+}
 
 
 
 
 
 /*CSS texto do rodapé*/
-footer .social {
-    height: 105px;
+.social {
+    height: 100px;
     background-color: #d7182a;
 }
 
-footer .copy {
-    height: 50px;
+.copy {
+    height: 35px;
     background-color: #141516;
 }
 
+footer .container {
+    width: 1140px;
+    padding: 0;
+}
+
+.social ul {
+    overflow: hidden;
+    padding-left: 0;
+    margin-top: 15px;
+    list-style: none;
+    /*display: inline-block;*/
+}
+.social ul li {
+    float: left;   
+}
+
+.social a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 25px; 
+}
+
+.social a:hover {
+    text-decoration: underline;
+}
+
+#logo_footer {
+    margin-top: 17px;
+    display: inline-block;
+}
+
+#media {
+    float: right;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.copy p {
+    float: right;
+    color: #d9e0e6;
+    margin-top: 7px;
+}
+
+.copy p span {
+    font-weight: bold;
+}

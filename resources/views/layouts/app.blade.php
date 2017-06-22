@@ -98,8 +98,28 @@
         @yield('content')
     
             <footer class="container-fluid footer">
-                <div class="row social"></div>
-                <div class="row copy"></div>
+                <div class="row social">
+                    <div class="container">
+                        <a id="logo_footer" href="{{ url('/') }}">
+                            <img src="{{ url('img/logo_rodape.png') }}"/>
+                        </a>
+                        <a id="media" href="#">
+                            <img src="{{ url('img/facebook_icon.png') }}"/>
+                        </a>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+                <div class="row copy">
+                    <div class="container">
+                        <p>Developed by <span>Grounder</span></p>
+                    </div>
+                </div>
             </footer>
     </div>
 
