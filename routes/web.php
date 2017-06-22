@@ -34,7 +34,10 @@ Route::prefix('admin')->group(function (){
 
     });
     Route::prefix('market')->group(function (){
-        Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
+        Route::get('status','SuperstarsController@mercadoStatusRedirect')->name('mercadoStatusRedirect');
+        Route::post('status/confirm','SuperstarsController@mercadoStatus')->name('mercadoStatus');
+        Route::get('edit-ppv','SuperstarsController@editarPpvRedirect')->name('editarPpvRedirect');
+        Route::post('edit-ppv/confirm','SuperstarsController@editarPpv')->name('editarPpv');
     });
 });
 //Rota para todas as funções variadas ao painel de Mercado
@@ -53,6 +56,20 @@ Route::prefix('market')->group(function () {
         Route::prefix('points')->group(function () {
             Route::get('asc','SuperstarsController@mercadoRawPontosCrescente')->name('mercadoRawPointsAsc');
             Route::get('desc','SuperstarsController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
+        });
+    });
+    Route::prefix('smackdown')->group(function () {
+        Route::get('/','SuperstarsController@mercadoSmackdown')->name('mercadoSmackdownHome');
+        Route::post('buy','SuperstarsController@comprarSuperstarSmackdown')->name('comprarSuperstarSmackdown');
+        Route::post('sell','SuperstarsController@venderSuperstarSmackdown')->name('venderSuperstarSmackdown');
+        Route::prefix('price')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoSmackdownPreçoCrescente')->name('mercadoSmackdownPriceAsc');
+            Route::get('desc','SuperstarsController@mercadoSmackdownPreçoDecrescente')->name('mercadoSmackdownPriceDesc');
+        });
+    //Rotas para alterações na exbição de Pontos
+        Route::prefix('points')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoSmackdownPontosCrescente')->name('mercadoSmackdownPointsAsc');
+            Route::get('desc','SuperstarsController@mercadoSmackdownPontosDecrescente')->name('mercadoSmackdownPointsDesc');
         });
     });
 });

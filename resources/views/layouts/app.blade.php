@@ -74,8 +74,8 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{route('mercadoRawHome')}}">RAW</a></li>
-                                    <li><a href="{{route('mercadoRawHome')}}">SMACKDOWN</a></li>
-                                    <li><a href="{{route('mercadoRawHome')}}">PAY-PER-VIEW</a></li>
+                                    <li><a href="{{route('mercadoSmackdownHome')}}">SMACKDOWN</a></li>
+                                    <li><a href="">PAY-PER-VIEW</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Game Rules</a></li>
@@ -85,7 +85,7 @@
                             
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -93,7 +93,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Log Out
+                                            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

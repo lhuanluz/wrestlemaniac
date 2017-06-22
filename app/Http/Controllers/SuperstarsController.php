@@ -41,11 +41,6 @@ class SuperstarsController extends Controller
              'points' => 'required'
         ]);
         
-        
-        $ult_pontos = DB::table('superstars')
-                        ->where('name',$request->get('name'))
-                        ->value('points');
-
         $ult_preço = DB::table('superstars')
                         ->where('name',$request->get('name'))
                         ->value('price');
@@ -62,16 +57,12 @@ class SuperstarsController extends Controller
         DB::table('superstars')
             ->where('name', $request->get('name'))
             ->update([
-                'last_points' => $ult_pontos,
                 'points' => $request->get('points'),
                 'price' => $ult_preço,
                 'last_show' => 1
                 ]);
 
         return redirect()->route('painelAdmin');
-    }
-    public function mercado(){
-        return view('mercadoHome');
     }
     public function mercadoRaw(){
         $superstars = DB::table('superstars')
@@ -82,8 +73,9 @@ class SuperstarsController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
+         $status = DB::table('configs')->value('statusMercadoRaw');
 
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
     }
 
     public function mercadoRawPreçoCrescente(){
@@ -95,7 +87,9 @@ class SuperstarsController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
+        $status = DB::table('configs')->value('statusMercadoRaw');
+         
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
     }
 
     public function mercadoRawPreçoDecrescente(){
@@ -107,7 +101,9 @@ class SuperstarsController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
+        $status = DB::table('configs')->value('statusMercadoRaw');
+         
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
     }
 
     public function mercadoRawPontosCrescente(){
@@ -119,7 +115,9 @@ class SuperstarsController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-       return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
+      $status = DB::table('configs')->value('statusMercadoRaw');
+         
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
     }
     public function mercadoRawPontosDecrescente(){
         $superstars = DB::table('superstars')
@@ -130,7 +128,9 @@ class SuperstarsController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam]);
+        $status = DB::table('configs')->value('statusMercadoRaw');
+         
+        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
     }
 
     public function editPage(){
@@ -208,32 +208,26 @@ class SuperstarsController extends Controller
                     ->where('name',$request->name)
                     ->first();
 
-        if($superstar->brand == 'Raw'){
-            $superstarBrandTable = 'raw_teams';
-        }else{
-            $superstar->brand = 'smackdown_teams';
-        }
-
-        $userTeam = DB::table($superstarBrandTable)
+        $userTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
         
         if ($userTeam->superstar01 == 999){
-            DB::table($superstarBrandTable)
+            DB::table('raw_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar01' => $superstar->id,
                 'team_cash' => $userTeam->team_cash - $superstar->price
                 ]);
         }else if ($userTeam->superstar02 == 998){
-            DB::table($superstarBrandTable)
+            DB::table('raw_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar02' => $superstar->id,
                 'team_cash' => $userTeam->team_cash - $superstar->price
                 ]);
         }else if ($userTeam->superstar03 == 997){
-            DB::table($superstarBrandTable)
+            DB::table('raw_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar03' => $superstar->id,
@@ -241,7 +235,7 @@ class SuperstarsController extends Controller
                 ]);
         }
         else if ($userTeam->superstar04 == 996){
-            DB::table($superstarBrandTable)
+            DB::table('raw_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar04' => $superstar->id,
@@ -293,6 +287,255 @@ class SuperstarsController extends Controller
             echo 'Erro';
         }
         return redirect()->route('mercadoRawHome');
+    }
+    public function mercadoSmackdown(){
+        $superstars = DB::table('superstars')
+                 ->where('brand','Smackdown')
+                 ->orwhere('brand','Nenhuma')
+                 ->orderBy('name', 'asc')->get();
+        $userId = Auth::user()->id;
+        $smackdownTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+
+        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+    }
+
+    public function mercadoSmackdownPreçoCrescente(){
+        $superstars = DB::table('superstars')
+                    ->where('brand','Smackdown')
+                    ->orwhere('brand','Nenhuma')
+                    ->orderBy('price', 'asc')->get();
+        $userId = Auth::user()->id;
+        $smackdownTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+
+        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+    }
+
+    public function mercadoSmackdownPreçoDecrescente(){
+        $superstars = DB::table('superstars')
+                    ->where('brand','Smackdown')
+                    ->orwhere('brand','Nenhuma')
+                    ->orderBy('price', 'desc')->get();
+        $userId = Auth::user()->id;
+        $smackdownTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+
+        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+    }
+
+    public function mercadoSmackdownPontosCrescente(){
+        $superstars = DB::table('superstars')
+                    ->where('brand','Smackdown')
+                    ->orwhere('brand','Nenhuma')
+                    ->orderBy('points', 'asc')->get();
+        $userId = Auth::user()->id;
+        $smackdownTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+       $status = DB::table('configs')->value('statusMercadoSmackdown');
+
+        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+    }
+    public function mercadoSmackdownPontosDecrescente(){
+        $superstars = DB::table('superstars')
+                    ->where('brand','Smackdown')
+                    ->orwhere('brand','Nenhuma')
+                    ->orderBy('points', 'desc')->get();
+        $userId = Auth::user()->id;
+        $smackdownTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+
+        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+    }
+    public function comprarSuperstarSmackdown(Request $request){
+        $userId = Auth::user()->id;
+
+        $superstar = DB::table('superstars')
+                    ->where('name',$request->name)
+                    ->first();
+
+        $userTeam = DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        
+        if ($userTeam->superstar01 == 999){
+            DB::table('raw_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar01' => $superstar->id,
+                'team_cash' => $userTeam->team_cash - $superstar->price
+                ]);
+        }else if ($userTeam->superstar02 == 998){
+            DB::table('raw_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar02' => $superstar->id,
+                'team_cash' => $userTeam->team_cash - $superstar->price
+                ]);
+        }else if ($userTeam->superstar03 == 997){
+            DB::table('raw_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar03' => $superstar->id,
+                'team_cash' => $userTeam->team_cash - $superstar->price
+                ]);
+        }
+        else if ($userTeam->superstar04 == 996){
+            DB::table('raw_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar04' => $superstar->id,
+                'team_cash' => $userTeam->team_cash - $superstar->price
+                ]);
+        }else{
+            echo "ERRO";
+        }
+        return redirect()->route('mercadoSmackdownHome');
+    }
+    public function venderSuperstarSmackdown(Request $request){
+        $userId = Auth::user()->id;
+
+        $superstar = DB::table('superstars')
+                    ->where('name',$request->name)
+                    ->first();
+        $userTeam = DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->first();
+        if ($userTeam->superstar01 == $superstar->id){
+             DB::table('smackdown_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar01' => 999,
+                'team_cash' => $userTeam->team_cash + $superstar->price
+                ]);
+        }else if ($userTeam->superstar02 == $superstar->id){
+             DB::table('smackdown_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar02' => 998,
+                'team_cash' => $userTeam->team_cash + $superstar->price
+                ]);
+        }else if ($userTeam->superstar03 == $superstar->id){
+             DB::table('smackdown_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar03' => 997,
+                'team_cash' => $userTeam->team_cash + $superstar->price
+                ]);
+        }else if ($userTeam->superstar04 == $superstar->id){
+             DB::table('smackdown_teams')
+                ->where('user_id',$userId)
+                ->update([
+                'superstar04' => 996,
+                'team_cash' => $userTeam->team_cash + $superstar->price
+                ]);
+        }else{
+            echo 'Erro';
+        }
+        return redirect()->route('mercadoSmackdownHome');
+    }
+    public function mercadoStatusRedirect(){
+        return view('mercadoStatus');
+    }
+    public function editarPpvRedirect(){
+        return view('editarPPV');
+    }
+    public function mercadoStatus(Request $request){
+        $this->validate($request,[
+            'market'      => 'required',
+             'action'    => 'required'
+        ]);
+        $mercado = $request->market;
+        $action = $request->action;
+        
+        if($mercado == 'Raw'){
+            $tabela = 'raw_teams';
+            $coluna = 'statusMercadoRaw';
+        }else if($mercado == 'Smackdown'){
+            $tabela = 'smackdown_teams';
+            $coluna = 'statusMercadoSmackdown';
+        }else{
+            $tabela = 'ppv_teams';
+            $coluna = 'statusMercadoPPV';
+        }
+        $quantidade = DB::table($tabela)->count('id');
+        if($action == 'Aberto'){
+                DB::table('configs')->update([
+                    $coluna => $action
+                ]);
+                for ($i=1; $i <= $quantidade ; $i++) { 
+                    $superstarId01 = DB::table($tabela)->where('id',$i)->value('superstar01');
+                    $superstarId02 = DB::table($tabela)->where('id',$i)->value('superstar02');
+                    $superstarId03 = DB::table($tabela)->where('id',$i)->value('superstar03');
+                    $superstarId04 = DB::table($tabela)->where('id',$i)->value('superstar04');
+
+                    $superstar01 = DB::table('superstars')->where('id',$superstarId01)->value('points');
+                    $superstar02 = DB::table('superstars')->where('id',$superstarId02)->value('points');
+                    $superstar03 = DB::table('superstars')->where('id',$superstarId03)->value('points');
+                    $superstar04 = DB::table('superstars')->where('id',$superstarId04)->value('points');
+
+                    $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points');
+                    $pontos = $superstar01 + $superstar02 +$superstar03 +$superstar04;
+                    $total_pontos = $ult_pontos + $pontos;
+
+                    DB::table($tabela)->where('id',$i)->update([
+                        'team_points' => $pontos,
+                        'team_total_points' => $total_pontos
+                    ]);                
+                }
+            }else{
+                DB::table('configs')->update([
+                    $coluna => $action
+                ]);
+                $quantidade = DB::table('superstars')->count('id');
+                for ($i=1; $i <= $quantidade ; $i++) {
+
+                    $ult_pontos = DB::table('superstars')->where([
+                        ['id',$i],
+                        ['brand',$mercado],
+                        ['last_show',1]
+                    ])->value('last_points');
+
+                    $pontos = DB::table('superstars')->where([
+                        ['id',$i],
+                        ['brand',$mercado],
+                        ['last_show',1]
+                    ])->value('points');
+
+                    $last_points = $ult_pontos + $pontos;
+                    DB::table('superstars')->where([
+                        ['id',$i],
+                        ['brand',$mercado],
+                        ['last_show',1]
+                    ])->update([
+                        'points' => 0,
+                        'last_points' => $last_points
+                    ]);
+
+                }
+            }
+        
+
+        return redirect()->route('painelAdmin');
+    }
+    public function editarPpv(Request $request){
+        $this->validate($request,[
+            'brand'      => 'required'
+        ]);
+
+        DB::table('configs')->update([
+            'ppvBrand' => $request->brand
+        ]);
+        return redirect()->route('painelAdmin');
     }
     
 }

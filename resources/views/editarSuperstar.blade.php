@@ -6,7 +6,7 @@
     <div class="row">
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form action="{{url('admin/superstar/edit/confirm')}}" method="post" name="Edit_Superstar_Form" class="form-signin">       
+            <form action="{{route('confirmarEdição')}}" method="post" name="Edit_Superstar_Form" class="form-signin">       
                 <h1 class="page-header">
                             Editando Superstar
                         </h1>

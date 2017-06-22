@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Models\raw_team;
+use App\Models\smackdown_team;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -76,6 +77,13 @@ class RegisterController extends Controller
                         ->value('id'); 
                            
         raw_team::create([
+            'user_id' => $id_user,
+            'superstar01' => 999,
+            'superstar02' => 998,
+            'superstar03' => 997,
+            'superstar04' => 996
+        ]);
+        smackdown_team::create([
             'user_id' => $id_user,
             'superstar01' => 999,
             'superstar02' => 998,

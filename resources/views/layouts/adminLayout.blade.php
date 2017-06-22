@@ -59,7 +59,7 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                 <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -67,7 +67,7 @@
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                        Logout
+                                        <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -111,11 +111,19 @@
                   <a href="#"><i class="fa fa-star-o fa-lg"></i> Superstars <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="superstars">
-                    <li class="{{route::is('criarSuperstar') ? 'active' : '' }}"><a href="{{route('criarSuperstar')}}"><i class="fa fa-plus icon"></i>Create Superstar</a></li>
-                    <li class="{{route::is('editarSuperstar') ? 'active' : '' }}"><a href="{{route('editarSuperstar')}}"><i class="fa fa-pencil icon"></i>Edit Superstar</a></li>
-                    <li class="{{route::is('editarChampionRedirect') ? 'active' : '' }}"><a href="{{route('editarChampionRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Champion</a></li>
-                    <li class="{{route::is('editarFotoRedirect') ? 'active' : '' }}"><a href="{{route('editarFotoRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Photo</a></li>
-                    <li class="{{route::is('editarBrandRedirect') ? 'active' : '' }}"><a href="{{route('editarBrandRedirect')}}"><i class="fa fa-pencil icon"></i>Edit Brand</a></li>
+                    <li class="{{route::is('criarSuperstar') ? 'active' : '' }}"><a href="{{route('criarSuperstar')}}"><i class="fa fa-plus icon fa-lg"></i>Create Superstar</a></li>
+                    <li class="{{route::is('editarSuperstar') ? 'active' : '' }}"><a href="{{route('editarSuperstar')}}"><i class="fa fa-address-card icon fa-lg"></i>Edit Superstar</a></li>
+                    <li class="{{route::is('editarChampionRedirect') ? 'active' : '' }}"><a href="{{route('editarChampionRedirect')}}"><i class="fa fa-trophy icon fa-lg"></i>Edit Champion</a></li>
+                    <li class="{{route::is('editarFotoRedirect') ? 'active' : '' }}"><a href="{{route('editarFotoRedirect')}}"><i class="fa fa-camera icon fa-lg"></i>Edit Photo</a></li>
+                    <li class="{{route::is('editarBrandRedirect') ? 'active' : '' }}"><a href="{{route('editarBrandRedirect')}}"><i class="fa fa-bookmark icon fa-lg"></i>Edit Brand</a></li>
+                </ul>
+
+                <li  data-toggle="collapse" data-target="#mercado" class="collapsed">
+                  <a href="#"><i class="fa fa-shopping-cart fa-lg"></i> Market <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="mercado">
+                    <li class="{{route::is('mercadoStatus') ? 'active' : '' }}"><a href="{{route('mercadoStatusRedirect')}}"><i class="fa fa-lock icon fa-lg"></i>Market Status</a></li>
+                    <li class="{{route::is('editarPpv') ? 'active' : '' }}"><a href="{{route('editarPpvRedirect')}}"><i class="fa fa-calendar icon fa-lg"></i>Edit PPV</a></li>
                 </ul>
 
                 <!-- 
