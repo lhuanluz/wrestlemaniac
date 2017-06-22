@@ -3,7 +3,7 @@
 @section('content')
     
     <!-- Botões de Controle de Visualização-->
-    <div>
+
     @if(Auth::user())
     
     <h1 class="title">Your Team</h1>
@@ -14,7 +14,7 @@
         <h5 class="btn-success btn-lg btn-block"><span class="glyphicon glyphicon-usd"> Cash: {{$rawTeam->team_cash}}</h5>
         
        </center> 
-    </div>
+    </div> <!-- DIV INFO-->
         
         @foreach($superstars as $superstar)
         @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
@@ -47,13 +47,12 @@
                     <input type=Submit value="Sell" class="btn btn-danger btn-group-justified">
                 </center>
             </form>
-        </div>
+        </div> <!-- DIV meuTime -->
         @endif
         @endforeach
     @else
     @endif
 
-    </div>
     <div class="controladores btn-group-justified">
         <!-- Sempre veremos o botão Name▲ -->
         <a href="{{route('mercadoRawHome')}}">Name▲</a>
@@ -79,9 +78,10 @@
             <a href="{{route('mercadoRawPriceAsc')}}">Price▲</a>
             <a href="{{route('mercadoRawPointsDesc')}}">Points▼</a>
         @endif      
-    </div>
+    </div> <!-- DIV CONTROLADORES -->
     
     <!-- Listamento de Superstars-->
+    <div class="container">
     @foreach($superstars as $superstar)
         @if($superstar->id == 999 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
         @else
@@ -122,7 +122,9 @@
                 @endif
                 </center>
             </form>
-        </div>
+        </div> <!-- DIV LUTADOR -->
+        
         @endif
     @endforeach
+    </div> <!-- DIV CONTAINER > LUTADOR -->
 @endsection
