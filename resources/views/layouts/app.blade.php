@@ -25,6 +25,9 @@
     <!-- Home CSS -->
     <link href="{{ url('css/home.css') }}" rel="stylesheet">
 
+    <!-- Market CSS -->
+    <link href="{{ url('css/market.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -59,13 +62,23 @@
 
                         @if (Auth::guest())
                             <li><a href="{{ route('inicio') }}">Home</a></li>
+                            <li><a href="#">How to Play</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>
                         @else
                             <!-- Verificação Admin-->
-                            <li><a href="{{ route('mercadoHome') }}">Market</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">How to Play</a></li>
+                            <li><a href="{{ route('inicio') }}">Home</a></li>
+                            <li class="dropdown">
+                                <a href="{{ route('mercadoHome') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Market <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{route('mercadoRawHome')}}">RAW</a></li>
+                                    <li><a href="{{route('mercadoRawHome')}}">SMACKDOWN</a></li>
+                                    <li><a href="{{route('mercadoRawHome')}}">PAY-PER-VIEW</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Game Rules</a></li>
                             @if(Auth::user()->user_power == 1)
                             <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
                             @endif
@@ -80,7 +93,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Log Out
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

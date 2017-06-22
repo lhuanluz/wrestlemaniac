@@ -21,6 +21,31 @@ ul#menu a {
     margin-top: 14px;
 }
 
+/*CSS MENU DROPDOWN*/
+.dropdown-menu {
+    background-color: #d7182a;
+}
+
+.dropdown-menu li a {
+    text-align: center;
+    box-sizing: border-box !important;
+    border: 2px solid #fff !important;
+    font-size: 16px !important;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #fff !important;
+    color: #d7182a !important;
+    border-bottom-color: #fff !important;
+}
+
+ul#menu a:focus {
+    color: #d7182a;
+    background-color: #fff;
+    /*border-bottom-color: #fff !important;*/
+}
+
+
 @media (min-width: 1200px) {
 
     .container {
@@ -36,7 +61,7 @@ ul#menu a {
     }
 
     ul#menu {
-        margin-right: 61px;
+        margin-right: 66px;
     }
 
     /*CSS do nome da marca*/
@@ -51,8 +76,6 @@ ul#menu a {
     #banner {
         max-width: 1319px;
     }
-
-
 }
 
 
@@ -153,6 +176,8 @@ ul#menu a {
     margin-left: 20px;
 }
 
+
+/*CSS News*/
 .weekly,
 .news {
     margin-top: 40px;
@@ -235,7 +260,7 @@ footer .container {
 .social ul {
     overflow: hidden;
     padding-left: 0;
-    margin-top: 15px;
+    margin-top: 13px;
     list-style: none;
     /*display: inline-block;*/
 }
@@ -273,4 +298,14 @@ footer .container {
 
 .copy p span {
     font-weight: bold;
+}
+
+
+
+/*CSS DA PÁGINA INICIAL DO USUÁRIO*/
+
+.login h2 {
+    text-align: center;
+    margin-top: 220px;
+    margin-bottom: 220px; 
 }

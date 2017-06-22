@@ -100,7 +100,15 @@
     </div>
     <div class="divisor"></div>
 </div>
-
-
 @endif
+
+@if (!Auth::guest())
+<!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
+<div class="container login">
+    <div class="row">
+        <h2>Página Inicial do Usuário Logado</h2>
+    </div>
+</div>
+@endif
+
 @endsection
