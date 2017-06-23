@@ -96,7 +96,7 @@
     </div> <!-- DIV CONTROLADORES -->
     
     <!-- Listamento de Superstars-->
-    <div class="container">
+    <div class="container market">
     @foreach($superstars as $superstar)
         @if($superstar->id == 999 || $superstar->id == 998 || $superstar->id == 997 || $superstar->id == 996 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
         @else
