@@ -49,11 +49,11 @@
                 <h2 class="preço" name="price"><span class="glyphicon glyphicon-usd"></span>{{$superstar->price}}</h2>
                 <!-- Verifica se o Usuário está cadastrado, caso contrário não mostra os botões para comprar -->
                 @if($superstar->name == 'None')
-                <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
+                <button type="Submit" class="btn btn-primary btn-group-justified" disabled>
                 <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Can't Sell
                 </button>
                 @else
-                <button type="Submit" class="btn btn-danger btn-group-justified">
+                <button type="Submit" class="btn btn-primary btn-group-justified">
                 <i class="fa fa-thumbs-o-down fa-lg icon" aria-hidden="true"></i>Sell
                 </button>
                 @endif
@@ -128,15 +128,15 @@
                 @if(Auth::user())
                     <!-- Caso seja um Superstar do RAW mostra botão vermelho -->
                         @if($smackdownTeam->superstar01 != 999 && $smackdownTeam->superstar02 != 998 && $smackdownTeam->superstar03 != 997 && $smackdownTeam->superstar04 != 996 )
-                            <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
+                            <button type="Submit" class="btn btn-primary btn-group-justified" disabled>
                             <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Not enough space
                             </button>
                         @elseif($smackdownTeam->team_cash < $superstar->price)
-                            <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
+                            <button type="Submit" class="btn btn-primary btn-group-justified" disabled>
                             <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Not enough cash
                             </button>
                         @else
-                            <button type="Submit" class="btn btn-danger btn-group-justified">
+                            <button type="Submit" class="btn btn-primary btn-group-justified">
                             <i class="fa fa-thumbs-o-up fa-lg icon" aria-hidden="true"></i>Buy
                             </button>
                         @endif
