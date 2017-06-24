@@ -2,109 +2,53 @@
 
 @section('content')
 @if (Auth::guest())
-<div id="banner" class="container">
+<div id="banner" class="container"> <!-- BANNER -->
     <div class="container main">
         <div class="row">
-        <!--<div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in CHEGUEI BIRL!!
-                </div>
-            </div>
-        </div>-->
-
             <div class="presentation">
                 <h2>WRESTLEMANIAC is a WWE Fantasy Game!</h2>
                 <h3>Made by fans to fans!<h3/>
             </div>
         </div>
-
     </div>
 </div>
-        <!--<div class="container play">
-            <h2>How to play</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="num odd">1</div>
-                    <div class="step">Create your account and receive a inicial amout of game cash</div>                    
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                    <div class="num">2</div>
-                    <div class="step">Go through our Superstar Market and buy 4 Superstars. Challenge your friends to do the same. Let's see who makes the best choices!</div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="num odd">3</div>
-                    <div class="step">Enjoy WWE shows and cheers for your selected Superstars to performe well and win matches!</div>
-                </div>
-                <div class="col-md-6">
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                    <div class="num">4</div>
-                    <div class="step">Score points and have fun climbing the Super Rank ladder right to the TOP!</div>
-                </div>
-            </div>
         
-        </div>-->
-<div class="container weekly">
+<div class="container weekly"> <!-- WEEKLY BEST -->
     <h2>WEEKLY BEST</h2>
     <div class="separador"></div>
-    <div class="best"></div>
+    <img src="{{ url('img/weekly_best.jpg') }}"/>
 </div>
 
-<div class="container news">
-    <h2>NEWS</h2>
+<div id="play" class="container-fluid play"> <!-- HOW TO PLAY -->
+    <h2>HOW TO PLAY</h2>
     <div class="separador"></div>
     <div class="row">
-        <div class="col-md-6">
-            <h3>WWE PREDICTIONS: Who is going to win Money in the Bank Contracts?</h3>
-            <p>After Shane McMahon makes the match official, tensions rise between the participants in the Money in the Bank Ladder Match.</p>
-            <p>by Rodolfo Alves <span>June 16, 2017</span></p>
+        <div class="col-md-3 account">
+            <img src="{{ url('img/account_icon.png') }}"/>
+            <h3>Create your account</h3>
+            <p>Earn your initial amount of game cash</p>
         </div>
-        <div class="col-md-6">
-            <img src="{{ url('img/news_thumb.jpg') }}"/>
+        <div class="col-md-3 team">
+            <img src="{{ url('img/team_icon.png') }}"/>
+            <h3>Build your team</h3>
+            <p>Go through our market and buy Superstars</p>
         </div>
-
+        <div class="col-md-3 wwe">
+            <img src="{{ url('img/wwe_icon.png') }}"/>
+            <h3>Enjoy WWE shows</h3>
+            <p>Cheers for your Superstars to performe well and win matches!</p>
+        </div>
+        <div class="col-md-3 score">
+            <img src="{{ url('img/score_icon.png') }}"/>
+            <h3>Score<br/>points</h3>
+            <p>Have fun climbing de the Rank right to the TOP!</p>
+        </div>
     </div>
-    <div class="divisor"></div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <h3>WWE PREDICTIONS: Who is going to win Money in the Bank Contracts?</h3>
-            <p>After Shane McMahon makes the match official, tensions rise between the participants in the Money in the Bank Ladder Match.</p>
-            <p>by Rodolfo Alves <span>June 16, 2017</span></p>
-        </div>
-        <div class="col-md-6">
-            <img src="{{ url('img/news_thumb.jpg') }}"/>
-        </div>
-    </div>
-    <div class="divisor"></div>
 </div>
 @endif
 
 @if (!Auth::guest())
-<!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
-<div class="container login">
+<div class="container login"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
     <div class="row">
         <h2>Página Inicial do Usuário Logado</h2>
     </div>

@@ -62,7 +62,7 @@
 
                         @if (Auth::guest())
                             <li><a href="{{ route('inicio') }}">Home</a></li>
-                            <li><a href="#">How to Play</a></li>
+                            <li><a href="#play">How to Play</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>
                         @else
