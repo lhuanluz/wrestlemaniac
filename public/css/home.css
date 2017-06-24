@@ -225,6 +225,16 @@ ul#menu a:focus {
     margin-left: 7px;
 }
 
+.play .account,
+.play .wwe, 
+.play .score {
+    padding-left: 50px;
+}
+
+.play .team {
+    padding-left: 30px;
+}
+
 /*CSS texto do rodapé*/
 .social {
     height: 100px;
