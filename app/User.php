@@ -29,5 +29,13 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\raw_team');
     }
+    public function smackdown_team()
+    {
+        return $this->hasOne('App\Models\smackdown_team');
+    }
+    public function ppv_team()
+    {
+        return $this->hasOne('App\Models\ppv_team');
+    }
     
 }

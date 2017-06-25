@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Painel Admin</title>
+    <title>Admin Panel</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">

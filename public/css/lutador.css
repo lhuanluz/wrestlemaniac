@@ -78,3 +78,11 @@
 .icon{
     margin-right: 5%;
 }
+.ppv {
+    background-color:#0d9222;
+    color: white;
+}
+.ppv:hover{
+     background-color: #0b7e1e;
+     color: white;
+}

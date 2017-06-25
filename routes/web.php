@@ -72,6 +72,20 @@ Route::prefix('market')->group(function () {
             Route::get('desc','SuperstarsController@mercadoSmackdownPontosDecrescente')->name('mercadoSmackdownPointsDesc');
         });
     });
+    Route::prefix('ppv')->group(function () {
+        Route::get('/','SuperstarsController@mercadoPpv')->name('mercadoPpvHome');
+        Route::post('buy','SuperstarsController@comprarSuperstarPpv')->name('comprarSuperstarPpv');
+        Route::post('sell','SuperstarsController@venderSuperstarPpv')->name('venderSuperstarPpv');
+        Route::prefix('price')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoPpvPreçoCrescente')->name('mercadoPpvPriceAsc');
+            Route::get('desc','SuperstarsController@mercadoPpvPreçoDecrescente')->name('mercadoPpvPriceDesc');
+        });
+    //Rotas para alterações na exbição de Pontos
+        Route::prefix('points')->group(function () {
+            Route::get('asc','SuperstarsController@mercadoPpvPontosCrescente')->name('mercadoPpvPointsAsc');
+            Route::get('desc','SuperstarsController@mercadoPpvPontosDecrescente')->name('mercadoPpvPointsDesc');
+        });
+    });
 });
 Auth::routes();
 

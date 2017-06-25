@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wrestlemaniac</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -75,7 +76,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{route('mercadoRawHome')}}">RAW</a></li>
                                     <li><a href="{{route('mercadoSmackdownHome')}}">SMACKDOWN</a></li>
-                                    <li><a href="">PAY-PER-VIEW</a></li>
+                                    <li><a href="{{route('mercadoPpvHome')}}">PAY-PER-VIEW</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Game Rules</a></li>
