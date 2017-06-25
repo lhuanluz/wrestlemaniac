@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jun-2017 às 02:35
+-- Generation Time: 25-Jun-2017 às 20:34
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -88,7 +88,7 @@ INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points
 (61, 'Baron Corbin', 'Smackdown', 'storage/superstars/baron_corbin.png', 4, 0, 1040, 1, 'Mr. Money in the Bank', 1, '2017-06-15 18:35:45', '2017-06-15 18:35:45'),
 (62, 'Becky Lynch', 'Smackdown', 'storage/superstars/becky_lynch.png', 4, 0, 1040, 0, 'none', 1, '2017-06-15 18:35:56', '2017-06-15 18:35:56'),
 (63, 'Big E', 'Smackdown', 'storage/superstars/big_e.png', 3, 0, 1030, 0, 'none', 1, '2017-06-15 18:36:04', '2017-06-15 18:36:04'),
-(64, 'Carmella', 'Smackdown', 'storage/superstars/carmella.png', 5, 0, 1050, 1, 'Ms. Money in the Bank', 1, '2017-06-15 18:36:11', '2017-06-15 18:36:11'),
+(64, 'Carmella', 'Smackdown', 'storage/superstars/carmella.png', 5, 0, 1050, 0, 'none', 1, '2017-06-15 18:36:11', '2017-06-15 18:36:11'),
 (65, 'Chad Gable', 'Smackdown', 'storage/superstars/chad_gable.png', 5, 0, 1050, 0, 'none', 1, '2017-06-15 18:36:21', '2017-06-15 18:36:21'),
 (66, 'Charlotte', 'Smackdown', 'storage/superstars/charlotte.png', 4, 0, 1040, 0, 'none', 1, '2017-06-15 18:36:30', '2017-06-15 18:36:30'),
 (67, 'Dolph Ziggler', 'Smackdown', 'storage/superstars/dolph_ziggler.png', 1, 0, 910, 0, 'none', 1, '2017-06-15 18:36:48', '2017-06-15 18:36:48'),
@@ -124,10 +124,10 @@ INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points
 (97, 'Viktor', 'Smackdown', 'storage/superstars/viktor.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:42:38', '2017-06-15 18:42:38'),
 (98, 'Xavier Woods', 'Smackdown', 'storage/superstars/xavier_woods.png', 1.5, 0, 915, 0, 'none', 1, '2017-06-15 18:42:47', '2017-06-15 18:42:47'),
 (99, 'Zack Ryder', 'Smackdown', 'storage/superstars/zack_ryder.png', 2, 0, 920, 0, 'none', 1, '2017-06-15 18:43:00', '2017-06-15 18:43:00'),
-(996, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
-(997, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
-(998, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
-(999, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL);
+(996, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL),
+(997, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL),
+(998, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL),
+(999, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ route('painelAdmin') }}">
-                    PAINEL ADMIN
+                    ADMIN PANEL
                 </a>
             </div>
 
