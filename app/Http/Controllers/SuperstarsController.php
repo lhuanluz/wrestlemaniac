@@ -373,26 +373,26 @@ class SuperstarsController extends Controller
                     ->where('name',$request->name)
                     ->first();
 
-        $userTeam = DB::table('raw_teams')
+        $userTeam = DB::table('smackdown_teams')
                     ->where('user_id',$userId)
                     ->first();
         
         if ($userTeam->superstar01 == 999){
-            DB::table('raw_teams')
+            DB::table('smackdown_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar01' => $superstar->id,
                 'team_cash' => $userTeam->team_cash - $superstar->price
                 ]);
         }else if ($userTeam->superstar02 == 998){
-            DB::table('raw_teams')
+            DB::table('smackdown_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar02' => $superstar->id,
                 'team_cash' => $userTeam->team_cash - $superstar->price
                 ]);
         }else if ($userTeam->superstar03 == 997){
-            DB::table('raw_teams')
+            DB::table('smackdown_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar03' => $superstar->id,
@@ -400,7 +400,7 @@ class SuperstarsController extends Controller
                 ]);
         }
         else if ($userTeam->superstar04 == 996){
-            DB::table('raw_teams')
+            DB::table('smackdown_teams')
                 ->where('user_id',$userId)
                 ->update([
                 'superstar04' => $superstar->id,
@@ -502,13 +502,13 @@ class SuperstarsController extends Controller
                         'team_total_points' => $total_pontos
                     ]);                
                 }
-               /* if($mercado == 'PPV'){
+                if($mercado == 'PPV'){
                     $brand = DB::table('configs')->value('ppvBrand');
                     for ($i=1; $i <= $quantidade ; $i++) { 
-                        $superstarId01 = DB::table($tabela)->where('id',$i)->value('superstar01');
-                        $superstarId02 = DB::table($tabela)->where('id',$i)->value('superstar02');
-                        $superstarId03 = DB::table($tabela)->where('id',$i)->value('superstar03');
-                        $superstarId04 = DB::table($tabela)->where('id',$i)->value('superstar04');
+                        $superstarId01 = DB::table('ppv_teams')->where('id',$i)->value('superstar01');
+                        $superstarId02 = DB::table('ppv_teams')->where('id',$i)->value('superstar02');
+                        $superstarId03 = DB::table('ppv_teams')->where('id',$i)->value('superstar03');
+                        $superstarId04 = DB::table('ppv_teams')->where('id',$i)->value('superstar04');
 
                         $superstar01 = DB::table('superstars')->where('id',$superstarId01)->first();
                         $superstar02 = DB::table('superstars')->where('id',$superstarId02)->first();
@@ -520,61 +520,66 @@ class SuperstarsController extends Controller
                         $preço3 = $superstar03->price;
                         $preço4 = $superstar04->price;
 
-                        if($superstar01->points <= 2.5){
-                            if($preço1 - (100 - $superstar01->points * 10) <= 500){
-                                $preço1= 0.0;
+                            if($superstar01->points <= 2.5){
+                                if($preço1 - (100 - $superstar01->points * 10) <= 500){
+                                    $preço1= 0.0;
+                                }else{
+                                $preço1 =  - (100 - $superstar01->points * 10);
+                                }
                             }else{
-                            $preço1 =  - (100 - $request->points * 10);
+                                $preço1 =  ($superstar01->points * 10);
                             }
-                        }else{
-                            $preço1 =  ($request->points * 10);
-                        }
 
-                        if($superstar02->points <= 2.5){
-                            if($preço2 - (100 - $superstar02->points * 10) <= 500){
-                                $preço2= 0.0;
-                            }else{
-                            $preço2 =  - (100 - $request->points * 10);
-                            }
-                        }else{
-                            $preço2 =  ($request->points * 10);
-                        }
 
-                        if($superstar03->points <= 2.5){
-                            if($preço3 - (100 - $superstar03->points * 10) <= 500){
-                                $preço3= 0.0;
+                            if($superstar02->points <= 2.5){
+                                if($preço2 - (100 - $superstar02->points * 10) <= 500){
+                                    $preço2= 0.0;
+                                }else{
+                                $preço2 =  - (100 - $superstar01->points * 10);
+                                }
                             }else{
-                            $preço3 =  - (100 - $request->points * 10);
+                                $preço2 =   ($superstar01->points * 10);
                             }
-                        }else{
-                            $preço3 =  ($request->points * 10);
-                        }
 
-                        if($superstar04->points <= 2.5){
-                            if($preço4 - (100 - $superstar04->points * 10) <= 500){
-                                $preço4= 0.0;
+
+                            if($superstar03->points <= 2.5){
+                                if($preço3 - (100 - $superstar03->points * 10) <= 500){
+                                    $preço3= 0.0;
+                                }else{
+                                $preço3 =  - (100 - $superstar01->points * 10);
+                                }
                             }else{
-                            $preço4 =  - (100 - $request->points * 10);
+                                $preço3 =   ($superstar01->points * 10);
                             }
-                        }else{
-                            $preço4 =  ($request->points * 10);
-                        }
+
+
+                            if($superstar04->points <= 2.5){
+                                if($preço4 - (100 - $superstar04->points * 10) <= 500){
+                                    $preço4= 0.0;
+                                }else{
+                                $preço4 =  - (100 - $superstar01->points * 10);
+                                }
+                            }else{
+                                $preço4 =  + ($superstar01->points * 10);
+                            }
 
                         $valor_ganho = $preço1 + $preço2 + $preço3 + $preço4;
                         if ($brand == 'Raw') {
+                            
                             $ult_cash = DB::table('raw_teams')->where('id',$i)->value('team_cash');
-                            $ult_cash += $superstar01->price + $superstar02->price+ $superstar03->price+ $superstar04->price;
-
-                            DB::table('raw_teams')->where('id',$i)->update([
-                                'team_cash' => $ult_cash + $valor_ganho
+                            $ult_cash = $ult_cash + $valor_ganho;
+                            DB::table('raw_teams')->where('user_id',$i)->update([
+                                'team_cash' => $ult_cash
                             ]);
                         }else if ($brand == 'Smackdown') {
+
                             $ult_cash = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
-                            $ult_cash += $superstar01->price + $superstar02->price+ $superstar03->price+ $superstar04->price;
+                            $ult_cash = $ult_cash + $valor_ganho;
                             DB::table('smackdown_teams')->where('id',$i)->update([
-                                'team_cash' => $ult_cash + $valor_ganho
+                                'team_cash' => $ult_cash
                             ]);
                         }else {
+
                             $valor_ganho = $valor_ganho/2;
                             $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
                             $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
@@ -594,7 +599,7 @@ class SuperstarsController extends Controller
                             'superstar04' => 996
                         ]);
                     }
-                }*/
+                }
             }else{
                 DB::table('configs')->update([
                     $coluna => $action
@@ -701,46 +706,83 @@ class SuperstarsController extends Controller
             'brand'      => 'required'
         ]);
         
-        /*$brand = $request->brand;
+        $brand = $request->brand;
         $userId = Auth::user()->id;
         if ($brand == 'Raw') {
             $quantidade = DB::table('raw_teams')->count('id');
-            for ($i=1; $i <= $quantidade ; $i++) { 
-                $grana = DB::table('raw_teams')
-                    ->where('user_id',$i)
-                    ->value('team_cash');
+            for ($i=1; $i <= $quantidade ; $i++) {
+                $superstarId01Raw = DB::table('raw_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Raw = DB::table('raw_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Raw = DB::table('raw_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Raw = DB::table('raw_teams')->where('id',$i)->value('superstar04');
+
+                $superstar01Raw = DB::table('superstars')->where('id',$superstarId01Raw)->first();
+                $superstar02Raw = DB::table('superstars')->where('id',$superstarId02Raw)->first();
+                $superstar03Raw = DB::table('superstars')->where('id',$superstarId03Raw)->first();
+                $superstar04Raw = DB::table('superstars')->where('id',$superstarId04Raw)->first();
+                
+                $ult_cash = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                $ult_cash = $ult_cash + $superstar01Raw->price + $superstar02Raw->price = $superstar03Raw->price + $superstar04Raw->price; 
 
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
                     ->update([
-                        'team_cash' => $grana
+                        'team_cash' => $ult_cash
                     ]);
             }
 
         }else if ($brand == 'Smackdown') {
             $quantidade = DB::table('smackdown_teams')->count('id');
-            for ($i=1; $i <= $quantidade ; $i++) { 
-                $grana = DB::table('smackdown_teams')
-                    ->where('user_id',$i)
-                    ->value('team_cash');
+            for ($i=1; $i <= $quantidade ; $i++) {
+                $superstarId01Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar04');
+
+                $superstar01Smackdown = DB::table('superstars')->where('id',$superstarId01Smackdown)->first();
+                $superstar02Smackdown = DB::table('superstars')->where('id',$superstarId02Smackdown)->first();
+                $superstar03Smackdown = DB::table('superstars')->where('id',$superstarId03Smackdown)->first();
+                $superstar04Smackdown = DB::table('superstars')->where('id',$superstarId04Smackdown)->first();
+                
+                $ult_cash = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
+                $ult_cash = $ult_cash + $superstar01Smackdown->price + $superstar02Smackdown->price = $superstar03Smackdown->price + $superstar04Smackdown->price; 
 
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
                     ->update([
-                        'team_cash' => $grana
+                        'team_cash' => $ult_cash
                     ]);
             }
         }else{
             $quantidade = DB::table('ppv_teams')->count('id');
             for ($i=1; $i <= $quantidade ; $i++) { 
-                $granaRaw = DB::table('raw_teams')
-                    ->where('user_id',$i)
-                    ->value('team_cash');
+                $superstarId01Raw = DB::table('raw_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Raw = DB::table('raw_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Raw = DB::table('raw_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Raw = DB::table('raw_teams')->where('id',$i)->value('superstar04');
 
-                $granaSmack = DB::table('smackdown_teams')
-                    ->where('user_id',$i)
-                    ->value('team_cash');
-                $granaTotal = $granaRaw + $granaSmack;
+                $superstar01Raw = DB::table('superstars')->where('id',$superstarId01Raw)->first();
+                $superstar02Raw = DB::table('superstars')->where('id',$superstarId02Raw)->first();
+                $superstar03Raw = DB::table('superstars')->where('id',$superstarId03Raw)->first();
+                $superstar04Raw = DB::table('superstars')->where('id',$superstarId04Raw)->first();
+                
+                $superstarId01Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar04');
+
+                $superstar01Smackdown = DB::table('superstars')->where('id',$superstarId01Smackdown)->first();
+                $superstar02Smackdown = DB::table('superstars')->where('id',$superstarId02Smackdown)->first();
+                $superstar03Smackdown = DB::table('superstars')->where('id',$superstarId03Smackdown)->first();
+                $superstar04Smackdown = DB::table('superstars')->where('id',$superstarId04Smackdown)->first();
+
+                $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                $ult_cash_Raw = $ult_cash_Raw + $superstar01Raw->price + $superstar02Raw->price = $superstar03Raw->price + $superstar04Raw->price;
+                
+                $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
+                $ult_cash_Smackdown = $ult_cash_Smackdown + $superstar01Smackdown->price + $superstar02Smackdown->price = $superstar03Smackdown->price + $superstar04Smackdown->price;
+                
+                $granaTotal = $ult_cash_Raw + $ult_cash_Smackdown;
                 $grana = $granaTotal/2;
 
                 DB::table('ppv_teams')
@@ -749,7 +791,7 @@ class SuperstarsController extends Controller
                         'team_cash' => $grana
                     ]);
             }
-        }*/
+        }
         
         DB::table('configs')->update([
             'ppvBrand' => $request->brand

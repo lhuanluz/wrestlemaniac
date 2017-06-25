@@ -96,8 +96,7 @@ class RegisterController extends Controller
             'superstar01' => 999,
             'superstar02' => 998,
             'superstar03' => 997,
-            'superstar04' => 996,
-            'team_cash' => 5000.00
+            'superstar04' => 996
         ]);
         return $user;
         
