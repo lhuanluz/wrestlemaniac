@@ -29,6 +29,10 @@
     <!-- Market CSS -->
     <link href="{{ url('css/market.css') }}" rel="stylesheet">
 
+    <!-- FAQ CSS -->
+    <link href="{{ url('css/faq.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
@@ -64,8 +68,10 @@
                         @if (Auth::guest())
                             <li><a href="{{ route('inicio') }}">Home</a></li>
                             <li><a href="#play">How to Play</a></li>
+                            <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>
+                            
                         @else
                             <!-- Verificação Admin-->
                             <li><a href="{{ route('inicio') }}">Home</a></li>
@@ -80,6 +86,7 @@
                                 </ul>
                             </li>
                             <li><a href="#">Game Rules</a></li>
+                            <li><a href="{{ route('faq') }}">FAQ</a></li>
                             @if(Auth::user()->user_power == 1)
                             <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
                             @endif

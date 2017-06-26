@@ -34,59 +34,63 @@ Route::prefix('admin')->group(function (){
 
     });
     Route::prefix('market')->group(function (){
-        Route::get('status','SuperstarsController@mercadoStatusRedirect')->name('mercadoStatusRedirect');
-        Route::post('status/confirm','SuperstarsController@mercadoStatus')->name('mercadoStatus');
-        Route::get('edit-ppv','SuperstarsController@editarPpvRedirect')->name('editarPpvRedirect');
-        Route::post('edit-ppv/confirm','SuperstarsController@editarPpv')->name('editarPpv');
+        Route::get('status','MarketController@mercadoStatusRedirect')->name('mercadoStatusRedirect');
+        Route::post('status/confirm','MarketController@mercadoStatus')->name('mercadoStatus');
+        Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
+        Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
     });
 });
 //Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {
-    Route::get('/','SuperstarsController@mercado')->name('mercadoHome');
+    Route::get('/','MarketController@mercado')->name('mercadoHome');
 
     Route::prefix('raw')->group(function () {
-        Route::get('/','SuperstarsController@mercadoRaw')->name('mercadoRawHome');
-        Route::post('buy','SuperstarsController@comprarSuperstarRaw')->name('comprarSuperstarRaw');
-        Route::post('sell','SuperstarsController@venderSuperstarRaw')->name('venderSuperstarRaw');
+        Route::get('/','MarketController@mercadoRaw')->name('mercadoRawHome');
+        Route::post('buy','MarketController@comprarSuperstarRaw')->name('comprarSuperstarRaw');
+        Route::post('sell','MarketController@venderSuperstarRaw')->name('venderSuperstarRaw');
         Route::prefix('price')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoRawPreçoCrescente')->name('mercadoRawPriceAsc');
-            Route::get('desc','SuperstarsController@mercadoRawPreçoDecrescente')->name('mercadoRawPriceDesc');
+            Route::get('asc','MarketController@mercadoRawPreçoCrescente')->name('mercadoRawPriceAsc');
+            Route::get('desc','MarketController@mercadoRawPreçoDecrescente')->name('mercadoRawPriceDesc');
         });
     //Rotas para alterações na exbição de Pontos
         Route::prefix('points')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoRawPontosCrescente')->name('mercadoRawPointsAsc');
-            Route::get('desc','SuperstarsController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
+            Route::get('asc','MarketController@mercadoRawPontosCrescente')->name('mercadoRawPointsAsc');
+            Route::get('desc','MarketController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
         });
     });
     Route::prefix('smackdown')->group(function () {
-        Route::get('/','SuperstarsController@mercadoSmackdown')->name('mercadoSmackdownHome');
-        Route::post('buy','SuperstarsController@comprarSuperstarSmackdown')->name('comprarSuperstarSmackdown');
-        Route::post('sell','SuperstarsController@venderSuperstarSmackdown')->name('venderSuperstarSmackdown');
+        Route::get('/','MarketController@mercadoSmackdown')->name('mercadoSmackdownHome');
+        Route::post('buy','MarketController@comprarSuperstarSmackdown')->name('comprarSuperstarSmackdown');
+        Route::post('sell','MarketController@venderSuperstarSmackdown')->name('venderSuperstarSmackdown');
         Route::prefix('price')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoSmackdownPreçoCrescente')->name('mercadoSmackdownPriceAsc');
-            Route::get('desc','SuperstarsController@mercadoSmackdownPreçoDecrescente')->name('mercadoSmackdownPriceDesc');
+            Route::get('asc','MarketController@mercadoSmackdownPreçoCrescente')->name('mercadoSmackdownPriceAsc');
+            Route::get('desc','MarketController@mercadoSmackdownPreçoDecrescente')->name('mercadoSmackdownPriceDesc');
         });
     //Rotas para alterações na exbição de Pontos
         Route::prefix('points')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoSmackdownPontosCrescente')->name('mercadoSmackdownPointsAsc');
-            Route::get('desc','SuperstarsController@mercadoSmackdownPontosDecrescente')->name('mercadoSmackdownPointsDesc');
+            Route::get('asc','MarketController@mercadoSmackdownPontosCrescente')->name('mercadoSmackdownPointsAsc');
+            Route::get('desc','MarketController@mercadoSmackdownPontosDecrescente')->name('mercadoSmackdownPointsDesc');
         });
     });
     Route::prefix('ppv')->group(function () {
-        Route::get('/','SuperstarsController@mercadoPpv')->name('mercadoPpvHome');
-        Route::post('buy','SuperstarsController@comprarSuperstarPpv')->name('comprarSuperstarPpv');
-        Route::post('sell','SuperstarsController@venderSuperstarPpv')->name('venderSuperstarPpv');
+        Route::get('/','MarketController@mercadoPpv')->name('mercadoPpvHome');
+        Route::post('buy','MarketController@comprarSuperstarPpv')->name('comprarSuperstarPpv');
+        Route::post('sell','MarketController@venderSuperstarPpv')->name('venderSuperstarPpv');
         Route::prefix('price')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoPpvPreçoCrescente')->name('mercadoPpvPriceAsc');
-            Route::get('desc','SuperstarsController@mercadoPpvPreçoDecrescente')->name('mercadoPpvPriceDesc');
+            Route::get('asc','MarketController@mercadoPpvPreçoCrescente')->name('mercadoPpvPriceAsc');
+            Route::get('desc','MarketController@mercadoPpvPreçoDecrescente')->name('mercadoPpvPriceDesc');
         });
     //Rotas para alterações na exbição de Pontos
         Route::prefix('points')->group(function () {
-            Route::get('asc','SuperstarsController@mercadoPpvPontosCrescente')->name('mercadoPpvPointsAsc');
-            Route::get('desc','SuperstarsController@mercadoPpvPontosDecrescente')->name('mercadoPpvPointsDesc');
+            Route::get('asc','MarketController@mercadoPpvPontosCrescente')->name('mercadoPpvPointsAsc');
+            Route::get('desc','MarketController@mercadoPpvPontosDecrescente')->name('mercadoPpvPointsDesc');
         });
     });
 });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
