@@ -47,29 +47,31 @@ class SuperstarsController extends Controller
             ->where('name', $request->get('name'))
             ->first();
             
-        if($superstar->champion == 1){
-          $request->points +=2;  
-        }else{
-
+        $champion = DB::table('superstars')
+            ->where('name', $request->get('name'))
+            ->value('champion');
+        $pontos = $request->points;
+        if ($champion == 1) {
+            $pontos += 2;
         }
         
-        if($request->points <= 2.5){
-            if($ult_preço - (100 - $request->points * 10) <= 500){
+        if($pontos <= 2.5){
+            if($ult_preço - (100 - $pontos * 10) <= 500){
                 $ult_preço= 500.00;
             }else{
-            $ult_preço = $ult_preço - (100 - $request->points * 10);
+            $ult_preço = $ult_preço - (100 - $pontos * 10);
             }
         }else{
-            $ult_preço = $ult_preço + ($request->points * 10);
+            $ult_preço = $ult_preço + ($pontos * 10);
         }
         DB::table('superstars')
             ->where('name', $request->get('name'))
             ->update([
-                'points' => $request->get('points'),
+                'points' => $pontos,
                 'price' => $ult_preço,
                 'last_show' => 1
                 ]);
-
+        $superstars = DB::table('superstars')->get();        
         return redirect()->route('painelAdmin');
     }
     public function editPage(){
