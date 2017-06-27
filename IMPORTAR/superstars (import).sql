@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Jun-2017 às 05:57
+-- Generation Time: 27-Jun-2017 às 06:21
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points`, `price`, `champion`, `belt`, `last_show`, `created_at`, `updated_at`) VALUES
-(1, 'Akira Tozawa', 'Raw', 'storage/superstars/akira_tozawa.png', 2.25, 3, 952.5, 0, 'none', 1, '2017-06-15 18:21:55', '2017-06-15 18:21:55'),
+(1, 'Akira Tozawa', 'Raw', 'storage/superstars/akira_tozawa.png', 2.2, 3, 952, 0, 'none', 1, '2017-06-15 18:21:55', '2017-06-15 18:21:55'),
 (2, 'Alexa Bliss', 'Raw', 'storage/superstars/alexa_bliss.png', 4, 3, 1070, 1, 'Raw Women\'s Champion', 1, '2017-06-15 18:22:19', '2017-06-15 18:22:19'),
 (3, 'Alicia Fox', 'Raw', 'storage/superstars/alicia_fox.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:22:27', '2017-06-15 18:22:27'),
 (4, 'Apollo Crews', 'Raw', 'storage/superstars/apollo_crews.png', 0, 0.5, 905, 0, 'none', 0, '2017-06-15 18:22:35', '2017-06-15 18:22:35'),
