@@ -39,6 +39,12 @@ Route::prefix('admin')->group(function (){
         Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
         Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
     });
+
+    Route::prefix('user')->group(function (){
+    Route::post('editarEmail','UsuariosController@editarEmail')->name('editEmail');
+    Route::post('editarEmail','UsuariosController@editarEmailRequest')->name('editEmailR');
+
+    });
 });
 //Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {

@@ -142,5 +142,7 @@ class SuperstarsController extends Controller
                 ]);
         return redirect()->route('painelAdmin');
     }
-    
+        
+
+
 }

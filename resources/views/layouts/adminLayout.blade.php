@@ -155,7 +155,7 @@
                   </li>
                   -->
                  <li>
-                  <a href="#">
+                  <a href={{route('editEmail')}}>
                   <i class="fa fa-users fa-lg"></i> Users
                   </a>
                 </li>
