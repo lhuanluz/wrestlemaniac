@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('content')
 @if (Auth::guest())
@@ -49,9 +49,176 @@
 
 @if (!Auth::guest())
 <div class="container login"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
-    <div class="row">
-        <h2>Página Inicial do Usuário Logado</h2>
+    <div class="row profile">
+        <img class="avatar" src="#"/>
+        <div class="user-info">
+            <h3>Welcome,</h3>
+            <h2>{{ Auth::user()->name }}</h2>
+            <p><a href="#">Edit profile</a></p>
+        </div>
+        
+        <div class="profile-raw">
+            <h2>RAW</h2>
+            <h3>43.5</h3>
+            <p>#13</p>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="profile-smd">
+            <h2>SMACKDOWN</h2>
+            <h3>50.0</h3>
+            <p>#26</p>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="profile-srank">
+            <h2>SUPER RANK</h2>
+            <h3>93.5</h3>
+            <p>#7</p>
+        </div>
     </div>
+
+    <div class="row brand-section"> <!-- RAW .BRAND-SECTION -->
+        
+        <div class="head"> <!-- .HEAD -->
+            <h2>RAW</h2>
+            <!-- if -->
+                <p class="market-open">OPEN</p>
+            <!--else 
+                <p class="market-closed">CLOSED</p>
+            endif -->
+        </div>
+
+        <div class="brand-team"> <!-- .BRAND-TEAM -->
+            <div class="team-info"> <!-- .TEAM-INFO -->
+                <ul>
+                    <li>Total Score: <p>50.0</p></li>
+                    <li>Last Show Score: <p>12.5</p></li>
+                    <li>Rank: <p>13</p></li>
+                    <li class="raw-cash">$ 4,000</li>
+                    <a href="{{route('mercadoRawHome')}}"><li>GO TO MARKET</li></a>
+                </ul>
+            </div> <!-- .TEAM-INFO -->
+            <div>
+                <img src="#"/>
+                <div class="star-name raw-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name raw-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name raw-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name raw-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+        </div> <!-- .BRAND-TEAM -->
+
+    </div> <!-- RAW .BRAND-SECTION -->
+
+
+    <div class="row brand-section"> <!-- SMACKDOWN .BRAND-SECTION -->
+        
+        <div class="head"> <!-- .HEAD -->
+            <h2>SMACKDOWN</h2>
+            <p class="market-open">OPEN</p>
+        </div>
+
+        <div class="brand-team"> <!-- .BRAND-TEAM -->
+            <div class="team-info"> <!-- .TEAM-INFO -->
+                <ul>
+                    <li>Total Score: <p>50.0</p></li>
+                    <li>Last Show Score: <p>12.5</p></li>
+                    <li>Rank: <p>13</p></li>
+                    <li class="smd-cash">$ 4,000</li>
+                    <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET</li></a>
+                </ul>
+            </div> <!-- .TEAM-INFO -->
+            <div>
+                <img src="#"/>
+                <div class="star-name smd-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name smd-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name smd-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name smd-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+        </div> <!-- .BRAND-TEAM -->
+
+    </div> <!-- SMACKDOWN .BRAND-SECTION -->
+
+    <div class="row brand-section"> <!-- PPV .BRAND-SECTION -->
+        
+        <div class="head"> <!-- .HEAD -->
+            <h2>PAY PER VIEW</h2>
+            <p class="market-open">OPEN</p>
+        </div>
+
+        <div class="brand-team"> <!-- .BRAND-TEAM -->
+            <div class="team-info"> <!-- .TEAM-INFO -->
+                <ul>
+                    <li>Total Score: <p>50.0</p></li>
+                    <li>Last Show Score: <p>12.5</p></li>
+                    <li>Rank: <p>13</p></li>
+                    <li class="ppv-cash">$ 4,000</li>
+                    <a href="{{route('mercadoPpvHome')}}"><li>GO TO MARKET</li></a>
+                </ul>
+            </div> <!-- .TEAM-INFO -->
+            <div>
+                <img src="#"/>
+                <div class="star-name ppv-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name ppv-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name ppv-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+            <div>
+                <img src="#"/>
+                <div class="star-name ppv-bg">
+                    <p>Shinsuke Nakamura</p>
+                </div>
+            </div>
+        </div> <!-- .BRAND-TEAM -->
+
+    </div> <!-- PPV .BRAND-SECTION -->    
 </div>
 @endif
 

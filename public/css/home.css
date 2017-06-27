@@ -298,8 +298,268 @@ footer .container {
 
 /*CSS DA PÁGINA INICIAL DO USUÁRIO*/
 
-.login h2 {
+.login {
+
+    margin-top: 50px;
+    margin-bottom: 200px;
+    padding: 0;
+}
+
+/*SEÇÃO PERFIL*/
+.profile {
+    width: 1140px;
+    margin: auto;
+    height: 230px;
+    background-color: #d7182a;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #676767;
+    text-shadow: 0px 3px 6px #141516;
+}  
+
+.profile .user-info {
+    display: inline-block;
+    margin: 25px 0 0 25px;
+    float: left;
+}
+
+.user-info p {
+    /*margin-top: 90px;*/
+}
+
+.user-info p a {
+    font-size: 19px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.user-info p a:hover {
+    text-decoration: underline;
+}
+
+.avatar {
+    height: 180px;
+    width: 160px;
+    margin: 25px 0 0 20px;
+    background-color: #fff;
+    float: left;
+    box-shadow: 0px 3px 6px #141516;
+}
+
+.profile .user-info h2 {
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 22px;
+    width: 220px;
+    height: 125px;
+}
+
+.profile .user-info h3 {
+    font: 22px;
+    color: #fff;
+    margin: 0px;
+}
+
+.profile .profile-raw,
+.profile .profile-smd,
+.profile .profile-srank {
+    float: left;
+    display: inline-block;
+    margin: 25px 0 0 45px;
+}
+
+.profile .profile-smd,
+.profile .profile-srank {
+    margin-left: 21px;
+}
+
+.profile .profile-raw h2,
+.profile .profile-smd h2,
+.profile .profile-srank h2 {
+    margin: 0;
+    font-size: 30px;
+    color: #fff;
+    text-align: right;
+}
+
+.profile .profile-raw h3,
+.profile .profile-smd h3,
+.profile .profile-srank h3 {
+    margin-top: 7px;
+    margin-bottom: 0;
+    font-size: 80px;
+    color: #fff;
+    text-align: right;
+    font-weight: bold;
+}
+
+.profile .profile-raw p,
+.profile .profile-smd p,
+.profile .profile-srank p {
+    margin-top: -8px;
+    font-size: 30px;
+    color: #fff;
+    text-align: right;
+}
+
+.profile .divisor {
+    height: 162px;
+    width: 2px;
+    margin: 25px 0 0 21px;
+    background-color: #ba1424;
+    float: left;
+}
+
+
+/* SEÇÃO RAW */
+
+.brand-section {
+    width: 1140px;
+    margin: auto;
+    margin-top: 35px;
+}
+
+.brand-section .head {
+    height: 65px;
+    background-color: #d7182a;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #676767;
+    text-shadow: 0px 3px 6px #141516;
+}
+
+.brand-section .head h2 {
+    font-size: 30px;
+    color: #fff;
+    text-align: left;
+    display: inline-block;
+    font-weight: bold;
+    margin: 17px 0 0 20px;
+}
+
+.brand-section .head p {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 12px 20px 0 0;
+}
+
+.brand-section .head .market-open {
+    color: #00ff00;
+    text-shadow: 0px 3px 6px #00531b;
+}
+
+.brand-section .head .market-closed {
+    color: #a9aeb3;
+    text-shadow: 0px 3px 6px #141516;
+}
+
+.brand-section .brand-team div {
+    width: 225px;
+    height: 264px;
+    float: left;
+}
+
+.brand-section .brand-team .team-info {
+    width: 223px;
+    height: 264px;
+    float: left;
+}
+
+.brand-section .brand-team ul {
+    list-style: none;
+    padding: 15px 0 0 20px;
+}
+
+.brand-section .team-info ul li {
+    color: #141516;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.brand-section .brand-team ul li p {
+    font-weight: bold;
+}
+
+.brand-section .brand-team ul li:nth-child(1) p,
+.brand-section .brand-team ul li:nth-child(2) p {
+    float: right;
+    margin-bottom: 0;
+}
+
+.brand-section .brand-team ul li:nth-child(3) p {
+    float: right;
+    margin-bottom: 0;
+    text-align: right;
+    width: 147px;
+}
+
+.brand-section .brand-team ul li:nth-child(4) {
+    font-size: 54px;
+    font-weight: bold;
+}
+
+.brand-section .brand-team ul .raw-cash {
+    color: #d7182a;
+}
+
+.brand-section .brand-team ul .smd-cash {
+    color: #3b30fe;
+}
+
+.brand-section .brand-team ul .ppv-cash {
+    color: #232828;
+}
+
+.brand-section .brand-team ul a {
+    text-decoration: none;
+}
+
+.brand-section .brand-team ul a li {
+    height: 40px;
+    border: 2px solid #d7182a;
+    padding-top: 5px;
     text-align: center;
-    margin-top: 220px;
-    margin-bottom: 220px; 
+    font-size: 20px;
+    font-weight: bold;
+    color: #d7182a;
+}
+.brand-section .brand-team ul a:hover li {
+    background-color: #d7182a;
+    color: #fff;
+}
+
+.brand-section .brand-team img {
+    width: 190px;
+    height: 238px;
+    background-color: #d9e0e6;
+    margin: 15px 0 0 30px;
+    border: 3px solid #141516;
+}
+
+.brand-section .brand-team .star-name {
+    width: 185px;
+    height: 30px;
+    opacity: 0.75;
+    float: left;
+    margin: -33px 0 0 33px;
+}
+
+.brand-section .brand-team .raw-bg {
+    background-color: #d7182a;
+}
+
+.brand-section .brand-team .smd-bg {
+    background-color: #3b30fe;
+}
+
+.brand-section .brand-team .ppv-bg {
+    background-color: #232828;
+}
+
+.brand-section .brand-team .star-name p {
+    font-size: 19px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
 }
