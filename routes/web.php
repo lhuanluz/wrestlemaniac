@@ -41,9 +41,12 @@ Route::prefix('admin')->group(function (){
     });
 
     Route::prefix('user')->group(function (){
-    Route::post('editarEmail','UsuariosController@editarEmail')->name('editEmail');
-    Route::post('editarEmail','UsuariosController@editarEmailRequest')->name('editEmailR');
-
+    Route::get('editarEmail','UsuariosController@editarEmail')->name('editEmail');
+    Route::post('editarEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
+    Route::get('editarNome','UsuariosController@editarNome')->name('editNome');
+    Route::post('editarNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
+    Route::get('editarAdmin','UsuariosController@editarAdmin')->name('editAdmin');
+    Route::post('editarAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
     });
 });
 //Rota para todas as funções variadas ao painel de Mercado
