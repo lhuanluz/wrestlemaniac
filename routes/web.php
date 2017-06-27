@@ -67,6 +67,10 @@ Route::prefix('market')->group(function () {
             Route::get('desc','MarketController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
         });
     });
+    Route::prefix('league')->group(function () {
+        Route::get('/','LeagueController@liga')->name('leagueHome');
+    });
+
     Route::prefix('smackdown')->group(function () {
         Route::get('/','MarketController@mercadoSmackdown')->name('mercadoSmackdownHome');
         Route::post('buy','MarketController@comprarSuperstarSmackdown')->name('comprarSuperstarSmackdown');

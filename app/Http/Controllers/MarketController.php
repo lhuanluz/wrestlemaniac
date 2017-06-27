@@ -10,10 +10,19 @@ use Auth;
 class MarketController extends Controller
 {
     public function mercadoStatusRedirect(){
-        return view('mercadoStatus');
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
+            return view('mercadoStatus');
+        }
+        
     }
     public function editarPpvRedirect(){
-        return view('editarPPV');
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
+            return view('editarPPV');
+        }
     }
     public function mercadoStatus(Request $request){
         $this->validate($request,[
@@ -355,7 +364,10 @@ class MarketController extends Controller
         return redirect()->route('painelAdmin');
     }
     public function mercadoRaw(){
-        $superstars = DB::table('superstars')
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
+            $superstars = DB::table('superstars')
                  ->where('brand','Raw')
                  ->orwhere('brand','Nenhuma')
                  ->orderBy('name', 'asc')->get();
@@ -366,9 +378,14 @@ class MarketController extends Controller
          $status = DB::table('configs')->value('statusMercadoRaw');
 
         return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        }
+        
     }
 
     public function mercadoRawPreçoCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
                     ->orwhere('brand','Nenhuma')
@@ -380,9 +397,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoRaw');
          
         return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        }
     }
 
     public function mercadoRawPreçoDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
                     ->orwhere('brand','Nenhuma')
@@ -394,9 +415,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoRaw');
          
         return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        }
     }
 
     public function mercadoRawPontosCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
                     ->orwhere('brand','Nenhuma')
@@ -408,8 +433,12 @@ class MarketController extends Controller
       $status = DB::table('configs')->value('statusMercadoRaw');
          
         return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        }
     }
     public function mercadoRawPontosDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Raw')
                     ->orwhere('brand','Nenhuma')
@@ -421,6 +450,7 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoRaw');
          
         return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        }
     }
     public function comprarSuperstarRaw(Request $request){
         $userId = Auth::user()->id;
@@ -510,6 +540,9 @@ class MarketController extends Controller
         return redirect()->route('mercadoRawHome');
     }
     public function mercadoSmackdown(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                  ->where('brand','Smackdown')
                  ->orwhere('brand','Nenhuma')
@@ -521,9 +554,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoSmackdown');
 
         return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+        }
     }
 
     public function mercadoSmackdownPreçoCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Smackdown')
                     ->orwhere('brand','Nenhuma')
@@ -535,9 +572,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoSmackdown');
 
         return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+        }
     }
 
     public function mercadoSmackdownPreçoDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Smackdown')
                     ->orwhere('brand','Nenhuma')
@@ -549,9 +590,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoSmackdown');
 
         return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+        }
     }
 
     public function mercadoSmackdownPontosCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Smackdown')
                     ->orwhere('brand','Nenhuma')
@@ -563,8 +608,12 @@ class MarketController extends Controller
        $status = DB::table('configs')->value('statusMercadoSmackdown');
 
         return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+        }
     }
     public function mercadoSmackdownPontosDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $superstars = DB::table('superstars')
                     ->where('brand','Smackdown')
                     ->orwhere('brand','Nenhuma')
@@ -576,6 +625,7 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoSmackdown');
 
         return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+        }
     }
     public function comprarSuperstarSmackdown(Request $request){
         $userId = Auth::user()->id;
@@ -665,6 +715,9 @@ class MarketController extends Controller
         return redirect()->route('mercadoSmackdownHome');
     }
     public function mercadoPpv(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $brand = DB::table('configs')->value('ppvBrand');
 
         if($brand == 'Both'){
@@ -684,9 +737,13 @@ class MarketController extends Controller
          $status = DB::table('configs')->value('statusMercadoPpv');
 
         return view('mercadoPpvHome',['superstars' => $superstars,'ppvTeam' => $ppvTeam,'status' => $status]);
+        }
     }
 
     public function mercadoPpvPreçoCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $brand = DB::table('configs')->value('ppvBrand');
 
         if($brand == 'Both'){
@@ -706,9 +763,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoPpv');
          
         return view('mercadoPpvHome',['superstars' => $superstars,'ppvTeam' => $ppvTeam,'status' => $status]);
+        }
     }
 
     public function mercadoPpvPreçoDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $brand = DB::table('configs')->value('ppvBrand');
 
         if($brand == 'Both'){
@@ -728,9 +789,13 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoPpv');
          
         return view('mercadoPpvHome',['superstars' => $superstars,'ppvTeam' => $ppvTeam,'status' => $status]);
+        }
     }
 
     public function mercadoPpvPontosCrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $brand = DB::table('configs')->value('ppvBrand');
 
         if($brand == 'Both'){
@@ -750,8 +815,12 @@ class MarketController extends Controller
       $status = DB::table('configs')->value('statusMercadoPpv');
          
         return view('mercadoPpvHome',['superstars' => $superstars,'ppvTeam' => $ppvTeam,'status' => $status]);
+        }
     }
     public function mercadoPpvPontosDecrescente(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
         $brand = DB::table('configs')->value('ppvBrand');
 
         if($brand == 'Both'){
@@ -771,6 +840,7 @@ class MarketController extends Controller
         $status = DB::table('configs')->value('statusMercadoPpv');
          
         return view('mercadoPpvHome',['superstars' => $superstars,'ppvTeam' => $ppvTeam,'status' => $status]);
+        }
     }
     public function comprarSuperstarPpv(Request $request){
         $userId = Auth::user()->id;

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','user_power'];
+        'name', 'email', 'password','user_power','id_league','type'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -37,5 +37,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\ppv_team');
     }
+    public function league()
+    {
+        return $this->hasOne('App\Models\league');
+    }
+    
     
 }

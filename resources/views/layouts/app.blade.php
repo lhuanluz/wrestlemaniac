@@ -85,6 +85,7 @@
                                     <li><a href="{{route('mercadoPpvHome')}}">PAY-PER-VIEW</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{route('leagueHome')}}">League</a></li>
                             <li><a href="#">Game Rules</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             @if(Auth::user()->user_power == 1)

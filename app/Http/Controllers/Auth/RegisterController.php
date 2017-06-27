@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Models\raw_team;
+use App\Models\league;
 use App\Models\smackdown_team;
 use App\Models\ppv_team;
 use App\Http\Controllers\Controller;
@@ -52,7 +53,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:25',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -72,6 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'user_power' => 0,
+            'id_league' => 1,
         ]);
         $id_user = DB::table('users')
                         ->where('email',$data['email'])

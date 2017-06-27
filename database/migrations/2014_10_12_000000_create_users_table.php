@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use App\User;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -19,7 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('user_power');
+            $table->integer('user_power')->default(0);
+            $table->integer('id_league')->unsigned();
+            $table->string('type')->default('Free');
+            $table->foreign('id_league')->references('id')->on('leagues');
             $table->timestamps();
         });
     }
