@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('inicio');
 
 
 //Rota para todas as funções variadas ao painel de ADMIN
@@ -102,7 +99,7 @@ Route::prefix('market')->group(function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {
     return view('faq');

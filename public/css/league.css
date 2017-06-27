@@ -1,0 +1,58 @@
+/* CSS DA LIGA*/
+@font-face {
+    font-family: "fontLogo";
+    src: url('fonts/California.ttf') format("truetype");
+}
+.membrosLiga {
+     border: 1px solid !important;
+     border-radius: 10px;
+     padding: 5px;
+     border-color: grey;
+     float:left;
+     margin: 15px 17px 15px 17px;
+     background-color: #f7f7f7;
+} 
+.membrosLiga-info{
+    background-color: #f0f0f0;
+    
+    
+}
+.brandTitle{
+    width: 100%;
+}
+.membroLigaCampo{
+    text-align: center;
+    padding: 5px;
+}
+.membroLigaNome {
+    padding-left: 5px;
+}
+.navbarLiga {
+    margin-bottom: 0;
+    border: none;
+    background-color: #141516;
+    padding-bottom: 8px;
+}
+li#menuLiga a {
+    color: #fff;
+    padding: 5px;
+    margin: 8px;
+    font-size: 20px;
+    margin-top: 14px;
+    margin-left: 80px;
+    border: 2px solid #141516;
+}
+li#menuLiga a:focus{
+    background-color: white;
+    color: #141516;
+}
+li#titleLiga {
+    margin-top: 7px;
+    font-family: "California";
+    font-size: 35px;
+}
+.dropLiga {
+    margin-left: 0px;
+    padding: 0px;
+    text-align:left;
+}

@@ -55,7 +55,7 @@
                 <ul id="menu" class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
 
-                        <li class="item-menu"><a href="{{ route('inicio') }}">Home</a></li>
+                        <li class="item-menu"><a href="{{ route('home') }}">Home</a></li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

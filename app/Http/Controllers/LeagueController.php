@@ -18,7 +18,11 @@ class LeagueController extends Controller
             $league = DB::table('leagues')->where('id',$idLeague)->first();
             $userHasLeague = true;
             $quantidade = DB::table('users')->where('id_league',$idLeague)->count();
-            $membros = DB::table('users')->where('id_league',$idLeague)->take($quantidade)->get();
+            $membrosRaw = DB::table('users')
+                     ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
+                     ->where('id_league',$idLeague)->take($quantidade)
+                     //->orderBy('team_points', 'desc')
+                     ->get();
             // MEMBROS DA LIGA
             $owner = DB::table('users')->where('id',$league->owner)->first();
             $member1 = DB::table('users')->where('id',$league->member1)->first();
@@ -26,14 +30,13 @@ class LeagueController extends Controller
             $member3 = DB::table('users')->where('id',$league->member3)->first();
             $member4 = DB::table('users')->where('id',$league->member4)->first();
 
-
-            
-            
-            /*$luan =  $quantidade->where('id', '6')->first();
-            print_r ($luan);*/
         }else{
             $userHasLeague = false;
         }
-        return view('leagueHome',['userHasLeague' => $userHasLeague,'membros' => $membros]);
+
+        return view('leagueHome',[
+        'userHasLeague' => $userHasLeague,
+        'membrosRaw' => $membrosRaw
+        ]);
     }
 }

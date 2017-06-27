@@ -129,39 +129,53 @@ class MarketController extends Controller
                             }
 
                         $valor_ganho = $preço1 + $preço2 + $preço3 + $preço4;
+                        $pontos_ganho = $superstar01->points + $superstar02->points + $superstar03->points + $superstar04->points;
                         if ($brand == 'Raw') {
                             
                             $ult_cash = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                            $ult_pontos = DB::table('raw_teams')->where('id',$i)->value('team_total_points');
+                            $ult_pontos = $ult_pontos + $pontos_ganho;
                             $ult_cash = $ult_cash + $valor_ganho;
                             DB::table('raw_teams')->where('user_id',$i)->update([
-                                'team_cash' => $ult_cash
+                                'team_cash' => $ult_cash,
+                                'team_total_points' => $ult_pontos
                             ]);
                         }else if ($brand == 'Smackdown') {
-
+                            $ult_pontos = DB::table('smackdown_teams')->where('id',$i)->value('team_total_points');
+                            $ult_pontos = $ult_pontos + $pontos_ganho;
                             $ult_cash = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
                             $ult_cash = $ult_cash + $valor_ganho;
                             DB::table('smackdown_teams')->where('id',$i)->update([
-                                'team_cash' => $ult_cash
+                                'team_cash' => $ult_cash,
+                                'team_total_points' => $ult_pontos
                             ]);
                         }else {
-
+                            $ult_pontos_Raw = DB::table('raw_teams')->where('id',$i)->value('team_total_points');
+                            $ult_pontos_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_total_points');
+                            $pontos_ganho = $pontos_ganho/2;
+                            $ult_pontos_Raw = $ult_pontos_Raw + $pontos_ganho;
+                            $ult_pontos_Smackdown = $ult_pontos_Smackdown + $pontos_ganho;
                             $valor_ganho = $valor_ganho/2;
                             $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
                             $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
                             
                             DB::table('raw_teams')->where('id',$i)->update([
-                                'team_cash' => $ult_cash_Raw + $valor_ganho
+                                'team_cash' => $ult_cash_Raw + $valor_ganho,
+                                'team_total_points' => $ult_pontos_Raw
                             ]);
 
                             DB::table('smackdown_teams')->where('id',$i)->update([
-                                'team_cash' => $ult_cash_Smackdown + $valor_ganho
+                                'team_cash' => $ult_cash_Smackdown + $valor_ganho,
+                                'team_total_points' => $ult_pontos_Smackdown
                             ]);
                         }
                         DB::table('ppv_teams')->where('user_id',$i)->update([
                             'superstar01' => 999,
                             'superstar02' => 998,
                             'superstar03' => 997,
-                            'superstar04' => 996
+                            'superstar04' => 996,
+                            'team_points' => 0.0,
+                            'team_total_points' => 0.0
                         ]);
                     }
                 }

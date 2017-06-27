@@ -128,7 +128,7 @@
         @endif
     @endforeach
     </div> <!-- DIV CONTAINER > LUTADOR -->
-
+    
     @else
     @if(Auth::user())
     <div class="page-header">
