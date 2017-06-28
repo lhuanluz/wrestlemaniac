@@ -1,13 +1,30 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 28-Jun-2017 às 09:03
+-- Versão do servidor: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS `wrestlemaniac` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `wrestlemaniac`;
+--
+-- Database: `wrestlemaniac`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `configs`
+--
 
 CREATE TABLE `configs` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -19,12 +36,23 @@ CREATE TABLE `configs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `configs`
+--
+
 INSERT INTO `configs` (`id`, `statusMercadoRaw`, `statusMercadoSmackdown`, `ppvBrand`, `statusMercadoPPV`, `created_at`, `updated_at`) VALUES
 (1, 'Aberto', 'Aberto', 'Raw', 'Fechado', '2017-06-27 19:25:01', '2017-06-27 19:25:01');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `leagues`
+--
 
 CREATE TABLE `leagues` (
   `id` int(10) UNSIGNED NOT NULL,
   `league_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret_password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `league_points` double NOT NULL DEFAULT '0',
   `owner` int(11) UNSIGNED NOT NULL DEFAULT '1',
   `member1` int(11) UNSIGNED NOT NULL DEFAULT '2',
@@ -33,17 +61,31 @@ CREATE TABLE `leagues` (
   `member4` int(11) UNSIGNED NOT NULL DEFAULT '5',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
-INSERT INTO `leagues` (`id`, `league_name`, `league_points`, `owner`, `member1`, `member2`, `member3`, `member4`, `created_at`, `updated_at`) VALUES
-(1, 'None', 0, 1, 2, 3, 4, 5, '2017-06-27 19:24:54', '2017-06-27 19:24:54'),
-(2, 'Os Picas', 0, 6, 7, 3, 4, 5, NULL, NULL);
+--
+-- Extraindo dados da tabela `leagues`
+--
+
+INSERT INTO `leagues` (`id`, `league_name`, `secret_password`, `league_points`, `owner`, `member1`, `member2`, `member3`, `member4`, `created_at`, `updated_at`) VALUES
+(1, 'None', '', 0, 1, 2, 3, 4, 5, '2017-06-27 19:24:54', '2017-06-27 19:24:54'),
+(2, 'Os Picas', '$2y$10$IErcBC8SNewF1ywU44gGcu8Aq0TXfDaiQMmmTxTp3uWFkhNZonvQm', 0, 6, 7, 3, 4, 5, '2017-06-28 06:54:17', '2017-06-28 06:54:17');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `migrations`
+--
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `migrations`
+--
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2013_06_27_071106_create_leagues_table', 1),
@@ -55,11 +97,23 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2017_06_22_031719_create_smackdown_teams_table', 1),
 (8, '2017_06_25_022811_create_ppv_teams_table', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `password_resets`
+--
+
 CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ppv_teams`
+--
 
 CREATE TABLE `ppv_teams` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -75,6 +129,10 @@ CREATE TABLE `ppv_teams` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `ppv_teams`
+--
+
 INSERT INTO `ppv_teams` (`id`, `user_id`, `team_points`, `team_total_points`, `team_cash`, `superstar01`, `superstar02`, `superstar03`, `superstar04`, `created_at`, `updated_at`) VALUES
 (1, 1, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:28', '2017-06-27 19:25:28'),
 (2, 2, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:43', '2017-06-27 19:25:43'),
@@ -86,6 +144,12 @@ INSERT INTO `ppv_teams` (`id`, `user_id`, `team_points`, `team_total_points`, `t
 (8, 8, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:37', '2017-06-27 21:37:37'),
 (9, 9, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:56', '2017-06-27 21:37:56'),
 (10, 10, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:38:10', '2017-06-27 21:38:10');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `raw_teams`
+--
 
 CREATE TABLE `raw_teams` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -101,6 +165,10 @@ CREATE TABLE `raw_teams` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `raw_teams`
+--
+
 INSERT INTO `raw_teams` (`id`, `user_id`, `team_points`, `team_total_points`, `team_cash`, `superstar01`, `superstar02`, `superstar03`, `superstar04`, `created_at`, `updated_at`) VALUES
 (1, 1, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:28', '2017-06-27 19:25:28'),
 (2, 2, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:42', '2017-06-27 19:25:42'),
@@ -112,6 +180,12 @@ INSERT INTO `raw_teams` (`id`, `user_id`, `team_points`, `team_total_points`, `t
 (8, 8, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:37', '2017-06-27 21:37:37'),
 (9, 9, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:55', '2017-06-27 21:37:55'),
 (10, 10, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:38:10', '2017-06-27 21:38:10');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `smackdown_teams`
+--
 
 CREATE TABLE `smackdown_teams` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -127,6 +201,10 @@ CREATE TABLE `smackdown_teams` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `smackdown_teams`
+--
+
 INSERT INTO `smackdown_teams` (`id`, `user_id`, `team_points`, `team_total_points`, `team_cash`, `superstar01`, `superstar02`, `superstar03`, `superstar04`, `created_at`, `updated_at`) VALUES
 (1, 1, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:28', '2017-06-27 19:25:28'),
 (2, 2, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 19:25:42', '2017-06-27 19:25:42'),
@@ -138,6 +216,12 @@ INSERT INTO `smackdown_teams` (`id`, `user_id`, `team_points`, `team_total_point
 (8, 8, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:37', '2017-06-27 21:37:37'),
 (9, 9, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:37:56', '2017-06-27 21:37:56'),
 (10, 10, 0, 0, 4000, 999, 998, 997, 996, '2017-06-27 21:38:10', '2017-06-27 21:38:10');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `superstars`
+--
 
 CREATE TABLE `superstars` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -153,6 +237,10 @@ CREATE TABLE `superstars` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `superstars`
+--
 
 INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points`, `price`, `champion`, `belt`, `last_show`, `created_at`, `updated_at`) VALUES
 (1, 'Akira Tozawa', 'Raw', 'storage/superstars/akira_tozawa.png', 2.2, 3, 952, 0, 'none', 1, '2017-06-15 18:21:55', '2017-06-15 18:21:55'),
@@ -259,6 +347,12 @@ INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points
 (998, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL),
 (999, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 1, 'Ms. Money in the Bank', 0, NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'storage/users/user-default.png',
@@ -273,22 +367,35 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `users`
+--
+
 INSERT INTO `users` (`id`, `photo`, `name`, `email`, `password`, `remember_token`, `user_power`, `id_league`, `type`, `created_at`, `updated_at`) VALUES
 (1, 'storage/users/user-default.png', 'bot1', 'bot1@123.com.br', '$2y$10$Q15KGny.onqXwp1K0eDIYOTU/PMdq8U.fM8UGjYgfTAzUejqPufO6', '6BkA2SJC5Xws8oXycCOgRc5PlSHdDXUzF3APIEHfuwXBPWhbPaj5HbEG8KOW', 0, 1, 'Free', '2017-06-27 19:25:28', '2017-06-27 19:25:28'),
 (2, 'storage/users/user-default.png', 'bot2', 'bot2@123.com.br', '$2y$10$tvYDssKKAV6ze5Xqzfa/POOJojdmAOic4oavteZCJamykmahWTYd6', '7iQKEwGpfPGZ6bQEM9sJ4AEhjCvT7gn916razn3JjE4ajebwkXUtBuOJbndc', 0, 1, 'Free', '2017-06-27 19:25:42', '2017-06-27 19:25:42'),
 (3, 'storage/users/user-default.png', 'bot3', 'bot3@123.com.br', '$2y$10$PGvJO8tqMN82mAaFThlGU./WRjxqf6O.GQt8l0VnoZI0ljHH/Bq1W', 'IV6rPlQuXHMd4SSdHBy1ebiQZWWJnHAykgUxMvJ6ACRlcQaSfD7mmENR2eG1', 0, 1, 'Free', '2017-06-27 19:25:56', '2017-06-27 19:25:56'),
 (4, 'storage/users/user-default.png', 'bot4', 'bot4@123.com.br', '$2y$10$xYeoJdeqA9j4H29OpQtU4OXuCo3XfRjACjnzUxxLF/X3WtVAAOFHy', 'B42exNVpuGpJ8dSKF3834oDNyChnnDhlZIzR4I6tGmcS9RsvtRqCLiTmNkML', 0, 1, 'Free', '2017-06-27 19:26:23', '2017-06-27 19:26:23'),
 (5, 'storage/users/user-default.png', 'bot5', 'bot5@123.com.br', '$2y$10$tcJknQ8ePxK/ZSCtTkHEtegGR6xfJJGnmu2U/Y0QnYlceBYHdjRsW', 'Pvr50XVPeUPDRJgZEUKQSKQtCmQOtIlNNiAfZHnfvChHfiQQnD7Eg7k01Ly9', 0, 1, 'Free', '2017-06-27 19:26:37', '2017-06-27 19:26:37'),
-(6, 'storage/users/user-default.png', 'Luan Luz', 'luanluzpereira@hotmail.com', '$2y$10$J3LFtbGt9SQIfPQ0oTT8..fK.rRPOZFCwYQ3wak/a9ib4TCNj.5Cy', 'A0U7Gr15u1GBzfWcaBmesbQStVWEHbjLKFvfDgYoNQ5qN1QQeACoYQcDrzeS', 1, 2, 'Premium', '2017-06-27 19:26:52', '2017-06-27 19:26:52'),
-(7, 'storage/users/user-default.png', 'Rodolfo Alves', 'rodolfoalvesmdo@gmail.com', '$2y$10$vhbnj.WsbGgZ61kMVn2xje14Y5PANtLCIDhwH0WnNJHX7MNtXtW5W', NULL, 1, 2, 'Premium', '2017-06-27 19:42:14', '2017-06-27 19:42:14'),
+(6, 'storage/users/user-default.png', 'Luan Luz', 'luanluzpereira@hotmail.com', '$2y$10$J3LFtbGt9SQIfPQ0oTT8..fK.rRPOZFCwYQ3wak/a9ib4TCNj.5Cy', 'A0U7Gr15u1GBzfWcaBmesbQStVWEHbjLKFvfDgYoNQ5qN1QQeACoYQcDrzeS', 1, 1, 'Premium', '2017-06-27 19:26:52', '2017-06-27 19:26:52'),
+(7, 'storage/users/user-default.png', 'Rodolfo Alves', 'rodolfoalvesmdo@gmail.com', '$2y$10$vhbnj.WsbGgZ61kMVn2xje14Y5PANtLCIDhwH0WnNJHX7MNtXtW5W', NULL, 1, 1, 'Premium', '2017-06-27 19:42:14', '2017-06-27 19:42:14'),
 (8, 'storage/users/user-default.png', 'Arthur Alves', 'tutu@123.com', '$2y$10$JP7iIsB.r.U9d8Q8b/NfFOIaX3va/yxRzopz7bjujSxYU5bdZBw5K', 'o3g8lLdvUiXa0AWiWwFQjHjMGiFi1iTkmGogNho1eZOxsANTj4ZGBoWxxPFn', 1, 1, 'Free', '2017-06-27 21:37:37', '2017-06-27 21:37:37'),
 (9, 'storage/users/user-default.png', 'Silvânio Holanda', 'silv@123.com', '$2y$10$PvllzsGLTCuLuf0CbrkQg.CNkN.StpBDXgEFZNEEty.gdk8W4Lzzq', 'QotNFFuel6Kr4MSzuRNfP4yzZLuVjkS2zK4XWKbJJ7Aq316cc1sTP8FSQ2Su', 1, 1, 'Free', '2017-06-27 21:37:55', '2017-06-27 21:37:55'),
 (10, 'storage/users/user-default.png', 'Melquesedeque Gomes', 'melque@123.com', '$2y$10$.oGqWFqWJACJO/ecblf5D.2xAlmFkbmiOXemNh03TllENxrvAazs.', 'NI7toSxZPQ3mlbBywTvTs5W8rYLTM7g4HU27kVNac2AbS8wEH8DO4n72QdI7', 1, 1, 'Free', '2017-06-27 21:38:10', '2017-06-27 21:38:10');
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `configs`
+--
 ALTER TABLE `configs`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `leagues`
+--
 ALTER TABLE `leagues`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `leagues_league_name_unique` (`league_name`),
@@ -298,12 +405,21 @@ ALTER TABLE `leagues`
   ADD KEY `member4` (`member4`),
   ADD KEY `member3` (`member3`);
 
+--
+-- Indexes for table `migrations`
+--
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `password_resets`
+--
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
+--
+-- Indexes for table `ppv_teams`
+--
 ALTER TABLE `ppv_teams`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ppv_teams_user_id_foreign` (`user_id`),
@@ -312,6 +428,9 @@ ALTER TABLE `ppv_teams`
   ADD KEY `ppv_teams_superstar03_foreign` (`superstar03`),
   ADD KEY `ppv_teams_superstar04_foreign` (`superstar04`);
 
+--
+-- Indexes for table `raw_teams`
+--
 ALTER TABLE `raw_teams`
   ADD PRIMARY KEY (`id`),
   ADD KEY `raw_teams_user_id_foreign` (`user_id`),
@@ -320,6 +439,9 @@ ALTER TABLE `raw_teams`
   ADD KEY `raw_teams_superstar03_foreign` (`superstar03`),
   ADD KEY `raw_teams_superstar04_foreign` (`superstar04`);
 
+--
+-- Indexes for table `smackdown_teams`
+--
 ALTER TABLE `smackdown_teams`
   ADD PRIMARY KEY (`id`),
   ADD KEY `smackdown_teams_user_id_foreign` (`user_id`),
@@ -328,32 +450,71 @@ ALTER TABLE `smackdown_teams`
   ADD KEY `smackdown_teams_superstar03_foreign` (`superstar03`),
   ADD KEY `smackdown_teams_superstar04_foreign` (`superstar04`);
 
+--
+-- Indexes for table `superstars`
+--
 ALTER TABLE `superstars`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `users`
+--
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_id_league_foreign` (`id_league`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `configs`
+--
 ALTER TABLE `configs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `leagues`
+--
 ALTER TABLE `leagues`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `ppv_teams`
+--
 ALTER TABLE `ppv_teams`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `raw_teams`
+--
 ALTER TABLE `raw_teams`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `smackdown_teams`
+--
 ALTER TABLE `smackdown_teams`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `superstars`
+--
 ALTER TABLE `superstars`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+--
+-- AUTO_INCREMENT for table `users`
+--
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- Constraints for dumped tables
+--
 
+--
+-- Limitadores para a tabela `leagues`
+--
 ALTER TABLE `leagues`
   ADD CONSTRAINT `leagues_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `leagues_ibfk_2` FOREIGN KEY (`member1`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -361,6 +522,9 @@ ALTER TABLE `leagues`
   ADD CONSTRAINT `leagues_ibfk_4` FOREIGN KEY (`member3`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `leagues_ibfk_5` FOREIGN KEY (`member4`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Limitadores para a tabela `ppv_teams`
+--
 ALTER TABLE `ppv_teams`
   ADD CONSTRAINT `ppv_teams_superstar01_foreign` FOREIGN KEY (`superstar01`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `ppv_teams_superstar02_foreign` FOREIGN KEY (`superstar02`) REFERENCES `superstars` (`id`),
@@ -368,6 +532,9 @@ ALTER TABLE `ppv_teams`
   ADD CONSTRAINT `ppv_teams_superstar04_foreign` FOREIGN KEY (`superstar04`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `ppv_teams_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
+--
+-- Limitadores para a tabela `raw_teams`
+--
 ALTER TABLE `raw_teams`
   ADD CONSTRAINT `raw_teams_superstar01_foreign` FOREIGN KEY (`superstar01`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `raw_teams_superstar02_foreign` FOREIGN KEY (`superstar02`) REFERENCES `superstars` (`id`),
@@ -375,6 +542,9 @@ ALTER TABLE `raw_teams`
   ADD CONSTRAINT `raw_teams_superstar04_foreign` FOREIGN KEY (`superstar04`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `raw_teams_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
+--
+-- Limitadores para a tabela `smackdown_teams`
+--
 ALTER TABLE `smackdown_teams`
   ADD CONSTRAINT `smackdown_teams_superstar01_foreign` FOREIGN KEY (`superstar01`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `smackdown_teams_superstar02_foreign` FOREIGN KEY (`superstar02`) REFERENCES `superstars` (`id`),
@@ -382,6 +552,9 @@ ALTER TABLE `smackdown_teams`
   ADD CONSTRAINT `smackdown_teams_superstar04_foreign` FOREIGN KEY (`superstar04`) REFERENCES `superstars` (`id`),
   ADD CONSTRAINT `smackdown_teams_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
+--
+-- Limitadores para a tabela `users`
+--
 ALTER TABLE `users`
   ADD CONSTRAINT `users_id_league_foreign` FOREIGN KEY (`id_league`) REFERENCES `leagues` (`id`);
 
