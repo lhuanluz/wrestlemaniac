@@ -301,7 +301,7 @@ footer .container {
 .login {
 
     margin-top: 50px;
-    margin-bottom: 200px;
+    margin-bottom: 70px;
     padding: 0;
 }
 
@@ -340,7 +340,6 @@ footer .container {
     height: 180px;
     width: 160px;
     margin: 25px 0 0 20px;
-    background-color: #fff;
     float: left;
     box-shadow: 0px 3px 6px #141516;
 }
@@ -366,7 +365,8 @@ footer .container {
 .profile .profile-srank {
     float: left;
     display: inline-block;
-    margin: 25px 0 0 45px;
+    margin: 25px 0 0 5px;
+    width: 200px;
 }
 
 .profile .profile-smd,
@@ -426,6 +426,7 @@ footer .container {
     border-radius: 4px;
     box-shadow: 0px 3px 6px #676767;
     text-shadow: 0px 3px 6px #141516;
+    margin-bottom: 7px;
 }
 
 .brand-section .head h2 {
@@ -456,13 +457,11 @@ footer .container {
 
 .brand-section .brand-team div {
     width: 225px;
-    height: 264px;
     float: left;
 }
 
 .brand-section .brand-team .team-info {
     width: 223px;
-    height: 264px;
     float: left;
 }
 
@@ -474,7 +473,7 @@ footer .container {
 .brand-section .team-info ul li {
     color: #141516;
     font-size: 19px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .brand-section .brand-team ul li p {
@@ -495,7 +494,7 @@ footer .container {
 }
 
 .brand-section .brand-team ul li:nth-child(4) {
-    font-size: 54px;
+    font-size: 52px;
     font-weight: bold;
 }
 
@@ -530,31 +529,35 @@ footer .container {
 }
 
 .brand-section .brand-team img {
-    width: 190px;
-    height: 238px;
-    background-color: #d9e0e6;
-    margin: 15px 0 0 30px;
+    width: 215px;
+    height: 215px;
+    background-color: #000;
+    margin: 15px 0 0 10px;
     border: 3px solid #141516;
+    position: absolute;
+    z-index: -1;
 }
 
 .brand-section .brand-team .star-name {
-    width: 185px;
+    width: 209px;
     height: 30px;
-    opacity: 0.75;
-    float: left;
-    margin: -33px 0 0 33px;
+    margin: 197px 0 0 13px;
+
 }
 
 .brand-section .brand-team .raw-bg {
-    background-color: #d7182a;
+    /*background-color: #d7182a;*/
+    background: rgba(215, 24, 42, 0.75);
 }
 
 .brand-section .brand-team .smd-bg {
-    background-color: #3b30fe;
+    /*background-color: #3b30fe;*/
+    background: rgba(59, 48, 254, 0.75);
 }
 
 .brand-section .brand-team .ppv-bg {
-    background-color: #232828;
+    /*background-color: #232828;*/
+    background: rgba(35, 40, 40, 0.75);
 }
 
 .brand-section .brand-team .star-name p {
@@ -562,4 +565,5 @@ footer .container {
     font-weight: bold;
     color: #fff;
     text-align: center;
+    padding-top: 2px;
 }

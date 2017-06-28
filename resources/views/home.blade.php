@@ -50,17 +50,20 @@
 @if (!Auth::guest())
 <div class="container login"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
     <div class="row profile">
-        <img class="avatar" src="{{Auth::user()->photo}}"/>
+
+        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: contain; background-color: #000">
+        </div> <!-- .AVATAR -->
+
         <div class="user-info">
             <h3>Welcome,</h3>
             <h2>{{ Auth::user()->name }}</h2>
-            <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit profile</a></p>
+            <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit profile</a></p>
         </div>
         
         <div class="profile-raw">
             <h2>RAW</h2>
             <h3>{{$rawTeam->team_total_points}}</h3>
-            <p><i class="fa fa-hashtag" aria-hidden="true"></i>13</p>
+            <p>#13</p>
         </div>
 
         <div class="divisor"></div>
@@ -68,7 +71,7 @@
         <div class="profile-smd">
             <h2>SMACKDOWN</h2>
             <h3>{{$smackdownTeam->team_total_points}}</h3>
-            <p><i class="fa fa-hashtag" aria-hidden="true"></i>26</p>
+            <p>#26</p>
         </div>
 
         <div class="divisor"></div>
@@ -76,7 +79,7 @@
         <div class="profile-srank">
             <h2>SUPER RANK</h2>
             <h3>{{$totalTeam}}</h3>
-            <p><i class="fa fa-hashtag" aria-hidden="true"></i>7</p>
+            <p>#7</p>
         </div>
     </div>
 
@@ -95,10 +98,10 @@
             <div class="team-info"> <!-- .TEAM-INFO -->
                 <ul>
                     <li>Total Score: <p> {{$rawTeam->team_total_points}}</p></li>
-                    <li>Last Show Score: <p>{{$rawTeam->team_points}}99</p></li>
+                    <li>Last Show Score: <p>{{$rawTeam->team_points}}</p></li>
                     <li>Rank: <p>13</p></li>
-                    <li class="raw-cash"><i class="fa fa-usd" aria-hidden="true"></i> {{number_format($rawTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoRawHome')}}"><li>GO TO MARKET <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                    <li class="raw-cash">$ {{number_format($rawTeam->team_cash)}}</li>
+                    <a href="{{route('mercadoRawHome')}}"><li>GO TO MARKET</li></a>
                 </ul>
             </div> <!-- .TEAM-INFO -->
             @foreach($superstars as $superstar)
@@ -109,6 +112,7 @@
                 <div class="star-name raw-bg">
                     <p>{{$superstar->name}}</p>
                 </div>
+                <!--<img src="{{url($superstar->image)}}"/>-->
             </div>
             @endif
             @endforeach
@@ -134,8 +138,8 @@
                     <li>Total Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
                     <li>Last Show Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
                     <li>Rank: <p>26</p></li>
-                    <li class="smd-cash"><i class="fa fa-usd" aria-hidden="true"></i> {{number_format($smackdownTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                    <li class="smd-cash">$ {{number_format($smackdownTeam->team_cash)}}</li>
+                    <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET</li></a>
                 </ul>
             </div> <!-- .TEAM-INFO -->
             @foreach($superstars as $superstar)
@@ -170,8 +174,8 @@
                     <li>Total Score: <p>{{$ppvTeam->team_total_points}}</p></li>
                     <li>Last Show Score: <p>{{$ppvTeam->team_points}}</p></li>
                     <li>Rank: <p>13</p></li>
-                    <li class="ppv-cash"><i class="fa fa-usd" aria-hidden="true"></i> {{number_format($ppvTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoPpvHome')}}"><li>GO TO MARKET <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                    <li class="ppv-cash">$ {{number_format($ppvTeam->team_cash)}}</li>
+                    <a href="{{route('mercadoPpvHome')}}"><li>GO TO MARKET</li></a>
                 </ul>
             </div> <!-- .TEAM-INFO -->
             @foreach($superstars as $superstar)
