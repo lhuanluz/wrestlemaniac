@@ -23,29 +23,25 @@ class LeagueController extends Controller
             $membrosRaw = DB::table('users')
                      ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
-                     //->orderBy('team_points', 'desc')
                      ->get();
             $membrosSmackdown = DB::table('users')
                      ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
-                     //->orderBy('team_points', 'desc')
                      ->get();
-            /*$membrosPpv = DB::table('users')
-                     ->join('ppv_teams', 'users.id', '=', 'ppv_teams.user_id')
-                     ->where('id_league',$idLeague)->take($quantidade)
-                     //->orderBy('team_points', 'desc')
-                     ->get();*/
-            
+            return view('leagueHome',[
+            'userHasLeague' => $userHasLeague,
+            'membrosRaw' => $membrosRaw,
+            'membrosSmackdown' => $membrosSmackdown
+            ]);
 
         }else{
             $userHasLeague = false;
+            return view('leagueHome',[
+            'userHasLeague' => $userHasLeague]);
         }
 
-        return view('leagueHome',[
-        'userHasLeague' => $userHasLeague,
-        'membrosRaw' => $membrosRaw,
-        'membrosSmackdown' => $membrosSmackdown
-        ]);
+        
+        
     }
     public function ligaPontosSemanais(){
         $userId = Auth::user()->id;
