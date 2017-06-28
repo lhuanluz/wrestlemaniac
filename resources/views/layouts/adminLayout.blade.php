@@ -158,9 +158,9 @@
                   <a href="#"><i class="fa fa-users fa-lg"></i> Users <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="users">
-                    <li class="{{route::is('editAdmin') ? 'active' : '' }}"><a href="{{route('editAdmin')}}"><i class="fa fa-graduation-cap icon fa-lg"></i>Edit User's Level</a></li>
-                    <li class="{{route::is('editEmail') ? 'active' : '' }}"><a href="{{route('editEmail')}}"><i class="fa fa-envelope icon fa-lg"></i>Edit User's E-mail</a></li>
-                    <li class="{{route::is('editNome') ? 'active' : '' }}"><a href="{{route('editNome')}}"><i class="fa fa-book icon fa-lg"></i>Edit User's Name</a></li>                   
+                    <li class="{{route::is('editAdmin') ? 'active' : '' }}"><a href="{{route('editAdmin')}}"><i class="fa fa-graduation-cap icon fa-lg"></i>Edit Level</a></li>
+                    <li class="{{route::is('editEmail') ? 'active' : '' }}"><a href="{{route('editEmail')}}"><i class="fa fa-envelope icon fa-lg"></i>Edit E-mail</a></li>
+                    <li class="{{route::is('editNome') ? 'active' : '' }}"><a href="{{route('editNome')}}"><i class="fa fa-book icon fa-lg"></i>Edit Name</a></li>                   
                 </ul>
                  
                 
