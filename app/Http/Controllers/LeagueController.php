@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LeagueController extends Controller
 {
-    public function liga(){
+     public function liga(){
         $userId = Auth::user()->id;
         $user = DB::table('users')->where('id',$userId)->first();
         $userHasLeague;
@@ -39,9 +39,6 @@ class LeagueController extends Controller
             return view('leagueHome',[
             'userHasLeague' => $userHasLeague]);
         }
-
-        
-        
     }
     public function ligaPontosSemanais(){
         $userId = Auth::user()->id;
