@@ -36,7 +36,7 @@ Route::prefix('admin')->group(function (){
         Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
         Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
     });
-
+    //Rotas Para Editar Usuarios
     Route::prefix('user')->group(function (){
     Route::get('editarEmail','UsuariosController@editarEmail')->name('editEmail');
     Route::post('editarEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
@@ -97,6 +97,18 @@ Route::prefix('market')->group(function () {
         });
     });
 });
+//Rotas Rank Usuario Cash
+Route::get('rankUserCashRaw','RankingController@rankUserCashRaw')->name('rankUserCashRaw');
+Route::get('rankUserCashSd','RankingController@rankUserCashSd')->name('rankUserCashSd');
+Route::get('rankUserCashPpv','RankingController@rankUserCashPpv')->name('rankUserCashPpv');
+//Rotas Rank Usuario Points
+Route::get('rankUserRawPoints','RankingController@rankUserRawPoints')->name('rankUserRawPoints');
+Route::get('rankUserSdPoints','RankingController@rankUserSdPoints')->name('rankUserSdPoints');
+Route::get('rankUserPpvPoints','RankingController@rankUserPpvPoints')->name('rankUserPpvPoints');
+//Rotas Rank Usuario Points Total
+Route::get('rankUserRawPointsTotal','RankingController@rankUserRawPointsTotal')->name('rankUserRawPointsTotal');
+Route::get('rankUserSdPointsTotal','RankingController@rankUserSdPointsTotal')->name('rankUserSdPointsTotal');
+Route::get('rankUserPpvPointsTotal','RankingController@rankUserPpvPointsTotal')->name('rankUserPpvPointsTotal');
 Auth::routes();
 
 Route::get('/', 'InicioController@homeRedirect')->name('home');
