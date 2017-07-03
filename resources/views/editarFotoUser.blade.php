@@ -33,7 +33,7 @@
                     <label>Photo</label>
                     <select name="photo" class="form-control">
                         <option value="storage/users/papa-shango.png">Papa Shango</option>
-                        <option value="storage/users/Hulk Hogan.png">Hulk Hogan</option>
+                        <option value="storage/users/hulk-hogan.png">Hulk Hogan</option>
                         <option value="storage/users/andre-the-giant.png">Andre The Giant</option>
                         <option value="storage/users/bret-hart.png">Bret Hart</option>
                         <option value="storage/users/bruno-sammartino.png">Bruno Sammartino</option>
