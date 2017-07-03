@@ -63,7 +63,7 @@
         <div class="profile-raw">
             <h2>RAW</h2>
             <h3>{{$rawTeam->team_total_points}}</h3>
-            <p>#13</p>
+            <p>#{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p>
         </div>
 
         <div class="divisor"></div>
@@ -71,7 +71,7 @@
         <div class="profile-smd">
             <h2>SMACKDOWN</h2>
             <h3>{{$smackdownTeam->team_total_points}}</h3>
-            <p>#26</p>
+            <p>#{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p>
         </div>
 
         <div class="divisor"></div>
@@ -99,7 +99,7 @@
                 <ul>
                     <li>Total Score: <p> {{$rawTeam->team_total_points}}</p></li>
                     <li>Last Show Score: <p>{{$rawTeam->team_points}}</p></li>
-                    <li>Rank: <p>13</p></li>
+                    <li>Rank: <p>{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p></li>
                     <li class="raw-cash">$ {{number_format($rawTeam->team_cash)}}</li>
                     <a href="{{route('mercadoRawHome')}}"><li>GO TO MARKET</li></a>
                 </ul>
@@ -137,7 +137,7 @@
                 <ul>
                     <li>Total Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
                     <li>Last Show Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
-                    <li>Rank: <p>26</p></li>
+                    <li>Rank: <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p></li>
                     <li class="smd-cash">$ {{number_format($smackdownTeam->team_cash)}}</li>
                     <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET</li></a>
                 </ul>

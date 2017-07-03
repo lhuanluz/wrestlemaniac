@@ -38,12 +38,14 @@ Route::prefix('admin')->group(function (){
     });
     //Rotas Para Editar Usuarios
     Route::prefix('user')->group(function (){
-    Route::get('editarEmail','UsuariosController@editarEmail')->name('editEmail');
-    Route::post('editarEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
-    Route::get('editarNome','UsuariosController@editarNome')->name('editNome');
-    Route::post('editarNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
-    Route::get('editarAdmin','UsuariosController@editarAdmin')->name('editAdmin');
-    Route::post('editarAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
+    Route::get('editEmail','UsuariosController@editarEmail')->name('editEmail');
+    Route::post('editEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
+    Route::get('editNome','UsuariosController@editarNome')->name('editNome');
+    Route::post('editNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
+    Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
+    Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
+    Route::get('editPhoto','UsuariosController@editarFoto')->name('editPhoto');
+    Route::post('editPhoto/confirm','UsuariosController@editarFotoRequest')->name('editPhotoR');
     });
 });
 //Rota para todas as funções variadas ao painel de Mercado

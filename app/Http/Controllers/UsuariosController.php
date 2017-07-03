@@ -59,4 +59,20 @@ class UsuariosController extends Controller
                 ]);
         return redirect()->route('painelAdmin');
     }
+     public function editarFoto(){
+
+        return view('editarFotoUser');
+    }
+    public function editarFotoRequest(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'photo' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'photo' => $request->photo
+                ]);
+        return redirect()->route('painelAdmin');
+    }
 }
