@@ -228,7 +228,7 @@ class MarketController extends Controller
                                 ['last_show',1]
                             ])->value('points');
 
-                            $last_points = $ult_pontos + $pontos;
+                            $last_points = $pontos;
                             DB::table('superstars')->where([
                                 ['id',$i],
                                 ['last_show',1]
@@ -258,7 +258,7 @@ class MarketController extends Controller
                         ['last_show',1]
                     ])->value('points');
 
-                    $last_points = $ult_pontos + $pontos;
+                    $last_points = $pontos;
                     DB::table('superstars')->where([
                         ['id',$i],
                         ['brand',$mercado],
