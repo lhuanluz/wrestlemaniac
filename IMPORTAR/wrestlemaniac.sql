@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Jul-2017 às 19:11
+-- Generation Time: 05-Jul-2017 às 20:16
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -41,7 +41,7 @@ CREATE TABLE `configs` (
 --
 
 INSERT INTO `configs` (`id`, `statusMercadoRaw`, `statusMercadoSmackdown`, `ppvBrand`, `statusMercadoPPV`, `created_at`, `updated_at`) VALUES
-(1, 'Aberto', 'Aberto', 'Raw', 'Fechado', '2017-06-27 19:25:01', '2017-06-27 19:25:01');
+(1, 'Aberto', 'Aberto', 'Raw', 'Aberto', '2017-06-27 19:25:01', '2017-06-27 19:25:01');
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE `superstars` (
   `last_show` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Extraindo dados da tabela `superstars`
@@ -307,51 +307,52 @@ INSERT INTO `superstars` (`id`, `name`, `brand`, `image`, `points`, `last_points
 (56, 'Titus O\'Neil', 'Raw', 'storage/superstars/titus_o_neil.png', 5.5, 0, 1080, 0, 'none', 1, '2017-06-15 18:34:01', '2017-06-15 18:34:01'),
 (57, 'TJP', 'Raw', 'storage/superstars/tjperkins.png', 0, 0, 910, 0, 'none', 0, '2017-06-15 18:34:09', '2017-06-15 18:34:09'),
 (58, 'Tony Nese', 'Raw', 'storage/superstars/tony_nese.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:34:56', '2017-06-15 18:34:56'),
-(59, 'Aiden English', 'Smackdown', 'storage/superstars/aiden_english.png', 1, 0, 910, 0, 'none', 1, '2017-06-15 18:35:27', '2017-06-15 18:35:27'),
-(60, 'Aj Styles', 'Smackdown', 'storage/superstars/aj_styles.png', 2, 0, 840, 0, 'none', 1, '2017-06-15 18:35:34', '2017-06-15 18:35:34'),
-(61, 'Baron Corbin', 'Smackdown', 'storage/superstars/baron_corbin.png', 5, 0, 1090, 1, 'Mr. Money in the Bank', 1, '2017-06-15 18:35:45', '2017-06-15 18:35:45'),
-(62, 'Becky Lynch', 'Smackdown', 'storage/superstars/becky_lynch.png', 9.5, 0, 1135, 0, 'none', 1, '2017-06-15 18:35:56', '2017-06-15 18:35:56'),
-(63, 'Big E', 'Smackdown', 'storage/superstars/big_e.png', 2, 0, 950, 0, 'none', 1, '2017-06-15 18:36:04', '2017-06-15 18:36:04'),
-(64, 'Carmella', 'Smackdown', 'storage/superstars/carmella.png', 9.5, 0, 1145, 1, 'Ms. Money in the Bank', 1, '2017-06-15 18:36:11', '2017-06-15 18:36:11'),
-(65, 'Chad Gable', 'Smackdown', 'storage/superstars/chad_gable.png', 0, 0, 1050, 0, 'none', 0, '2017-06-15 18:36:21', '2017-06-15 18:36:21'),
-(66, 'Charlotte', 'Smackdown', 'storage/superstars/charlotte.png', 7.5, 0, 1115, 0, 'none', 1, '2017-06-15 18:36:30', '2017-06-15 18:36:30'),
-(67, 'Dolph Ziggler', 'Smackdown', 'storage/superstars/dolph_ziggler.png', 0, 0, 910, 0, 'none', 0, '2017-06-15 18:36:48', '2017-06-15 18:36:48'),
-(68, 'Epico', 'Smackdown', 'storage/superstars/epico.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:37:05', '2017-06-15 18:37:05'),
-(69, 'Erick Rowan', 'Smackdown', 'storage/superstars/erick_rowan.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:37:15', '2017-06-15 18:37:15'),
+(59, 'Aiden English', 'Smackdown', 'storage/superstars/aiden_english.png', 1.5, 1, 825, 0, 'none', 1, '2017-06-15 18:35:27', '2017-06-15 18:35:27'),
+(60, 'Aj Styles', 'Smackdown', 'storage/superstars/aj_styles.png', 10.5, 2, 945, 0, 'none', 1, '2017-06-15 18:35:34', '2017-06-15 18:35:34'),
+(61, 'Baron Corbin', 'Smackdown', 'storage/superstars/baron_corbin.png', 4, 5, 1130, 1, 'Mr. Money in the Bank', 1, '2017-06-15 18:35:45', '2017-06-15 18:35:45'),
+(62, 'Becky Lynch', 'Smackdown', 'storage/superstars/becky_lynch.png', 0, 9.5, 1135, 0, 'none', 0, '2017-06-15 18:35:56', '2017-06-15 18:35:56'),
+(63, 'Big E', 'Smackdown', 'storage/superstars/big_e.png', 2, 2, 870, 0, 'none', 1, '2017-06-15 18:36:04', '2017-06-15 18:36:04'),
+(64, 'Carmella', 'Smackdown', 'storage/superstars/carmella.png', 3, 9.5, 1175, 1, 'Ms. Money in the Bank', 1, '2017-06-15 18:36:11', '2017-06-15 18:36:11'),
+(65, 'Chad Gable', 'Smackdown', 'storage/superstars/chad_gable.png', 3, 0, 1080, 0, 'none', 1, '2017-06-15 18:36:21', '2017-06-15 18:36:21'),
+(66, 'Charlotte', 'Smackdown', 'storage/superstars/charlotte.png', 0, 7.5, 1115, 0, 'none', 0, '2017-06-15 18:36:30', '2017-06-15 18:36:30'),
+(67, 'Dolph Ziggler', 'Smackdown', 'storage/superstars/dolph_ziggler.png', 5, 0, 960, 0, 'none', 1, '2017-06-15 18:36:48', '2017-06-15 18:36:48'),
+(68, 'Epico', 'Smackdown', 'storage/superstars/epico.png', 5, 0, 1050, 0, 'none', 1, '2017-06-15 18:37:05', '2017-06-15 18:37:05'),
+(69, 'Erick Rowan', 'Smackdown', 'storage/superstars/erick_rowan.png', 6.5, 0, 1065, 0, 'none', 1, '2017-06-15 18:37:15', '2017-06-15 18:37:15'),
 (70, 'Eva Marie', 'Smackdown', 'storage/superstars/eva_marie.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:37:32', '2017-06-15 18:37:32'),
-(71, 'Fandango', 'Smackdown', 'storage/superstars/fandango.png', 2, 0, 920, 0, 'none', 1, '2017-06-15 18:37:44', '2017-06-15 18:37:44'),
-(72, 'Jason Jordan', 'Smackdown', 'storage/superstars/jason_jordan.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:37:57', '2017-06-15 18:37:57'),
-(73, 'Jey Uso', 'Smackdown', 'storage/superstars/jey_uso.png', 5.5, 0, 1090, 1, 'Smackdown Tag Team Champion 1', 1, '2017-06-15 18:38:06', '2017-06-15 18:38:06'),
-(74, 'Jimmy Uso', 'Smackdown', 'storage/superstars/jimmy_uso.png', 6.5, 0, 1095, 1, 'Smackdown Tag Team Champion 2', 1, '2017-06-15 18:38:17', '2017-06-15 18:38:17'),
-(75, 'Jinder Mahal', 'Smackdown', 'storage/superstars/jinder_mahal.png', 4, 0, 1120, 1, 'WWE Champion', 1, '2017-06-15 18:38:28', '2017-06-15 18:38:28'),
-(76, 'John Cena', 'Smackdown', 'storage/superstars/john_cena.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:38:45', '2017-06-15 18:38:45'),
+(71, 'Fandango', 'Smackdown', 'storage/superstars/fandango.png', 6.5, 2, 985, 0, 'none', 1, '2017-06-15 18:37:44', '2017-06-15 18:37:44'),
+(72, 'Jason Jordan', 'Smackdown', 'storage/superstars/jason_jordan.png', 5, 0, 1050, 0, 'none', 1, '2017-06-15 18:37:57', '2017-06-15 18:37:57'),
+(73, 'Jey Uso', 'Smackdown', 'storage/superstars/jey_uso.png', 3, 5.5, 1120, 1, 'Smackdown Tag Team Champion 1', 1, '2017-06-15 18:38:06', '2017-06-15 18:38:06'),
+(74, 'Jimmy Uso', 'Smackdown', 'storage/superstars/jimmy_uso.png', 3, 6.5, 1125, 1, 'Smackdown Tag Team Champion 2', 1, '2017-06-15 18:38:17', '2017-06-15 18:38:17'),
+(75, 'Jinder Mahal', 'Smackdown', 'storage/superstars/jinder_mahal.png', 3, 4, 1150, 1, 'WWE Champion', 1, '2017-06-15 18:38:28', '2017-06-15 18:38:28'),
+(76, 'John Cena', 'Smackdown', 'storage/superstars/john_cena.png', 2, 0, 920, 0, 'none', 1, '2017-06-15 18:38:45', '2017-06-15 18:38:45'),
 (77, 'Chris Jericho', 'Smackdown', 'storage/superstars/chris_jericho.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:39:00', '2017-06-15 18:39:00'),
 (78, 'Kane', 'Smackdown', 'storage/superstars/kane.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:39:12', '2017-06-15 18:39:12'),
-(79, 'Kevin Owens', 'Smackdown', 'storage/superstars/kevin_owens.png', 3, 0, 1110, 1, 'United States Champion', 1, '2017-06-15 18:39:22', '2017-06-15 18:39:22'),
-(80, 'Kofi Kingston', 'Smackdown', 'storage/superstars/kofi_kingston.png', 2, 0, 835, 0, 'none', 1, '2017-06-15 18:39:35', '2017-06-15 18:39:35'),
-(81, 'Konnor', 'Smackdown', 'storage/superstars/konnor.png', 1.5, 0, 915, 0, 'none', 1, '2017-06-15 18:39:46', '2017-06-15 18:39:46'),
-(82, 'Lana', 'Smackdown', 'storage/superstars/lana.png', 3, 0, 940, 0, 'none', 1, '2017-06-15 18:39:55', '2017-06-15 18:39:55'),
-(83, 'Luke Harper', 'Smackdown', 'storage/superstars/luke_harper.png', 0, 0, 1030, 0, 'none', 0, '2017-06-15 18:40:09', '2017-06-15 18:40:09'),
-(84, 'Mojo Rawley', 'Smackdown', 'storage/superstars/mojo_rawley.png', 1.5, 0, 835, 0, 'none', 1, '2017-06-15 18:40:23', '2017-06-15 18:40:23'),
-(85, 'Naomi', 'Smackdown', 'storage/superstars/naomi.png', 7, 0, 1110, 1, 'Smackdown Women\'s Champion', 1, '2017-06-15 18:40:33', '2017-06-15 18:40:33'),
-(86, 'Natalya', 'Smackdown', 'storage/superstars/natalya.png', 7.5, 0, 1115, 0, 'none', 1, '2017-06-15 18:40:41', '2017-06-15 18:40:41'),
+(79, 'Kevin Owens', 'Smackdown', 'storage/superstars/kevin_owens.png', 5, 3, 1160, 1, 'United States Champion', 1, '2017-06-15 18:39:22', '2017-06-15 18:39:22'),
+(80, 'Kofi Kingston', 'Smackdown', 'storage/superstars/kofi_kingston.png', 2, 2, 755, 0, 'none', 1, '2017-06-15 18:39:35', '2017-06-15 18:39:35'),
+(81, 'Konnor', 'Smackdown', 'storage/superstars/konnor.png', 5, 1.5, 965, 0, 'none', 1, '2017-06-15 18:39:46', '2017-06-15 18:39:46'),
+(82, 'Lana', 'Smackdown', 'storage/superstars/lana.png', 2.5, 3, 865, 0, 'none', 1, '2017-06-15 18:39:55', '2017-06-15 18:39:55'),
+(83, 'Luke Harper', 'Smackdown', 'storage/superstars/luke_harper.png', 6, 0, 1090, 0, 'none', 1, '2017-06-15 18:40:09', '2017-06-15 18:40:09'),
+(84, 'Mojo Rawley', 'Smackdown', 'storage/superstars/mojo_rawley.png', 8.5, 1.5, 920, 0, 'none', 1, '2017-06-15 18:40:23', '2017-06-15 18:40:23'),
+(85, 'Naomi', 'Smackdown', 'storage/superstars/naomi.png', 9.5, 7, 1205, 1, 'Smackdown Women\'s Champion', 1, '2017-06-15 18:40:33', '2017-06-15 18:40:33'),
+(86, 'Natalya', 'Smackdown', 'storage/superstars/natalya.png', 0, 7.5, 1115, 0, 'none', 0, '2017-06-15 18:40:41', '2017-06-15 18:40:41'),
 (87, 'Nikki Bella', 'Smackdown', 'storage/superstars/nikki_bella.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:40:53', '2017-06-15 18:40:53'),
 (88, 'Primo', 'Smackdown', 'storage/superstars/primo.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:41:02', '2017-06-15 18:41:02'),
-(89, 'Randy Orton', 'Smackdown', 'storage/superstars/randy_orton.png', 1, 0, 950, 0, 'none', 1, '2017-06-15 18:41:12', '2017-06-15 18:41:12'),
-(90, 'Rusev', 'Smackdown', 'storage/superstars/rusev.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:41:21', '2017-06-15 18:41:21'),
-(91, 'Sami Zayn', 'Smackdown', 'storage/superstars/sami_zayn.png', 1, 0, 830, 0, 'none', 1, '2017-06-15 18:41:30', '2017-06-15 18:41:30'),
-(92, 'Shinsuke Nakamura', 'Smackdown', 'storage/superstars/shinsuke_nakamura.png', 2, 0, 950, 0, 'none', 1, '2017-06-15 18:41:46', '2017-06-15 18:41:46'),
-(93, 'Sin Cara', 'Smackdown', 'storage/superstars/sin_cara.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:41:55', '2017-06-15 18:41:55'),
-(94, 'Tamina', 'Smackdown', 'storage/superstars/tamina.png', 7.5, 0, 1115, 0, 'none', 1, '2017-06-15 18:42:05', '2017-06-15 18:42:05'),
-(95, 'Tye Dillinger', 'Smackdown', 'storage/superstars/tye_dillinger.png', 0, 0, 1000, 0, 'none', 0, '2017-06-15 18:42:16', '2017-06-15 18:42:16'),
-(96, 'Tyler Breeze', 'Smackdown', 'storage/superstars/tyler_breeze.png', 2, 0, 920, 0, 'none', 1, '2017-06-15 18:42:28', '2017-06-15 18:42:28'),
-(97, 'Viktor', 'Smackdown', 'storage/superstars/viktor.png', 1.5, 0, 915, 0, 'none', 1, '2017-06-15 18:42:38', '2017-06-15 18:42:38'),
-(98, 'Xavier Woods', 'Smackdown', 'storage/superstars/xavier_woods.png', 2, 0, 835, 0, 'none', 1, '2017-06-15 18:42:47', '2017-06-15 18:42:47'),
-(99, 'Zack Ryder', 'Smackdown', 'storage/superstars/zack_ryder.png', 0.5, 0, 825, 0, 'none', 1, '2017-06-15 18:43:00', '2017-06-15 18:43:00'),
+(89, 'Randy Orton', 'Smackdown', 'storage/superstars/randy_orton.png', 5.5, 1, 1005, 0, 'none', 1, '2017-06-15 18:41:12', '2017-06-15 18:41:12'),
+(90, 'Rusev', 'Smackdown', 'storage/superstars/rusev.png', 1, 0, 910, 0, 'none', 1, '2017-06-15 18:41:21', '2017-06-15 18:41:21'),
+(91, 'Sami Zayn', 'Smackdown', 'storage/superstars/sami_zayn.png', 8, 1, 910, 0, 'none', 1, '2017-06-15 18:41:30', '2017-06-15 18:41:30'),
+(92, 'Shinsuke Nakamura', 'Smackdown', 'storage/superstars/shinsuke_nakamura.png', 2, 2, 870, 0, 'none', 1, '2017-06-15 18:41:46', '2017-06-15 18:41:46'),
+(93, 'Sin Cara', 'Smackdown', 'storage/superstars/sin_cara.png', 5, 0, 1050, 0, 'none', 1, '2017-06-15 18:41:55', '2017-06-15 18:41:55'),
+(94, 'Tamina', 'Smackdown', 'storage/superstars/tamina.png', 1.5, 7.5, 1030, 0, 'none', 1, '2017-06-15 18:42:05', '2017-06-15 18:42:05'),
+(95, 'Tye Dillinger', 'Smackdown', 'storage/superstars/tye_dillinger.png', 7, 0, 1070, 0, 'none', 1, '2017-06-15 18:42:16', '2017-06-15 18:42:16'),
+(96, 'Tyler Breeze', 'Smackdown', 'storage/superstars/tyler_breeze.png', 6.5, 2, 985, 0, 'none', 1, '2017-06-15 18:42:28', '2017-06-15 18:42:28'),
+(97, 'Viktor', 'Smackdown', 'storage/superstars/viktor.png', 5, 1.5, 965, 0, 'none', 1, '2017-06-15 18:42:38', '2017-06-15 18:42:38'),
+(98, 'Xavier Woods', 'Smackdown', 'storage/superstars/xavier_woods.png', 2, 2, 755, 0, 'none', 1, '2017-06-15 18:42:47', '2017-06-15 18:42:47'),
+(99, 'Zack Ryder', 'Smackdown', 'storage/superstars/zack_ryder.png', 7.5, 0.5, 900, 0, 'none', 1, '2017-06-15 18:43:00', '2017-06-15 18:43:00'),
 (996, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
 (997, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
 (998, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
-(999, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL);
+(999, 'None', 'Nenhuma', 'storage/superstars/nenhum.png', 0, 0, 0, 0, 'none', 0, NULL, NULL),
+(1000, 'Maria', 'Smackdown', 'storage/superstars/maria.png', 1, 0, 910, 0, 'none', 1, '2017-07-05 20:55:54', '2017-07-05 20:55:54');
 
 -- --------------------------------------------------------
 
@@ -510,7 +511,7 @@ ALTER TABLE `smackdown_teams`
 -- AUTO_INCREMENT for table `superstars`
 --
 ALTER TABLE `superstars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 --
 -- AUTO_INCREMENT for table `users`
 --
