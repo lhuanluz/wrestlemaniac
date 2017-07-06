@@ -51,7 +51,7 @@
 <div class="container login"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
     <div class="row profile">
 
-        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: contain; background-color: #000">
+        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
         </div> <!-- .AVATAR -->
 
         <div class="user-info">
