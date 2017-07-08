@@ -32,7 +32,7 @@
     <!-- FAQ CSS -->
     <link href="{{ url('css/faq.css') }}" rel="stylesheet">
 
-    <!-- LIGA CSS -->
+    <!-- League CSS -->
     <link href="{{ url('css/league.css') }}" rel="stylesheet">
 
 

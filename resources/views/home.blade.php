@@ -48,7 +48,7 @@
 @endif
 
 @if (!Auth::guest())
-<div class="container login"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
+<div id="login" class="container"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
     <div class="row profile">
 
         <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">

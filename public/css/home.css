@@ -9,10 +9,7 @@
 }
 
 @media (min-width: 992px) {
-    /*Container Width: 970px*/
-    .container {
-        padding: 0 5px 0 5px;
-    }    
+    /*Container Width: 970px*/ 
 }
 
 @media (min-width: 1200px) {
@@ -319,7 +316,7 @@ footer .container {
 
 /*CSS DA PÁGINA INICIAL DO USUÁRIO*/
 
-.login {
+#login {
     margin-top: 50px;
     margin-bottom: 70px;
     padding: 0;
