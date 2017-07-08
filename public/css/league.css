@@ -65,7 +65,7 @@ li#titleLiga {
     max-width: 1170px;
 }
 
-h2 {
+league.page h2 {
     margin: 0;
 }
 
@@ -132,6 +132,7 @@ h2 {
 }
 
 .league-page .league-name h2 {
+    margin: 0;
     text-shadow: 0px 3px 6px #141516;
     padding: 15px 0 10px 20px;
     font-size: 30px;
@@ -237,6 +238,7 @@ h2 {
 }
 
 .league-stats .league-brand-score .score h2 {
+    margin: 0;
     font-size: 80px;
     font-weight: bold;
     color: #fff;
