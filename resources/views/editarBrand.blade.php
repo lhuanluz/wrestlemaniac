@@ -46,7 +46,7 @@
                 </div>
                 <!-- BOTÃO -->
                 <br/>
-                <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Create</button>     
+                <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Edit</button>     
 
             </form>         
             <!-- FORMULARIO [FIM] -->
