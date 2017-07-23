@@ -8,29 +8,30 @@
         <div class="row league-profile">
 
             <div class="col-md-6 league-name">
-                <h2>League Name</h2>
+                <h2>{{$liga->league_name}}</h2>
+                @if($liga->owner == Auth::user()->id)
                 <a href="#"><p><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit League</p></a>
-                <a href="#"><p>Leave League</p></a>
+                @else
+                <a href="{{route('leagueQuit')}}"><p>Leave League</p></a>
+                @endif
             </div>
             
             <div class="col-md-3 league-info">
                 <h2>LEAGUE SCORE</h2>
-                <h3>50.0</h3>
+                <h3>{{number_format($liga->league_points)}}</h3>
             </div>
 
             <div class="col-md-3 league-info">
                 <div class="divisor"></div>
                 <h2>LEAGUE RANK</h2>
-                <h3>999º</h3>
+                <h3>{{ array_search($liga->id, $positionLeague) + 1}}º</h3>
             </div>
         </div> <!-- LEAGUE-PROFILE -->
 
         <div class="row league-team">
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+            @foreach($membros as $membro)
+            <div class="avatar" style="background: url({{$membro->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+            @endforeach
         </div> <!-- LEAGUE-TEAM -->
 
 
@@ -39,47 +40,22 @@
             <div class="col-md-9">
                 <ul>
                     <li>RAW</li>
+                    <?php
+                        $pos = 1;
+                        $total_raw = 0.0;
+                    ?>
+                    @foreach($membrosRaw as $membroRaw)
                     <li>
-                        <p>1º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
+                        <p>{{$pos}}º</p>
+                        <div class="avatar" style="background: url({{$membroRaw->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <p>{{$membroRaw->name}}</p>
+                        <p>{{$membroRaw->team_total_points}}</p>
                     </li>
-
-                    <li>
-                        <p>2º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>3º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>4º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>5º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-                    
+                    <?php
+                    $pos++;
+                    $total_raw += $membroRaw->team_total_points;
+                    ?>
+                    @endforeach
                 </ul>
             </div>
 
@@ -87,7 +63,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>50.0</li>
+                    <li>{{number_format($total_raw)}}</li>
                 </ul>
             </div>
 
@@ -99,47 +75,22 @@
             <div class="col-md-9">
                 <ul>
                     <li>SMACKDOWN</li>
+                    <?php
+                        $pos = 1;
+                        $total_smack = 0.0;
+                    ?>
+                    @foreach($membrosSmackdown as $membroSmackdown)
                     <li>
-                        <p>1º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
+                        <p>{{$pos}}º</p>
+                        <div class="avatar" style="background: url({{$membroSmackdown->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <p>{{$membroSmackdown->name}}</p>
+                        <p>{{$membroSmackdown->team_total_points}}</p>
                     </li>
-
-                    <li>
-                        <p>2º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>3º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>4º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>5º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-                    
+                    <?php
+                    $pos++;
+                    $total_smack += $membroSmackdown->team_total_points;
+                    ?>
+                    @endforeach
                 </ul>
             </div>
 
@@ -147,7 +98,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>50.0</li>
+                    <li>{{number_format($total_smack)}}</li>
                 </ul>
             </div>
 
@@ -159,47 +110,22 @@
             <div class="col-md-9">
                 <ul>
                     <li>PAY PER VIEW</li>
+                    <?php
+                        $pos = 1;
+                        $total_ppv = 0.0;
+                    ?>
+                    @foreach($membrosPPV as $membroPPV)
                     <li>
-                        <p>1º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
+                        <p>{{$pos}}º</p>
+                        <div class="avatar" style="background: url({{$membroPPV->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <p>{{$membroPPV->name}}</p>
+                        <p>{{$membroPPV->team_total_points}}</p>
                     </li>
-
-                    <li>
-                        <p>2º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>3º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>4º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-
-                    <div class="divisor"></div>
-
-                    <li>
-                        <p>5º</p>
-                        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>Melquesedeque Gomes</p>
-                        <p>14.5</p>
-                    </li>
-                    
+                    <?php
+                    $pos++;
+                    $total_ppv += $membroPPV->team_total_points;
+                    ?>
+                    @endforeach
                 </ul>
             </div>
 
@@ -207,7 +133,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>50.0</li>
+                    <li>{{number_format($total_ppv)}}</li>
                 </ul>
             </div>
 
@@ -223,15 +149,16 @@
                 <div class="form-title">
                     <h2>Create League</h2>
                 </div>
-                <form method="post" action="">
+                <form method="post" action="{{route('criarLiga')}}">
+                {{ csrf_field()  }}
                     <label for="league-name">League Name:</label><br>
-                    <input class="input-field" name="league-name" type="text"><br>
+                    <input class="input-field" name="name" type="text"><br>
 
                     <label for="league-pss">League Password:</label><br>
-                    <input class="input-field" type="password"><br>
+                    <input class="input-field" type="password" name="secret_password"><br>
 
                     <label for="league-pss">Confirm Password:</label><br>
-                    <input class="input-field" type="password"><br>
+                    <input class="input-field" type="password" name="secret_password_confirmation"><br>
 
                     <input class="btn-league-form" type="submit" value="CREATE">
                 </form>
@@ -239,12 +166,13 @@
 
             <div class="col-md-6">
                 <h2>Join a League</h2>
-                <form method="post" action="">
+                <form method="post" action="{{route('entrarLiga')}}">
+                {{ csrf_field()  }}
                     <label for="league-name">League Name:</label><br>
-                    <input class="input-field" name="league-name" type="text"><br>
+                    <input class="input-field" name="name" type="text"><br>
 
                     <label for="league-pss">League Password:</label><br>
-                    <input class="input-field" name="league-pss" type="password"><br>
+                    <input class="input-field" name="secret_password" type="password"><br>
 
                     <input class="btn-league-form" type="submit" value="JOIN">
                 </form>

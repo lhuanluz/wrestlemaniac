@@ -17,21 +17,49 @@ class LeagueController extends Controller
         $userHasLeague;
         $idLeague =$user->id_league;
         if($idLeague > 1){
-            $league = DB::table('leagues')->where('id',$idLeague)->first();
+            $liga = DB::table('leagues')->where('id',$idLeague)->first();
             $userHasLeague = true;
             $quantidade = DB::table('users')->where('id_league',$idLeague)->count();
+            $positionLeague = DB::table('leagues')->orderBy('league_points', 'desc')->pluck('id')->toArray();
+            $dono = DB::table('users')->where('id',$liga->owner)->first();
+            $membro1 = DB::table('users')->where('id',$liga->member1)->first();
+            $membro2 = DB::table('users')->where('id',$liga->member2)->first();
+            $membro3 = DB::table('users')->where('id',$liga->member3)->first();
+            $membro4 = DB::table('users')->where('id',$liga->member4)->first();
             $membrosRaw = DB::table('users')
                      ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
+                     ->orderBy('team_total_points','desc')
                      ->get();
             $membrosSmackdown = DB::table('users')
                      ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
+                     ->orderBy('team_total_points','desc')
                      ->get();
+            $membrosPPV = DB::table('users')
+                     ->join('ppv_teams', 'users.id', '=', 'ppv_teams.user_id')
+                     ->where('id_league',$idLeague)->take($quantidade)
+                     ->orderBy('team_total_points','desc')
+                     ->get();
+            $membros = DB::table('users')
+                     ->where('id_league',$idLeague)->take($quantidade)
+                     ->orderBy('name','asc')
+                     ->get();
+
+
             return view('leagueHome',[
             'userHasLeague' => $userHasLeague,
+            'liga' => $liga,
+            'positionLeague' => $positionLeague,
+            'dono' => $dono,
+            'membro1' => $membro1,
+            'membro2' => $membro2,
+            'membro3' => $membro3,
+            'membro4' => $membro4,
             'membrosRaw' => $membrosRaw,
-            'membrosSmackdown' => $membrosSmackdown
+            'membrosSmackdown' => $membrosSmackdown,
+            'membrosPPV' => $membrosPPV,
+            'membros' => $membros
             ]);
 
         }else{
@@ -98,12 +126,13 @@ class LeagueController extends Controller
         // Autenticação
         $this->validate($request,[
             'name'      => 'required|max:25',
-            'secret_password' => 'required'
+            'secret_password' => 'required|confirmed',
+            'secret_password_confirmation' => 'required'
         ]);
         $userId = Auth::user()->id;
         $league = league::create([
             'league_name' => $request->name,
-            'secret_password' => bcrypt('$request->secret_password'),
+            'secret_password' => Hash::make($request->secret_password),
             'owner' => $userId
         ]);
         DB::table('users')
@@ -111,6 +140,7 @@ class LeagueController extends Controller
             ->update([
                 'id_league' => $league->id
             ]);
+        return redirect()->route('leagueHome');
 
     }
     public function entrarLiga(Request $request){
@@ -120,45 +150,46 @@ class LeagueController extends Controller
             'secret_password' => 'required'
         ]);
         $league = DB::table('leagues')
-            ->where('league_name', $request->name)
+            ->where('league_name',$request->name)
             ->first();
-        if (Hash::check($request->secret_password, $league->secret_password)) {
+            
+        if (Hash::check('123123', $league->secret_password)) {
             
             $userId = Auth::user()->id;
 
-            if ($league->member01 == 2) {
+            if ($league->member1 == 2) {
                     
                 DB::table('users')
                     ->where('id',$userId)
-                    ->update(['league_id' => $league->id]);
+                    ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member1' => $userId]);
 
                     
-            }else if ($league->member02 == 3) {
+            }else if ($league->member2 == 3) {
 
                 DB::table('users')
                     ->where('id',$userId)
-                    ->update(['league_id' => $league->id]);
+                    ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member2' => $userId]);
 
-            }else if ($league->member03 == 4) {
+            }else if ($league->member3 == 4) {
 
                 DB::table('users')
                     ->where('id',$userId)
-                    ->update(['league_id' => $league->id]);
+                    ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member3' => $userId]);
 
-            }else if ($league->member04 == 5) {
+            }else if ($league->member4 == 5) {
 
                 DB::table('users')
                     ->where('id',$userId)
-                    ->update(['league_id' => $league->id]);
+                    ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member4' => $userId]);
@@ -239,39 +270,39 @@ class LeagueController extends Controller
             ->first();
         if($league->owner == $userId){
             if (Hash::check($request->secret_password_old, $league->secret_password)) {
-                if ($league->member01 == $userRemover->id) {
+                if ($league->member1 == $userRemover->id) {
                         
                     DB::table('users')
                         ->where('id',$userRemover->id)
-                        ->update(['league_id' => 1]);
+                        ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
                         ->update(['member1' => 2]);
 
                         
-                }else if ($league->member02 == $userRemover->id) {
+                }else if ($league->member2 == $userRemover->id) {
 
                     DB::table('users')
                         ->where('id',$userRemover->id)
-                        ->update(['league_id' => 1]);
+                        ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
                         ->update(['member2' => 2]);
 
-                }else if ($league->member03 == $userRemover->id) {
+                }else if ($league->member3 == $userRemover->id) {
 
                     DB::table('users')
                         ->where('id',$userRemover->id)
-                        ->update(['league_id' => 1]);
+                        ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
                         ->update(['member3' => 2]);
 
-                }else if ($league->member04 == $userRemover->id) {
+                }else if ($league->member4 == $userRemover->id) {
 
                     DB::table('users')
                         ->where('id',$userRemover->id)
-                        ->update(['league_id' => 1]);
+                        ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
                         ->update(['member1' => 4]);
@@ -284,6 +315,55 @@ class LeagueController extends Controller
             return redirect()->route('leagueHome');
         }
         
+    }
+    public function sairLiga(){
+        $userId = Auth::user()->id;
+        $idLeague = Auth::user()->id_league;
+        $league = DB::table('leagues')
+            ->where('id', $idLeague)
+            ->first();
+        if ($league->member1 == $userId) {
+                        
+                    DB::table('users')
+                        ->where('id',$userId)
+                        ->update(['id_league' => 1]);
+                    DB::table('leagues')
+                        ->where('id',$league->id)
+                        ->update(['member1' => 2]);
+
+                        
+                }else if ($league->member2 == $userId) {
+
+                    DB::table('users')
+                        ->where('id',$userId)
+                        ->update(['id_league' => 1]);
+                    DB::table('leagues')
+                        ->where('id',$league->id)
+                        ->update(['member2' => 2]);
+
+                }else if ($league->member3 == $userId) {
+
+                    DB::table('users')
+                        ->where('id',$userId)
+                        ->update(['id_league' => 1]);
+                    DB::table('leagues')
+                        ->where('id',$league->id)
+                        ->update(['member3' => 2]);
+
+                }else if ($league->member4 == $userId) {
+
+                    DB::table('users')
+                        ->where('id',$userId)
+                        ->update(['id_league' => 1]);
+                    DB::table('leagues')
+                        ->where('id',$league->id)
+                        ->update(['member1' => 4]);
+
+                }else{
+                    //DONO
+                    return redirect()->route('leagueHome');
+                }
+        return redirect()->route('leagueHome');
     }
 
 }

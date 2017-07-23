@@ -66,10 +66,6 @@ Route::prefix('market')->group(function () {
             Route::get('desc','MarketController@mercadoRawPontosDecrescente')->name('mercadoRawPointsDesc');
         });
     });
-    Route::prefix('league')->group(function () {
-        Route::get('/','LeagueController@liga')->name('leagueHome');
-    });
-
     Route::prefix('smackdown')->group(function () {
         Route::get('/','MarketController@mercadoSmackdown')->name('mercadoSmackdownHome');
         Route::post('buy','MarketController@comprarSuperstarSmackdown')->name('comprarSuperstarSmackdown');
@@ -99,6 +95,13 @@ Route::prefix('market')->group(function () {
         });
     });
 });
+
+Route::prefix('league')->group(function () {
+        Route::get('/','LeagueController@liga')->name('leagueHome');
+        Route::get('/quitLeague','LeagueController@sairLiga')->name('leagueQuit');
+        Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
+        Route::post('/createLeague','LeagueController@criarLiga')->name('criarLiga');
+    });
 //Rotas Rank Usuario Cash
 Route::get('rankUserCashRaw','RankingController@rankUserCashRaw')->name('rankUserCashRaw');
 Route::get('rankUserCashSd','RankingController@rankUserCashSd')->name('rankUserCashSd');
