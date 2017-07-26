@@ -119,5 +119,5 @@ Auth::routes();
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {
-    return view('faq');
+    return view('faq/faq');
 })->name('faq');

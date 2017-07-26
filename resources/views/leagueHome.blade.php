@@ -18,7 +18,7 @@
             
             <div class="col-md-3 league-info">
                 <h2>LEAGUE SCORE</h2>
-                <h3>{{number_format($liga->league_points)}}</h3>
+                <h3>{{$liga->league_points}}</h3>
             </div>
 
             <div class="col-md-3 league-info">
@@ -63,7 +63,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{number_format($total_raw)}}</li>
+                    <li>{{$total_raw/$quantidade}}</li>
                 </ul>
             </div>
 
@@ -98,13 +98,13 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{number_format($total_smack)}}</li>
+                    <li>{{$total_smack/$quantidade}}</li>
                 </ul>
             </div>
 
         </div> <!-- LEAGUE-SCORES SMACKDOWN -->
 
-
+        <!---
         <div class="row league-scores payperview">
             
             <div class="col-md-9">
@@ -133,12 +133,11 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{number_format($total_ppv)}}</li>
+                    <li>{{number_format($total_ppv/$quantidade)}}</li>
                 </ul>
             </div>
-
-        </div> <!-- LEAGUE-SCORES PAY PER VIEW -->
-
+        
+        </div> --> <!-- LEAGUE-SCORES PAY PER VIEW -->
 
     </div> <!-- LEAGUE-PAGE -->
     @else

@@ -45,8 +45,20 @@ class LeagueController extends Controller
                      ->where('id_league',$idLeague)->take($quantidade)
                      ->orderBy('name','asc')
                      ->get();
+            $addR = 0;
+            $addS = 0;
+            for ($i=0; $i < $quantidade ; $i++) { 
+                $addR += $membrosRaw[$i]->team_total_points;
+                $addS +=  $membrosSmackdown[$i]->team_total_points;
+            }
+            $addR = $addR / $quantidade;
+            $addS = $addS / $quantidade;
+            $add = $addR + $addS;
+            DB::table('leagues')->where('id',$idLeague)->update([
+                'league_points' => $add
+            ]);
 
-
+            $liga = DB::table('leagues')->where('id',$idLeague)->first();
             return view('leagueHome',[
             'userHasLeague' => $userHasLeague,
             'liga' => $liga,
@@ -59,69 +71,17 @@ class LeagueController extends Controller
             'membrosRaw' => $membrosRaw,
             'membrosSmackdown' => $membrosSmackdown,
             'membrosPPV' => $membrosPPV,
-            'membros' => $membros
+            'membros' => $membros,
+            'quantidade' => $quantidade
             ]);
 
         }else{
             $userHasLeague = false;
-            return view('leagueHome',[
+            return view('league/Home',[
             'userHasLeague' => $userHasLeague]);
         }
     }
-    public function ligaPontosSemanais(){
-        $userId = Auth::user()->id;
-        $user = DB::table('users')->where('id',$userId)->first();
-        $idLeague =$user->id_league;
-        $league = DB::table('leagues')->where('id',$idLeague)->first();
-        $quantidade = DB::table('users')->where('id_league',$idLeague)->count();
-        $membrosRaw = DB::table('users')
-                    ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    ->orderBy('team_points', 'desc')
-                    ->get();
-        $membrosSmackdown = DB::table('users')
-                    ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    ->orderBy('team_points', 'desc')
-                    ->get();
-        /*$membrosPpv = DB::table('users')
-                    ->join('ppv_teams', 'users.id', '=', 'ppv_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    //->orderBy('team_points', 'desc')
-                    ->get();*/
-        
-        return view('leagueHome',[
-        'membrosRaw' => $membrosRaw,
-        'membrosSmackdown' => $membrosSmackdown
-        ]);
-    }
-    public function ligaPontosTotais(){
-        $userId = Auth::user()->id;
-        $user = DB::table('users')->where('id',$userId)->first();
-        $idLeague =$user->id_league;
-        $league = DB::table('leagues')->where('id',$idLeague)->first();
-        $quantidade = DB::table('users')->where('id_league',$idLeague)->count();
-        $membrosRaw = DB::table('users')
-                    ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    ->orderBy('team_total_points', 'desc')
-                    ->get();
-        $membrosSmackdown = DB::table('users')
-                    ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    ->orderBy('team_total_points', 'desc')
-                    ->get();
-        /*$membrosPpv = DB::table('users')
-                    ->join('ppv_teams', 'users.id', '=', 'ppv_teams.user_id')
-                    ->where('id_league',$idLeague)->take($quantidade)
-                    //->orderBy('team_points', 'desc')
-                    ->get();*/
-        
-        return view('leagueHome',[
-        'membrosRaw' => $membrosRaw,
-        'membrosSmackdown' => $membrosSmackdown
-        ]);
-    }
+    
     public function criarLiga(Request $request){
         // Autenticação
         $this->validate($request,[
@@ -204,7 +164,7 @@ class LeagueController extends Controller
         }
         return redirect()->route('leagueHome');
     }
-    public function mudarNomeLiga(Request $request){
+    /*public function mudarNomeLiga(Request $request){
         // Autenticação
         $this->validate($request,[
             'name'      => 'required',
@@ -227,7 +187,7 @@ class LeagueController extends Controller
             }
             return redirect()->route('leagueHome');
         }
-    }
+    }*/
     public function mudarSecretPassword(Request $request){
         // Autenticação
         $this->validate($request,[

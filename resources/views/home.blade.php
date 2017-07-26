@@ -171,9 +171,15 @@
         <div class="brand-team"> <!-- .BRAND-TEAM -->
             <div class="team-info"> <!-- .TEAM-INFO -->
                 <ul>
-                    <li>Total Score: <p>{{$ppvTeam->team_total_points}}</p></li>
-                    <li>Last Show Score: <p>{{$ppvTeam->team_points}}</p></li>
-                    <li>Rank: <p>13</p></li>
+                    @if($status->ppvBrand == 'Smackdown')
+                    <li>Brand: <p style="color:blue;">{{$status->ppvBrand}}</p></li>
+                    @elseif($status->ppvBrand == 'Raw')
+                    <li>Brand: <p style="color:red;">{{$status->ppvBrand}}</p></li>
+                    @else
+                    <li>Brand: <p style="color:black;">{{$status->ppvBrand}}</p></li>
+                    @endif
+                    <li><p></p></li>
+                    <li><p></p></li>
                     <li class="ppv-cash">$ {{number_format($ppvTeam->team_cash)}}</li>
                     <a href="{{route('mercadoPpvHome')}}"><li>GO TO MARKET</li></a>
                 </ul>

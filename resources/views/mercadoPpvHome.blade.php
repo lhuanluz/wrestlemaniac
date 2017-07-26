@@ -4,7 +4,7 @@
     
     <!-- Botões de Controle de Visualização-->
     @if($status == 'Fechado')
-    <div class="alert alert-danger" role="alert">RAW Market is Closed!</div>
+    <div class="alert alert-danger" role="alert">PPV Market is Closed!</div>
     @if(Auth::user())
     <div class="page-header">
         <h1 class="title">Your Team<i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
