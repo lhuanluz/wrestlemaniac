@@ -209,7 +209,6 @@ class MarketController extends Controller
                                 ['brand',$brand],
                                 ['last_show',1]
                             ])->update([
-                                'points' => 0,
                                 'last_points' => $last_points,
                                 'last_show' => 0
                             ]);
@@ -233,7 +232,6 @@ class MarketController extends Controller
                                 ['id',$i],
                                 ['last_show',1]
                             ])->update([
-                                'points' => 0,
                                 'last_points' => $last_points,
                                 'last_show' => 0
                             ]);
