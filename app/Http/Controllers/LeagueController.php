@@ -77,7 +77,7 @@ class LeagueController extends Controller
 
         }else{
             $userHasLeague = false;
-            return view('league/Home',[
+            return view('leagueHome',[
             'userHasLeague' => $userHasLeague]);
         }
     }
