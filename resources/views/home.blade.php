@@ -59,14 +59,6 @@
             <h2>{{ Auth::user()->name }}</h2>
             <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit profile</a></p>
         </div>
-        
-        <div class="profile-raw">
-            <h2>RAW</h2>
-            <h3>{{$rawTeam->team_total_points}}</h3>
-            <p>#{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p>
-        </div>
-
-        <div class="divisor"></div>
 
         <div class="profile-smd">
             <h2>SMACKDOWN</h2>
@@ -76,11 +68,21 @@
 
         <div class="divisor"></div>
 
+        <div class="profile-raw">
+            <h2>RAW</h2>
+            <h3>{{$rawTeam->team_total_points}}</h3>
+            <p>#{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p>
+        </div>
+
+        <!-- 
+        <div class="divisor"></div>
+         
         <div class="profile-srank">
             <h2>SUPER RANK</h2>
             <h3>{{$totalTeam}}</h3>
             <p>#7</p>
-        </div>
+        </div> 
+        -->
     </div>
 
     <div class="row brand-section"> <!-- RAW .BRAND-SECTION -->
