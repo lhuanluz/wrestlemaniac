@@ -292,38 +292,62 @@ class LeagueController extends Controller
                         ->update(['member1' => 2]);
 
                         
-                }else if ($league->member2 == $userId) {
+        }else if ($league->member2 == $userId) {
 
-                    DB::table('users')
-                        ->where('id',$userId)
-                        ->update(['id_league' => 1]);
-                    DB::table('leagues')
-                        ->where('id',$league->id)
-                        ->update(['member2' => 2]);
+            DB::table('users')
+                ->where('id',$userId)
+                ->update(['id_league' => 1]);
+            DB::table('leagues')
+                ->where('id',$league->id)
+                ->update(['member2' => 2]);
 
-                }else if ($league->member3 == $userId) {
+        }else if ($league->member3 == $userId) {
 
-                    DB::table('users')
-                        ->where('id',$userId)
-                        ->update(['id_league' => 1]);
-                    DB::table('leagues')
-                        ->where('id',$league->id)
-                        ->update(['member3' => 2]);
+            DB::table('users')
+                ->where('id',$userId)
+                ->update(['id_league' => 1]);
+            DB::table('leagues')
+                ->where('id',$league->id)
+                ->update(['member3' => 2]);
 
-                }else if ($league->member4 == $userId) {
+        }else if ($league->member4 == $userId) {
 
-                    DB::table('users')
-                        ->where('id',$userId)
-                        ->update(['id_league' => 1]);
-                    DB::table('leagues')
-                        ->where('id',$league->id)
-                        ->update(['member1' => 4]);
+            DB::table('users')
+                ->where('id',$userId)
+                ->update(['id_league' => 1]);
+            DB::table('leagues')
+                ->where('id',$league->id)
+                ->update(['member1' => 4]);
 
-                }else{
-                    //DONO
-                    return redirect()->route('leagueHome');
-                }
+        }else{
+            //DONO
+            return redirect()->route('leagueHome');
+        }
         return redirect()->route('leagueHome');
+    }
+    public function deletarLiga(){
+        $this->validate($request,[
+            'secret_password' => 'required'
+        ]);
+        $userId = Auth::user()->id;
+        $user = DB::table('users')
+            ->where('id', $userId)
+            ->first();
+        $league = DB::table('leagues')
+            ->where('id', $user->id_league)
+            ->first();
+        if($league->owner == $userId){
+            if (Hash::check($request->secret_password_old, $league->secret_password)) {
+                DB::table('users')
+                ->where('id_league',$league->id)
+                ->update(['id_league' => 1]);
+
+                DB::table('leagues')
+                ->where('id',$league->id)
+                ->delete();
+            }
+        }
+
     }
 
 }

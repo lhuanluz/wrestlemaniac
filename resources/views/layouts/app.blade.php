@@ -128,7 +128,7 @@
                         <a id="logo_footer" href="{{ url('/') }}">
                             <img src="{{ url('img/logo_rodape.png') }}"/>
                         </a>
-                        <a id="media" href="#">
+                        <a id="media" href="https://www.facebook.com/TheWrestlemaniac/" target="_blank">
                             <img src="{{ url('img/facebook_icon.png') }}"/>
                         </a>
                         <ul>

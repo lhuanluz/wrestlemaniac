@@ -72,7 +72,7 @@ class SuperstarsController extends Controller
                 'last_show' => 1
                 ]);
         $superstars = DB::table('superstars')->get();        
-        return redirect()->route('painelAdmin');
+        return redirect()->route('editarSuperstar');
     }
     public function editPage(){
         $superstars = DB::table('superstars')->get();
