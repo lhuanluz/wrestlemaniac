@@ -123,7 +123,8 @@
                 </li>
                 <ul class="sub-menu collapse" id="mercado">
                     <li class="{{route::is('mercadoStatus') ? 'active' : '' }}"><a href="{{route('mercadoStatusRedirect')}}"><i class="fa fa-lock icon fa-lg"></i>Market Status</a></li>
-                    <li class="{{route::is('editarPpv') ? 'active' : '' }}"><a href="{{route('editarPpvRedirect')}}"><i class="fa fa-calendar icon fa-lg"></i>Edit PPV</a></li>
+                    <li class="{{route::is('editarPpv') ? 'active' : '' }}"><a href="{{route('editarPpvRedirect')}}"><i class="fa fa-calendar icon fa-lg"></i>Edit PPV Brand</a></li>
+                    <li class="{{route::is('exibirPpv') ? 'active' : '' }}"><a href="{{route('exibirPpvRedirect')}}"><i class="fa fa-eye icon fa-lg"></i>Edit PPV Visibility</a></li>
                 </ul>
 
                 <!-- 

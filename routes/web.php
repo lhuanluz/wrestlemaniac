@@ -35,6 +35,8 @@ Route::prefix('admin')->group(function (){
         Route::post('status/confirm','MarketController@mercadoStatus')->name('mercadoStatus');
         Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
         Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
+        Route::get('show-ppv','MarketController@exibirPpvRedirect')->name('exibirPpvRedirect');
+        Route::post('show-ppv/confirm','MarketController@exibirPpv')->name('exibirPpv');
     });
     //Rotas Para Editar Usuarios
     Route::prefix('user')->group(function (){

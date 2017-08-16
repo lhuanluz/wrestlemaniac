@@ -170,10 +170,6 @@ class MarketController extends Controller
                             ]);
                         }
                         DB::table('ppv_teams')->where('user_id',$i)->update([
-                            'superstar01' => 103,
-                            'superstar02' => 102,
-                            'superstar03' => 101,
-                            'superstar04' => 100,
                             'team_points' => 0.0,
                             'team_total_points' => 0.0
                         ]);
@@ -210,6 +206,7 @@ class MarketController extends Controller
                                 ['last_show',1]
                             ])->update([
                                 'last_points' => $last_points,
+                                'points' => 0,
                                 'last_show' => 0
                             ]);
 
@@ -233,6 +230,7 @@ class MarketController extends Controller
                                 ['last_show',1]
                             ])->update([
                                 'last_points' => $last_points,
+                                'points' => 0,
                                 'last_show' => 0
                             ]);
 
@@ -304,7 +302,11 @@ class MarketController extends Controller
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
                     ->update([
-                        'team_cash' => $ult_cash
+                        'team_cash' => $ult_cash,
+                        'superstar01' => 103,
+                        'superstar02' => 102,
+                        'superstar03' => 101,
+                        'superstar04' => 100
                     ]);
             }
 
@@ -327,7 +329,11 @@ class MarketController extends Controller
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
                     ->update([
-                        'team_cash' => $ult_cash
+                        'team_cash' => $ult_cash,
+                        'superstar01' => 103,
+                        'superstar02' => 102,
+                        'superstar03' => 101,
+                        'superstar04' => 100
                     ]);
             }
         }else{
@@ -365,7 +371,11 @@ class MarketController extends Controller
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
                     ->update([
-                        'team_cash' => $grana
+                        'team_cash' => $grana,
+                        'superstar01' => 103,
+                        'superstar02' => 102,
+                        'superstar03' => 101,
+                        'superstar04' => 100
                     ]);
             }
         }
@@ -940,5 +950,22 @@ class MarketController extends Controller
             echo 'Erro';
         }
         return redirect()->route('mercadoPpvHome');
+    }
+    public function exibirPpv(Request $request){
+        $this->validate($request,[
+                'acao'      => 'required'
+            ]);
+        DB::table('configs')
+                ->update([
+                'statusMercadoPPV' => $request->acao
+                ]);
+        return redirect()->route('painelAdmin');
+    }
+    public function exibirPpvRedirect(){
+        if (Auth::guest()) {
+            return redirect()->route('inicio');
+        }else{
+            return view('exibirPPV');
+        }
     }
 }
