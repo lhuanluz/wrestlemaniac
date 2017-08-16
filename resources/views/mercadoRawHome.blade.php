@@ -91,7 +91,7 @@
     <!-- Listamento de Superstars-->
     <div class="container market">
     @foreach($superstars as $superstar)
-        @if($superstar->id == 999 || $superstar->id == 998 || $superstar->id == 997 || $superstar->id == 996 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
+        @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
         @else
         <div class="lutador">
             <img src="{{url($superstar->image)}}" alt="Card image cap">
@@ -222,7 +222,7 @@
     <!-- Listamento de Superstars-->
     <div class="container market">
     @foreach($superstars as $superstar)
-        @if($superstar->id == 999 || $superstar->id == 998 || $superstar->id == 997 || $superstar->id == 996 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
+        @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
         @else
         <div class="lutador">
             <img src="{{url($superstar->image)}}" alt="Card image cap">
@@ -251,7 +251,7 @@
                 <!-- Verifica se o Usuário está cadastrado, caso contrário não mostra os botões para comprar -->
                 @if(Auth::user())
                     <!-- Caso seja um Superstar do RAW mostra botão vermelho -->
-                        @if($rawTeam->superstar01 != 999 && $rawTeam->superstar02 != 998 && $rawTeam->superstar03 != 997 && $rawTeam->superstar04 != 996 )
+                        @if($rawTeam->superstar01 != 103 && $rawTeam->superstar02 != 102 && $rawTeam->superstar03 != 101 && $rawTeam->superstar04 != 100 )
                             <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
                             <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Not enough space
                             </button>
