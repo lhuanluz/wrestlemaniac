@@ -354,10 +354,10 @@ class MarketController extends Controller
                 $superstar04Smackdown = DB::table('superstars')->where('id',$superstarId04Smackdown)->first();
 
                 $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
-                $ult_cash_Raw = $ult_cash_Raw + $superstar01Raw->price + $superstar02Raw->price = $superstar03Raw->price + $superstar04Raw->price;
+                $ult_cash_Raw = $ult_cash_Raw + $superstar01Raw->price + $superstar02Raw->price + $superstar03Raw->price + $superstar04Raw->price;
                 
                 $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
-                $ult_cash_Smackdown = $ult_cash_Smackdown + $superstar01Smackdown->price + $superstar02Smackdown->price = $superstar03Smackdown->price + $superstar04Smackdown->price;
+                $ult_cash_Smackdown = $ult_cash_Smackdown + $superstar01Smackdown->price + $superstar02Smackdown->price + $superstar03Smackdown->price + $superstar04Smackdown->price;
                 
                 $granaTotal = $ult_cash_Raw + $ult_cash_Smackdown;
                 $grana = $granaTotal/2;
