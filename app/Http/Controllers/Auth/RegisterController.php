@@ -81,23 +81,23 @@ class RegisterController extends Controller
                            
         raw_team::create([
             'user_id' => $id_user,
-            'superstar01' => 999,
-            'superstar02' => 998,
-            'superstar03' => 997,
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
             'superstar04' => 996
         ]);
         smackdown_team::create([
             'user_id' => $id_user,
-            'superstar01' => 999,
-            'superstar02' => 998,
-            'superstar03' => 997,
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
             'superstar04' => 996
         ]);
         ppv_team::create([
             'user_id' => $id_user,
-            'superstar01' => 999,
-            'superstar02' => 998,
-            'superstar03' => 997,
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
             'superstar04' => 996
         ]);
         return $user;
