@@ -26,8 +26,8 @@ class InicioController extends Controller
         $ppvTeam = DB::table('ppv_teams')
                     ->where('user_id',$userId)
                     ->first();
-        $positionRaw = DB::table('raw_Teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
-        $positionSmackdown = DB::table('smackdown_Teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $positionRaw = DB::table('raw_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $positionSmackdown = DB::table('smackdown_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
         $totalTeam = $smackdownTeam->team_total_points + $rawTeam->team_total_points;
         return view('home',[
             'superstars' => $superstars,
