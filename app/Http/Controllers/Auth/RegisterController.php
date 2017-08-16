@@ -84,21 +84,21 @@ class RegisterController extends Controller
             'superstar01' => 103,
             'superstar02' => 102,
             'superstar03' => 101,
-            'superstar04' => 996
+            'superstar04' => 100
         ]);
         smackdown_team::create([
             'user_id' => $id_user,
             'superstar01' => 103,
             'superstar02' => 102,
             'superstar03' => 101,
-            'superstar04' => 996
+            'superstar04' => 100
         ]);
         ppv_team::create([
             'user_id' => $id_user,
             'superstar01' => 103,
             'superstar02' => 102,
             'superstar03' => 101,
-            'superstar04' => 996
+            'superstar04' => 100
         ]);
         return $user;
         
