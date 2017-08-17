@@ -104,41 +104,6 @@
 
         </div> <!-- LEAGUE-SCORES SMACKDOWN -->
 
-        <!---
-        <div class="row league-scores payperview">
-            
-            <div class="col-md-9">
-                <ul>
-                    <li>PAY PER VIEW</li>
-                    <?php
-                        $pos = 1;
-                        $total_ppv = 0.0;
-                    ?>
-                    @foreach($membrosPPV as $membroPPV)
-                    <li>
-                        <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$membroPPV->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-                        <p>{{$membroPPV->name}}</p>
-                        <p>{{$membroPPV->team_total_points}}</p>
-                    </li>
-                    <?php
-                    $pos++;
-                    $total_ppv += $membroPPV->team_total_points;
-                    ?>
-                    @endforeach
-                </ul>
-            </div>
-
-            <div class="col-md-3 league-partial-scores">
-                <ul>
-                    <li>TOTAL SCORE</li>
-                    <div class="divisor"></div>
-                    <li>{{number_format($total_ppv/$quantidade)}}</li>
-                </ul>
-            </div>
-        
-        </div> --> <!-- LEAGUE-SCORES PAY PER VIEW -->
-
     </div> <!-- LEAGUE-PAGE -->
     @else
 
