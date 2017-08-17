@@ -11,72 +11,80 @@ use Illuminate\Support\Facades\Hash;
 
 class LeagueController extends Controller
 {
-     public function liga(){
-        $userId = Auth::user()->id;
-        $user = DB::table('users')->where('id',$userId)->first();
-        $userHasLeague;
-        $idLeague =$user->id_league;
+    //Função que é executada toda vez que a página da liga é aberta
+    public function liga(){
+        $userId = Auth::user()->id; //Pega o id do usuário
+        $user = DB::table('users')->where('id',$userId)->first(); // Pega o usuário com o id
+        $userHasLeague; // Declara a variável que receberá a informação se o usuário tem liga ou não
+        $idLeague =$user->id_league; // Pega a id da liga que o usuário está
         if($idLeague > 1){
-            $liga = DB::table('leagues')->where('id',$idLeague)->first();
-            $userHasLeague = true;
-            $quantidade = DB::table('users')->where('id_league',$idLeague)->count();
-            $positionLeague = DB::table('leagues')->orderBy('league_points', 'desc')->pluck('id')->toArray();
-            $dono = DB::table('users')->where('id',$liga->owner)->first();
-            $membro1 = DB::table('users')->where('id',$liga->member1)->first();
-            $membro2 = DB::table('users')->where('id',$liga->member2)->first();
-            $membro3 = DB::table('users')->where('id',$liga->member3)->first();
-            $membro4 = DB::table('users')->where('id',$liga->member4)->first();
+            // Caso o usuário tenha liga
+            $liga = DB::table('leagues')->where('id',$idLeague)->first(); // Pega a linha da liga do usuário
+            $userHasLeague = true; // Define que o usuário tem liga
+            $quantidade = DB::table('users')->where('id_league',$idLeague)->count(); // Pega quantos usuários da liga existem
+            $dono = DB::table('users')->where('id',$liga->owner)->first(); // Pega a linha com todas as informações do dono da liga
+            $membro1 = DB::table('users')->where('id',$liga->member1)->first(); // Pega a linha com todas as informações do membro 1 da liga
+            $membro2 = DB::table('users')->where('id',$liga->member2)->first(); // Pega a linha com todas as informações do membro 2 da liga
+            $membro3 = DB::table('users')->where('id',$liga->member3)->first(); // Pega a linha com todas as informações do membro 3 da liga
+            $membro4 = DB::table('users')->where('id',$liga->member4)->first(); // Pega a linha com todas as informações do membro 4 da liga
+            // Começa a pegar todos os times do raw de cada membro da liga
             $membrosRaw = DB::table('users')
                      ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
                      ->orderBy('team_total_points','desc')
                      ->get();
+            // Começa a pegar todos os times do smackdown de cada membro da liga
             $membrosSmackdown = DB::table('users')
                      ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
                      ->where('id_league',$idLeague)->take($quantidade)
                      ->orderBy('team_total_points','desc')
                      ->get();
-            $membrosPPV = DB::table('users')
-                     ->join('ppv_teams', 'users.id', '=', 'ppv_teams.user_id')
-                     ->where('id_league',$idLeague)->take($quantidade)
-                     ->orderBy('team_total_points','desc')
-                     ->get();
+            // Pega todos os membros da liga ordenados pelo nome para as fotos
             $membros = DB::table('users')
                      ->where('id_league',$idLeague)->take($quantidade)
                      ->orderBy('name','asc')
                      ->get();
-            $addR = 0;
-            $addS = 0;
+
+            $addR = 0; // Pontos totais do Raw na liga
+            $addS = 0; // Pontos totais do Smackdown na liga
+            
+            // For para adicionar os pontos dos times do raw e smackdown de cada membro aos pontos totais da liga raw/smackdown
             for ($i=0; $i < $quantidade ; $i++) { 
                 $addR += $membrosRaw[$i]->team_total_points;
                 $addS +=  $membrosSmackdown[$i]->team_total_points;
             }
-            $addR = $addR / $quantidade;
-            $addS = $addS / $quantidade;
-            $add = $addR + $addS;
+
+            $addR = $addR / $quantidade; // Adiciona a média do Raw dividio pela quantidade de jogadores
+            $addS = $addS / $quantidade; // Adiciona a média do Smackdown dividio pela quantidade de jogadores
+            $add = $addR + $addS; // Soma as médias para achar a pontuação da liga
+
+            // Faz o update na tabela
             DB::table('leagues')->where('id',$idLeague)->update([
                 'league_points' => $add
             ]);
 
-            $liga = DB::table('leagues')->where('id',$idLeague)->first();
+            $positionLeague = DB::table('leagues')->orderBy('league_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
+
+            // Retorna todas as variáveis necessárias para a página de liga 
             return view('leagueHome',[
-            'userHasLeague' => $userHasLeague,
-            'liga' => $liga,
-            'positionLeague' => $positionLeague,
-            'dono' => $dono,
-            'membro1' => $membro1,
-            'membro2' => $membro2,
-            'membro3' => $membro3,
-            'membro4' => $membro4,
-            'membrosRaw' => $membrosRaw,
-            'membrosSmackdown' => $membrosSmackdown,
-            'membrosPPV' => $membrosPPV,
-            'membros' => $membros,
-            'quantidade' => $quantidade
+            'userHasLeague' => $userHasLeague, // Confirmação da liga do usuário
+            'liga' => $liga, // Passa toda Liga do usuário
+            'positionLeague' => $positionLeague, // Passa o rank da liga do usuário
+            'dono' => $dono, // Passa as informações do dono da liga
+            'membro1' => $membro1, // Passa as informações do membro 1 da liga
+            'membro2' => $membro2, // Passa as informações do membro 2 da liga
+            'membro3' => $membro3, // Passa as informações do membro 3 da liga
+            'membro4' => $membro4, // Passa as informações do membro 4 da liga
+            'membrosRaw' => $membrosRaw, // Passa as informações dos times do raw de todos os membros da liga
+            'membrosSmackdown' => $membrosSmackdown, // Passa as informações dos times do smackdown de todos os membros da liga
+            'membros' => $membros, // Passa as informações de todos os membros da liga de uma vez (Para organização dos avatares)
+            'quantidade' => $quantidade // Passa a quantidade de jogadores na liga para poderem ser exibidos
             ]);
 
         }else{
-            $userHasLeague = false;
+            // Caso o usuário não tenha liga
+            $userHasLeague = false; // Confirma que o usuário não tem liga
+            // Retorna a condição do usuário
             return view('leagueHome',[
             'userHasLeague' => $userHasLeague]);
         }
@@ -89,36 +97,46 @@ class LeagueController extends Controller
             'secret_password' => 'required|confirmed',
             'secret_password_confirmation' => 'required'
         ]);
-        $userId = Auth::user()->id;
+
+        $userId = Auth::user()->id; // Pega id do usuário
+
+        // Cria Liga com as informações que o usuário digitou no formulário
         $league = league::create([
             'league_name' => $request->name,
             'secret_password' => Hash::make($request->secret_password),
             'owner' => $userId
         ]);
+
+        // Seta a qual o id da liga dele na tabela de usuários
         DB::table('users')
             ->where('id',$userId)
             ->update([
                 'id_league' => $league->id
             ]);
-        return redirect()->route('leagueHome');
+
+        return redirect()->route('leagueHome'); // Retorna o usuário para a página de liga
 
     }
+
     public function entrarLiga(Request $request){
         // Autenticação
         $this->validate($request,[
             'name'      => 'required',
             'secret_password' => 'required'
         ]);
+
+        // Pega a liga que o usuário digitou
         $league = DB::table('leagues')
             ->where('league_name',$request->name)
             ->first();
-            
+        // Confirma se a senha que ele digito bate com a da liga
         if (Hash::check('123123', $league->secret_password)) {
-            
-            $userId = Auth::user()->id;
+            // Se confirmar
+            $userId = Auth::user()->id; // Pega o id do usuário
 
+            // Verifica se existe o membro 1 na liga
             if ($league->member1 == 2) {
-                    
+                // Senão existir Adiciona o usuário nessa posição
                 DB::table('users')
                     ->where('id',$userId)
                     ->update(['id_league' => $league->id]);
@@ -126,27 +144,27 @@ class LeagueController extends Controller
                     ->where('id',$league->id)
                     ->update(['member1' => $userId]);
 
-                    
+            // Verifica se existe o membro 2 na liga  
             }else if ($league->member2 == 3) {
-
+                // Senão existir Adiciona o usuário nessa posição
                 DB::table('users')
                     ->where('id',$userId)
                     ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member2' => $userId]);
-
+            // Verifica se existe o membro 3 na liga 
             }else if ($league->member3 == 4) {
-
+                // Senão existir Adiciona o usuário nessa posição
                 DB::table('users')
                     ->where('id',$userId)
                     ->update(['id_league' => $league->id]);
                 DB::table('leagues')
                     ->where('id',$league->id)
                     ->update(['member3' => $userId]);
-
+            // Verifica se existe o membro 4 na liga 
             }else if ($league->member4 == 5) {
-
+                // Senão existir Adiciona o usuário nessa posição
                 DB::table('users')
                     ->where('id',$userId)
                     ->update(['id_league' => $league->id]);
@@ -154,6 +172,7 @@ class LeagueController extends Controller
                     ->where('id',$league->id)
                     ->update(['member4' => $userId]);
 
+            // NÃO EXISTEM VAGAS NA LIGA DESEJADA
             }else{
                 //NÃO HÁ VAGAS
                 return redirect()->route('leagueHome');
@@ -164,7 +183,8 @@ class LeagueController extends Controller
         }
         return redirect()->route('leagueHome');
     }
-    /*public function mudarNomeLiga(Request $request){
+    /*
+    public function mudarNomeLiga(Request $request){
         // Autenticação
         $this->validate($request,[
             'name'      => 'required',
@@ -187,30 +207,44 @@ class LeagueController extends Controller
             }
             return redirect()->route('leagueHome');
         }
-    }*/
+    }
+    */
+
     public function mudarSecretPassword(Request $request){
         // Autenticação
         $this->validate($request,[
             'secret_password_old' => 'required',
             'secret_password' => 'required'
         ]);
-        $userId = Auth::user()->id;
+
+        $userId = Auth::user()->id; // Pega o id do usuário
+
+        //Pega as informações do usuário
         $user = DB::table('users')
             ->where('id', $userId)
             ->first();
+
+        // Pega as informações da liga do usuário
         $league = DB::table('leagues')
             ->where('id', $user->id_league)
             ->first();
+        
+        // Confere se o usuário é dono da liga
         if($league->owner == $userId){
+            // Verifica se a senha digita confere com a atual
             if (Hash::check($request->secret_password_old, $league->secret_password)) {
+                // Modifica a senha anterior para a nova
                 DB::table('leagues')
                 ->where('id',$league->id)
                 ->update(['secret_password' => bcrypt($request->secret_passowrd)]);   
                 
                 return redirect()->route('leagueHome');
             }
+            // Caso a senha digita não seja correta
             return redirect()->route('leagueHome');
         }
+        // Caso o usuário não seja dono da liga
+        return redirect()->route('leagueHome');
     }
     public function removerMembro(Request $request){
         // Autenticação

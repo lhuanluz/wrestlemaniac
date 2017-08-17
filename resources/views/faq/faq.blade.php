@@ -8,7 +8,7 @@
     </div>
 
     <center>
-
+<!--
         <div class="pergunta">
             <button data-toggle="collapse" data-target="#pergunta1" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
-
+-->
     </center>
 </div>
     

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -40,6 +41,16 @@ class User extends Authenticatable
     public function league()
     {
         return $this->hasOne('App\Models\league');
+    }
+    public function isAdmin()
+    {
+        $isAdmin = Auth::user()->user_power;
+        if ($isAdmin == 1){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
     
     
