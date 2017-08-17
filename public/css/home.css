@@ -624,6 +624,10 @@ ul#menu a:focus {
         width: 240px;
     }
 
+    .play .account, .play .team, .play .wwe, .play .score {
+        margin-top: 15px;
+    }
+
     .nav-container {
         max-width: 593px;
     }
