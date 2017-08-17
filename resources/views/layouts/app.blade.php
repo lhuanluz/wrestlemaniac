@@ -40,7 +40,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container-fluid nav-container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -78,6 +78,9 @@
                         @else
                             <!-- Verificação Admin-->
                             <li><a href="{{ route('home') }}">Home</a></li>
+
+                            <li><a href="{{route('leagueHome')}}">League</a></li>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Market <span class="caret"></span>
@@ -87,13 +90,17 @@
                                     <li><a href="{{route('mercadoSmackdownHome')}}">SMACKDOWN</a></li>
                                     <li><a href="{{route('mercadoPpvHome')}}">PAY-PER-VIEW</a></li>
                                 </ul>
+                            </li>                            
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Help <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Games Rules</a></li>
+                                    <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                </ul>
                             </li>
-                            <li><a href="{{route('leagueHome')}}">League</a></li>
-                            <li><a href="#">Game Rules</a></li>
-                            <li><a href="{{ route('faq') }}">FAQ</a></li>
-                            @if(Auth::user()->user_power == 1)
-                            <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
-                            @endif
                             
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -101,6 +108,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @if(Auth::user()->user_power == 1)
+                                    <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -124,7 +134,7 @@
     
             <footer class="container-fluid footer">
                 <div class="row social">
-                    <div class="container">
+                    <div class="container-fluid footer-container">
                         <a id="logo_footer" href="{{ url('/') }}">
                             <img src="{{ url('img/logo_rodape.png') }}"/>
                         </a>
@@ -141,7 +151,7 @@
                 </div>
                 
                 <div class="row copy">
-                    <div class="container">
+                    <div class="container-fluid copy-container">
                         <p>Developed by <span>Grounder</span></p>
                     </div>
                 </div>

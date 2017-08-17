@@ -2,8 +2,8 @@
 
 @section('content')
 @if (Auth::guest())
-<div id="banner" class="container"> <!-- BANNER -->
-    <div class="container main">
+<div id="" class="banner"> <!-- BANNER -->
+    <div class="container-fluid main">
         <div class="row">
             <div class="presentation">
                 <h2>WRESTLEMANIAC is a WWE Fantasy Game!</h2>
@@ -13,32 +13,32 @@
     </div>
 </div>
         
-<div class="container weekly"> <!-- WEEKLY BEST -->
+<!-- <div class="container weekly">  WEEKLY BEST 
     <h2>WEEKLY BEST</h2>
     <div class="separador"></div>
     <img src="{{ url('img/weekly_best.jpg') }}"/>
-</div>
+</div> -->
 
 <div id="play" class="container-fluid play"> <!-- HOW TO PLAY -->
     <h2>HOW TO PLAY</h2>
     <div class="separador"></div>
     <div class="row">
-        <div class="col-md-3 account">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 account">
             <img src="{{ url('img/account_icon.png') }}"/>
             <h3>Create your account</h3>
             <p>Earn your initial amount of game cash</p>
         </div>
-        <div class="col-md-3 team">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 team">
             <img src="{{ url('img/team_icon.png') }}"/>
             <h3>Build your team</h3>
             <p>Go through our market and buy Superstars</p>
         </div>
-        <div class="col-md-3 wwe">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wwe">
             <img src="{{ url('img/wwe_icon.png') }}"/>
             <h3>Enjoy WWE shows</h3>
             <p>Cheers for your Superstars to performe well and win matches!</p>
         </div>
-        <div class="col-md-3 score">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 score">
             <img src="{{ url('img/score_icon.png') }}"/>
             <h3>Score<br/>points</h3>
             <p>Have fun climbing de the Rank right to the TOP!</p>
@@ -48,7 +48,7 @@
 @endif
 
 @if (!Auth::guest())
-<div id="login" class="container"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
+<div class="container-fluid user-panel"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
     <div class="row profile">
 
         <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
