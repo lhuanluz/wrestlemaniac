@@ -300,7 +300,7 @@ ul#menu a:focus {
     text-decoration: underline;
 }
 
-#logo_footer {
+.logo_footer {
     margin-top: 17px;
     display: inline-block;
 }
@@ -309,6 +309,10 @@ ul#menu a:focus {
     float: right;
     margin-top: 30px;
     margin-right: 0;
+}
+
+#media img {
+    border-radius: 3px;
 }
 
 .copy p {
@@ -852,6 +856,28 @@ ul#menu a:focus {
 
 
     /* FOOTER */
+
+    .logo_footer img {
+        width: 150px;
+    }
+
+    #media {
+        margin-top: 22px;
+    }
+
+    #media img {
+        width: 25px;
+    }
+
+    .social ul {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .social a {
+        font-size: 14px;
+        margin-right: 17px;
+    }
 
     .nav-container {
         max-width: 593px;

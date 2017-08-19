@@ -136,7 +136,7 @@
             <footer class="container-fluid footer">
                 <div class="row social">
                     <div class="container-fluid footer-container">
-                        <a id="logo_footer" href="{{ url('/') }}">
+                        <a class="logo_footer" href="{{ url('/') }}">
                             <img src="{{ url('img/logo_rodape.png') }}"/>
                         </a>
                         <a id="media" href="https://www.facebook.com/TheWrestlemaniac/" target="_blank">
@@ -151,10 +151,10 @@
                     </div>
                 </div>
                 
-                <div class="row copy">
+                <!-- <div class="row copy">
                     <div class="container-fluid copy-container">
                         <p>Developed by <span>Grounder</span></p>
-                    </div>
+                    </div> -->
                 </div>
             </footer>
     </div>
