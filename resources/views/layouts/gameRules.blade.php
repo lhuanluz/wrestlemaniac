@@ -26,14 +26,9 @@
     <!-- Home CSS -->
     <link href="{{ url('css/home.css') }}" rel="stylesheet">
 
-    <!-- Market CSS -->
-    <link href="{{ url('css/market.css') }}" rel="stylesheet">
+    <!-- Game Rules CSS -->
+    <link href="{{ url('css/gameRules.css') }}" rel="stylesheet">
 
-    <!-- FAQ CSS -->
-    <link href="{{ url('css/faq.css') }}" rel="stylesheet">
-
-    <!-- League CSS -->
-    <link href="{{ url('css/league.css') }}" rel="stylesheet">
 
 
 

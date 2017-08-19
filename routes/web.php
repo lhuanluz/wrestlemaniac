@@ -105,17 +105,12 @@ Route::prefix('league')->group(function () {
         Route::post('/createLeague','LeagueController@criarLiga')->name('criarLiga');
     });
 //Rotas Rank Usuario Cash
-Route::get('rankUserCashRaw','RankingController@rankUserCashRaw')->name('rankUserCashRaw');
-Route::get('rankUserCashSd','RankingController@rankUserCashSd')->name('rankUserCashSd');
-Route::get('rankUserCashPpv','RankingController@rankUserCashPpv')->name('rankUserCashPpv');
-//Rotas Rank Usuario Points
-Route::get('rankUserRawPoints','RankingController@rankUserRawPoints')->name('rankUserRawPoints');
-Route::get('rankUserSdPoints','RankingController@rankUserSdPoints')->name('rankUserSdPoints');
-Route::get('rankUserPpvPoints','RankingController@rankUserPpvPoints')->name('rankUserPpvPoints');
-//Rotas Rank Usuario Points Total
-Route::get('rankUserRawPointsTotal','RankingController@rankUserRawPointsTotal')->name('rankUserRawPointsTotal');
-Route::get('rankUserSdPointsTotal','RankingController@rankUserSdPointsTotal')->name('rankUserSdPointsTotal');
-Route::get('rankUserPpvPointsTotal','RankingController@rankUserPpvPointsTotal')->name('rankUserPpvPointsTotal');
+Route::get('statistics','RankingController@statistics')->name('statistics');
+
+Route::get('/gameRules', function () {
+    return view('gameRules');
+})->name('gameRules');
+
 Auth::routes();
 
 Route::get('/', 'InicioController@homeRedirect')->name('home');
