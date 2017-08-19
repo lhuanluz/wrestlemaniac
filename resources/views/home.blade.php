@@ -118,6 +118,7 @@
             </div>
             @endif
             @endforeach
+            <div class="mobile-market-btn raw-btn"><a href="{{route('mercadoRawHome')}}">GO TO MARKET</a></div>
         </div> <!-- .BRAND-TEAM -->
 
     </div> <!-- RAW .BRAND-SECTION -->
@@ -155,6 +156,7 @@
             </div>
             @endif
             @endforeach
+            <div class="mobile-market-btn smd-btn"><a href="{{route('mercadoSmackdownHome')}}">GO TO MARKET</a></div>
         </div> <!-- .BRAND-TEAM -->
 
     </div> <!-- SMACKDOWN .BRAND-SECTION -->
@@ -171,7 +173,7 @@
         </div>
 
         <div class="brand-team"> <!-- .BRAND-TEAM -->
-            <div class="team-info"> <!-- .TEAM-INFO -->
+            <div class="team-info info-ppv"> <!-- .TEAM-INFO -->
                 <ul>
                     @if($status->ppvBrand == 'Smackdown')
                     <li>Brand: <p style="color:blue;">{{$status->ppvBrand}}</p></li>
@@ -197,6 +199,8 @@
             </div>
             @endif
             @endforeach
+
+            <div class="mobile-market-btn ppv-btn"><a href="{{route('mercadoPpvHome')}}">GO TO MARKET</a></div>
         </div> <!-- .BRAND-TEAM -->
 
     </div> <!-- PPV .BRAND-SECTION -->    

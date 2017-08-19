@@ -43,7 +43,6 @@ ul#menu a {
 ul#menu a:focus {
     color: #d7182a;
     background-color: #fff;
-    /*border-bottom-color: #fff !important;*/
 }
 
 /*Efeito de bordas brancas do menu para resoluções desktop*/
@@ -53,17 +52,12 @@ ul#menu a:focus {
         border: 2px solid #fff;
     }
 
-    ul#menu {
-        /* margin-right: 66px; */
-    }
-
     /*CSS do nome da marca*/
     .navbar-brand {
         font-weight: bold;
         color: #fff !important;
         font: 24px serif !important;
         padding-top: 10px !important;
-        /* margin-left: 61px !important; */
     }
 }
 
@@ -113,13 +107,17 @@ ul#menu a:focus {
     }
 
 }
+
+
 /*CSS banner*/
+
 .banner {
     width: 100%;
     height: 413px;
     background: url(../img/superstars_bg2.jpg) center no-repeat;
     background-size: cover;    
 }
+
 
 /*CSS texto do banner*/
 
@@ -134,12 +132,16 @@ ul#menu a:focus {
     padding-left: 15px;
 }
 
+
 /*CSS texto do banner*/
+
 .main h2 {
     padding-right: 15px;
 }
 
+
 /*CSS texto do banner*/
+
 .main .presentation {
     background: rgba(35, 40, 40, 0.8);
     margin-top: 220px;
@@ -147,7 +149,9 @@ ul#menu a:focus {
     display: inline-block;
 }
 
+
 /*CSS News*/
+
 .weekly {
     margin-top: 40px;
     padding: 0;
@@ -169,9 +173,10 @@ ul#menu a:focus {
     margin-top: 6px;
 }
 
+
 /*CSS do How to Play*/
+
 .play {
-     /*background-color:#f2f2f2;*/
      padding-top: 40px;
  }
 .play h2 {
@@ -235,7 +240,6 @@ ul#menu a:focus {
 }
 
 .play .score {
-    /* margin-left: 0; */
     margin-right: 0;
 }
 
@@ -255,7 +259,9 @@ ul#menu a:focus {
     margin-right: 40px;
 }
 
+
 /*CSS texto do rodapé*/
+
 .social {
     background-color: #d7182a;
 }
@@ -278,7 +284,6 @@ ul#menu a:focus {
     padding-left: 0;
     margin-top: 13px;
     list-style: none;
-    /*display: inline-block;*/
 }
 .social ul li {
     float: left;   
@@ -330,7 +335,9 @@ ul#menu a:focus {
     max-width: 1140px;
 }
 
+
 /*SEÇÃO PERFIL*/
+
 .profile {    
     margin: auto;
     height: 230px;
@@ -345,10 +352,6 @@ ul#menu a:focus {
     display: inline-block;
     margin: 25px 0 0 20px;
     float: left;
-}
-
-.user-info p {
-    /*margin-top: 90px;*/
 }
 
 .user-info p a {
@@ -579,17 +582,14 @@ ul#menu a:focus {
 }
 
 .brand-section .brand-team .raw-bg {
-    /*background-color: #d7182a;*/
     background: rgba(215, 24, 42, 0.75);
 }
 
 .brand-section .brand-team .smd-bg {
-    /*background-color: #3b30fe;*/
     background: rgba(59, 48, 254, 0.75);
 }
 
 .brand-section .brand-team .ppv-bg {
-    /*background-color: #232828;*/
     background: rgba(35, 40, 40, 0.75);
 }
 
@@ -610,23 +610,248 @@ ul#menu a:focus {
 
 
 @media (max-width: 767px) {
-    
+
+    /* HEADER */
+
     .navbar {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .navbar-brand {
-        padding-top: 6px;
+        padding-top: 13px;
     }
+
+    .navbar-brand img {
+        width: 150px;
+    }
+
+    .navbar-toggle {
+        padding: 8px 7px;
+        margin-top: 13px;
+        margin-bottom: 5px;
+    }
+
+
+    /* HOW TO PLAY DA HOME PÚBLICA */
 
     .play .row {
         width: 240px;
     }
 
-    .play .account, .play .team, .play .wwe, .play .score {
+    .play .account, .play .team, 
+    .play .wwe, .play .score {
         margin-top: 15px;
     }
+
+
+    /* BOX DE USER-INFO */
+
+    .user-panel {
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    .user-panel .row {
+        max-width: 280px;
+   }
+
+    .profile {
+        padding: 15px;
+        height: auto; 
+        margin-bottom: 35px;       
+    }
+
+    .avatar {
+        height: 120px;
+        width: 120px;
+        margin: 0;
+    }
+
+    .profile .user-info {
+        margin: 4px 0 0 20px;
+        float: left;
+    }
+
+    .profile .user-info h3,
+    .profile .user-info h2 {
+        font-size: 14px;
+    }
+
+    .profile .user-info h2 {
+        height: 65px;
+        max-width: 110px;
+        overflow: hidden;
+        letter-spacing: 0.03em;
+    }
+
+    .profile .profile-raw h2,
+    .profile .profile-smd h2,
+    .profile .profile-srank h2 {
+        font-size: 15px;
+    }
+
+    .profile .profile-raw h3, 
+    .profile .profile-smd h3, 
+    .profile .profile-srank h3 {
+        font-size: 35px;
+    }
+
+    .profile .profile-raw p, 
+    .profile .profile-smd p, 
+    .profile .profile-srank p {
+        font-size: 19px;
+        margin: 0;
+    }
+
+    .user-info p a {
+        font-size: 14px;
+    }
+
+    .profile .profile-raw, 
+    .profile .profile-smd, 
+    .profile .profile-srank {
+        margin: 0;
+        margin-top: 25px;
+        width: 100px;
+        float: left;
+    }
+
+    .profile .divisor {
+        height: 74px;
+        margin: 33px 0px 0 48px;
+        float: left;
+    }
+
+
+    /* SEÇÃO DOS TIMES DO USUARIO */
+    
+    /* BOX DE NOME DA BRAND */
+    .brand-section {
+        margin-top: 0;
+        margin-bottom: 70px;
+    }
+
+    .brand-section .head {
+        height: 43px;
+        margin-bottom: 7px;
+        letter-spacing: 0.01em;
+    }
+
+    .brand-section .head h2 {
+        font-size: 18px;
+        margin: 13px 0 0 13px;
+    }
+
+    .brand-section .head p {
+        font-size: 18px;
+        margin: 10px 13px 0 0;
+    }
+
+    /* BOX INFO DA BRAND */
+
+    .brand-team {
+        padding-left: 15px;
+    }
+
+    .brand-section .brand-team .team-info {
+        width: 257px; 
+        height: 160px;
+        margin-top: 0px;
+   }
+
+    .brand-section .brand-team .info-ppv {
+        height: 105px;
+    }
+
+    .brand-section .brand-team ul {
+        padding-top: 7px;
+        padding-left: 0;
+    }
+
+    .brand-section .team-info ul li {
+        font-size: 18px;
+        margin-bottom: 7px;
+    }
+
+    .brand-section .brand-team ul li:nth-child(3) {
+        margin-bottom: 0;
+    }
+
+    .brand-section .brand-team ul li:nth-child(3) p {
+        width: 130px;
+    }
+
+    .brand-section .brand-team ul li:nth-child(4) {
+        text-align: right;
+        font-size: 40px;
+        margin-bottom: 0;
+    }
+
+    .brand-section .brand-team ul a {
+        display: none;
+    }
+
+
+    .brand-section .brand-team div {
+        width: 132px; 
+        height: 132px;
+        margin-top: 0px;
+    }
+
+    .brand-section .brand-team img {
+        width: 125px; 
+        height: 125px;
+        margin: 0px;
+    }
+
+    .brand-section .brand-team .star-name {
+        width: 119px; 
+        margin: 92px 0 0 3px; 
+    }
+
+    .brand-section .brand-team .star-name p {
+        font-size: 12px;
+        padding-top: 8px;
+    }
+
+    .brand-section .brand-team .mobile-market-btn {
+        width: 170px;
+        height: 40px;
+        margin-top: 20px;
+        margin-left: 47px;
+        padding-top: 8px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0px 3px 6px #676767;
+        margin-bottom: 5px;        
+    }
+
+    .brand-section .brand-team .mobile-market-btn a {
+        width: 170px;
+        height: 40px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .brand-section .brand-team .ppv-btn {
+        border: 2px solid #141516;
+        background-color: #141516;
+    }
+
+    .brand-section .brand-team .smd-btn {
+        border: 2px solid #3b30fe;
+        background-color: #3b30fe;
+    }
+
+    .brand-section .brand-team .raw-btn {
+        border: 2px solid #d7182a;
+        background-color: #d7182a;
+    }
+
+
+    /* FOOTER */
 
     .nav-container {
         max-width: 593px;
@@ -640,158 +865,9 @@ ul#menu a:focus {
         max-width: 593px;
     }
 
-    .avatar {
-        height: 120px;
-        width: 120px;
-        margin-top: 15px;
-    }
-
-    .profile {
-        padding-right: 15px;
-        padding-top: 10px;
-        height: 170px;
-    }
-
-    .profile .user-info {
-        margin-top: 17px;
-    }
-
-    .profile .user-info h3,
-    .profile .user-info h2 {
-        font-size: 16px;
-        width: 108px;
-    }
-
-    .profile .user-info h2 {
-        height: 65px;
-    }
-
-    .profile .profile-raw, .profile .profile-smd, .profile .profile-srank {
-        float: right;
-        display: inline-block;
-        margin: 15px 0 0 0px;
-    }
-
-    .profile .profile-raw h2,
-    .profile .profile-smd h2,
-    .profile .profile-srank h2 {
-        font-size: 20px;
-    }
-
-    .profile .profile-raw, 
-    .profile .profile-smd, 
-    .profile .profile-srank {
-        width: 150px;
-    }
-
-    .profile .profile-raw h3, 
-    .profile .profile-smd h3, 
-    .profile .profile-srank h3 {
-        font-size: 50px;
-    }
-
-    .profile .profile-raw p, .profile .profile-smd p, .profile .profile-srank p {
-        margin-top: 0;
-        font-size: 25px;
-        color: #fff;
-        text-align: right;
-    }
-
-    .profile .profile-smd, 
-    .profile .profile-srank {
-        margin-left: 0;
-    }
-
-    .user-info p a {
-        font-size: 16px;
-    }
-
-    .profile .divisor {
-        height: 125px;
-        display: none;
-    }
-
-    .user-panel .row {
-         max-width: 593px;
-    }
-
-    .brand-section {
-        margin-top: 40px; 
-    }
-
-    .brand-section .head h2 {
-        font-size: 20px;
-        margin: 13px 0 0 20px;
-    }
-
-    .brand-section .head p {
-        font-size: 20px;
-        margin: 10px 20px 0 0;
-    }
-
-    .brand-section .head {
-        height: 47px;
-         margin-bottom: 7px;
-        letter-spacing: 0.1em; 
-    }
-
-    .brand-team {
-        padding-left: 3px;
-    }
-
-    .brand-section .brand-team .team-info {
-         width: 250px; 
-         height: 250px;
-         margin-top: 3px;
-    }
-
-    .brand-section .brand-team div {
-        width: 170px; 
-        height: 170px;
-        margin-top: 0px;
-    }
-
-    .brand-section .brand-team img {
-        width: 156px; 
-        height: 156px;
-        margin-top: 9px;
-    }
-
-    .brand-section .brand-team .star-name {
-        width: 148px; 
-        margin: 132px 0 0 14px; 
-    }
-
-    .brand-section .brand-team .star-name p {
-        font-size: 12px;
-        padding-top: 8px;
-    }
-
-    .brand-section .brand-team ul {
-        padding-top: 7px;
-        padding-left: 0;
-    }
-
-    .brand-section .team-info ul li {
-        font-size: 22px;
-        margin-bottom: 15px;
-    }
-
-    .brand-section .brand-team ul li:nth-child(3) p {
-        width: 106px;
-    }
-
-    .brand-section .brand-team ul li:nth-child(4) {
-        font-size: 60px;
-        margin-bottom: 52px;
-    }
-
-    .brand-section .brand-team ul a li {
-        padding-top: 8px;
-        font-size: 22px;
-        height: 50px;
-    }
 }
+
+
 
 @media (min-width: 768px) and (max-width: 991px) {
     
@@ -958,6 +1034,10 @@ ul#menu a:focus {
         font-size: 16px;
     }
 
+    .brand-section .brand-team .mobile-market-btn,
+    .brand-section .brand-team .mobile-market-btn a {
+        display: none;
+    }
 
 }
 
@@ -1054,5 +1134,17 @@ ul#menu a:focus {
 
     .brand-section .brand-team ul li:nth-child(4) {
         font-size: 39px;
+    }
+
+    .brand-section .brand-team .mobile-market-btn,
+    .brand-section .brand-team .mobile-market-btn a {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .brand-section .brand-team .mobile-market-btn,
+    .brand-section .brand-team .mobile-market-btn a {
+        display: none;
     }
 }
