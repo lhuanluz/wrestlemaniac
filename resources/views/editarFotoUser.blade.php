@@ -45,6 +45,7 @@
                         <option value="storage/users/ric-flair.png">Ric Flair</option>
                         <option value="storage/users/shawn-michaels.png">Shawn Michaels</option>
                         <option value="storage/users/stone-cold.png">Stone Cold Steve Austin</option>
+                        <option value="storage/users/cm-punk.png">CM Punk</option>
                         
                     </select>
                 </div>
