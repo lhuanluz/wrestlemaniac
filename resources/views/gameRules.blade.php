@@ -6,7 +6,13 @@
     <div class="page-header">
         <h1 class="title">Game Rules <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
     </div>
-        <h3 class="title">Match Points <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h3>
+    <center>
+    <h3 class="title">Download our System</h3>
+    <form method="get" action="/storage/files/wrestlemaniac.pdf">
+   <button type="submit" class="btn btn-lg btn-primary">Download!</button>
+    </form>
+    </center>
+       <!-- <h3 class="title">Match Points <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h3>
         <table class="container">
             <thead>
                 <tr>
@@ -56,12 +62,8 @@
                     <td>Double Count Out</td>
                     <td class="number">- 0.5</td>
                 </tr>
-                <!--<tr>
-                    <td>GitHub</td>
-                    <td class="number">4623</td>
-                </tr>-->
             </tbody>
-        </table>
+        </table> -->
 
 
     
