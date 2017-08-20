@@ -57,7 +57,7 @@
         <div class="user-info">
             <h3>Welcome,</h3>
             <h2>{{ Auth::user()->name }}</h2>
-            <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit profile</a></p>
+            <!--<p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit profile</a></p> -->
         </div>
 
         <div class="profile-smd">
