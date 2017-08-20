@@ -130,7 +130,7 @@ class LeagueController extends Controller
             ->where('league_name',$request->name)
             ->first();
         // Confirma se a senha que ele digito bate com a da liga
-        if (Hash::check('123123', $league->secret_password)) {
+        if (Hash::check($request->secret_password, $league->secret_password)) {
             // Se confirmar
             $userId = Auth::user()->id; // Pega o id do usuário
 

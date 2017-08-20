@@ -5,7 +5,7 @@
     <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Edit E-mail
+                            Edit User Photo
                         </h1>
                     </div>
                 </div>
