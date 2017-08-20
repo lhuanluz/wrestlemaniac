@@ -10,7 +10,7 @@
             <div class="col-md-6 league-name">
                 <h2>{{$liga->league_name}}</h2>
                 @if($liga->owner == Auth::user()->id)
-                <a href="#"><p><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit League</p></a>
+                <a href="{{route('deletarLiga')}}"><p><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>DELETE! League</p></a>
                 @else
                 <a href="{{route('leagueQuit')}}"><p>Leave League</p></a>
                 @endif

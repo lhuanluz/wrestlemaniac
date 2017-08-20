@@ -103,6 +103,7 @@ Route::prefix('league')->group(function () {
         Route::get('/quitLeague','LeagueController@sairLiga')->name('leagueQuit');
         Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
         Route::post('/createLeague','LeagueController@criarLiga')->name('criarLiga');
+        Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
     });
 //Rotas Rank Usuario Cash
 Route::get('statistics','RankingController@statistics')->name('statistics');

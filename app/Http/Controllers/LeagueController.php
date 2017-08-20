@@ -281,7 +281,7 @@ class LeagueController extends Controller
                         ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
-                        ->update(['member2' => 2]);
+                        ->update(['member2' => 3]);
 
                 }else if ($league->member3 == $userRemover->id) {
 
@@ -290,7 +290,7 @@ class LeagueController extends Controller
                         ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
-                        ->update(['member3' => 2]);
+                        ->update(['member3' => 4]);
 
                 }else if ($league->member4 == $userRemover->id) {
 
@@ -299,7 +299,7 @@ class LeagueController extends Controller
                         ->update(['id_league' => 1]);
                     DB::table('leagues')
                         ->where('id',$league->id)
-                        ->update(['member1' => 4]);
+                        ->update(['member4' => 5]);
 
                 }else{
                     //NÃO HÁ VAGAS
@@ -360,9 +360,6 @@ class LeagueController extends Controller
         return redirect()->route('leagueHome');
     }
     public function deletarLiga(){
-        $this->validate($request,[
-            'secret_password' => 'required'
-        ]);
         $userId = Auth::user()->id;
         $user = DB::table('users')
             ->where('id', $userId)
@@ -371,17 +368,22 @@ class LeagueController extends Controller
             ->where('id', $user->id_league)
             ->first();
         if($league->owner == $userId){
-            if (Hash::check($request->secret_password_old, $league->secret_password)) {
                 DB::table('users')
                 ->where('id_league',$league->id)
                 ->update(['id_league' => 1]);
 
                 DB::table('leagues')
                 ->where('id',$league->id)
-                ->delete();
-            }
+                ->update([
+                    'owner' => 1,
+                    'member1' => 2,
+                    'member2' => 3,
+                    'member3' => 4,
+                    'member4' => 5,
+                    'league_points' => 0
+                    ]);
         }
-
+        return redirect()->route('leagueHome');
     }
 
 }
