@@ -19,7 +19,7 @@
     <img src="{{ url('img/weekly_best.jpg') }}"/>
 </div> -->
 
-<div id="play" class="container-fluid play"> <!-- HOW TO PLAY -->
+<div class="container-fluid play"> <!-- HOW TO PLAY -->
     <h2>HOW TO PLAY</h2>
     <div class="separador"></div>
     <div class="row">
@@ -31,7 +31,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 team">
             <img src="{{ url('img/team_icon.png') }}"/>
             <h3>Build your team</h3>
-            <p>Go through our market and buy Superstars</p>
+            <p>Go through our market and hire Superstars</p>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wwe">
             <img src="{{ url('img/wwe_icon.png') }}"/>

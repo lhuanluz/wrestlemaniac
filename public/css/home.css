@@ -174,7 +174,7 @@ ul#menu a:focus {
 }
 
 
-/*CSS do How to Play*/
+/*CSS da Seção Home-How to Play*/
 
 .play {
      padding-top: 40px;
@@ -258,6 +258,75 @@ ul#menu a:focus {
     padding-top: 16px;
     margin-right: 40px;
 }
+
+
+/* CSS DA PÁGINA HOW TO PLAY */
+
+.how-to-play {
+    max-width: 1140px;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.how-to-play h2 {
+    text-align: center;
+    color: #d7182a;
+    text-shadow: 0px 2px 3px #141516;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.how-to-play .head {
+    height: 55px;
+    background-color: #d7182a;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #676767;
+    text-shadow: 0px 3px 6px #141516;
+    margin-bottom: 20px;
+}
+
+.how-to-play .head h3 {
+    font-size: 22px;
+    color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: bold;
+    margin: 17px 0 0 20px;
+}
+
+.how-to-play .description,
+.how-to-play .note {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 60px;
+}
+
+.how-to-play .description p {
+    font-size: 20px;
+    color: #000;
+}
+
+.how-to-play .note {
+    background-color: #a9aeb3;
+    color: #232828;
+    padding: 25px;
+}
+
+.how-to-play .note p {
+    color: #232828;
+    font-size: 16px;
+}
+
+.how-to-play .note span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+
 
 
 /*CSS texto do rodapé*/
