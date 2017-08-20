@@ -71,7 +71,7 @@
 
                         @if (Auth::guest())
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="#play">How to Play</a></li>
+                            <li><a href="{{ route('howToPlay') }}">How to Play</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>

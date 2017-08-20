@@ -112,6 +112,11 @@ Route::get('/gameRules', function () {
     return view('gameRules');
 })->name('gameRules');
 
+Route::get('/howToPlay', function () {
+    return view('howToPlay');
+})->name('howToPlay');
+
+
 Auth::routes();
 
 Route::get('/', 'InicioController@homeRedirect')->name('home');
