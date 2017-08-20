@@ -48,6 +48,7 @@
                         <option value="storage/users/cm-punk.png">CM Punk</option>
                         <option value="storage/users/wade-barrett.png">Wade Barrett</option>
                         <option value="storage/users/hhh.png">Triple H</option>
+                        <option value="storage/users/the-rock.png">The Rock</option>
                         
                     </select>
                 </div>
