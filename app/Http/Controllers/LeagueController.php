@@ -54,8 +54,8 @@ class LeagueController extends Controller
                 $addS +=  $membrosSmackdown[$i]->team_total_points;
             }
 
-            $addR = $addR / $quantidade; // Adiciona a média do Raw dividio pela quantidade de jogadores
-            $addS = $addS / $quantidade; // Adiciona a média do Smackdown dividio pela quantidade de jogadores
+            $addR = number_format($addR / $quantidade); // Adiciona a média do Raw dividio pela quantidade de jogadores
+            $addS = number_format($addS / $quantidade); // Adiciona a média do Smackdown dividio pela quantidade de jogadores
             $add = $addR + $addS; // Soma as médias para achar a pontuação da liga
 
             // Faz o update na tabela
