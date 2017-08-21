@@ -386,47 +386,49 @@ class LeagueController extends Controller
         return redirect()->route('leagueHome');
     }
     public function atualizarLigas(){
-        $quantidadeLigas = DB::table('leagues')->count();
+        $quantidadeLigas = DB::table('leagues')->orderBy('id','desc')->first();
         $quantidadeLigas = $quantidadeLigas;
-        for ($i=2; $i <= $quantidadeLigas; $i++) { 
+        for ($i=1; $i <= $quantidadeLigas; $i++) {
             $liga = DB::table('leagues')->where('id',$i)->first(); // Pega a linha da liga do usuário
-            if($liga->owner != 1 && $liga != null){
-            $quantidade = DB::table('users')->where('id_league',$i)->count(); // Pega quantos usuários da liga existem
-            $dono = DB::table('users')->where('id',$liga->owner)->first(); // Pega a linha com todas as informações do dono da liga
-            $membro1 = DB::table('users')->where('id',$liga->member1)->first(); // Pega a linha com todas as informações do membro 1 da liga
-            $membro2 = DB::table('users')->where('id',$liga->member2)->first(); // Pega a linha com todas as informações do membro 2 da liga
-            $membro3 = DB::table('users')->where('id',$liga->member3)->first(); // Pega a linha com todas as informações do membro 3 da liga
-            $membro4 = DB::table('users')->where('id',$liga->member4)->first(); // Pega a linha com todas as informações do membro 4 da liga
-            // Começa a pegar todos os times do raw de cada membro da liga
-            $membrosRaw = DB::table('users')
-                        ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
-                        ->where('id_league',$i)->take($quantidade)
-                        ->orderBy('team_total_points','desc')
-                        ->get();
-            // Começa a pegar todos os times do smackdown de cada membro da liga
-            $membrosSmackdown = DB::table('users')
-                        ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
-                        ->where('id_league',$i)->take($quantidade)
-                        ->orderBy('team_total_points','desc')
-                        ->get();
+            if($liga != null){
+                if($liga->owner != 1){
+                    $quantidade = DB::table('users')->where('id_league',$i)->count(); // Pega quantos usuários da liga existem
+                    $dono = DB::table('users')->where('id',$liga->owner)->first(); // Pega a linha com todas as informações do dono da liga
+                    $membro1 = DB::table('users')->where('id',$liga->member1)->first(); // Pega a linha com todas as informações do membro 1 da liga
+                    $membro2 = DB::table('users')->where('id',$liga->member2)->first(); // Pega a linha com todas as informações do membro 2 da liga
+                    $membro3 = DB::table('users')->where('id',$liga->member3)->first(); // Pega a linha com todas as informações do membro 3 da liga
+                    $membro4 = DB::table('users')->where('id',$liga->member4)->first(); // Pega a linha com todas as informações do membro 4 da liga
+                    // Começa a pegar todos os times do raw de cada membro da liga
+                    $membrosRaw = DB::table('users')
+                                ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
+                                ->where('id_league',$i)->take($quantidade)
+                                ->orderBy('team_total_points','desc')
+                                ->get();
+                    // Começa a pegar todos os times do smackdown de cada membro da liga
+                    $membrosSmackdown = DB::table('users')
+                                ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
+                                ->where('id_league',$i)->take($quantidade)
+                                ->orderBy('team_total_points','desc')
+                                ->get();
 
-            $addR = 0; // Pontos totais do Raw na liga
-            $addS = 0; // Pontos totais do Smackdown na liga
-            
-            // For para adicionar os pontos dos times do raw e smackdown de cada membro aos pontos totais da liga raw/smackdown
-            for ($j=0; $j < $quantidade ; $j++) { 
-                $addR += $membrosRaw[$j]->team_total_points;
-                $addS +=  $membrosSmackdown[$j]->team_total_points;
-            }
+                    $addR = 0; // Pontos totais do Raw na liga
+                    $addS = 0; // Pontos totais do Smackdown na liga
+                    
+                    // For para adicionar os pontos dos times do raw e smackdown de cada membro aos pontos totais da liga raw/smackdown
+                    for ($j=0; $j < $quantidade ; $j++) { 
+                        $addR += $membrosRaw[$j]->team_total_points;
+                        $addS +=  $membrosSmackdown[$j]->team_total_points;
+                    }
 
-            $addR = $addR / $quantidade; // Adiciona a média do Raw dividio pela quantidade de jogadores
-            $addS = $addS / $quantidade; // Adiciona a média do Smackdown dividio pela quantidade de jogadores
-            $add = $addR + $addS; // Soma as médias para achar a pontuação da liga
+                    $addR = $addR / $quantidade; // Adiciona a média do Raw dividio pela quantidade de jogadores
+                    $addS = $addS / $quantidade; // Adiciona a média do Smackdown dividio pela quantidade de jogadores
+                    $add = $addR + $addS; // Soma as médias para achar a pontuação da liga
 
-            // Faz o update na tabela
-            DB::table('leagues')->where('id',$i)->update([
-                'league_points' => $add
-            ]);
+                    // Faz o update na tabela
+                    DB::table('leagues')->where('id',$i)->update([
+                        'league_points' => $add
+                    ]);
+                }
             }
         }
         return redirect()->route('painelAdmin');
