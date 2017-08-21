@@ -139,7 +139,7 @@
             <div class="team-info"> <!-- .TEAM-INFO -->
                 <ul>
                     <li>Total Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
-                    <li>Last Show Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
+                    <li>Last Show Score: <p>{{$smackdownTeam->team_points}}</p></li>
                     <li>Rank: <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p></li>
                     <li class="smd-cash">$ {{number_format($smackdownTeam->team_cash)}}</li>
                     <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET</li></a>
