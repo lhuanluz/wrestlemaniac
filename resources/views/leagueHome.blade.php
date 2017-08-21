@@ -18,7 +18,7 @@
             
             <div class="col-md-3 league-info">
                 <h2>LEAGUE SCORE</h2>
-                <h3>{{number_format($liga->league_points)}}</h3>
+                <h3>{{number_format($liga->league_points, 2, ',', ' ')}}</h3>
             </div>
 
             <div class="col-md-3 league-info">
@@ -63,7 +63,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{number_format($total_raw/$quantidade)}}</li>
+                    <li>{{number_format($total_raw/$quantidade, 2, ',', ' ')}}</li>
                 </ul>
             </div>
 
@@ -98,7 +98,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{number_format($total_smack/$quantidade)}}</li>
+                    <li>{{number_format($total_smack/$quantidade, 2, ',', ' ')}}</li>
                 </ul>
             </div>
 
