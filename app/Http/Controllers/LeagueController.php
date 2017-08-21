@@ -390,7 +390,7 @@ class LeagueController extends Controller
         $quantidadeLigas = $quantidadeLigas;
         for ($i=2; $i <= $quantidadeLigas; $i++) { 
             $liga = DB::table('leagues')->where('id',$i)->first(); // Pega a linha da liga do usuário
-            if($liga->owner != 1 || $liga != null){
+            if($liga->owner != 1 && $liga != null){
             $quantidade = DB::table('users')->where('id_league',$i)->count(); // Pega quantos usuários da liga existem
             $dono = DB::table('users')->where('id',$liga->owner)->first(); // Pega a linha com todas as informações do dono da liga
             $membro1 = DB::table('users')->where('id',$liga->member1)->first(); // Pega a linha com todas as informações do membro 1 da liga
