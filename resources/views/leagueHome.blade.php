@@ -63,7 +63,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{$total_raw/$quantidade}}</li>
+                    <li>{{number_format($total_raw/$quantidade)}}</li>
                 </ul>
             </div>
 
@@ -98,7 +98,7 @@
                 <ul>
                     <li>TOTAL SCORE</li>
                     <div class="divisor"></div>
-                    <li>{{$total_smack/$quantidade}}</li>
+                    <li>{{number_format($total_smack/$quantidade)}}</li>
                 </ul>
             </div>
 
