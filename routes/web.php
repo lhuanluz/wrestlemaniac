@@ -49,6 +49,10 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('editPhoto','UsuariosController@editarFoto')->name('editPhoto');
         Route::post('editPhoto/confirm','UsuariosController@editarFotoRequest')->name('editPhotoR');
     });
+    Route::prefix('leagues')->group(function (){
+        Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');
+
+    });
 });
 //Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {
