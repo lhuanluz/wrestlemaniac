@@ -49,6 +49,7 @@
                         <option value="storage/users/wade-barrett.png">Wade Barrett</option>
                         <option value="storage/users/hhh.png">Triple H</option>
                         <option value="storage/users/the-rock.png">The Rock</option>
+                        <option value="storage/users/gobbeldy-gooker.png">Gobbeldy Gooker</option>
                         
                     </select>
                 </div>
