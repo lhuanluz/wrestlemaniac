@@ -387,7 +387,7 @@ class LeagueController extends Controller
     }
     public function atualizarLigas(){
         $quantidadeLigas = DB::table('leagues')->count();
-        $quantidadeLigas = $quantidadeLiga - 1;
+        $quantidadeLigas = $quantidadeLigas;
         for ($i=2; $i <= $quantidadeLigas; $i++) { 
             $liga = DB::table('leagues')->where('id',$i)->first(); // Pega a linha da liga do usuário
             if($liga->owner != 1 || $liga != null){
