@@ -18,7 +18,7 @@
             
             <div class="col-md-3 league-info">
                 <h2>LEAGUE SCORE</h2>
-                <h3>{{number_format(sprintf("%.3f",$liga->league_points))}}</h3>
+                <h3>{{number_format$liga->league_points)}}</h3>
             </div>
 
             <div class="col-md-3 league-info">
