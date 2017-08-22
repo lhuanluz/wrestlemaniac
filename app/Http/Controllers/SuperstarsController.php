@@ -134,7 +134,49 @@ class SuperstarsController extends Controller
             'name'      => 'required',
              'brand'    => 'required'
         ]);
-
+        $superstar = DB::table('superstars')
+                    ->where('name',$request->name)
+                    ->first();
+        DB::table('raw_teams')
+            ->where('superstar01',$superstar->id)
+            ->update([
+                'superstar01' => 103
+            ]);
+        DB::table('raw_teams')
+            ->where('superstar02',$superstar->id)
+            ->update([
+                'superstar02' => 102
+            ]);
+        DB::table('raw_teams')
+            ->where('superstar03',$superstar->id)
+            ->update([
+                'superstar03' => 101
+            ]);
+        DB::table('raw_teams')
+            ->where('superstar04',$superstar->id)
+            ->update([
+                'superstar04' => 100
+            ]);
+        DB::table('smackdown_teams')
+            ->where('superstar01',$superstar->id)
+            ->update([
+                'superstar01' => 103
+            ]);
+        DB::table('smackdown_teams')
+            ->where('superstar02',$superstar->id)
+            ->update([
+                'superstar02' => 102
+            ]);
+        DB::table('smackdown_teams')
+            ->where('superstar03',$superstar->id)
+            ->update([
+                'superstar03' => 101
+            ]);
+        DB::table('smackdown_teams')
+            ->where('superstar04',$superstar->id)
+            ->update([
+                'superstar04' => 100
+            ]);
         DB::table('superstars')
             ->where('name', $request->name)
             ->update([
