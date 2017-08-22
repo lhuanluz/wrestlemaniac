@@ -88,10 +88,8 @@
 
                             <li><a href="{{route('leagueHome')}}">League</a></li>
 
-                            <li><a href="{{route('statistics')}}">Rank</a></li>
-                            
-                            <li><a href="{{route('statistics')}}">Rank</a></li>
-                            
+                            <!-- <li><a href="{{route('statistics')}}">Rank</a></li> -->
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Market <span class="caret"></span>
