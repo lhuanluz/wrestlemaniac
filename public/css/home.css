@@ -325,10 +325,6 @@ ul#menu a:focus {
 }
 
 
-
-
-
-
 /*CSS texto do rodapé*/
 
 .social {
@@ -744,6 +740,7 @@ ul#menu a:focus {
     .profile .user-info {
         margin: 4px 0 0 20px;
         float: left;
+        height: 120px;
     }
 
     .profile .user-info h3,
