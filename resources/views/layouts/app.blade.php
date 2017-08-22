@@ -38,8 +38,8 @@
     <!-- Rank CSS -->
     <link href="{{ url('css/statistics.css') }}" rel="stylesheet">
 
-    <!-- Rank CSS -->
-    <link href="{{ url('css/statistics.css') }}" rel="stylesheet">
+    <!-- Select Photo CSS -->
+    <link href="{{ url('css/selectPhoto.css') }}" rel="stylesheet">
 
 
 
