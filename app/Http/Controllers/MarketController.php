@@ -484,7 +484,8 @@ class MarketController extends Controller
         $userTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+        $status = DB::table('configs')->value('statusMercadoRaw');
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04 && $status == 'Aberto'){
             if ($userTeam->superstar01 == 103){
                 DB::table('raw_teams')
                     ->where('user_id',$userId)
@@ -531,7 +532,8 @@ class MarketController extends Controller
         $userTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+        $status = DB::table('configs')->value('statusMercadoRaw');
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04 && $status == 'Aberto'){
             if ($userTeam->superstar01 == $superstar->id){
                 DB::table('raw_teams')
                     ->where('user_id',$userId)
@@ -665,7 +667,8 @@ class MarketController extends Controller
         $userTeam = DB::table('smackdown_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04 && $status == 'Aberto'){
             if ($userTeam->superstar01 == 103){
                 DB::table('smackdown_teams')
                     ->where('user_id',$userId)
@@ -711,8 +714,8 @@ class MarketController extends Controller
         $userTeam = DB::table('smackdown_teams')
                     ->where('user_id',$userId)
                     ->first();
-        
-        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+        $status = DB::table('configs')->value('statusMercadoSmackdown');
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04 && $status == 'Aberto'){
             if ($userTeam->superstar01 == $superstar->id){
                 DB::table('smackdown_teams')
                     ->where('user_id',$userId)
@@ -886,7 +889,9 @@ class MarketController extends Controller
         $userTeam = DB::table('ppv_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+        
+        $status = DB::table('configs')->value('statusMercadoPpv');
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04  && $status == 'Aberto'){
             if ($userTeam->superstar01 == 103){
                 DB::table('ppv_teams')
                     ->where('user_id',$userId)
@@ -932,7 +937,8 @@ class MarketController extends Controller
         $userTeam = DB::table('ppv_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+        $status = DB::table('configs')->value('statusMercadoPpv');
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04 && $status == 'Aberto'){
             if ($userTeam->superstar01 == $superstar->id){
                 DB::table('ppv_teams')
                     ->where('user_id',$userId)
