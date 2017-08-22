@@ -54,6 +54,7 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     Route::prefix('photos')->group(function (){
         Route::get('add','UsuariosController@addPhotoRedirect')->name('addPhotoRedirect');
         Route::post('add/confirm','UsuariosController@addPhoto')->name('addPhoto');
+    });
     //Rotas para avisos
     Route::prefix('warning')->group(function (){
         Route::get('warning','AvisoController@createWarning')->name('cWarning');
