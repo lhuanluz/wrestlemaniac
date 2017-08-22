@@ -1,0 +1,68 @@
+.league-rank {
+    background-color: #d9e0e6;
+    max-width: 1024px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 4px;
+}
+
+.league-rank ul {
+    list-style: none;
+    padding: 0;
+}
+
+.league-rank ul li {
+    padding-left: 23px;
+    overflow: hidden;
+}
+
+.league-rank ul li p {
+    display: inline-block;
+    color: #d7182a;
+    text-shadow: 0px 1px 0px #141516;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+}
+
+.league-rank ul li p:nth-of-type(3) {
+    float: right;
+    margin-right: 23px;
+}
+
+.league-rank ul li:nth-child(1) {
+    font-size: 32px;
+    font-weight: bold;
+    color: #d7182a;
+    text-shadow: 0px 1px 2px #141516;
+    margin-bottom: 10px;
+    margin: 10px 0 10px 0px;
+}
+
+.league-rank ul li:nth-child(2) {
+    background-color: #d7182a;
+    margin-left: -10px;
+    margin-bottom: 5px;
+    width: 1042px;
+    box-shadow: 2px 2px 3px #676767;
+    border-radius: 4px;
+    padding: 0 33px;
+    overflow: hidden;
+}
+
+.league-rank ul li:nth-child(2) p {
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+    text-shadow: 0px 3px 6px #141516
+}
+
+.league-rank ul li:nth-child(2) p:nth-of-type(3) {
+    float: right;
+    margin-right: 0;
+}

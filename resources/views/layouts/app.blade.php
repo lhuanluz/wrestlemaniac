@@ -35,6 +35,9 @@
     <!-- League CSS -->
     <link href="{{ url('css/league.css') }}" rel="stylesheet">
 
+    <!-- Rank CSS -->
+    <link href="{{ url('css/statistics.css') }}" rel="stylesheet">
+
 
 
 </head>
@@ -81,6 +84,8 @@
                             <li><a href="{{ route('home') }}">Home</a></li>
 
                             <li><a href="{{route('leagueHome')}}">League</a></li>
+
+                            <li><a href="{{route('statistics')}}">Rank</a></li>
                             
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
