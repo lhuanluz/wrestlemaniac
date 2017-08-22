@@ -137,46 +137,47 @@ class SuperstarsController extends Controller
         $superstar = DB::table('superstars')
                     ->where('name',$request->name)
                     ->first();
+        $
         DB::table('raw_teams')
             ->where('superstar01',$superstar->id)
             ->update([
                 'superstar01' => 103
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('raw_teams')
             ->where('superstar02',$superstar->id)
             ->update([
                 'superstar02' => 102
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('raw_teams')
             ->where('superstar03',$superstar->id)
             ->update([
                 'superstar03' => 101
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('raw_teams')
             ->where('superstar04',$superstar->id)
             ->update([
                 'superstar04' => 100
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('smackdown_teams')
             ->where('superstar01',$superstar->id)
             ->update([
                 'superstar01' => 103
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('smackdown_teams')
             ->where('superstar02',$superstar->id)
             ->update([
                 'superstar02' => 102
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('smackdown_teams')
             ->where('superstar03',$superstar->id)
             ->update([
                 'superstar03' => 101
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('smackdown_teams')
             ->where('superstar04',$superstar->id)
             ->update([
                 'superstar04' => 100
-            ]);
+            ])->increment('team_cash', $superstar->price);
         DB::table('superstars')
             ->where('name', $request->name)
             ->update([
