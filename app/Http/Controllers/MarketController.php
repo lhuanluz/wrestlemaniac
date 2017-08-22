@@ -484,40 +484,43 @@ class MarketController extends Controller
         $userTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        
-        if ($userTeam->superstar01 == 103){
-            DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == 102){
-            DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == 101){
-            DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }
-        else if ($userTeam->superstar04 == 100){
-            DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+            if ($userTeam->superstar01 == 103){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == 102){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == 101){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }
+            else if ($userTeam->superstar04 == 100){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else{
+                echo "ERRO";
+            }
+            return redirect()->route('mercadoRawHome');
         }else{
-            echo "ERRO";
+            return redirect()->route('mercadoRawHome');
         }
-        return redirect()->route('mercadoRawHome');
     }
     public function venderSuperstarRaw(Request $request){
         $userId = Auth::user()->id;
@@ -528,38 +531,41 @@ class MarketController extends Controller
         $userTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if ($userTeam->superstar01 == $superstar->id){
-             DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => 103,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == $superstar->id){
-             DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => 102,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == $superstar->id){
-             DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => 101,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar04 == $superstar->id){
-             DB::table('raw_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => 100,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else{
-            echo 'Erro';
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+            if ($userTeam->superstar01 == $superstar->id){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => 103,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == $superstar->id){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => 102,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == $superstar->id){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => 101,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar04 == $superstar->id){
+                DB::table('raw_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => 100,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else{
+                echo 'Erro';
+            }
+            return redirect()->route('mercadoRawHome');
         }
-        return redirect()->route('mercadoRawHome');
+            return redirect()->route('mercadoRawHome');
     }
     public function mercadoSmackdown(){
         if (Auth::guest()) {
@@ -659,38 +665,40 @@ class MarketController extends Controller
         $userTeam = DB::table('smackdown_teams')
                     ->where('user_id',$userId)
                     ->first();
-        
-        if ($userTeam->superstar01 == 103){
-            DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == 102){
-            DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == 101){
-            DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }
-        else if ($userTeam->superstar04 == 100){
-            DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else{
-            echo "ERRO";
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+            if ($userTeam->superstar01 == 103){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == 102){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == 101){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }
+            else if ($userTeam->superstar04 == 100){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else{
+                echo "ERRO";
+            }
+            return redirect()->route('mercadoSmackdownHome');
         }
         return redirect()->route('mercadoSmackdownHome');
     }
@@ -703,36 +711,40 @@ class MarketController extends Controller
         $userTeam = DB::table('smackdown_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if ($userTeam->superstar01 == $superstar->id){
-             DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => 103,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == $superstar->id){
-             DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => 102,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == $superstar->id){
-             DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => 101,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar04 == $superstar->id){
-             DB::table('smackdown_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => 100,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else{
-            echo 'Erro';
+        
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+            if ($userTeam->superstar01 == $superstar->id){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => 103,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == $superstar->id){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => 102,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == $superstar->id){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => 101,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar04 == $superstar->id){
+                DB::table('smackdown_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => 100,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else{
+                echo 'Erro';
+            }
+            return redirect()->route('mercadoSmackdownHome');
         }
         return redirect()->route('mercadoSmackdownHome');
     }
@@ -874,38 +886,40 @@ class MarketController extends Controller
         $userTeam = DB::table('ppv_teams')
                     ->where('user_id',$userId)
                     ->first();
-        
-        if ($userTeam->superstar01 == 103){
-            DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == 102){
-            DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == 101){
-            DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }
-        else if ($userTeam->superstar04 == 100){
-            DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => $superstar->id,
-                'team_cash' => $userTeam->team_cash - $superstar->price
-                ]);
-        }else{
-            echo "ERRO";
+        if($superstar->id != $userTeam->superstar01 && $superstar->id != $userTeam->superstar02 && $superstar->id != $userTeam->superstar03 &&$superstar->id != $userTeam->superstar04){
+            if ($userTeam->superstar01 == 103){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == 102){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == 101){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }
+            else if ($userTeam->superstar04 == 100){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => $superstar->id,
+                    'team_cash' => $userTeam->team_cash - $superstar->price
+                    ]);
+            }else{
+                echo "ERRO";
+            }
+            return redirect()->route('mercadoPpvHome');
         }
         return redirect()->route('mercadoPpvHome');
     }
@@ -918,36 +932,39 @@ class MarketController extends Controller
         $userTeam = DB::table('ppv_teams')
                     ->where('user_id',$userId)
                     ->first();
-        if ($userTeam->superstar01 == $superstar->id){
-             DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar01' => 103,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar02 == $superstar->id){
-             DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar02' => 102,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar03 == $superstar->id){
-             DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar03' => 101,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else if ($userTeam->superstar04 == $superstar->id){
-             DB::table('ppv_teams')
-                ->where('user_id',$userId)
-                ->update([
-                'superstar04' => 100,
-                'team_cash' => $userTeam->team_cash + $superstar->price
-                ]);
-        }else{
-            echo 'Erro';
+        if($superstar->id == $userTeam->superstar01 || $superstar->id == $userTeam->superstar02 || $superstar->id == $userTeam->superstar03 || $superstar->id == $userTeam->superstar04){
+            if ($userTeam->superstar01 == $superstar->id){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar01' => 103,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar02 == $superstar->id){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar02' => 102,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar03 == $superstar->id){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar03' => 101,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else if ($userTeam->superstar04 == $superstar->id){
+                DB::table('ppv_teams')
+                    ->where('user_id',$userId)
+                    ->update([
+                    'superstar04' => 100,
+                    'team_cash' => $userTeam->team_cash + $superstar->price
+                    ]);
+            }else{
+                echo 'Erro';
+            }
+            return redirect()->route('mercadoPpvHome');
         }
         return redirect()->route('mercadoPpvHome');
     }
