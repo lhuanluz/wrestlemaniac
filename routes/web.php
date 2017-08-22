@@ -47,13 +47,20 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
         Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
     });
-    Route::prefix('leagues')->group(function (){
+    Route::prefix('leagues')->group(function (){ 
         Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');
 
     });
     Route::prefix('photos')->group(function (){
         Route::get('add','UsuariosController@addPhotoRedirect')->name('addPhotoRedirect');
         Route::post('add/confirm','UsuariosController@addPhoto')->name('addPhoto');
+    //Rotas para avisos
+    Route::prefix('warning')->group(function (){
+        Route::get('warning','AvisoController@createWarning')->name('cWarning');
+        Route::post('warning/confirm','AvisoController@createWarningRequest')->name('cWarningR');
+        Route::get('delete','AvisoController@deleteWarning')->name('dWarning');
+        Route::post('delete/confirm','AvisoController@deleteWarningRequest')->name('dWarningR');
+        Route::get('show','AvisoController@showWarnings')->name('sWarning');
 
     });
 });
@@ -127,8 +134,12 @@ Route::get('/howToPlay', function () {
 
 
 Auth::routes();
-
+//Rotas Rank Points Superstar
+Route::get('rankSuperstarPoints','RankingController@rankSuperstarPoints')->name('rankSuperstarPoints');
+Route::get('rankSuperstarPoints','RankingController@rankSuperstarRawPoints')->name('rankSuperstarRawPoints');
+Route::get('rankSuperstarPoints','RankingController@rankSuperstarSdPoints')->name('rankSuperstarSdPoints');
 Route::get('/', 'InicioController@homeRedirect')->name('home');
+
 
 Route::get('/faq', function () {
     return view('faq/faq');

@@ -178,6 +178,16 @@
                     <li class="{{route::is('addPhoto') ? 'active' : '' }}"><a href="{{route('addPhotoRedirect')}}"><i class="fa fa-plus icon fa-lg"></i>Add Photo</a></li>
                 </ul>         
                 
+                 <li  data-toggle="collapse" data-target="#warnings" class="collapsed">
+                  <a href="#"><i class="fa fa-exclamation-triangle"></i> Warnings <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="warnings">
+                    <li class="{{route::is('cWarning') ? 'active' : '' }}"><a href="{{route('cWarning')}}"><i class="fa fa-exclamation"></i>Create Warning</a></li>
+                    <li class="{{route::is('dWarning') ? 'active' : '' }}"><a href="{{route('dWarning')}}"><i class="fa fa-eraser"></i>Delete Warning</a></li>
+                    <li class="{{route::is('dWarning') ? 'active' : '' }}"><a href="{{route('sWarning')}}"><i class="fa fa-eraser"></i>Test Warning</a></li>
+                    
+                       
+                </ul>
             </ul>
      </div>
 </div>

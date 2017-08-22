@@ -41,5 +41,28 @@ class RankingController extends Controller
                     'topSmackdownTotalPoints' => $topSmackdownTotalPoints
                     ]);
     }
+    public function rankSuperstarPoints(){
+        $user = DB::table('superstars')
+        ->select('name','brand','points','champion','belt')
+        ->max('points')
+        ->get();
+        return view('teste',['user' => $user]);
+    }
+    public function rankSuperstarRawPoints(){
+        $user = DB::table('superstars')
+        ->select('name','brand','points','champion','belt')
+        ->where('brand', '=', "Raw")
+        ->max('points')
+        ->get();
+        return view('teste',['user' => $user]);
+    }
+    public function rankSuperstarSdPoints(){
+        $user = DB::table('superstars')
+        ->select('name','brand','points','champion','belt')
+        ->where('brand', '=', "Smackdown")
+        ->max('points')
+        ->get();
+        return view('teste',['user' => $user]);
+    }
     
 }
