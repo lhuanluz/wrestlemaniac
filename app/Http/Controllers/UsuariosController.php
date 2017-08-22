@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class UsuariosController extends Controller
 {
@@ -59,20 +60,47 @@ class UsuariosController extends Controller
                 ]);
         return redirect()->route('painelAdmin');
     }
-     public function editarFoto(){
-
-        return view('editarFotoUser');
-    }
-    public function editarFotoRequest(Request $request){
+    public function selectPhoto(Request $request){
         $this->validate($request,[
-            'email' => 'required',
             'photo' => 'required'
         ]);
+        $userId = Auth::user()->id;
          DB::table('users')
-            ->where('email', $request->email)
+            ->where('id', $userId)
             ->update([
                 'photo' => $request->photo
                 ]);
-        return redirect()->route('painelAdmin');
+        return redirect()->route('home');
     }
+
+    public function selectPhotoRedirect(){
+        $imagens = DB::table('images')->get();
+        return view('selectPhoto',[
+            'imagens' => $imagens, // Lista de Imagens
+            ]);
+    }
+
+    public function addPhoto(Request $request){
+        $this->validate($request,[
+            'photo' => 'required',
+            'name' => 'required'
+        ]);
+        $nomeDaImagem = $request->photo->getClientOriginalName();
+        $caminho = 'storage/users/'.$nomeDaImagem;
+        $imagem = $request->photo;
+        $imagem->storeAs('users',$nomeDaImagem,'public');
+
+        DB::table('images')
+            ->insert([
+                'name' => $request->name,
+                'img_url' => $caminho
+        ]);
+
+        return redirect()->route('addPhotoRedirect');
+    }
+
+    public function addPhotoRedirect(){
+        return view('addPhotos');
+    }
+
 }

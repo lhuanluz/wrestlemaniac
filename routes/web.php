@@ -46,11 +46,14 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('editNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
         Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
         Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
-        Route::get('editPhoto','UsuariosController@editarFoto')->name('editPhoto');
-        Route::post('editPhoto/confirm','UsuariosController@editarFotoRequest')->name('editPhotoR');
     });
     Route::prefix('leagues')->group(function (){
         Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');
+
+    });
+    Route::prefix('photos')->group(function (){
+        Route::get('add','UsuariosController@addPhotoRedirect')->name('addPhotoRedirect');
+        Route::post('add/confirm','UsuariosController@addPhoto')->name('addPhoto');
 
     });
 });
@@ -111,6 +114,8 @@ Route::prefix('league')->group(function () {
     });
 //Rotas Rank Usuario Cash
 Route::get('statistics','RankingController@statistics')->name('statistics');
+Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->name('selectPhotoRedirect');
+Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->name('selectPhoto');
 
 Route::get('/gameRules', function () {
     return view('gameRules');

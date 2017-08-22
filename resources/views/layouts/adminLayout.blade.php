@@ -162,7 +162,6 @@
                     <li class="{{route::is('editAdmin') ? 'active' : '' }}"><a href="{{route('editAdmin')}}"><i class="fa fa-graduation-cap icon fa-lg"></i>Edit Level</a></li>
                     <li class="{{route::is('editEmail') ? 'active' : '' }}"><a href="{{route('editEmail')}}"><i class="fa fa-envelope icon fa-lg"></i>Edit E-mail</a></li>
                     <li class="{{route::is('editNome') ? 'active' : '' }}"><a href="{{route('editNome')}}"><i class="fa fa-book icon fa-lg"></i>Edit Name</a></li>   
-                    <li class="{{route::is('editPhoto') ? 'active' : '' }}"><a href="{{route('editPhoto')}}"><i class="fa fa-camera icon fa-lg"></i>Edit Photo</a></li>           
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#leagues" class="collapsed">
@@ -170,7 +169,14 @@
                 </li>
                 <ul class="sub-menu collapse" id="leagues">
                     <li class="{{route::is('atualizarLigas') ? 'active' : '' }}"><a href="{{route('atualizarLigas')}}"><i class="fa fa-refresh icon fa-lg"></i>Update ALL Leaguas</a></li>
-                </ul>                 
+                </ul>        
+
+                <li  data-toggle="collapse" data-target="#photos" class="collapsed">
+                  <a href="#"><i class="fa fa-camera fa-lg"></i> Photos <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="photos">
+                    <li class="{{route::is('addPhoto') ? 'active' : '' }}"><a href="{{route('addPhotoRedirect')}}"><i class="fa fa-plus icon fa-lg"></i>Add Photo</a></li>
+                </ul>         
                 
             </ul>
      </div>
