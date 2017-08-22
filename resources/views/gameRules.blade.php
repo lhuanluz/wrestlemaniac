@@ -8,9 +8,9 @@
     </div>
     <center>
     <h3 class="title">Download our System</h3>
-    <form method="get" action="/storage/files/wrestlemaniac.pdf">
-   <button type="submit" class="btn btn-lg btn-primary">Download!</button>
-    </form>
+        <a target="_blank" href="/storage/files/wrestlemaniac.pdf">
+        <button type="submit" class="btn btn-lg btn-primary">Download!</button>
+        </a>
     </center>
        <!-- <h3 class="title">Match Points <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h3>
         <table class="container">
