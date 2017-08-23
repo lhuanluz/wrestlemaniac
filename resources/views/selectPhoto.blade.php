@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid how-to-play">
+<div class="container-fluid select-photo">
     <div class="row">
         <h2>Select Your Photo</h2>
         <form method="post" action="{{route('selectPhoto')}}"  name="Edit_User_Photo" class="form-create">  
