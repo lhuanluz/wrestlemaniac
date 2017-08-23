@@ -14,7 +14,7 @@
                 <li>
                     <p>{{$pos}}º</p>
                     <p>{{$topLeague->league_name}}</p>
-                    <p>{{$topLeague->league_points}}</p>
+                    <p>{{number_format($topLeague->league_points, 2, ',', ' ')}}</p>
                 </li>
 
                 <?php $pos++; ?>
