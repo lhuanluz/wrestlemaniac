@@ -10,17 +10,17 @@ use Auth;
 class RankingController extends Controller
 {
     public function statistics(){
-            $topRawPoints = DB::table('raw_teams')
+            /*$topRawPoints = DB::table('raw_teams')
                 ->join('users', 'users.id', '=', 'raw_teams.user_id')
                 ->orderBy('team_points', 'desc')
                 ->limit(10)
-                ->get();
+                ->get();*/
 
-            $topSmackdownPoints = DB::table('smackdown_teams')
+            /*$topSmackdownPoints = DB::table('smackdown_teams')
                 ->join('users', 'users.id', '=', 'smackdown_teams.user_id')
                 ->orderBy('team_points', 'desc')
                 ->limit(10)
-                ->get();
+                ->get();*/
 
             $topRawTotalPoints = DB::table('raw_teams')
                 ->join('users', 'users.id', '=', 'raw_teams.user_id')
@@ -33,10 +33,14 @@ class RankingController extends Controller
                 ->orderBy('team_total_points', 'desc')
                 ->limit(10)
                 ->get();
+            
+                $topLeagues = DB::table('leagues')
+                ->orderBy('league_points','desc')
+                ->limit(10)
+                ->get();
 
                 return view('statistics',[
-                    'topRawPoints' => $topRawPoints,
-                    'topSmackdownPoints' => $topSmackdownPoints,
+                    'topLeagues' => $topLeagues,
                     'topRawTotalPoints' => $topRawTotalPoints,
                     'topSmackdownTotalPoints' => $topSmackdownTotalPoints
                     ]);
