@@ -34,12 +34,21 @@ class RankingController extends Controller
                 ->limit(10)
                 ->get();
             
-                $topLeagues = DB::table('leagues')
-                ->orderBy('league_points','desc')
-                ->limit(10)
-                ->get();
+            $topLeagues = DB::table('leagues')
+            ->orderBy('league_points','desc')
+            ->limit(10)
+            ->get();
+        
+            $positionLeague = DB::table('leagues')->orderBy('league_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
+
+            $positionRaw = DB::table('raw_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
+
+            $positionSmack = DB::table('smackdown_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
 
                 return view('statistics',[
+                    'positionSmack' => $positionSmack,
+                    'positionRaw' => $positionRaw,
+                    'positionLeague' => $positionLeague,
                     'topLeagues' => $topLeagues,
                     'topRawTotalPoints' => $topRawTotalPoints,
                     'topSmackdownTotalPoints' => $topSmackdownTotalPoints

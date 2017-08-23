@@ -8,16 +8,16 @@
                 <li>LEAGUE RANK</li>
                 @foreach($topLeagues as $topLeague)
                 <?php
-                $pos = 1; 
+                $posL = 1; 
                 ?>
                 
                 <li>
-                    <p>{{$pos}}º</p>
+                    <p>{{ array_search($topLeague->id, $positionLeague) + 1}}º</p>
                     <p>{{$topLeague->league_name}}</p>
                     <p>{{number_format($topLeague->league_points, 2, ',', ' ')}}</p>
                 </li>
 
-                <?php $pos++; ?>
+                <?php $posL = $posL+1; ?>
                 @endforeach
             </ul>
     </div>
@@ -31,7 +31,7 @@
                     $pos = 1; 
                     ?>
                     <li>
-                        <p>{{$pos}}º</p>
+                        <p>{{ array_search($topRawTotalPoint->id, $positionRaw) + 1}}º</p>
                         <p>{{$topRawTotalPoint->name}}</p>
                         <p>{{$topRawTotalPoint->team_points}}</p>
                     </li>
@@ -49,7 +49,7 @@
                     $pos = 1; 
                     ?>
                     <li>
-                        <p>{{$pos}}º</p>
+                        <p>{{ array_search($topSmackdownTotalPoint->id, $positionSmack) + 1}}º</p>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
                         <p>{{$topSmackdownTotalPoint->team_points}}</p>
                     </li>
