@@ -1,13 +1,18 @@
+.rank {
+    max-width: 1070px;
+}
+
 .league-rank {
     background-color: #d9e0e6;
-    max-width: 1024px;
     margin: 0 auto;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     border-radius: 4px;
 }
 
-.league-rank ul {
+.league-rank ul,
+.league-raw ul,
+.league-smd ul {
     list-style: none;
     padding: 0;
 }
@@ -42,10 +47,10 @@
 }
 
 .league-rank ul li:nth-child(2) {
-    background-color: #d7182a;
+    background-color: #232828;
     margin-left: -10px;
     margin-bottom: 5px;
-    width: 1042px;
+    width: 1060px;
     box-shadow: 2px 2px 3px #676767;
     border-radius: 4px;
     padding: 0 33px;
@@ -65,4 +70,134 @@
 .league-rank ul li:nth-child(2) p:nth-of-type(3) {
     float: right;
     margin-right: 0;
+}
+
+.league-brands {
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.league-raw {
+    max-width: 475px;
+    background-color: #d9e0e6;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.league-raw ul li {
+    padding-left: 9px;
+    overflow: hidden;
+}
+
+.league-raw ul li p {
+    display: inline-block;
+    color: #d7182a;
+    text-shadow: 0px 1px 0px #141516;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+}
+
+.league-raw ul li:nth-child(1) {
+    font-size: 32px;
+    font-weight: bold;
+    color: #d7182a;
+    text-shadow: 0px 1px 2px #141516;
+    margin-bottom: 10px;
+    margin: 10px 0 10px 0px;
+}
+
+.league-raw ul li:nth-child(2) {
+    background-color: #d7182a;
+    margin-left: -25px;
+    margin-bottom: 5px;
+    width: 495px;
+    box-shadow: 2px 2px 3px #676767;
+    border-radius: 4px;
+    padding: 0 33px;
+    overflow: hidden;
+}
+
+.league-raw ul li:nth-child(2) p {
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+    text-shadow: 0px 3px 6px #141516
+}
+
+.league-raw ul li:nth-child(2) p:nth-of-type(3) {
+    float: right;
+    margin-right: 0;
+}
+
+.league-raw ul li p:nth-of-type(3) {
+    float: right;
+    margin-right: 8px;
+}
+
+.league-smd {
+    max-width: 475px;
+    background-color: #d9e0e6;
+    margin: 0 auto;
+    margin-left: 90px;
+    border-radius: 4px;
+}
+
+.league-smd ul li {
+    padding-left: 9px;
+    overflow: hidden;
+}
+
+.league-smd ul li p {
+    display: inline-block;
+    color: #d7182a;
+    text-shadow: 0px 1px 0px #141516;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+}
+
+.league-smd ul li:nth-child(1) {
+    font-size: 32px;
+    font-weight: bold;
+    color: #d7182a;
+    text-shadow: 0px 1px 2px #141516;
+    margin-bottom: 10px;
+    margin: 10px 0 10px 0px;
+}
+
+.league-smd ul li:nth-child(2) {
+    background-color: #3b30fe;
+    margin-left: -25px;
+    margin-bottom: 5px;
+    width: 495px;
+    box-shadow: 2px 2px 3px #676767;
+    border-radius: 4px;
+    padding: 0 33px;
+    overflow: hidden;
+}
+
+.league-smd ul li:nth-child(2) p {
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+    margin: 15px 30px 15px 0;
+    text-shadow: 0px 3px 6px #141516
+}
+
+.league-smd ul li:nth-child(2) p:nth-of-type(3) {
+    float: right;
+    margin-right: 0;
+}
+
+.league-smd ul li p:nth-of-type(3) {
+    float: right;
+    margin-right: 8px;
 }

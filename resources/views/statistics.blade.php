@@ -4,7 +4,6 @@
 
 <div class="container-fluid rank">
     <div class="row league-rank">
-
             <ul>
                 <li>LEAGUE RANK</li>
                 <li>
@@ -19,6 +18,42 @@
                     <p>9999.99</p>
                 </li>
             </ul>
+    </div>
+
+    <div class="row league-brands">
+        <div class="league-raw col-md-6">
+                <ul>
+                    <li>RAW</li>
+                    <li>
+                        <p>99º</p>
+                        <p>Rodolfo Alves</p>
+                        <p>9999.99</p>
+                    </li>
+
+                    <li>
+                        <p>99º</p>
+                        <p>Rodolfo Alves</p>
+                        <p>9999.99</p>
+                    </li>
+                </ul>
+        </div>
+
+        <div class="league-smd col-md-6">
+                <ul>
+                    <li>SMACKDOWN</li>
+                    <li>
+                        <p>99º</p>
+                        <p>Rodolfo Alves</p>
+                        <p>9999.99</p>
+                    </li>
+
+                    <li>
+                        <p>99º</p>
+                        <p>Rodolfo Alves</p>
+                        <p>9999.99</p>
+                    </li>
+                </ul>
+        </div>
     </div>
 
 
