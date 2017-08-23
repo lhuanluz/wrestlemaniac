@@ -137,7 +137,6 @@ class SuperstarsController extends Controller
         $superstar = DB::table('superstars')
                     ->where('name',$request->name)
                     ->first();
-        $
         DB::table('raw_teams')
             ->where('superstar01',$superstar->id)
             ->update([
