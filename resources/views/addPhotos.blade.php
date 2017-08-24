@@ -35,7 +35,7 @@
                             <option value="Free">Free</option>
                             <option value="Pro">Pro</option>
                         </select>
-                    </div>
+                </div>
                 <div>
                     <label>Image </label>
                     <input type="file" name="photo" />

@@ -46,6 +46,8 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('editNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
         Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
         Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
+        Route::get('givePro','UsuariosController@giveProRedirect')->name('giveProRedirect');
+        Route::post('givePro/confirm','UsuariosController@givePro')->name('givePro');
     });
     Route::prefix('leagues')->group(function (){ 
         Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');

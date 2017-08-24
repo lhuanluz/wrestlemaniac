@@ -78,7 +78,7 @@ class UsuariosController extends Controller
         if($user->type == 'Pro'){
             $imagens = DB::table('images')->get();
         }else{
-        $imagens = DB::table('images')->where('type','Free')->get();
+            $imagens = DB::table('images')->where('type','Free')->get();
         }
         return view('selectPhoto',[
             'imagens' => $imagens, // Lista de Imagens
@@ -109,6 +109,24 @@ class UsuariosController extends Controller
 
     public function addPhotoRedirect(){
         return view('addPhotos');
+    }
+
+    public function givePro(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'tipo' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email',$request->email)
+            ->update([
+                'type' => $request->tipo
+            ]);
+
+        return redirect()->route('addPhotoRedirect');
+    }
+
+    public function giveProRedirect(){
+        return view('givePro');
     }
 
 }
