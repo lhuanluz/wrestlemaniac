@@ -23,13 +23,13 @@ class RankingController extends Controller
                 ->get();*/
 
             $topRawTotalPoints = DB::table('raw_teams')
-                ->join('users', 'users.id', '=', 'raw_teams.user_id')
+                ->join('users', 'raw_teams.user_id', '=', 'users.id')
                 ->orderBy('team_total_points', 'desc')
                 ->limit(10)
                 ->get();
 
             $topSmackdownTotalPoints = DB::table('smackdown_teams')
-                ->join('users', 'users.id', '=', 'smackdown_teams.user_id')
+                ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
                 ->orderBy('team_total_points', 'desc')
                 ->limit(10)
                 ->get();

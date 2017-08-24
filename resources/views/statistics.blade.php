@@ -33,7 +33,7 @@
                     <li>
                         <p>{{ array_search($topRawTotalPoint->id, $positionRaw) + 1}}º</p>
                         <p>{{$topRawTotalPoint->name}}</p>
-                        <p>{{$topRawTotalPoint->team_points}}</p>
+                        <p>{{$topRawTotalPoint->team_total_points}}</p>
                     </li>
 
                     <?php $pos++; ?>
@@ -51,7 +51,7 @@
                     <li>
                         <p>{{ array_search($topSmackdownTotalPoint->id, $positionSmack) + 1}}º</p>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
-                        <p>{{$topSmackdownTotalPoint->team_points}}</p>
+                        <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
                     </li>
 
                     <?php $pos++; ?>
