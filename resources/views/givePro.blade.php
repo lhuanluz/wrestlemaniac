@@ -11,7 +11,7 @@
                 </div>
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form method="post" action="{{route('editAdminR')}}"  name="Edit_User_Email" class="form-create">       
+            <form method="post" action="{{route('givePro')}}"  name="Edit_User_Email" class="form-create">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)
