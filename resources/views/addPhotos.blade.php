@@ -29,6 +29,13 @@
                     <label>Name</label>
                     <input type="text" name="name" placeholder="Name" autofocus="" class="form-control"/>
                 </div>
+                <div class="form-group">
+                        <label>Type:</label>
+                        <select name="tipo" class="form-control">
+                            <option value="Free">Free</option>
+                            <option value="Pro">Pro</option>
+                        </select>
+                    </div>
                 <div>
                     <label>Image </label>
                     <input type="file" name="photo" />

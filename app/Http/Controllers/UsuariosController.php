@@ -74,16 +74,23 @@ class UsuariosController extends Controller
     }
 
     public function selectPhotoRedirect(){
-        $imagens = DB::table('images')->get();
+        $user = Auth::user();
+        if($user->type == 'Pro'){
+            $imagens = DB::table('images')->get();
+        }else{
+        $imagens = DB::table('images')->where('type','Free')->get();
+        }
         return view('selectPhoto',[
             'imagens' => $imagens, // Lista de Imagens
             ]);
+        
     }
 
     public function addPhoto(Request $request){
         $this->validate($request,[
             'photo' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'tipo' => 'required'
         ]);
         $nomeDaImagem = $request->photo->getClientOriginalName();
         $caminho = 'storage/users/'.$nomeDaImagem;
@@ -93,7 +100,8 @@ class UsuariosController extends Controller
         DB::table('images')
             ->insert([
                 'name' => $request->name,
-                'img_url' => $caminho
+                'img_url' => $caminho,
+                'type' => $request->tipo
         ]);
 
         return redirect()->route('addPhotoRedirect');
