@@ -122,7 +122,7 @@ class UsuariosController extends Controller
                 'type' => $request->tipo
             ]);
 
-        return redirect()->route('addPhotoRedirect');
+        return redirect()->route('painelAdmin');
     }
 
     public function giveProRedirect(){
