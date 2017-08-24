@@ -91,7 +91,7 @@
     <!-- Listamento de Superstars-->
     <div class="container market">
     @foreach($superstars as $superstar)
-        @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $ppvTeam->superstar01 == $superstar->id  || $ppvTeam->superstar02 == $superstar->id || $ppvTeam->superstar03 == $superstar->id || $ppvTeam->superstar04 == $superstar->id)
+        @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $ppvTeam->superstar01 == $superstar->id  || $ppvTeam->superstar02 == $superstar->id || $ppvTeam->superstar03 == $superstar->id || $ppvTeam->superstar04 == $superstar->id || $superstar->brand == 'None')
         @else
         <div class="lutador">
             <img src="{{url($superstar->image)}}" alt="Card image cap">
