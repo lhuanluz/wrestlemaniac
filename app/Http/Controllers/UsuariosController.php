@@ -76,9 +76,9 @@ class UsuariosController extends Controller
     public function selectPhotoRedirect(){
         $user = Auth::user();
         if($user->type == 'Pro'){
-            $imagens = DB::table('images')->get();
+            $imagens = DB::table('images')->orderBy('name')->get();
         }else{
-            $imagens = DB::table('images')->where('type','Free')->get();
+            $imagens = DB::table('images')->where('type','Free')->orderBy('name')->get();
         }
         return view('selectPhoto',[
             'imagens' => $imagens, // Lista de Imagens
