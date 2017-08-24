@@ -32,8 +32,8 @@
                 <div class="form-group">
                         <label>Type:</label>
                         <select name="tipo" class="form-control">
-                            <option value="Free">Free</option>
                             <option value="Pro">Pro</option>
+                            <option value="Free">Free</option>
                         </select>
                 </div>
                 <!-- BOTÃO -->
