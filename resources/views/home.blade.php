@@ -49,8 +49,13 @@
 
 @if (!Auth::guest())
 <div class="container-fluid user-panel"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
-    <div class="row profile">
+    
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong><br>Better check yourself, you're not looking too good.
+    </div>
 
+    <div class="row profile">
         <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
         </div> <!-- .AVATAR -->
 

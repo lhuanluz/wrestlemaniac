@@ -691,6 +691,12 @@ ul#menu a:focus {
     background-color: #d9e0e6;
 }
 
+.user-panel .alert {
+    max-width: 1140px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
 
 
 @media (max-width: 767px) {
@@ -1255,3 +1261,4 @@ ul#menu a:focus {
         display: none;
     }
 }
+
