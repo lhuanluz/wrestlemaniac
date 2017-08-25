@@ -34,9 +34,20 @@
                     <input type="text" name="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Level</label>
-                    <input type="level" name="level" class="form-control">
+                        <label>Type:</label>
+                        <select name="level" class="form-control">
+                            <option value="1">Raw</option>
+                            <option value="2">Smackdown</option>
+                            <option value="3">PPV</option>
+                            <option value="4">System</option>
+                            <option value="5">Others</option>
+                        </select>
                 </div>
+                <div class="form-group">
+                    <label>Data</label>
+                    <input id="datetime" type="datetime-local" name="date">
+                </div>
+                
                 <!-- BOTÃO -->
                 <br/>
                 <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Send Warning</button>     
