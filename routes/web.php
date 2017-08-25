@@ -59,11 +59,10 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     });
     //Rotas para avisos
     Route::prefix('warning')->group(function (){
-        Route::get('warning','AvisoController@createWarning')->name('cWarning');
-        Route::post('warning/confirm','AvisoController@createWarningRequest')->name('cWarningR');
+        Route::get('create','AvisoController@createWarning')->name('cWarning');
+        Route::post('create/confirm','AvisoController@createWarningRequest')->name('cWarningR');
         Route::get('delete','AvisoController@deleteWarning')->name('dWarning');
         Route::post('delete/confirm','AvisoController@deleteWarningRequest')->name('dWarningR');
-        Route::get('show','AvisoController@showWarnings')->name('sWarning');
 
     });
 });

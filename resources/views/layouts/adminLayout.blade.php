@@ -185,7 +185,6 @@
                 <ul class="sub-menu collapse" id="warnings">
                     <li class="{{route::is('cWarning') ? 'active' : '' }}"><a href="{{route('cWarning')}}"><i class="fa fa-exclamation"></i>Create Warning</a></li>
                     <li class="{{route::is('dWarning') ? 'active' : '' }}"><a href="{{route('dWarning')}}"><i class="fa fa-eraser"></i>Delete Warning</a></li>
-                    <li class="{{route::is('dWarning') ? 'active' : '' }}"><a href="{{route('sWarning')}}"><i class="fa fa-eraser"></i>Test Warning</a></li>
                     
                        
                 </ul>

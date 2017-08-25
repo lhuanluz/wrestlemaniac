@@ -24,7 +24,8 @@ class AvisoController extends Controller
          DB::table('warnings')->insert([
              'title' => $request->title,
              'text' => $request->text,
-             'level' => $request->level
+             'level' => $request->level,
+             'date' => $request->date
         ]);
          
             
@@ -43,14 +44,5 @@ class AvisoController extends Controller
         ->where('title', '=', $request->title)
         ->delete();
         return redirect()->route('painelAdmin');
-    }
-    //Função para mostrar todos os avisos na view teste2 ele ta dando um print_r bem groço mas era so pra ver se tava funfando na view mesmo provavelmente faz um foreach
-    public function showWarnings(){
-        $warning = DB::table('warnings')
-        ->select('title','text','level')
-        ->get();
-        return view('teste2',[
-                    'warning' => $warning                    
-        ]);
     }
 }
