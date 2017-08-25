@@ -32,6 +32,7 @@
                     ?>
                     <li>
                         <p>{{ array_search($topRawTotalPoint->id, $positionRaw) + 1}}º</p>
+                        <div class="avatar" style="background: url() center center no-repeat; background-size: cover; background-color: #000"></div>
                         <p>{{$topRawTotalPoint->name}}</p>
                         <p>{{$topRawTotalPoint->team_total_points}}</p>
                     </li>
@@ -50,6 +51,7 @@
                     ?>
                     <li>
                         <p>{{ array_search($topSmackdownTotalPoint->id, $positionSmack) + 1}}º</p>
+                        <div class="avatar" style="background: url() center center no-repeat; background-size: cover; background-color: #000"></div>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
                         <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
                     </li>
