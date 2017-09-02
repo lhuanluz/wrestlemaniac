@@ -28,12 +28,4 @@ class HomeController extends Controller
     {
         return redirect()->route('home');
     }
-
-    public function adminPanel(){
-        if(Auth::user()->user_power >= 1){
-        return view('admin');
-        }else{
-            return redirect()->route('home');
-        }
-    }
 }

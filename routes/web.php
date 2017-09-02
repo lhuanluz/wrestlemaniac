@@ -13,21 +13,22 @@
 
 
 
-//Rota para todas as funções variadas ao painel de ADMIN
+// Início de rotas para todas as funções derivadas do painel ADMIN
 Route::prefix('admin')->middleware('auth.admin')->group(function (){
-    Route::get('/','HomeController@adminPanel')->name('painelAdmin');
+    //Rota para a home do painel admin
+    Route::get('/','AdminController@adminPanel')->name('painelAdmin');
 
+    // Rotas para edição de informações de superstars
     Route::prefix('superstar')->group(function (){
-        Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
-        Route::post('create/confirm','SuperstarsController@cadastrar')->name('confirmarCriação');
-        Route::post('edit/confirm','SuperstarsController@editar')->name('confirmarEdição');
-        Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
-        Route::get('edit-champion','SuperstarsController@editarChampionRedirect')->name('editarChampionRedirect');
-        Route::post('edit-champion/confirm','SuperstarsController@editarChampion')->name('editarChampion');
-        Route::get('edit-photo','SuperstarsController@editarFotoRedirect')->name('editarFotoRedirect');
-        Route::post('edit-photo/confirm','SuperstarsController@editarFoto')->name('editarFoto');
-        Route::get('edit-brand','SuperstarsController@editarBrandRedirect')->name('editarBrandRedirect');
-        Route::post('edit-brand/confirm','SuperstarsController@editarBrand')->name('editarBrand');
+        // Rotas para criar superstars
+        Route::get('create-superstar','AdminController@criarSuperstarRedirect')->name('createSuperstarRedirect');
+        Route::post('create-superstar/confirm','AdminController@criarSuperstar')->name('createSuperstar');
+        // Rotas para dar pontos a superstars
+        Route::get('add-points','AdminController@adicionarPontosRedirect')->name('addPointsRedirect');
+        Route::post('add-points/confirm','AdminController@adicionarPontos')->name('addPoints');
+        // Rotas para dar campeão a superstars
+        Route::get('edit-champion','AdminController@editarChampionRedirect')->name('editChampionRedirect');
+        Route::post('edit-champion/confirm','AdminController@editarChampion')->name('editChampion');
 
     });
     Route::prefix('market')->group(function (){
@@ -66,6 +67,8 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
 
     });
 });
+// Fim de rotas para todas as funções derivadas do painel ADMIN
+
 //Rota para todas as funções variadas ao painel de Mercado
 Route::prefix('market')->group(function () {
     Route::get('/','MarketController@mercado')->name('mercadoHome');
