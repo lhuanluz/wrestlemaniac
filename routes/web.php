@@ -155,3 +155,6 @@ Route::get('/', 'InicioController@homeRedirect')->name('home');
 Route::get('/faq', function () {
     return view('faq/faq');
 })->name('faq');
+
+Route::get('alterName', 'UsuariosController@alterName')->name('name');
+Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
