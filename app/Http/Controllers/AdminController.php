@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\superstar;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -25,28 +26,89 @@ I8,        8        ,8I                                            88           
 
     // REDIRECTS
         public function adminPanel(){
-            return view('admin/painelAdmin');
-        }
-        public function criarSuperstarRedirect(){
-            // Retorna a view para inserir um superstar
-            return view('admin/criarSuperstar');
+            $usuariosCadastrados = DB::table('users')->count();
+            $admins = DB::table('users')->where('user_power','>=',1)->get();
+            $usuariosCadastradosHoje = DB::table('users')->whereDate('created_at', DB::raw('CURDATE()'))->count('created_at');
+            $timesDoRaw = DB::table('raw_teams')
+                            ->where('superstar01','!=',103)
+                            ->orwhere('superstar02','!=',102)
+                            ->orwhere('superstar03','!=',101)
+                            ->orwhere('superstar04','!=',100)
+                            ->count();
+            $timesDoSmack = DB::table('smackdown_teams')
+                            ->where('superstar01','!=',103)
+                            ->orwhere('superstar02','!=',102)
+                            ->orwhere('superstar03','!=',101)
+                            ->orwhere('superstar04','!=',100)
+                            ->count();
+            $timesDoPPV = DB::table('ppv_teams')
+                            ->where('superstar01','!=',103)
+                            ->orwhere('superstar02','!=',102)
+                            ->orwhere('superstar03','!=',101)
+                            ->orwhere('superstar04','!=',100)
+                            ->count();
+            $mercados = DB::table('configs')->first();
+            return view('admin/painelAdmin',[
+                'usuariosCadastrados' => $usuariosCadastrados,
+                'usuariosCadastradosHoje' => $usuariosCadastradosHoje,
+                'admins' => $admins,
+                'timesDoRaw' => $timesDoRaw,
+                'timesDoSmack' => $timesDoSmack,
+                'timesDoPPV' => $timesDoPPV,
+                'mercados' => $mercados
+            ]);
         }
 
-        public function adicionarPontosRedirect(){
-            $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
-            // Retorna o usuário para a página de adição de pontos para superstars
-            return view('admin/adicionarPontos',[ 
-                'superstars' => $superstars // Passa os superstars recebidos para a página
-                ]); 
-        }
+        // Redirects de Superstar
 
-        public function editarChampionRedirect(){
-            $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
-            // Retorna o usuário para a página de edição de champion
-            return view('admin/editarChampion',[
-                'superstars' => $superstars // Passa os superstars recebidos para a página
-                ]);
-        }
+            public function criarSuperstarRedirect(){
+                // Retorna a view para inserir um superstar
+                return view('admin/criarSuperstar');
+            }
+
+            public function adicionarPontosRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de adição de pontos para superstars
+                return view('admin/adicionarPontos',[ 
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]); 
+            }
+
+            public function editarChampionRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de edição de champion
+                return view('admin/editarChampion',[
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]);
+            }
+
+            public function editarFotoRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de edição de foto de superstar
+                return view('admin/editarFoto',[
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]);
+            }
+
+            public function editarBrandRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de edição de brand de superstar
+                return view('admin/editarBrand',[
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]);
+            }
+
+        // Redirects de Mercado
+
+            public function editarMercadoStatusRedirect(){
+                // Retorna o usuário para a página de edição do status do mercado
+                return view('admin/mercadoStatus');  
+            }
+
+            public function editarPpvBrandRedirect(){
+                // Retorna o usuário para a página de edição da brand do PPV
+                return view('admin/editarPpvBrand');
+            }
 
     // FUNÇÕES
 
@@ -151,6 +213,471 @@ I8,        8        ,8I                                            88           
                    'belt' => $request->belt
                    ]);
 
-             return redirect()->route('editarChampionRedirect'); //Retorna o usuário para a págine de editar champion
+             return redirect()->route('editChampionRedirect'); //Retorna o usuário para a págine de editar champion
        }
+
+       public function editarFoto(Request $request){
+        // Início da Validação
+            // Valida os campos Name e Image
+            $this->validate($request,[
+                'name'      => 'required',
+                'image'    => 'required'
+            ]);
+        // Fim da validação
+
+        // Início do salvamento da imagem no "/storage/superstars/nomeDaImagem.png"
+            $nomeDaImagem = $request->image->getClientOriginalName(); // Pega o nome da imagem que foi feita upload
+            $caminho = 'storage/superstars/'.$nomeDaImagem; // Define o caminho que será criado com o nome da imagem
+            $imagem = $request->image;  // Recebe a imagem na variável $imagem
+            $imagem->storeAs('superstars',$nomeDaImagem,'public'); // Armazena a imagem na pasta superstars com o nome da imagem
+        // Fim do salvamente da imagem
+        
+        // Salva o caminho da imagem no banco de dados
+        DB::table('superstars')
+            ->where('name', $request->name)
+            ->update([
+                'image' => $caminho
+                ]);
+
+        return redirect()->route('editPhotoRedirect'); // Retorna o usuário para a página de editar imagem do superstars
+    }
+
+    public function editarBrand(Request $request){
+        // Início da Validação
+            // Valida os campos Name e Image
+            $this->validate($request,[
+                'name'      => 'required',
+                'brand'    => 'required'
+            ]);
+        // Fim da validação
+
+        // Encontra o superstar desejado e o armazena no $superstar
+        $superstar = DB::table('superstars')
+                    ->where('name',$request->name)
+                    ->first();
+        // Início da mudança de brand
+            // Remove o superstar que mudou de brand dos times e adiciona o dinheiro do jogador de volta
+
+            // Início remove o superstar dos times do RAW e adiciona o dinheiro de volta
+                DB::table('raw_teams')
+                    ->where('superstar01',$superstar->id)
+                    ->update([
+                        'superstar01' => 103
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('raw_teams')
+                    ->where('superstar02',$superstar->id)
+                    ->update([
+                        'superstar02' => 102
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('raw_teams')
+                    ->where('superstar03',$superstar->id)
+                    ->update([
+                        'superstar03' => 101
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('raw_teams')
+                    ->where('superstar04',$superstar->id)
+                    ->update([
+                        'superstar04' => 100
+                    ])->increment('team_cash', $superstar->price);
+            // Fim remove o superstar dos times do RAW e adiciona o dinheiro de volta
+
+            // Início remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
+                DB::table('smackdown_teams')
+                    ->where('superstar01',$superstar->id)
+                    ->update([
+                        'superstar01' => 103
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('smackdown_teams')
+                    ->where('superstar02',$superstar->id)
+                    ->update([
+                        'superstar02' => 102
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('smackdown_teams')
+                    ->where('superstar03',$superstar->id)
+                    ->update([
+                        'superstar03' => 101
+                    ])->increment('team_cash', $superstar->price);
+
+                DB::table('smackdown_teams')
+                    ->where('superstar04',$superstar->id)
+                    ->update([
+                        'superstar04' => 100
+                    ])->increment('team_cash', $superstar->price);
+            // Fim remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
+
+            // Atualiza o superstar para a nova brand
+            DB::table('superstars')
+                ->where('name', $request->name)
+                ->update([
+                    'brand' => $request->brand
+                    ]);
+        // Fim da mudança de brand    
+        // Retorna o usuário para a página de edição de brand do superstar
+        return redirect()->route('editBrandRedirect');
+    }
+
+    public function editarMercadoStatus(Request $request){
+        // Início da Validação
+            // Valida os campos Name e Image
+            $this->validate($request,[
+                'market'      => 'required',
+                'action'    => 'required'
+            ]);
+        // Fim da Validação
+
+        $mercado = $request->market; // Define o mercado que deseja ser editado
+        $action = $request->action; // Define a ação que é desejada: Fechar ou Abri
+        
+        if($mercado == 'Raw'){ //Se o usuário desejar modificar o mercado do RAW
+
+            $tabela = 'raw_teams'; // Define a tabela a ser modificada
+            $coluna = 'statusMercadoRaw'; // Define a coluna de configurações que será modificada
+
+        }else if($mercado == 'Smackdown'){ // Se o usuário desejar modificar o mercado do SMACKDOWN
+
+            $tabela = 'smackdown_teams'; // Define a tabela a ser modificada
+            $coluna = 'statusMercadoSmackdown'; // Define a coluna de configurações que será modificada
+
+        }else{ // Se o usuário desejar modificar o mercado do PPV
+
+            $tabela = 'ppv_teams'; // Define a tabela a ser modificada
+            $coluna = 'statusMercadoPPV'; // Define a coluna de configurações que será modificada
+        }
+
+        $quantidade = DB::table($tabela)->count('id'); // Define a quantidade de times que existem na tabela
+
+        // Caso a ação seja para abrir o Mercado
+        if($action == 'Aberto'){
+            DB::table('configs')->update([
+                $coluna => $action // Altera o mercado desejado para aberto
+            ]);
+            
+            if($mercado != 'PPV'){ // Caso o mercado não seja de PPV
+                // Executa as funções para todos os jogadores
+                for ($i=1; $i <= $quantidade ; $i++) { 
+                    // Pega os superstars de cada time
+                    $team = DB::table($tabela)->where('id',$i)->first();
+
+                    $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->value('points');
+                    $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->value('points');
+                    $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->value('points');
+                    $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->value('points');
+
+                    $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points'); // Recebe os pontos totais do time
+                    $pontos = $superstar01 + $superstar02 + $superstar03 + $superstar04; // Define que os pontos atuais serão a soma dos pontos dos superstars
+                    $total_pontos = $ult_pontos + $pontos; // Define que os pontos totais do time serão os anteriores mais os atuais
+                    
+                    // Atualiza os pontos do jogador
+                    DB::table($tabela)->where('id',$i)->update([
+                        'team_points' => $pontos,
+                        'team_total_points' => $total_pontos
+                    ]);         
+                }
+            }
+            else{ // Caso o mercado seja de PPV
+                $brand = DB::table('configs')->value('ppvBrand');
+                // Executa as funções para todos os jogadores
+                for ($i=1; $i <= $quantidade ; $i++) { 
+                    // Pega os superstars de cada time e seus preços
+                    $team = DB::table('ppv_teams')->where('id',$i)->value('superstar01');
+
+                    $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->first();
+                    $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->first();
+                    $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->first();
+                    $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->first();
+                    
+                    $preço1 = $superstar01->price;
+                    $preço2 = $superstar02->price;
+                    $preço3 = $superstar03->price;
+                    $preço4 = $superstar04->price;
+                    
+                    // Recebe quanto os superstars valorizaram
+                    if($superstar01->points <= 2.5){
+                        if($preço1 - (100 - $superstar01->points * 10) <= 500){
+                            $preço1= 0.0;
+                        }else{
+                        $preço1 =  - (100 - $superstar01->points * 10);
+                        }
+                    }else{
+                        $preço1 =  ($superstar01->points * 10);
+                    }
+
+
+                    if($superstar02->points <= 2.5){
+                        if($preço2 - (100 - $superstar02->points * 10) <= 500){
+                            $preço2= 0.0;
+                        }else{
+                        $preço2 =  - (100 - $superstar01->points * 10);
+                        }
+                    }else{
+                        $preço2 =   ($superstar01->points * 10);
+                    }
+
+
+                    if($superstar03->points <= 2.5){
+                        if($preço3 - (100 - $superstar03->points * 10) <= 500){
+                            $preço3= 0.0;
+                        }else{
+                        $preço3 =  - (100 - $superstar01->points * 10);
+                        }
+                    }else{
+                        $preço3 =   ($superstar01->points * 10);
+                    }
+
+
+                    if($superstar04->points <= 2.5){
+                        if($preço4 - (100 - $superstar04->points * 10) <= 500){
+                            $preço4= 0.0;
+                        }else{
+                        $preço4 =  - (100 - $superstar01->points * 10);
+                        }
+                    }else{
+                        $preço4 =  + ($superstar01->points * 10);
+                    }
+                    // Define os novos valores que os times fizeram
+                    $valor_ganho = $preço1 + $preço2 + $preço3 + $preço4;
+                    $pontos_ganho = $superstar01->points + $superstar02->points + $superstar03->points + $superstar04->points;
+                    // Caso a brand for RAW
+                    if ($brand == 'Raw') {
+                        // Utilize o dinheiro e os pontos feitos no PPV para o RAW
+                        $ult_cash = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                        $ult_pontos = DB::table('raw_teams')->where('id',$i)->value('team_total_points');
+                        $ult_pontos = $ult_pontos + $pontos_ganho;
+                        $ult_cash = $ult_cash + $valor_ganho;
+                        DB::table('raw_teams')->where('user_id',$i)->update([
+                            'team_cash' => $ult_cash,
+                            'team_total_points' => $ult_pontos
+                        ]);
+                    }else if ($brand == 'Smackdown') { // Caso a brand for SMACKDOWN
+                        // Utilize o dinheiro e os pontos feitos no PPV para o SMACKDOWN
+                        $ult_pontos = DB::table('smackdown_teams')->where('id',$i)->value('team_total_points');
+                        $ult_pontos = $ult_pontos + $pontos_ganho;
+                        $ult_cash = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
+                        $ult_cash = $ult_cash + $valor_ganho;
+                        DB::table('smackdown_teams')->where('id',$i)->update([
+                            'team_cash' => $ult_cash,
+                            'team_total_points' => $ult_pontos
+                        ]);
+                    }else{ // Caso a brand for Both
+                        // Utilize o dinheiro e os pontos feitos no PPV para o RAW e SMACKDOWN divididos por dois
+                        $ult_pontos_Raw = DB::table('raw_teams')->where('id',$i)->value('team_total_points');
+                        $ult_pontos_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_total_points');
+                        $pontos_ganho = $pontos_ganho/2;
+                        $ult_pontos_Raw = $ult_pontos_Raw + $pontos_ganho;
+                        $ult_pontos_Smackdown = $ult_pontos_Smackdown + $pontos_ganho;
+                        $valor_ganho = $valor_ganho/2;
+                        $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                        $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
+                        
+                        DB::table('raw_teams')->where('id',$i)->update([
+                            'team_cash' => $ult_cash_Raw + $valor_ganho,
+                            'team_total_points' => $ult_pontos_Raw
+                        ]);
+
+                        DB::table('smackdown_teams')->where('id',$i)->update([
+                            'team_cash' => $ult_cash_Smackdown + $valor_ganho,
+                            'team_total_points' => $ult_pontos_Smackdown
+                        ]);
+                    }
+                    // Resete os pontos feitos para o próximo PPV
+                    DB::table('ppv_teams')->where('user_id',$i)->update([
+                        'team_points' => 0.0,
+                        'team_total_points' => 0.0
+                    ]);
+                }
+            }
+        // CASO SEJA DESEJADO FECHAR O MERCADO
+            }else{
+                // Atualiza a tabela de configs
+                DB::table('configs')->update([
+                    $coluna => $action
+                ]);
+
+                $quantidade = DB::table('superstars')->count('id'); // Recebe a quantidade de superstars
+                
+                // Caso o Mercado seja PPV
+                if ($mercado == 'PPV') {
+                    $brand = DB::table('configs')->value('ppvBrand'); // Recebe a brand do ppv
+                    if($brand == 'Raw' || $brand == 'Smackdown'){ // Caso a brand do PPV seja ambas
+                        for ($i=1; $i <= $quantidade ; $i++) {
+                            // Passa os pontos atuais para os últimos pontos, reseta os pontos atuais, 
+                            // e determina que os superstars não apareceram no último show 
+                            $ult_pontos = DB::table('superstars')->where([
+                                ['id',$i],
+                                ['brand',$brand],
+                                ['last_show',1]
+                            ])->value('last_points');
+
+                            $pontos = DB::table('superstars')->where([
+                                ['id',$i],
+                                ['brand',$brand],
+                                ['last_show',1]
+                            ])->value('points');
+
+                            $last_points = $pontos;
+                            DB::table('superstars')->where([
+                                ['id',$i],
+                                ['brand',$brand],
+                                ['last_show',1]
+                            ])->update([
+                                'last_points' => $last_points,
+                                'points' => 0,
+                                'last_show' => 0
+                            ]);
+
+                        }
+                    }else{ // Caso a Brand seja as duas
+                        for ($i=1; $i <= $quantidade ; $i++) {
+                            // Passa os pontos atuais para os últimos pontos, reseta os pontos atuais, 
+                            // e determina que os superstars não apareceram no último show 
+                            $ult_pontos = DB::table('superstars')->where([
+                                ['id',$i],
+                                ['last_show',1]
+                            ])->value('last_points');
+
+                            $pontos = DB::table('superstars')->where([
+                                ['id',$i],
+                                ['last_show',1]
+                            ])->value('points');
+
+                            $last_points = $pontos;
+                            DB::table('superstars')->where([
+                                ['id',$i],
+                                ['last_show',1]
+                            ])->update([
+                                'last_points' => $last_points,
+                                'points' => 0,
+                                'last_show' => 0
+                            ]);
+
+                        }
+                    }
+                }else{ // Caso o mercado não seja do PPV
+                    // Passa os pontos atuais para os últimos pontos, reseta os pontos atuais, 
+                    // e determina que os superstars não apareceram no último show
+                    for ($i=1; $i <= $quantidade ; $i++) {
+
+                        $ult_pontos = DB::table('superstars')->where([
+                            ['id',$i],
+                            ['brand',$mercado],
+                            ['last_show',1]
+                        ])->value('last_points');
+
+                        $pontos = DB::table('superstars')->where([
+                            ['id',$i],
+                            ['brand',$mercado],
+                            ['last_show',1]
+                        ])->value('points');
+
+                        $last_points = $pontos;
+                        DB::table('superstars')->where([
+                            ['id',$i],
+                            ['brand',$mercado],
+                            ['last_show',1]
+                        ])->update([
+                            'points' => 0,
+                            'last_points' => $last_points,
+                            'last_show' => 0
+                        ]);
+
+                    }
+                }
+            }
+
+        return redirect()->route('editMarketStatusRedirect');
+    }
+    public function editarPpvBrand(Request $request){
+
+        $this->validate($request,[
+            'brand'      => 'required'
+        ]);
+        
+        $brand = $request->brand;
+        $userId = Auth::user()->id;
+
+        if($brand == 'Raw'){ //Se o usuário desejar modificar o mercado do RAW
+            $tabela = 'raw_teams'; // Define a tabela a ser modificada
+        }else if($brand == 'Smackdown'){ // Se o usuário desejar modificar o mercado do SMACKDOWN
+            $tabela = 'smackdown_teams'; // Define a tabela a ser modificada
+        }
+
+        if ($brand == 'Raw' || $brand == 'Smackdown') {
+            $quantidade = DB::table('raw_teams')->count('id');
+            for ($i=1; $i <= $quantidade ; $i++) {
+                $team = DB::table($tabela)->where('id',$i)->first();
+
+                $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->first();
+                $superstar02= DB::table('superstars')->where('id',$team->superstar02)->first();
+                $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->first();
+                $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->first();
+                
+                $ult_cash = DB::table($tabela)->where('id',$i)->value('team_cash');
+                $ult_cash = $ult_cash + $superstar01->price + $superstar02->price = $superstar03->price + $superstar04->price; 
+
+                DB::table('ppv_teams')
+                    ->where('user_id',$i)
+                    ->update([
+                        'team_cash' => $ult_cash,
+                        'superstar01' => 103,
+                        'superstar02' => 102,
+                        'superstar03' => 101,
+                        'superstar04' => 100
+                    ]);
+            }
+
+        }else{
+            $quantidade = DB::table('ppv_teams')->count('id');
+            for ($i=1; $i <= $quantidade ; $i++) { 
+                $superstarId01Raw = DB::table('raw_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Raw = DB::table('raw_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Raw = DB::table('raw_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Raw = DB::table('raw_teams')->where('id',$i)->value('superstar04');
+
+                $superstar01Raw = DB::table('superstars')->where('id',$superstarId01Raw)->first();
+                $superstar02Raw = DB::table('superstars')->where('id',$superstarId02Raw)->first();
+                $superstar03Raw = DB::table('superstars')->where('id',$superstarId03Raw)->first();
+                $superstar04Raw = DB::table('superstars')->where('id',$superstarId04Raw)->first();
+                
+                $superstarId01Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar01');
+                $superstarId02Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar02');
+                $superstarId03Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar03');
+                $superstarId04Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('superstar04');
+
+                $superstar01Smackdown = DB::table('superstars')->where('id',$superstarId01Smackdown)->first();
+                $superstar02Smackdown = DB::table('superstars')->where('id',$superstarId02Smackdown)->first();
+                $superstar03Smackdown = DB::table('superstars')->where('id',$superstarId03Smackdown)->first();
+                $superstar04Smackdown = DB::table('superstars')->where('id',$superstarId04Smackdown)->first();
+
+                $ult_cash_Raw = DB::table('raw_teams')->where('id',$i)->value('team_cash');
+                $ult_cash_Raw = $ult_cash_Raw + $superstar01Raw->price + $superstar02Raw->price + $superstar03Raw->price + $superstar04Raw->price;
+                
+                $ult_cash_Smackdown = DB::table('smackdown_teams')->where('id',$i)->value('team_cash');
+                $ult_cash_Smackdown = $ult_cash_Smackdown + $superstar01Smackdown->price + $superstar02Smackdown->price + $superstar03Smackdown->price + $superstar04Smackdown->price;
+                
+                $granaTotal = $ult_cash_Raw + $ult_cash_Smackdown;
+                $grana = $granaTotal/2;
+
+                DB::table('ppv_teams')
+                    ->where('user_id',$i)
+                    ->update([
+                        'team_cash' => $grana,
+                        'superstar01' => 103,
+                        'superstar02' => 102,
+                        'superstar03' => 101,
+                        'superstar04' => 100
+                    ]);
+            }
+        }
+        
+        DB::table('configs')->update([
+            'ppvBrand' => $request->brand
+        ]);
+        return redirect()->route('editPpvBrandRedirect');
+    }
+
 }

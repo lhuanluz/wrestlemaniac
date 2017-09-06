@@ -104,7 +104,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    @if(Auth::user()->user_power == 1)
+                                    @if(Auth::user()->user_power >= 1)
                                     <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
                                     @endif
                                     <li>

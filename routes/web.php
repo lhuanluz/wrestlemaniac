@@ -19,7 +19,7 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     Route::get('/','AdminController@adminPanel')->name('painelAdmin');
 
     // Rotas para edição de informações de superstars
-    Route::prefix('superstar')->group(function (){
+    Route::prefix('superstar')->middleware('auth.admin2')->group(function (){
         // Rotas para criar superstars
         Route::get('create-superstar','AdminController@criarSuperstarRedirect')->name('createSuperstarRedirect');
         Route::post('create-superstar/confirm','AdminController@criarSuperstar')->name('createSuperstar');
@@ -29,13 +29,23 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         // Rotas para dar campeão a superstars
         Route::get('edit-champion','AdminController@editarChampionRedirect')->name('editChampionRedirect');
         Route::post('edit-champion/confirm','AdminController@editarChampion')->name('editChampion');
+        // Rotas para editar a foto dos superstars
+        Route::get('edit-photo','AdminController@editarFotoRedirect')->name('editPhotoRedirect');
+        Route::post('edit-photo/confirm','AdminController@editarFoto')->name('editPhoto');
+        // Rotas para editar a brand dos superstars
+        Route::get('edit-brand','AdminController@editarBrandRedirect')->name('editBrandRedirect');
+        Route::post('edit-brand/confirm','AdminController@editarBrand')->name('editBrand');
 
     });
-    Route::prefix('market')->group(function (){
-        Route::get('status','MarketController@mercadoStatusRedirect')->name('mercadoStatusRedirect');
-        Route::post('status/confirm','MarketController@mercadoStatus')->name('mercadoStatus');
-        Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
-        Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
+    // Rotas para edição de informações do mercado
+    Route::prefix('market')->middleware('auth.admin2')->group(function (){
+        // Rotas para editar o status do mercado 
+        Route::get('edit-status','AdminController@editarMercadoStatusRedirect')->name('editMarketStatusRedirect');
+        Route::post('edit-status/confirm','AdminController@editarMercadoStatus')->name('editMarketStatus');
+        // Rotas para editar a brand do PPV
+        Route::get('edit-ppv-brand','AdminController@editarPpvBrandRedirect')->name('editPpvBrandRedirect');
+        Route::post('edit-ppv-brand/confirm','AdminController@editarPpvBrand')->name('editPpvBrand');
+        // Rotas para editar a visibilidade do PPV
         Route::get('show-ppv','MarketController@exibirPpvRedirect')->name('exibirPpvRedirect');
         Route::post('show-ppv/confirm','MarketController@exibirPpv')->name('exibirPpv');
     });
@@ -70,7 +80,7 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
 // Fim de rotas para todas as funções derivadas do painel ADMIN
 
 //Rota para todas as funções variadas ao painel de Mercado
-Route::prefix('market')->group(function () {
+Route::prefix('market')->middleware('auth.logado')->group(function () {
     Route::get('/','MarketController@mercado')->name('mercadoHome');
 
     Route::prefix('raw')->group(function () {
@@ -117,7 +127,7 @@ Route::prefix('market')->group(function () {
     });
 });
 
-Route::prefix('league')->group(function () {
+Route::prefix('league')->middleware('auth.logado')->group(function () {
         Route::get('/','LeagueController@liga')->name('leagueHome');
         Route::get('/quitLeague','LeagueController@sairLiga')->name('leagueQuit');
         Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
@@ -125,24 +135,20 @@ Route::prefix('league')->group(function () {
         Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
     });
 //Rotas Rank Usuario Cash
-Route::get('statistics','RankingController@statistics')->name('statistics');
-Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->name('selectPhotoRedirect');
-Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->name('selectPhoto');
+Route::get('statistics','RankingController@statistics')->middleware('auth.logado')->name('statistics');
+Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
+Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->middleware('auth.logado')->name('selectPhoto');
 
 Route::get('/gameRules', function () {
     return view('gameRules');
-})->name('gameRules');
+})->middleware('auth.logado')->name('gameRules');
 
 Route::get('/howToPlay', function () {
     return view('howToPlay');
-})->name('howToPlay');
+})->middleware('auth.logado')->name('howToPlay');
 
 
 Auth::routes();
-//Rotas Rank Points Superstar
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarPoints')->name('rankSuperstarPoints');
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarRawPoints')->name('rankSuperstarRawPoints');
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarSdPoints')->name('rankSuperstarSdPoints');
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 

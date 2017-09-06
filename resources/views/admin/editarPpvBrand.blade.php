@@ -1,12 +1,15 @@
 @extends('layouts/adminLayout')
-@section('title', 'Add Points')
+@section('title', 'Edit PPV Brand')
 @section('conteudo_principal')
     <div class="card-box">
         <div class="container-fluid">
             <div class="row">
                 <div class="wrapper">
                     <!-- FORMULARIO -->
-                    <form action="{{route('addPoints')}}" method="post" name="Edit_Superstar_Form" class="form-signin">       
+                    <form action="{{route('editPpvBrand')}}" method="post" name="Market_Satus_Form" class="form-signin">       
+                        <h1 class="page-header">
+                                Editing PPV
+                                </h1>
                         {{ csrf_field()  }}
 
                         @if (count($errors) > 0)
@@ -19,25 +22,17 @@
                             </div>
                         @endif
 
-
-
                         <!-- Campos -->  
                         <div class="form-group">
-                            <label>Name</label>
-                            <input list="names" name="name" class="form-control" autofocus="">
-                            <datalist id="names">
-                                @foreach($superstars as $superstar){
-                                    <option value="{{$superstar->name}}">
-                                }
-                                @endforeach
-                            </datalist>
-                        </div>
-                        <div class="form-group">
-                            <label>Points:</label>
-                            <input type="number" name="points" min="0" step="any" class="pontos form-control">
+                            <label>Brand:</label>
+                            <select name="brand" class="form-control">
+                                <option value="Raw">Raw</option>
+                                <option value="Smackdown">Smackdown</option>
+                                <option value="Both">Both</option>
+                            </select>
                         </div>
                         <!-- BOTÃO -->
-                        <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Add</button>     
+                        <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Edit</button>     
 
                     </form>
                     <!-- FORMULARIO [FIM] -->

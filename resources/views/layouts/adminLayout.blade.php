@@ -45,7 +45,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="{{ route('painelAdmin') }}" class="logo">Admin Panel</a>
+                    <a href="{{ route('painelAdmin') }}" class="logo">Wrestlemaniac</a>
                 </div>
 
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -113,15 +113,26 @@
                             <li>
                                 <a href="{{ route('painelAdmin') }}" class="waves-effect {{route::is('painelAdmin') ? 'active' : '' }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                             </li>
-
+                            @if(Auth::user()->user_power >=2)
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-star"></i> <span> Superstars </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('createSuperstarRedirect') }}"><i class="zmdi zmdi-plus"></i>Create Superstar</a></li>
                                     <li><a href="{{ route('addPointsRedirect') }}"><i class="zmdi zmdi-ticket-star"></i>Add Points</a></li>
                                     <li><a href="{{ route('editChampionRedirect') }}"><i class="fa fa-trophy fa-lg"></i>Edit Champion</a></li>
+                                    <li><a href="{{ route('editPhotoRedirect') }}"><i class="zmdi zmdi-camera"></i>Edit Photo</a></li>
+                                    <li><a href="{{ route('editBrandRedirect') }}"><i class="zmdi zmdi-flag"></i>Edit Brand</a></li>
                                 </ul>
                             </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shopping-cart"></i> <span> Market </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('editMarketStatusRedirect') }}"><i class="zmdi zmdi-lock"></i>Edit Status</a></li>
+                                    <li><a href="{{ route('editPpvBrandRedirect') }}"><i class="zmdi zmdi-flag"></i>Edit PPV Brand</a></li>
+                                </ul>
+                            </li>
+                            @else
+                            @endif
                             <!--
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-text"></i><span class="label label-warning pull-right">7</span><span> Forms </span> </a>

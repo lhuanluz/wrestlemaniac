@@ -45,13 +45,22 @@ class User extends Authenticatable
     public function isAdmin()
     {
         $isAdmin = Auth::user()->user_power;
-        if ($isAdmin == 1){
+        if ($isAdmin >= 1){
             return true;
         }else{
             return false;
         }
         
     }
-    
+    public function isAdmin2()
+    {
+        $isAdmin = Auth::user()->user_power;
+        if ($isAdmin >= 2){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }    
     
 }
