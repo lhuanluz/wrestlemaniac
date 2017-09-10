@@ -122,6 +122,8 @@
                                     <li><a href="{{ route('editChampionRedirect') }}"><i class="fa fa-trophy fa-lg"></i>Edit Champion</a></li>
                                     <li><a href="{{ route('editPhotoRedirect') }}"><i class="zmdi zmdi-camera"></i>Edit Photo</a></li>
                                     <li><a href="{{ route('editBrandRedirect') }}"><i class="zmdi zmdi-flag"></i>Edit Brand</a></li>
+                                    <li><a href="{{ route('resetSuperstarRedirect') }}"><i class="zmdi zmdi-refresh-alt"></i>Reset Superstar</a></li>
+                                    <li><a href="{{ route('fixSuperstarRedirect') }}"><i class="zmdi zmdi-wrench"></i>Fix Superstar</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
@@ -129,6 +131,18 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('editMarketStatusRedirect') }}"><i class="zmdi zmdi-lock"></i>Edit Status</a></li>
                                     <li><a href="{{ route('editPpvBrandRedirect') }}"><i class="zmdi zmdi-flag"></i>Edit PPV Brand</a></li>
+                                    <li><a href="{{ route('editPpvVisibilityRedirect') }}"><i class="zmdi zmdi-eye"></i>Edit PPV Visibility</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-accounts"></i> <span> Users </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span> Leagues </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Leagues</a></li>
                                 </ul>
                             </li>
                             @else

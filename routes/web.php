@@ -35,6 +35,12 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         // Rotas para editar a brand dos superstars
         Route::get('edit-brand','AdminController@editarBrandRedirect')->name('editBrandRedirect');
         Route::post('edit-brand/confirm','AdminController@editarBrand')->name('editBrand');
+        // Rotas para resetar superstars
+        Route::get('reset','AdminController@resetarSuperstarRedirect')->name('resetSuperstarRedirect');
+        Route::post('reset/confirm','AdminController@resetarSuperstar')->name('resetSuperstar');
+        // Rotas para consertar superstars
+        Route::get('fix','AdminController@consertarSuperstarRedirect')->name('fixSuperstarRedirect');
+        Route::post('fix/confirm','AdminController@consertarSuperstar')->name('fixSuperstar');
 
     });
     // Rotas para edição de informações do mercado
@@ -46,8 +52,8 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('edit-ppv-brand','AdminController@editarPpvBrandRedirect')->name('editPpvBrandRedirect');
         Route::post('edit-ppv-brand/confirm','AdminController@editarPpvBrand')->name('editPpvBrand');
         // Rotas para editar a visibilidade do PPV
-        Route::get('show-ppv','MarketController@exibirPpvRedirect')->name('exibirPpvRedirect');
-        Route::post('show-ppv/confirm','MarketController@exibirPpv')->name('exibirPpv');
+        Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
+        Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
     });
     //Rotas Para Editar Usuarios
     Route::prefix('user')->group(function (){
@@ -61,7 +67,7 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('givePro/confirm','UsuariosController@givePro')->name('givePro');
     });
     Route::prefix('leagues')->group(function (){ 
-        Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');
+        Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');
 
     });
     Route::prefix('photos')->group(function (){
@@ -150,7 +156,6 @@ Route::get('/howToPlay', function () {
 
 Auth::routes();
 Route::get('/', 'InicioController@homeRedirect')->name('home');
-
 
 Route::get('/faq', function () {
     return view('faq/faq');

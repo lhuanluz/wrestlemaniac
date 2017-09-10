@@ -599,21 +599,6 @@ class MarketController extends Controller
         }
         return redirect()->route('mercadoPpvHome');
     }
-    public function exibirPpv(Request $request){
-        $this->validate($request,[
-                'acao'      => 'required'
-            ]);
-        DB::table('configs')
-                ->update([
-                'statusMercadoPPV' => $request->acao
-                ]);
-        return redirect()->route('painelAdmin');
-    }
-    public function exibirPpvRedirect(){
-        if (Auth::guest()) {
-            return redirect()->route('inicio');
-        }else{
-            return view('exibirPPV');
-        }
-    }
+    
+    
 }

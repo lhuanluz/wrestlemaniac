@@ -27,7 +27,7 @@ I8,        8        ,8I                                            88           
     // REDIRECTS
         public function adminPanel(){
             $usuariosCadastrados = DB::table('users')->count();
-            $admins = DB::table('users')->where('user_power','>=',1)->get();
+            $admins = DB::table('users')->where('user_power','>=',1)->orderBy('user_power','desc')->get();
             $usuariosCadastradosHoje = DB::table('users')->whereDate('created_at', DB::raw('CURDATE()'))->count('created_at');
             $timesDoRaw = DB::table('raw_teams')
                             ->where('superstar01','!=',103)
@@ -98,6 +98,23 @@ I8,        8        ,8I                                            88           
                     ]);
             }
 
+            public function resetarSuperstarRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de edição de brand de superstar
+                return view('admin/resetarSuperstar',[
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]);
+            }
+
+            public function consertarSuperstarRedirect(){
+                $superstars = DB::table('superstars')->get(); // Recebe todos os superstar no banco de dados para facilitar localização
+                // Retorna o usuário para a página de edição de brand de superstar
+                return view('admin/consertarSuperstar',[
+                    'superstars' => $superstars // Passa os superstars recebidos para a página
+                    ]);
+            }
+
+
         // Redirects de Mercado
 
             public function editarMercadoStatusRedirect(){
@@ -110,8 +127,13 @@ I8,        8        ,8I                                            88           
                 return view('admin/editarPpvBrand');
             }
 
-    // FUNÇÕES
+            public function editarPpvVisibilidadeRedirect(){
+                // Retorna o usuário para a página de edição da visibilidade do PPV
+                return view('admin/editarVisibilidadePpv');
+            }
 
+    // FUNÇÕES
+// INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
             // Início da Validação
                 // Valida os campos do Nome, Brand e Imagem do superstar que deseja ser cadastrado
@@ -320,10 +342,61 @@ I8,        8        ,8I                                            88           
         // Retorna o usuário para a página de edição de brand do superstar
         return redirect()->route('editBrandRedirect');
     }
+    public function resetarSuperstar(Request $request){
+        // Início da Validação
+            // Valida o campos Name
+            $this->validate($request,[
+                'name'      => 'required',
+            ]);
+        // Fim da Validação
+
+        // Reseta o superstar para o padrão
+        DB::table('superstars')
+            ->where('name',$request->name)
+            ->update([
+                'points' => 0.0,
+                'last_points' => 0.0,
+                'last_show' => 0,
+                'price' => 1000,
+                'champion' => 0,
+                'belt' => 'none'
+            ]);
+        // Retorna o usuário para a página de reset de superstar
+        return redirect()->route('resetSuperstarRedirect');
+    }
+    public function consertarSuperstar(Request $request){
+        // Início da Validação
+            // Valida o campos Name
+            $this->validate($request,[
+                'name'      => 'required',
+            ]);
+        // Fim da Validação
+        $superstar = DB::table('superstars')
+                    ->where('name',$request->name)
+                    ->first();
+        $pontos = $superstar->points;
+        $ult_preço = $superstar->price;
+        if($pontos < 3.0){
+                $ult_preço = $ult_preço + (100 - $pontos * 10); // Reduz o valor do superstar
+        }else{ // Caso os pontos do superstar sejam iguais ou maiores que 3.0
+            $ult_preço = $ult_preço - ($pontos * 10); // Aumenta o valor do superstar
+        }
+        // Reseta o superstar que foi pontuado de forma errada
+        DB::table('superstars')
+        ->where('name',$request->name)
+        ->update([
+            'points' => 0.0,
+            'last_show' => 0,
+            'price' => $ult_preço
+        ]);
+        return redirect()->route('fixSuperstarRedirect');
+    }
+// FIM FUNÇÕES SUPERSTARS
+// INÍCIO FUNÇÕES MERCADO
 
     public function editarMercadoStatus(Request $request){
         // Início da Validação
-            // Valida os campos Name e Image
+            // Valida os campos market e action
             $this->validate($request,[
                 'market'      => 'required',
                 'action'    => 'required'
@@ -679,5 +752,63 @@ I8,        8        ,8I                                            88           
         ]);
         return redirect()->route('editPpvBrandRedirect');
     }
+
+    public function editarPpvVisibilidade(Request $request){
+        // Início da Validação
+            // Valida os campo de ação
+            $this->validate($request,[
+                    'acao'      => 'required'
+            ]);
+        // Fim da Validação
+        // Atualiza a tabela
+        DB::table('configs')->update(['statusMercadoPPV' => $request->acao]);
+        return redirect()->route('editPpvVisibilityRedirect');
+    }
+    
+    public function atualizarLigas(){
+        $quantidadeLigas = DB::table('leagues')->orderBy('id','desc')->first();
+        $quantidadeLigas = $quantidadeLigas->id;
+        for ($i=1; $i <= $quantidadeLigas; $i++) {
+            $liga = DB::table('leagues')->where('id',$i)->first(); // Pega a linha da liga do usuário
+            if($liga != null){
+                if($liga->owner != 1){
+                    $quantidade = DB::table('users')->where('id_league',$i)->count(); // Pega quantos usuários da liga existem
+                    // Começa a pegar todos os times do raw de cada membro da liga
+                    $membrosRaw = DB::table('users')
+                                ->join('raw_teams', 'users.id', '=', 'raw_teams.user_id')
+                                ->where('id_league',$i)->take($quantidade)
+                                ->orderBy('team_total_points','desc')
+                                ->get();
+                    // Começa a pegar todos os times do smackdown de cada membro da liga
+                    $membrosSmackdown = DB::table('users')
+                                ->join('smackdown_teams', 'users.id', '=', 'smackdown_teams.user_id')
+                                ->where('id_league',$i)->take($quantidade)
+                                ->orderBy('team_total_points','desc')
+                                ->get();
+
+                    $addR = 0; // Pontos totais do Raw na liga
+                    $addS = 0; // Pontos totais do Smackdown na liga
+                    
+                    // For para adicionar os pontos dos times do raw e smackdown de cada membro aos pontos totais da liga raw/smackdown
+                    for ($j=0; $j < $quantidade ; $j++) { 
+                        $addR += $membrosRaw[$j]->team_total_points;
+                        $addS +=  $membrosSmackdown[$j]->team_total_points;
+                    }
+
+                    $addR = $addR / $quantidade; // Adiciona a média do Raw dividio pela quantidade de jogadores
+                    $addS = $addS / $quantidade; // Adiciona a média do Smackdown dividio pela quantidade de jogadores
+                    $add = $addR + $addS; // Soma as médias para achar a pontuação da liga
+
+                    // Faz o update na tabela
+                    DB::table('leagues')->where('id',$i)->update([
+                        'league_points' => $add
+                    ]);
+                }
+            }
+        }
+        return redirect()->route('painelAdmin');
+
+    }
+// FIM FUNÇÕES MERCADO
 
 }
