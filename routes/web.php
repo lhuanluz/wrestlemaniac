@@ -13,30 +13,47 @@
 
 
 
-//Rota para todas as funções variadas ao painel de ADMIN
+// Início de rotas para todas as funções derivadas do painel ADMIN
 Route::prefix('admin')->middleware('auth.admin')->group(function (){
-    Route::get('/','HomeController@adminPanel')->name('painelAdmin');
+    //Rota para a home do painel admin
+    Route::get('/','AdminController@adminPanel')->name('painelAdmin');
 
-    Route::prefix('superstar')->group(function (){
-        Route::get('edit','SuperstarsController@editPage')->name('editarSuperstar');
-        Route::post('create/confirm','SuperstarsController@cadastrar')->name('confirmarCriação');
-        Route::post('edit/confirm','SuperstarsController@editar')->name('confirmarEdição');
-        Route::get('create','SuperstarsController@criarSuperstar')->name('criarSuperstar');
-        Route::get('edit-champion','SuperstarsController@editarChampionRedirect')->name('editarChampionRedirect');
-        Route::post('edit-champion/confirm','SuperstarsController@editarChampion')->name('editarChampion');
-        Route::get('edit-photo','SuperstarsController@editarFotoRedirect')->name('editarFotoRedirect');
-        Route::post('edit-photo/confirm','SuperstarsController@editarFoto')->name('editarFoto');
-        Route::get('edit-brand','SuperstarsController@editarBrandRedirect')->name('editarBrandRedirect');
-        Route::post('edit-brand/confirm','SuperstarsController@editarBrand')->name('editarBrand');
+    // Rotas para edição de informações de superstars
+    Route::prefix('superstar')->middleware('auth.admin2')->group(function (){
+        // Rotas para criar superstars
+        Route::get('create-superstar','AdminController@criarSuperstarRedirect')->name('createSuperstarRedirect');
+        Route::post('create-superstar/confirm','AdminController@criarSuperstar')->name('createSuperstar');
+        // Rotas para dar pontos a superstars
+        Route::get('add-points','AdminController@adicionarPontosRedirect')->name('addPointsRedirect');
+        Route::post('add-points/confirm','AdminController@adicionarPontos')->name('addPoints');
+        // Rotas para dar campeão a superstars
+        Route::get('edit-champion','AdminController@editarChampionRedirect')->name('editChampionRedirect');
+        Route::post('edit-champion/confirm','AdminController@editarChampion')->name('editChampion');
+        // Rotas para editar a foto dos superstars
+        Route::get('edit-photo','AdminController@editarFotoRedirect')->name('editPhotoRedirect');
+        Route::post('edit-photo/confirm','AdminController@editarFoto')->name('editPhoto');
+        // Rotas para editar a brand dos superstars
+        Route::get('edit-brand','AdminController@editarBrandRedirect')->name('editBrandRedirect');
+        Route::post('edit-brand/confirm','AdminController@editarBrand')->name('editBrand');
+        // Rotas para resetar superstars
+        Route::get('reset','AdminController@resetarSuperstarRedirect')->name('resetSuperstarRedirect');
+        Route::post('reset/confirm','AdminController@resetarSuperstar')->name('resetSuperstar');
+        // Rotas para consertar superstars
+        Route::get('fix','AdminController@consertarSuperstarRedirect')->name('fixSuperstarRedirect');
+        Route::post('fix/confirm','AdminController@consertarSuperstar')->name('fixSuperstar');
 
     });
-    Route::prefix('market')->group(function (){
-        Route::get('status','MarketController@mercadoStatusRedirect')->name('mercadoStatusRedirect');
-        Route::post('status/confirm','MarketController@mercadoStatus')->name('mercadoStatus');
-        Route::get('edit-ppv','MarketController@editarPpvRedirect')->name('editarPpvRedirect');
-        Route::post('edit-ppv/confirm','MarketController@editarPpv')->name('editarPpv');
-        Route::get('show-ppv','MarketController@exibirPpvRedirect')->name('exibirPpvRedirect');
-        Route::post('show-ppv/confirm','MarketController@exibirPpv')->name('exibirPpv');
+    // Rotas para edição de informações do mercado
+    Route::prefix('market')->middleware('auth.admin2')->group(function (){
+        // Rotas para editar o status do mercado 
+        Route::get('edit-status','AdminController@editarMercadoStatusRedirect')->name('editMarketStatusRedirect');
+        Route::post('edit-status/confirm','AdminController@editarMercadoStatus')->name('editMarketStatus');
+        // Rotas para editar a brand do PPV
+        Route::get('edit-ppv-brand','AdminController@editarPpvBrandRedirect')->name('editPpvBrandRedirect');
+        Route::post('edit-ppv-brand/confirm','AdminController@editarPpvBrand')->name('editPpvBrand');
+        // Rotas para editar a visibilidade do PPV
+        Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
+        Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
     });
     //Rotas Para Editar Usuarios
     Route::prefix('user')->group(function (){
@@ -50,7 +67,7 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('givePro/confirm','UsuariosController@givePro')->name('givePro');
     });
     Route::prefix('leagues')->group(function (){ 
-        Route::get('update','LeagueController@atualizarLigas')->name('atualizarLigas');
+        Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');
 
     });
     Route::prefix('photos')->group(function (){
@@ -66,8 +83,10 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
 
     });
 });
+// Fim de rotas para todas as funções derivadas do painel ADMIN
+
 //Rota para todas as funções variadas ao painel de Mercado
-Route::prefix('market')->group(function () {
+Route::prefix('market')->middleware('auth.logado')->group(function () {
     Route::get('/','MarketController@mercado')->name('mercadoHome');
 
     Route::prefix('raw')->group(function () {
@@ -114,7 +133,7 @@ Route::prefix('market')->group(function () {
     });
 });
 
-Route::prefix('league')->group(function () {
+Route::prefix('league')->middleware('auth.logado')->group(function () {
         Route::get('/','LeagueController@liga')->name('leagueHome');
         Route::get('/quitLeague','LeagueController@sairLiga')->name('leagueQuit');
         Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
@@ -122,27 +141,25 @@ Route::prefix('league')->group(function () {
         Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
     });
 //Rotas Rank Usuario Cash
-Route::get('statistics','RankingController@statistics')->name('statistics');
-Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->name('selectPhotoRedirect');
-Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->name('selectPhoto');
+Route::get('statistics','RankingController@statistics')->middleware('auth.logado')->name('statistics');
+Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
+Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->middleware('auth.logado')->name('selectPhoto');
 
 Route::get('/gameRules', function () {
     return view('gameRules');
-})->name('gameRules');
+})->middleware('auth.logado')->name('gameRules');
 
 Route::get('/howToPlay', function () {
     return view('howToPlay');
-})->name('howToPlay');
+})->middleware('auth.logado')->name('howToPlay');
 
 
 Auth::routes();
-//Rotas Rank Points Superstar
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarPoints')->name('rankSuperstarPoints');
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarRawPoints')->name('rankSuperstarRawPoints');
-Route::get('rankSuperstarPoints','RankingController@rankSuperstarSdPoints')->name('rankSuperstarSdPoints');
 Route::get('/', 'InicioController@homeRedirect')->name('home');
-
 
 Route::get('/faq', function () {
     return view('faq/faq');
 })->name('faq');
+
+Route::get('alterName', 'UsuariosController@alterName')->name('name');
+Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');

@@ -129,4 +129,19 @@ class UsuariosController extends Controller
         return view('givePro');
     }
 
+    public function alterName(){
+        return view('teste');
+    }
+    public function alterNameRequest(Request $request){
+        $email = Auth::user()->email;
+        $this->validate($request,[
+            'newName' => 'required'
+        ]);
+        DB::table('users')
+        ->where('email',$email)
+        ->update([
+            'name' => $request->newName
+        ]);
+        return redirect()->route('home');
+    }
 }

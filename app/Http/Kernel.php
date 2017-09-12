@@ -24,6 +24,8 @@ class Kernel extends HttpKernel
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.admin' => Middleware\RedirectIfNotAdmin::class,
+        'auth.admin2' => Middleware\RedirectIfNotAdmin2::class,
+        'auth.logado' => Middleware\RedirectIfNotLogged::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
