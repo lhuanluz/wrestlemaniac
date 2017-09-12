@@ -87,25 +87,27 @@ class LeagueController extends Controller
             'secret_password' => 'required|confirmed',
             'secret_password_confirmation' => 'required'
         ]);
+        if(Auth::user()->id_league == 1){ 
+            $userId = Auth::user()->id; // Pega id do usuário
 
-        $userId = Auth::user()->id; // Pega id do usuário
-
-        // Cria Liga com as informações que o usuário digitou no formulário
-        $league = league::create([
-            'league_name' => $request->name,
-            'secret_password' => Hash::make($request->secret_password),
-            'owner' => $userId
-        ]);
-
-        // Seta a qual o id da liga dele na tabela de usuários
-        DB::table('users')
-            ->where('id',$userId)
-            ->update([
-                'id_league' => $league->id
+            // Cria Liga com as informações que o usuário digitou no formulário
+            $league = league::create([
+                'league_name' => $request->name,
+                'secret_password' => Hash::make($request->secret_password),
+                'owner' => $userId
             ]);
 
-        return redirect()->route('leagueHome'); // Retorna o usuário para a página de liga
+            // Seta a qual o id da liga dele na tabela de usuários
+            DB::table('users')
+                ->where('id',$userId)
+                ->update([
+                    'id_league' => $league->id
+                ]);
 
+            return redirect()->route('leagueHome'); // Retorna o usuário para a página de liga
+            }else{
+            return redirect()->route('leagueHome');
+        }
     }
 
     public function entrarLiga(Request $request){
@@ -114,42 +116,45 @@ class LeagueController extends Controller
             'name'      => 'required',
             'secret_password' => 'required'
         ]);
-
-        // Pega a liga que o usuário digitou
-        $league = DB::table('leagues')
-            ->where('league_name',$request->name)
-            ->first();
-        $quantidade = DB::table('users')->where('id_league',$league->id)->count(); // Pega quantos usuários da liga existem
-        // Confirma se a senha que ele digito bate com a da liga
-        if (Hash::check($request->secret_password, $league->secret_password)) {
-            // Se confirmar
-            $userId = Auth::user()->id; // Pega o id do usuário
-            $dono = DB::table('users')->where('id',$league->owner)->first();// Recebe o dono
-            if($dono->type == 'Pro'){ // Confere se o dono é pro
-                // Adiciona o jogador a liga
-                DB::table('users')
-                    ->where('id',$userId)
-                    ->update([
-                        'id_league' => $league->id
-                    ]);
-            }else{ // Caso a liga não seja pro
-                if($quantidade < 5){ // Verifica se a liga tem menos de 5 membros
+        if(Auth::user()->id_league == 1){  
+            // Pega a liga que o usuário digitou
+            $league = DB::table('leagues')
+                ->where('league_name',$request->name)
+                ->first();
+            $quantidade = DB::table('users')->where('id_league',$league->id)->count(); // Pega quantos usuários da liga existem
+            // Confirma se a senha que ele digito bate com a da liga
+            if (Hash::check($request->secret_password, $league->secret_password)) {
+                // Se confirmar
+                $userId = Auth::user()->id; // Pega o id do usuário
+                $dono = DB::table('users')->where('id',$league->owner)->first();// Recebe o dono
+                if($dono->type == 'Pro'){ // Confere se o dono é pro
                     // Adiciona o jogador a liga
                     DB::table('users')
-                    ->where('id',$userId)
-                    ->update([
-                        'id_league' => $league->id
-                    ]);
-                }else{
-                    return redirect()->route('leagueHome');
+                        ->where('id',$userId)
+                        ->update([
+                            'id_league' => $league->id
+                        ]);
+                }else{ // Caso a liga não seja pro
+                    if($quantidade < 5){ // Verifica se a liga tem menos de 5 membros
+                        // Adiciona o jogador a liga
+                        DB::table('users')
+                        ->where('id',$userId)
+                        ->update([
+                            'id_league' => $league->id
+                        ]);
+                    }else{
+                        return redirect()->route('leagueHome');
+                    }
                 }
+                
+            }else{
+                //NÃO ACERTOU A PALAVRA CHAVE
+                return redirect()->route('leagueHome');
             }
-            
+            return redirect()->route('leagueHome');
         }else{
-            //NÃO ACERTOU A PALAVRA CHAVE
             return redirect()->route('leagueHome');
         }
-        return redirect()->route('leagueHome');
     }
     /*
     public function mudarNomeLiga(Request $request){
