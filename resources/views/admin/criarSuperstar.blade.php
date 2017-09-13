@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="wrapper">
                 <!-- FORMULARIO -->
-                <form action="{{route('createSuperstar')}}" method="post" name="Create_Superstar_Form" class="form-create" enctype="multipart/form-data">       
+                <form action="{{route('createSuperstar')}}" method="post" name="Create_Superstar_Form" class="form-create" enctype="multipart/form-data" id="enviar">       
                     {{ csrf_field()  }}
 
                     @if (count($errors) > 0)
@@ -37,10 +37,9 @@
                     </div>
                     
                     <!-- BOTÃO -->
-                    <br/>
-                    <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Create</button>     
-
-                </form>         
+                    <br/>    
+                </form>    
+                <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="editar" type="Submit" onClick="teste()">Create</button>     
                 <!-- FORMULARIO [FIM] -->
             </div>
         </div>

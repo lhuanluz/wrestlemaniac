@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="{{ url('plugins/morris/morris.css') }}">
 
         <!-- App css -->
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('css/core.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('css/components.css') }}" rel="stylesheet" type="text/css" />
@@ -31,6 +32,30 @@
         <![endif]-->
 
         <script src="{{ url('js/modernizr.min.js') }}"></script>
+        <script src="{{ url('js/sweetalert.min.js') }}"></script>
+        <script>
+                    function teste() {
+
+                        swal({
+                        title: "Are you sure?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                      })
+                      .then((willDelete) => {
+                        if (willDelete) {
+                          swal("The changes are done!", {
+                            icon: "success", 
+                          });
+                          document.getElementById("enviar").submit();
+                        } else {
+                        
+                        }
+                      });
+                    }
+                    
+                    
+        </script>
 
     </head>
 

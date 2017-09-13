@@ -96,6 +96,23 @@
             });
         });
 
+        $(".swa-confirm").on("click", function(e) {
+            e.preventDefault();
+            swal({
+                title: $(this).data("swa-title"),
+                text: $(this).data("swa-text"),
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#cc3f44",
+                confirmButtonText: $(this).data("swa-btn-txt"),
+                closeOnConfirm: true,
+                html: false
+            }, function( confirmed ) {
+                if( confirmed )
+                    $(this).closest('form').submit();
+            });
+        });
+
         //Info
         $('#info-alert').click(function () {
             swal({

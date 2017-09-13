@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="wrapper">
                 <!-- FORMULARIO -->
-                <form action="{{route('resetSuperstar')}}" method="post" name="Reset_Superstar_Form" class="form-create">       
+                <form action="{{route('resetSuperstar')}}" method="post" name="Reset_Superstar_Form" class="form-create" id="enviar">       
                     {{ csrf_field()  }}
 
                     @if (count($errors) > 0)
@@ -31,9 +31,8 @@
                     </div>
                     <!-- BOTÃO -->
                     <br/>
-                    <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Reset</button>     
-
-                </form>         
+                </form>      
+                <button class="btn btn-rounded btn-danger btn-block btn-lg"   name="Submit" value="editar" type="Submit" onClick="teste()">Reset</button>   
                 <!-- FORMULARIO [FIM] -->
             </div>
         </div>

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="wrapper">
                     <!-- FORMULARIO -->
-                    <form action="{{route('editPpvBrand')}}" method="post" name="Market_Satus_Form" class="form-signin">       
+                    <form action="{{route('editPpvBrand')}}" method="post" name="Market_Satus_Form" class="form-signin" id="enviar">       
                         {{ csrf_field()  }}
 
                         @if (count($errors) > 0)
@@ -29,9 +29,8 @@
                             </select>
                         </div>
                         <!-- BOTÃO -->
-                        <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Edit</button>     
-
                     </form>
+                    <button class="btn btn-rounded btn-danger btn-block btn-lg"   name="Submit" value="editar" type="Submit" onClick="teste()">Edit</button>
                     <!-- FORMULARIO [FIM] -->
                 </div>
             </div>

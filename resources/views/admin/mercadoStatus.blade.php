@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="wrapper">
                     <!-- FORMULARIO -->
-                    <form action="{{route('editMarketStatus')}}" method="post" name="Market_Satus_Form" class="form-signin">       
+                    <form action="{{route('editMarketStatus')}}" method="post" name="Market_Satus_Form" class="form-signin" id="enviar">       
                         <h1 class="page-header">
                                     Editing Market Status
                                 </h1>
@@ -38,10 +38,9 @@
                                 <option value="Fechado">Close</option>
                             </select>
                         </div>  
-                        <!-- BOTÃO -->
-                        <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Edit</button>     
-
+                        <!-- BOTÃO --> 
                     </form>
+                    <button class="btn btn-rounded btn-danger btn-block btn-lg"   name="Submit" value="editar" type="Submit" onClick="teste()">Edit</button>
                     <!-- FORMULARIO [FIM] -->
                 </div>
             </div>

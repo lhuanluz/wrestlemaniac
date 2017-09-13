@@ -35,19 +35,53 @@ I8,        8        ,8I                                            88           
                             ->orwhere('superstar03','!=',101)
                             ->orwhere('superstar04','!=',100)
                             ->count();
+
             $timesDoSmack = DB::table('smackdown_teams')
                             ->where('superstar01','!=',103)
                             ->orwhere('superstar02','!=',102)
                             ->orwhere('superstar03','!=',101)
                             ->orwhere('superstar04','!=',100)
                             ->count();
+
             $timesDoPPV = DB::table('ppv_teams')
                             ->where('superstar01','!=',103)
                             ->orwhere('superstar02','!=',102)
                             ->orwhere('superstar03','!=',101)
                             ->orwhere('superstar04','!=',100)
                             ->count();
+
+            $top10Raw = DB::select('select id, name,image, sum(total) as total from (
+                select s.id, s.name,s.image, count(st.superstar01) as total from superstars as s, raw_teams as st where st.superstar01 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar02) as total from superstars as s, raw_teams as st where st.superstar02 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar03) as total from superstars as s, raw_teams as st where st.superstar03 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar04) as total from superstars as s, raw_teams as st where st.superstar04 = s.id group by s.id,s.name,s.image
+                ) as juncao where id not in (103,102,101,100) group by id,juncao.name,juncao.image order by total desc limit 10');
+
+            $top10Smack = DB::select('select id, name,image, sum(total) as total from (
+                select s.id, s.name,s.image, count(st.superstar01) as total from superstars as s, smackdown_teams as st where st.superstar01 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar02) as total from superstars as s, smackdown_teams as st where st.superstar02 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar03) as total from superstars as s, smackdown_teams as st where st.superstar03 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar04) as total from superstars as s, smackdown_teams as st where st.superstar04 = s.id group by s.id,s.name,s.image
+                ) as juncao where id not in (103,102,101,100) group by id,juncao.name,juncao.image order by total desc limit 10');
+
+            $top10Ppv = DB::select('select id, name,image, sum(total) as total from (
+                select s.id, s.name,s.image, count(st.superstar01) as total from superstars as s, ppv_teams as st where st.superstar01 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar02) as total from superstars as s, ppv_teams as st where st.superstar02 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar03) as total from superstars as s, ppv_teams as st where st.superstar03 = s.id group by s.id,s.name,s.image
+                union
+                select s.id, s.name,s.image, count(st.superstar04) as total from superstars as s, ppv_teams as st where st.superstar04 = s.id group by s.id,s.name,s.image
+                ) as juncao where id not in (103,102,101,100) group by id,juncao.name,juncao.image order by total desc limit 10');
+
             $mercados = DB::table('configs')->first();
+
             return view('admin/painelAdmin',[
                 'usuariosCadastrados' => $usuariosCadastrados,
                 'usuariosCadastradosHoje' => $usuariosCadastradosHoje,
@@ -55,7 +89,10 @@ I8,        8        ,8I                                            88           
                 'timesDoRaw' => $timesDoRaw,
                 'timesDoSmack' => $timesDoSmack,
                 'timesDoPPV' => $timesDoPPV,
-                'mercados' => $mercados
+                'mercados' => $mercados,
+                'top10Raw' => $top10Raw,
+                'top10Smack' => $top10Smack,
+                'top10Ppv' => $top10Ppv
             ]);
         }
 
