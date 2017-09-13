@@ -163,3 +163,5 @@ Route::get('/faq', function () {
 
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
+Route::get('alterPass', 'UsuariosController@alterPass')->name('pass');
+Route::post('alterPassR', 'UsuariosController@alterPassRequest')->name('passR');

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="wrapper">
                     <!-- FORMULARIO -->
-                    <form action="{{route('editChampion')}}" method="post" name="Edit_Champion_Form" class="form-signin">       
+                    <form action="{{route('editChampion')}}" method="post" name="Edit_Champion_Form" class="form-signin" id="enviar">       
                         {{ csrf_field()  }}
 
                         @if (count($errors) > 0)
@@ -24,7 +24,7 @@
                         <!-- Campos -->  
                         <div class="form-group">
                             <label>Name</label>
-                            <input list="names" name="name" class="form-control" autofocus="">
+                            <input list="names" name="name" class="form-control" autofocus="" id="selecionado">
                             <datalist id="names">
                                 @foreach($superstars as $superstar){
                                     <option value="{{$superstar->name}}">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <select name="belt" class="form-control">
+                            <select name="belt" class="form-control" id="belt">
                                 <option value="Cruiserweight Champion">Cruiserweight Champion</option>
                                 <option value="Intercontinental Champion">Intercontinental Champion</option>
                                 <option value="Mr. Money in the Bank">Mr. Money in the Bank</option>
@@ -51,9 +51,8 @@
                             </select>
                         </div>
                         <!-- BOTÃO -->
-                        <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="editar" type="Submit">Edit</button>     
-
                     </form>
+                    <button class="btn btn-rounded btn-danger btn-block btn-lg"   name="Submit" value="editar" type="Submit" onClick="teste()">Edit</button>
                     <!-- FORMULARIO [FIM] -->
                 </div>
             </div>

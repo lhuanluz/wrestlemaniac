@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -144,4 +145,27 @@ class UsuariosController extends Controller
         ]);
         return redirect()->route('home');
     }
+    public function alterPass(){
+        return view('teste');
+    }
+    public function alterPassRequest(Request $request){
+        $email = Auth::user()->email;
+        $pass = Auth::user()->password;
+        $this->validate($request,[
+            'oldPass' => 'required|string|min:6' ,
+            'newPass' => 'required|string|min:6'
+        ]);
+        if (Hash::check($request->oldPass, $pass))
+        {
+            DB::table('users')
+            ->where('email',$email)
+            ->update([
+                'password' => Hash::make($request->newPass),
+                'updated_at' => DB::raw('CURDATE()')
+            ]);
+            return redirect()->route('home')->withMessage("Password Changed");
+        }else{
+            return redirect()->route('home')->withMessage("Password Change Failed");
+    }
+}
 }

@@ -6,3 +6,17 @@
     float: left;
     width: 72px;
 }
+.inbox-widget .inbox-item .inbox-item-date {
+    color: #98a6ad;
+    font-size: 15px;
+    position: absolute;
+    right: 7px;
+    top: 2px;
+}
+.inbox-widget .inbox-item img {
+    width: 50px;
+}
+.inbox-widget .inbox-item .inbox-item-author {
+    color: white;
+    margin-left:20px; 
+}

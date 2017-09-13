@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="wrapper">
                 <!-- FORMULARIO -->
-                <form action="{{route('editBrand')}}" method="post" name="Edit_Brand_Form" class="form-create">       
+                <form action="{{route('editBrand')}}" method="post" name="Edit_Brand_Form" class="form-create" id="enviar">       
                     {{ csrf_field()  }}
 
                     @if (count($errors) > 0)
@@ -38,10 +38,9 @@
                         </select>
                     </div>
                     <!-- BOTÃO -->
-                    <br/>
-                    <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Edit</button>     
-
-                </form>         
+                    <br/>   
+                </form>     
+                <button class="btn btn-rounded btn-danger btn-block btn-lg"   name="Submit" value="editar" type="Submit" onClick="teste()">Edit</button>    
                 <!-- FORMULARIO [FIM] -->
             </div>
         </div>
