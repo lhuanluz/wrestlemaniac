@@ -55,18 +55,22 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
         Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
     });
-    //Rotas Para Editar Usuarios
-    Route::prefix('user')->group(function (){
-        Route::get('editEmail','UsuariosController@editarEmail')->name('editEmail');
-        Route::post('editEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
-        Route::get('editNome','UsuariosController@editarNome')->name('editNome');
-        Route::post('editNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
-        Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
-        Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
-        Route::get('givePro','UsuariosController@giveProRedirect')->name('giveProRedirect');
-        Route::post('givePro/confirm','UsuariosController@givePro')->name('givePro');
+    // Rotas Para Editar Usuarios
+    Route::prefix('user')->middleware('auth.admin3')->group(function (){
+        // Rotas para editar o email do usuário
+        Route::get('edit-email','AdminController@editarUsuarioEmailRedirect')->name('editUserEmailRedirect');
+        Route::post('edit-email/confirm','AdminController@editarUsuarioEmail')->name('editUserEmail');
+        // Rotas para editar o nome do usuário
+        Route::get('edit-name','AdminController@editarUsuarioNomeRedirect')->name('editUserNameRedirect');
+        Route::post('edit-name/confirm','AdminController@editarUsuarioNome')->name('editUserName');
+        // Rotas para dar ao usuário permissões ADMIN
+        Route::get('create-admin','AdminController@criarAdminRedirect')->name('createAdminRedirect');
+        Route::post('create-admin/confirm','AdminController@criarAdmin')->name('createAdmin');
+        // Rotas para dar ao usuário o sistema PRO
+        Route::get('give-pro','AdminController@darProRedirect')->name('giveProRedirect');
+        Route::post('give-pro/confirm','AdminController@darPro')->name('givePro');
     });
-    Route::prefix('leagues')->group(function (){ 
+    Route::prefix('leagues')->middleware('auth.admin3')->group(function (){ 
         Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');
 
     });

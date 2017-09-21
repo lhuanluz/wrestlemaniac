@@ -138,7 +138,7 @@
                             <li>
                                 <a href="{{ route('painelAdmin') }}" class="waves-effect {{route::is('painelAdmin') ? 'active' : '' }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                             </li>
-                            @if(Auth::user()->user_power >=2)
+                            @if (Auth::user()->user_power >=2)
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-star"></i> <span> Superstars </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
@@ -159,9 +159,15 @@
                                     <li><a href="{{ route('editPpvVisibilityRedirect') }}"><i class="zmdi zmdi-eye"></i>Edit PPV Visibility</a></li>
                                 </ul>
                             </li>
+                            @endif
+                            @if (Auth::user()->user_power >= 3)
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-accounts"></i> <span> Users </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
+                                    <li><a href="{{ route('editUserNameRedirect') }}"><i class="zmdi zmdi-account-box-mail"></i>Edit Name</a></li>
+                                    <li><a href="{{ route('editUserEmailRedirect') }}"><i class="zmdi zmdi-email"></i>Edit Email</a></li>
+                                    <li><a href="{{ route('giveProRedirect') }}"><i class="zmdi zmdi-cake"></i>Give Pro</a></li>
+                                    <li><a href="{{ route('createAdminRedirect') }}"><i class="zmdi zmdi-coffee"></i>Create Admin</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
@@ -170,7 +176,6 @@
                                     <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Leagues</a></li>
                                 </ul>
                             </li>
-                            @else
                             @endif
                             <!--
                             <li class="has_sub">

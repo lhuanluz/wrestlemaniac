@@ -61,6 +61,16 @@ class User extends Authenticatable
             return false;
         }
         
+    }
+    public function isAdmin3()
+    {
+        $isAdmin = Auth::user()->user_power;
+        if ($isAdmin >= 3){
+            return true;
+        }else{
+            return false;
+        }
+        
     }    
     
 }

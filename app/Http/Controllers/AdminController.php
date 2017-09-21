@@ -169,6 +169,25 @@ I8,        8        ,8I                                            88           
                 return view('admin/editarVisibilidadePpv');
             }
 
+        // Redirects do Usuário
+            public function darProRedirect(){
+                // Retorna o usuário para a página de dar PRO
+                return view('admin/darPro');
+            }
+                
+            public function criarAdminRedirect(){
+                // Retorna o usuário para a página de criar admin
+                return view('admin/criarAdmin');
+            }
+
+            public function editarUsuarioEmailRedirect(){
+                // Retorna o usuário para a página de editar email do usuário
+                return view('admin/editarUsuarioEmail');
+            }
+            public function editarUsuarioNomeRedirect(){
+                // Retorna o usuário para a página de editar o nome do usuário
+                return view('admin/editarUsuarioNome');
+            }
     // FUNÇÕES
 // INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
@@ -494,7 +513,7 @@ I8,        8        ,8I                                            88           
                 // Executa as funções para todos os jogadores
                 for ($i=1; $i <= $quantidade ; $i++) { 
                     // Pega os superstars de cada time e seus preços
-                    $team = DB::table('ppv_teams')->where('id',$i)->value('superstar01');
+                    $team = DB::table('ppv_teams')->where('id',$i)->first();
 
                     $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->first();
                     $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->first();
@@ -847,5 +866,57 @@ I8,        8        ,8I                                            88           
 
     }
 // FIM FUNÇÕES MERCADO
+// INÍCIO FUNÇÕES USUÁRIO
+    public function darPro(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'tipo' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email',$request->email)
+            ->update([
+                'type' => $request->tipo
+            ]);
+
+        return redirect()->route('giveProRedirect');
+    }
+
+    public function criarAdmin(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nivel' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'user_power' => $request->nivel
+                ]);
+        return redirect()->route('createAdminRedirect');
+    }
+
+    public function editarUsuarioEmail(Request $request){
+        $this->validate($request,[
+            'emailAntigo' => 'required',
+            'email' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->emailAntigo)
+            ->update([
+                'email' => $request->email
+                ]);
+        return redirect()->route('editUserEmailRedirect');
+    }
+    public function editarUsuarioNome(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nome' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'name' => $request->nome
+                ]);
+        return redirect()->route('editUserNameRedirect');
+    }
 
 }
