@@ -69,6 +69,11 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         // Rotas para dar ao usuário o sistema PRO
         Route::get('give-pro','AdminController@darProRedirect')->name('giveProRedirect');
         Route::post('give-pro/confirm','AdminController@darPro')->name('givePro');
+        // Rotas para checar usuário
+        Route::get('check-user','AdminController@checarUsuarioRedirect')->name('checkUserRedirect');
+        Route::post('check-user/confirm','AdminController@checarUsuario')->name('checkUser');
+
+
     });
     Route::prefix('leagues')->middleware('auth.admin3')->group(function (){ 
         Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');

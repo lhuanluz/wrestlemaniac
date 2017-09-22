@@ -11,7 +11,7 @@ class UsuariosController extends Controller
 {    
     
     
-
+    
     public function selectPhoto(Request $request){
         $this->validate($request,[
             'photo' => 'required'
@@ -99,6 +99,13 @@ class UsuariosController extends Controller
             return redirect()->route('home')->withMessage("Password Changed");
         }else{
             return redirect()->route('home')->withMessage("Password Change Failed");
+        }
     }
-}
+    /*public function comprarIconeRedirect(){
+        $icones = DB::table('icons') 
+        return view('comprarIcone');
+    }
+    public function comprarIcone(Request $request){
+
+    }*/
 }

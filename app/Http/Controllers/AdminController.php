@@ -188,6 +188,9 @@ I8,        8        ,8I                                            88           
                 // Retorna o usuário para a página de editar o nome do usuário
                 return view('admin/editarUsuarioNome');
             }
+            public function checarUsuarioRedirect(){
+                return view('admin/checarUsuario');
+            }
     // FUNÇÕES
 // INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
@@ -917,6 +920,36 @@ I8,        8        ,8I                                            88           
                 'name' => $request->nome
                 ]);
         return redirect()->route('editUserNameRedirect');
+    }
+    public function checarUsuario(Request $request){
+        $this->validate($request,[
+            'email' => 'required'
+        ]);
+        
+        $user = DB::table('users')->where('email',$request->email)->first();
+        $rawTeam = DB::table('raw_teams')->where('user_id',$user->id)->first();
+        $smackdownTeam = DB::table('smackdown_teams')->where('user_id',$user->id)->first();
+        $ppvTeam = DB::table('ppv_teams')->where('user_id',$user->id)->first();
+
+        $superstarsRaw = DB::table('superstars')
+                        ->whereIn('id',[$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04])
+                        ->get();
+        $superstarsSmackdown = DB::table('superstars')
+                        ->whereIn('id',[$smackdownTeam->superstar01,$smackdownTeam->superstar02,$smackdownTeam->superstar03,$smackdownTeam->superstar04])
+                        ->get();
+        $superstarsPpv = DB::table('superstars')
+                        ->whereIn('id',[$ppvTeam->superstar01,$ppvTeam->superstar02,$ppvTeam->superstar03,$ppvTeam->superstar04])
+                        ->get();
+
+        return view('admin/infoUsuario',[
+            'user' => $user,
+            'rawTeam' => $rawTeam,
+            'smackdownTeam' => $smackdownTeam,
+            'ppvTeam' => $ppvTeam,
+            'superstarsRaw' => $superstarsRaw,
+            'superstarsSmackdown' => $superstarsSmackdown,
+            'superstarsPpv' => $superstarsPpv
+            ]);
     }
 
 }

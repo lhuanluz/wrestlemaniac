@@ -168,6 +168,7 @@
                                     <li><a href="{{ route('editUserEmailRedirect') }}"><i class="zmdi zmdi-email"></i>Edit Email</a></li>
                                     <li><a href="{{ route('giveProRedirect') }}"><i class="zmdi zmdi-cake"></i>Give Pro</a></li>
                                     <li><a href="{{ route('createAdminRedirect') }}"><i class="zmdi zmdi-coffee"></i>Create Admin</a></li>
+                                    <li><a href="{{ route('checkUserRedirect') }}"><i class="zmdi zmdi-search"></i>Check User</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
