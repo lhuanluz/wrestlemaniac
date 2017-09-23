@@ -479,7 +479,7 @@ I8,        8        ,8I                                            88           
             for ($i=1; $i <= $quantidadeSuperstars; $i++) { 
                 $superstarDesv = DB::table('superstars')->where('id',$i)->first();
                 if($superstarDesv->points == 0.0 && $superstarDesv->last_points == 0.0 && $superstarDesv->last_show == 0 && $superstarDesv->name != 'None'){
-                    $desvalorizacao = ($superstarDesv->price * 20) / 100;
+                    $desvalorizacao = ($superstarDesv->price * 5) / 100;
                     $desvalorizacao = round($desvalorizacao);
                     if ($superstarDesv->price - $desvalorizacao <= 500) {
                         DB::table('superstars')
