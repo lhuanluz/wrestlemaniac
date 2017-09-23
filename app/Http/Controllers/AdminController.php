@@ -340,55 +340,63 @@ I8,        8        ,8I                                            88           
             // Remove o superstar que mudou de brand dos times e adiciona o dinheiro do jogador de volta
 
             // Início remove o superstar dos times do RAW e adiciona o dinheiro de volta
+                DB::table('raw_teams')->where('superstar01',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('raw_teams')
                     ->where('superstar01',$superstar->id)
                     ->update([
                         'superstar01' => 103
-                    ])->increment('team_cash', $superstar->price);
-
+                    ]);
+                
+                DB::table('raw_teams')->where('superstar02',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('raw_teams')
                     ->where('superstar02',$superstar->id)
                     ->update([
                         'superstar02' => 102
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
 
+                DB::table('raw_teams')->where('superstar03',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('raw_teams')
                     ->where('superstar03',$superstar->id)
                     ->update([
                         'superstar03' => 101
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
 
+                DB::table('raw_teams')->where('superstar04',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('raw_teams')
                     ->where('superstar04',$superstar->id)
                     ->update([
                         'superstar04' => 100
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
             // Fim remove o superstar dos times do RAW e adiciona o dinheiro de volta
 
             // Início remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
+                DB::table('smackdown_teams')->where('superstar01',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('smackdown_teams')
                     ->where('superstar01',$superstar->id)
                     ->update([
                         'superstar01' => 103
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
 
+                DB::table('smackdown_teams')->where('superstar02',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('smackdown_teams')
                     ->where('superstar02',$superstar->id)
                     ->update([
                         'superstar02' => 102
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
 
+                DB::table('smackdown_teams')->where('superstar03',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('smackdown_teams')
                     ->where('superstar03',$superstar->id)
                     ->update([
                         'superstar03' => 101
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
 
+                DB::table('smackdown_teams')->where('superstar04',$superstar->id)->increment('team_cash',$superstar->price);
                 DB::table('smackdown_teams')
                     ->where('superstar04',$superstar->id)
                     ->update([
                         'superstar04' => 100
-                    ])->increment('team_cash', $superstar->price);
+                    ]);
             // Fim remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
 
             // Atualiza o superstar para a nova brand
@@ -488,7 +496,27 @@ I8,        8        ,8I                                            88           
             DB::table('configs')->update([
                 $coluna => $action // Altera o mercado desejado para aberto
             ]);
-            
+
+            $quantidadeSuperstars = DB::table('superstars')->count('id');
+            for ($i=1; $i <= $quantidadeSuperstars; $i++) { 
+                $superstarDesv = DB::table('superstars')->where('id',$i)->first();
+                if($superstarDesv->points == 0.0 && $superstarDesv->last_points == 0.0 && $superstarDesv->last_show == 0 && $superstarDesv->name != 'None'){
+                    $desvalorizacao = ($superstarDesv->price * 20) / 100;
+                    $desvalorizacao = round($desvalorizacao);
+                    if ($superstarDesv->price - $desvalorizacao <= 500) {
+                        DB::table('superstars')
+                        ->where('id',$i)
+                        ->update([
+                            'price' => 500
+                        ]);
+                    }else{
+                        DB::table('superstars')
+                        ->where('id',$i)
+                        ->decrement('price',$desvalorizacao);
+                    }
+                    
+                }
+            }
             if($mercado != 'PPV'){ // Caso o mercado não seja de PPV
                 // Executa as funções para todos os jogadores
                 for ($i=1; $i <= $quantidade ; $i++) { 
@@ -642,20 +670,17 @@ I8,        8        ,8I                                            88           
                             $ult_pontos = DB::table('superstars')->where([
                                 ['id',$i],
                                 ['brand',$brand],
-                                ['last_show',1]
                             ])->value('last_points');
 
                             $pontos = DB::table('superstars')->where([
                                 ['id',$i],
                                 ['brand',$brand],
-                                ['last_show',1]
                             ])->value('points');
 
                             $last_points = $pontos;
                             DB::table('superstars')->where([
                                 ['id',$i],
-                                ['brand',$brand],
-                                ['last_show',1]
+                                ['brand',$brand]
                             ])->update([
                                 'last_points' => $last_points,
                                 'points' => 0,
@@ -669,18 +694,15 @@ I8,        8        ,8I                                            88           
                             // e determina que os superstars não apareceram no último show 
                             $ult_pontos = DB::table('superstars')->where([
                                 ['id',$i],
-                                ['last_show',1]
                             ])->value('last_points');
 
                             $pontos = DB::table('superstars')->where([
                                 ['id',$i],
-                                ['last_show',1]
                             ])->value('points');
 
                             $last_points = $pontos;
                             DB::table('superstars')->where([
-                                ['id',$i],
-                                ['last_show',1]
+                                ['id',$i]
                             ])->update([
                                 'last_points' => $last_points,
                                 'points' => 0,
@@ -697,20 +719,17 @@ I8,        8        ,8I                                            88           
                         $ult_pontos = DB::table('superstars')->where([
                             ['id',$i],
                             ['brand',$mercado],
-                            ['last_show',1]
                         ])->value('last_points');
 
                         $pontos = DB::table('superstars')->where([
                             ['id',$i],
                             ['brand',$mercado],
-                            ['last_show',1]
                         ])->value('points');
 
                         $last_points = $pontos;
                         DB::table('superstars')->where([
                             ['id',$i],
-                            ['brand',$mercado],
-                            ['last_show',1]
+                            ['brand',$mercado]
                         ])->update([
                             'points' => 0,
                             'last_points' => $last_points,
