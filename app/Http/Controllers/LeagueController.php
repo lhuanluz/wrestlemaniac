@@ -306,10 +306,7 @@ class LeagueController extends Controller
 
                 DB::table('leagues')
                 ->where('id',$league->id)
-                ->update([
-                    'owner' => 1,
-                    'league_points' => 0
-                    ]);
+                ->delete();
         }
         return redirect()->route('leagueHome');
     }

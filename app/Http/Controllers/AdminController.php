@@ -494,7 +494,7 @@ I8,        8        ,8I                                            88           
                 // Executa as funções para todos os jogadores
                 for ($i=1; $i <= $quantidade ; $i++) { 
                     // Pega os superstars de cada time e seus preços
-                    $team = DB::table('ppv_teams')->where('id',$i)->value('superstar01');
+                    $team = DB::table('ppv_teams')->where('id',$i)->first();
 
                     $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->first();
                     $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->first();
