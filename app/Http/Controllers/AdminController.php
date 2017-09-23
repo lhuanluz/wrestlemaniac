@@ -314,100 +314,67 @@ I8,        8        ,8I                                            88           
         $superstar = DB::table('superstars')
                     ->where('name',$request->name)
                     ->first();
-        $times = DB::table('raw_teams')->count('id');
         // Início da mudança de brand
             // Remove o superstar que mudou de brand dos times e adiciona o dinheiro do jogador de volta
 
             // Início remove o superstar dos times do RAW e adiciona o dinheiro de volta
-            for ($i=1; $i <= $times; $i++) {
-                if($superstar->brand == 'Raw'){
-                        $cash =  DB::table('raw_teams')->where('id',$i)->get('team_cash');
-                        DB::table('raw_teams')
-                        ->where([
-                            ['superstar01', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])->update([
-                            'superstar01' => 103,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-    
-                        DB::table('raw_teams')
-                        ->where([
-                            ['superstar02', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])
-                        ->update([
-                            'superstar02' => 102,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-        
-                        DB::table('raw_teams')
-                        ->where([
-                            ['superstar03', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])
-                        ->update([
-                            'superstar03' => 101,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-        
-                        DB::table('raw_teams')
-                        ->where([
-                            ['superstar04', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])
-                        ->update([
-                            'superstar04' => 100,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-                    }else{
-                        $cash =  DB::table('smackdown_teams')->where('id',$i)->get('team_cash');
-                        DB::table('smackdown_teams')
-                        ->where([
-                            ['superstar01', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])->update([
-                            'superstar01' => 103,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-    
-                        DB::table('smackdown_teams')
-                        ->where([
-                            ['superstar02', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])->update([
-                            'superstar02' => 102,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-    
-                        DB::table('smackdown_teams')
-                        ->where([
-                            ['superstar03', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])->update([
-                            'superstar03' => 101,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-    
-                        DB::table('smackdown_teams')
-                        ->where([
-                            ['superstar04', '=', $superstar->id],
-                            ['id', '=', $i]
-                        ])->update([
-                            'superstar04' => 100,
-                            'team_cash' => $cash + $superstar->price
-                        ]);
-
-                    }
+                DB::table('raw_teams')->where('superstar01',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('raw_teams')
+                    ->where('superstar01',$superstar->id)
+                    ->update([
+                        'superstar01' => 103
+                    ]);
                 
-                }
-                    
+                DB::table('raw_teams')->where('superstar02',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('raw_teams')
+                    ->where('superstar02',$superstar->id)
+                    ->update([
+                        'superstar02' => 102
+                    ]);
 
-                
+                DB::table('raw_teams')->where('superstar03',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('raw_teams')
+                    ->where('superstar03',$superstar->id)
+                    ->update([
+                        'superstar03' => 101
+                    ]);
+
+                DB::table('raw_teams')->where('superstar04',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('raw_teams')
+                    ->where('superstar04',$superstar->id)
+                    ->update([
+                        'superstar04' => 100
+                    ]);
             // Fim remove o superstar dos times do RAW e adiciona o dinheiro de volta
 
             // Início remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
-                
+                DB::table('smackdown_teams')->where('superstar01',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('smackdown_teams')
+                    ->where('superstar01',$superstar->id)
+                    ->update([
+                        'superstar01' => 103
+                    ]);
+
+                DB::table('smackdown_teams')->where('superstar02',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('smackdown_teams')
+                    ->where('superstar02',$superstar->id)
+                    ->update([
+                        'superstar02' => 102
+                    ]);
+
+                DB::table('smackdown_teams')->where('superstar03',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('smackdown_teams')
+                    ->where('superstar03',$superstar->id)
+                    ->update([
+                        'superstar03' => 101
+                    ]);
+
+                DB::table('smackdown_teams')->where('superstar04',$superstar->id)->increment('team_cash',$superstar->price);
+                DB::table('smackdown_teams')
+                    ->where('superstar04',$superstar->id)
+                    ->update([
+                        'superstar04' => 100
+                    ]);
             // Fim remove o superstar dos times do Smackdown e adiciona o dinheiro de volta
 
             // Atualiza o superstar para a nova brand
