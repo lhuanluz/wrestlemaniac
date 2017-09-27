@@ -481,17 +481,44 @@ I8,        8        ,8I                                            88           
                 if($superstarDesv->points == 0.0 && $superstarDesv->last_points == 0.0 && $superstarDesv->last_show == 0 && $superstarDesv->name != 'None'){
                     $desvalorizacao = ($superstarDesv->price * 5) / 100;
                     $desvalorizacao = round($desvalorizacao);
-                    if ($superstarDesv->price - $desvalorizacao <= 500) {
-                        DB::table('superstars')
-                        ->where('id',$i)
-                        ->update([
-                            'price' => 500
-                        ]);
-                    }else{
-                        DB::table('superstars')
-                        ->where('id',$i)
-                        ->decrement('price',$desvalorizacao);
+                    if($mercado == 'Raw' && $superstarDesv->brand == 'Raw'){
+                        if ($superstarDesv->price - $desvalorizacao <= 500) {
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->update([
+                                'price' => 500
+                            ]);
+                        }else{
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->decrement('price',$desvalorizacao);
+                        }
+                    }else if($mercado == 'Smackdown' && $superstarDesv->brand == 'Smackdown'){
+                        if ($superstarDesv->price - $desvalorizacao <= 500) {
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->update([
+                                'price' => 500
+                            ]);
+                        }else{
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->decrement('price',$desvalorizacao);
+                        }
+                    }else if($mercado == 'PPV'){
+                        if ($superstarDesv->price - $desvalorizacao <= 500) {
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->update([
+                                'price' => 500
+                            ]);
+                        }else{
+                            DB::table('superstars')
+                            ->where('id',$i)
+                            ->decrement('price',$desvalorizacao);
+                        }
                     }
+                    
                     
                 }
             }
