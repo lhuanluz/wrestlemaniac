@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Mail;
+use App\Mail\NewUserVerify;
 use App\Models\raw_team;
 use App\Models\league;
 use App\Models\smackdown_team;
@@ -11,6 +13,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
 
 class RegisterController extends Controller
 {
@@ -73,7 +80,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'user_power' => 0,
-            'id_league' => 1,
+            'verifyCode' => base64_encode(str_random(40)),
+            'id_league' => 1
+            
         ]);
         $id_user = DB::table('users')
                         ->where('email',$data['email'])
@@ -100,7 +109,9 @@ class RegisterController extends Controller
             'superstar03' => 101,
             'superstar04' => 100
         ]);
+        Mail::to($data['email'])->queue(new NewUserVerify($user));
         return $user;
         
     }
+    
 }
