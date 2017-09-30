@@ -160,7 +160,7 @@ Route::get('/gameRules', function () {
 
 Route::get('/howToPlay', function () {
     return view('howToPlay');
-})->middleware('auth.logado')->name('howToPlay');
+})->name('howToPlay');
 
 
 Auth::routes();

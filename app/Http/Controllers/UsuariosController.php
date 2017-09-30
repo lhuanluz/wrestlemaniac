@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use App\Mail\NewUserVerify;
+use App\Mail\alterEmail;
 
 class UsuariosController extends Controller
 {    
@@ -140,7 +141,7 @@ class UsuariosController extends Controller
     //Mandar e-mail para alterar email
     public function alterEmailR(Request $request){ 
         $this->validate($request,[
-            'newEmail' => 'required|string|email|max:255|unique:users'
+            'newEmail' => 'required|string|email|max:255',
         ]);
         $email = Auth::user()->email;
         $code = base64_encode(str_random(40));
