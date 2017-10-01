@@ -136,7 +136,7 @@ class UsuariosController extends Controller
         return redirect()->route('home');
     }
     public function changeEmail(){
-        return view('teste');
+        return view('teste2');
     }
     public function sendChangeEmail(Request $request){
         $this->validate($request,[            
