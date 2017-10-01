@@ -3,7 +3,7 @@
 #Greetings from Wrestlemaniac Team
 
 Click the link bellow to change your e-mail to {{$newEmail}}.
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/verifyChangeEmail/'.$verifyCode.'/'.$newEmail])
+@component('mail::button', ['url' => 'www.wrestlemaniac.net/verifyChangeEmail/'.$verifyCode.'/'.$newEmail])
 Verify E-Mail
 @endcomponent
 
