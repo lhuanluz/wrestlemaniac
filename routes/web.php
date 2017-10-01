@@ -71,7 +71,8 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('give-pro/confirm','AdminController@darPro')->name('givePro');
         // Rotas para checar usuário
         Route::get('check-user','AdminController@checarUsuarioRedirect')->name('checkUserRedirect');
-        Route::post('check-user/confirm','AdminController@checarUsuario')->name('checkUser');
+        Route::post('check-user/confirm','AdminController@checarUsuarioConfirmar')->name('checkUserConfirm');
+        Route::post('check-user/view','AdminController@checarUsuario')->name('checkUser');
 
 
     });

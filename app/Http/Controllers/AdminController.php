@@ -191,6 +191,7 @@ I8,        8        ,8I                                            88           
             public function checarUsuarioRedirect(){
                 return view('admin/checarUsuario');
             }
+
     // FUNÇÕES
 // INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
@@ -970,10 +971,7 @@ I8,        8        ,8I                                            88           
         return redirect()->route('editUserNameRedirect');
     }
     public function checarUsuario(Request $request){
-        $this->validate($request,[
-            'email' => 'required'
-        ]);
-        
+
         $user = DB::table('users')->where('email',$request->email)->first();
         $rawTeam = DB::table('raw_teams')->where('user_id',$user->id)->first();
         $smackdownTeam = DB::table('smackdown_teams')->where('user_id',$user->id)->first();
@@ -988,6 +986,8 @@ I8,        8        ,8I                                            88           
         $superstarsPpv = DB::table('superstars')
                         ->whereIn('id',[$ppvTeam->superstar01,$ppvTeam->superstar02,$ppvTeam->superstar03,$ppvTeam->superstar04])
                         ->get();
+        $leagueInfo = DB::table('leagues')->where('id',$user->id_league)->first();
+        $leagueMembers = DB::table('users')->where('id_league',$user->id_league)->first();
 
         return view('admin/infoUsuario',[
             'user' => $user,
@@ -996,8 +996,22 @@ I8,        8        ,8I                                            88           
             'ppvTeam' => $ppvTeam,
             'superstarsRaw' => $superstarsRaw,
             'superstarsSmackdown' => $superstarsSmackdown,
-            'superstarsPpv' => $superstarsPpv
+            'superstarsPpv' => $superstarsPpv,
+            'leagueInfo' => $leagueInfo,
+            'leagueMembers' => $leagueMembers
             ]);
+    }
+    public function checarUsuarioConfirmar(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+
+        $usuarios = DB::table('users')->join('leagues', 'users.id_league', '=', 'leagues.id')->where('name','like','%'.$request->name.'%')->get();
+
+        return view('admin/confirmarUsuarioCheck',[
+            'usuarios' => $usuarios
+        ]);
     }
 
 }

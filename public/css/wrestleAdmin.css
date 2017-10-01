@@ -20,3 +20,8 @@
     color: white;
     margin-left:20px; 
 }
+.img-circle-admin-check {
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+}

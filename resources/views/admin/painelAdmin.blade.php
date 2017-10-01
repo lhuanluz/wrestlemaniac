@@ -170,7 +170,7 @@
 
                         <div class="row">
                             @foreach($admins as $admin)
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="card-box widget-user">
                                     <div>
                                         <img src="{{$admin->photo}}" class="img-responsive img-circle" alt="user">
