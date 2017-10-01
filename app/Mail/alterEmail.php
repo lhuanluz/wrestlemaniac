@@ -11,7 +11,7 @@ class alterEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
-    public $email;
+    public $newEmail;
     /**
      * Create a new message instance.
      *
@@ -21,7 +21,7 @@ class alterEmail extends Mailable
     {
         //
         $this->user = $user;
-        $this->email = $newEmail;
+        $this->newEmail = $newEmail;    
     }
 
     /**
@@ -31,6 +31,11 @@ class alterEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user.alterEmail')->with(['user' => $this->user, 'newEmail' => $this->email]);
+        return $this->markdown('emails.user.alterEmail')
+        ->with([
+            'verifyCode' => $this->user->verifyCode,
+            'name' => $this->user->name,
+            'newEmail' => $this->newEmail
+            ]);
     }
 }

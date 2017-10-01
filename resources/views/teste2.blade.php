@@ -8,7 +8,7 @@
                 </div>
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form method="post" action="{{route('emailR')}}"  name="Edit" class="form-create">       
+            <form method="post" action="{{route('sendChangeEmail')}}"  name="Edit" class="form-create">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)

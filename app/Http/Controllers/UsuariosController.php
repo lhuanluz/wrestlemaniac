@@ -135,26 +135,25 @@ class UsuariosController extends Controller
         Mail::to(Auth::user()->email)->queue(new NewUserVerify(Auth::user()));
         return redirect()->route('home');
     }
-    public function alterEmail(){
-        return view('teste2');
+    public function changeEmail(){
+        return view('teste');
     }
-    //Mandar e-mail para alterar email
-    public function alterEmailR(Request $request){ 
-        $this->validate($request,[
-            'newEmail' => 'required|string|email|max:255',
+    public function sendChangeEmail(Request $request){
+        $this->validate($request,[            
+            'newEmail' => 'required|string|email|max:255'
         ]);
-        $email = Auth::user()->email;
-        $code = base64_encode(str_random(40));
-            DB::table('users')
-            ->where('email', $email)
-            ->update([
-                'verifyCode' => $code
+        $newEmail = $request->newEmail;
+        $code = base64_encode(str_random(40)); 
+        DB::table('users')
+        ->where('email', Auth::user()->email)
+        ->update([
+            'verifyCode' => $code
             ]);
-        Mail::to(Auth::user()->email)->queue(new alterEmail(Auth::user(), $request->newEmail));
-        return redirect()->route('home');
+            Mail::to(Auth::user()->email)                     
+            ->queue(new alterEmail(Auth::user(), $newEmail));
+            return redirect()->route('home');
     }
-    //Função para alterar email
-    public function changeEmail($code){
+    public function verifyChangeEmail($code,$newEmail){
         $user = DB::table('users')
         ->where('verifyCode',$code)
         ->first();
@@ -162,8 +161,10 @@ class UsuariosController extends Controller
          ->where('email', $user->email)
          ->update([
              'email' => $newEmail,
+             'verified' => 1,
              'verifyCode' => null
          ]);
          return redirect()->route('home');
     }
+    
 }
