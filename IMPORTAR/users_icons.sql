@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `users_icons`
 --
 
-CREATE TABLE `users_icons` (
-  `id` int(20) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
-  `icon_id` int(11) UNSIGNED NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+CREATE TABLE users_icons (
+  id int(20) UNSIGNED NOT NULL,
+  user_id int(11) UNSIGNED NOT NULL,
+  icon_id int(11) UNSIGNED NOT NULL,
+  date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -42,12 +42,12 @@ CREATE TABLE `users_icons` (
 --
 -- Indexes for table `users_icons`
 --
-ALTER TABLE `users_icons`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `user_id` (`user_id`,`icon_id`),
-  ADD KEY `user_id_2` (`user_id`),
-  ADD KEY `icon_id` (`icon_id`);
+ALTER TABLE users_icons
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY id (id),
+  ADD KEY user_id (user_id,icon_id),
+  ADD KEY user_id_2 (user_id),
+  ADD KEY icon_id (icon_id);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -56,8 +56,8 @@ ALTER TABLE `users_icons`
 --
 -- AUTO_INCREMENT for table `users_icons`
 --
-ALTER TABLE `users_icons`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE users_icons
+  MODIFY id int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -65,9 +65,9 @@ ALTER TABLE `users_icons`
 --
 -- Limitadores para a tabela `users_icons`
 --
-ALTER TABLE `users_icons`
-  ADD CONSTRAINT `users_icons_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_icons_ibfk_2` FOREIGN KEY (`icon_id`) REFERENCES `icons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE users_icons
+  ADD CONSTRAINT users_icons_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT users_icons_ibfk_2 FOREIGN KEY (icon_id) REFERENCES `icons` (id) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

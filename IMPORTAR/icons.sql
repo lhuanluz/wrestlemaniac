@@ -28,13 +28,16 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `icons`
 --
 
-CREATE TABLE `icons` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(62) NOT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `img_url` varchar(132) NOT NULL
+CREATE TABLE icons (
+  id int(11) UNSIGNED NOT NULL,
+  name varchar(62) NOT NULL,
+  tier int(10) DEFAULT 1,
+  price double DEFAULT NULL,
+  img_url varchar(132) NOT NULL,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Indexes for dumped tables
@@ -43,9 +46,9 @@ CREATE TABLE `icons` (
 --
 -- Indexes for table `icons`
 --
-ALTER TABLE `icons`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE icons
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY id (id);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -54,8 +57,8 @@ ALTER TABLE `icons`
 --
 -- AUTO_INCREMENT for table `icons`
 --
-ALTER TABLE `icons`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
+ALTER TABLE icons
+  MODIFY id int(11) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

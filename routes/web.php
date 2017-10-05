@@ -92,6 +92,19 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('delete/confirm','AvisoController@deleteWarningRequest')->name('dWarningR');
 
     });
+    //Rotas para funções relacionadas a icones
+    Route::prefix('icons')->group(function(){
+    Route::post('addIcons','AdminController@addIcon')->name('addIcon');
+    Route::get('addIconRedirect','AdminController@addIconRedirect')->name('addIconRedirect');
+    Route::get('editIconNameRedirect','AdminController@editIconNameRedirect')->name('editIconNameRedirect');
+    Route::post('editIconName','AdminController@editIconName')->name('editIconName');
+    Route::get('editIconTierRedirect','AdminController@editIconTierRedirect')->name('editIconTierRedirect');
+    Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
+    Route::get('editIconPriceRedirect','AdminController@editIconPriceRedirect')->name('editIconPriceRedirect');
+    Route::post('editIconPrice','AdminController@editIconPrice')->name('editIconPrice');
+    Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
+    Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
+    });
 });
 // Fim de rotas para todas as funções derivadas do painel ADMIN
 
