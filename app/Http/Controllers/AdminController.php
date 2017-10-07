@@ -798,7 +798,7 @@ I8,        8        ,8I                                            88           
                 $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->first();
                 
                 $ult_cash = DB::table($tabela)->where('id',$i)->value('team_cash');
-                $ult_cash = $ult_cash + $superstar01->price + $superstar02->price = $superstar03->price + $superstar04->price; 
+                $ult_cash = $ult_cash + $superstar01->price + $superstar02->price + $superstar03->price + $superstar04->price; 
 
                 DB::table('ppv_teams')
                     ->where('user_id',$i)
