@@ -191,6 +191,7 @@ Route::post('alterPassR', 'UsuariosController@alterPassRequest')->name('passR');
 Route::get('/emailConfirm/{code}', 'UsuariosController@emailVerify')->name('verifyEmail');
 Route::get('/emailReConfirm', 'UsuariosController@emailReVerify')->name('reVerifyEmail');
 Route::get('/changeEmail', 'UsuariosController@changeEmail')->name('changeEmail');
-Route::post('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sendChangeEmail');
-Route::get('/verifyChangeEmail/{code}/{newEmail}','UsuariosController@verifyChangeEmail')->name('verifyChangeEmail');
+Route::get('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sEmail');
+Route::post('/verifyChangeEmail','UsuariosController@verifyChangeEmail')->name('vEmail');
+
 

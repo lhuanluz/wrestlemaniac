@@ -135,36 +135,39 @@ class UsuariosController extends Controller
         Mail::to(Auth::user()->email)->queue(new NewUserVerify(Auth::user()));
         return redirect()->route('home');
     }
-    public function changeEmail(){
-        return view('teste2');
+    
+    public function changeEmail(){//Função so para testar o botao de enviar email 
+        return view('changeEmail');
     }
-    public function sendChangeEmail(Request $request){
-        $this->validate($request,[            
-            'newEmail' => 'required|string|email|max:255'
-        ]);
-        $newEmail = $request->newEmail;
-        $code = base64_encode(str_random(40)); 
-        DB::table('users')
+    public function sendChangeEmail(){  //Função para mandar o e-mail de troca de e-mail
+        $code = base64_encode(str_random(40)); //Gerar o codigo para verificação
+        DB::table('users') // Consulta sql para atualizar a coluna do codigo referente ao usuario logado
         ->where('email', Auth::user()->email)
         ->update([
             'verifyCode' => $code
             ]);
-            Mail::to(Auth::user()->email)                     
-            ->queue(new alterEmail(Auth::user(), $newEmail));
-            return redirect()->route('home');
+            Mail::to(Auth::user()->email)//Função para mandar o email para fila, utilizando o usuario logado                     
+            ->queue(new alterEmail(Auth::user()));   
+            return view('changeEmail');         
     }
-    public function verifyChangeEmail($code,$newEmail){
-        $user = DB::table('users')
-        ->where('verifyCode',$code)
-        ->first();
+    public function verifyChangeEmail(Request $request){
+        $this->validate($request,[
+            'code' => 'required|string',
+            'newEmail' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6'
+        ]);                
+        if (Hash::check($request->password, Auth::user()->password))
+        {
          DB::table('users')
-         ->where('email', $user->email)
+         ->where('email', Auth::user()->email)
          ->update([
-             'email' => $newEmail,
+             'email' => $request->newEmail,
              'verified' => 1,
              'verifyCode' => null
          ]);
+        }
          return redirect()->route('home');
     }
     
+
 }

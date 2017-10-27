@@ -1,14 +1,18 @@
+@extends('layouts.app')
+
+@section('content')
+
 <div class="container-fluid">
     <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Edit Email
+                            Change Email
                         </h1>
                     </div>
                 </div>
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form method="post" action="{{route('sendChangeEmail')}}"  name="Edit" class="form-create">       
+            <form method="get" action="{{route('sendChangeEmail')}}"  name="Edit" class="form-create">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)
@@ -19,11 +23,8 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif              
-                <div class="form-group">
-                    <label>New E-mail</label>
-                   <input type="email" name="newEmail"  class="form-control">                
-                </div>            
+                @endif   
+                    
                 <!-- BOTÃO -->
                 <br/>
                 <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Edit Email</button>     
@@ -38,3 +39,5 @@
     {{ Session::get('message') }}
 </div>
 @endif
+
+@endsection

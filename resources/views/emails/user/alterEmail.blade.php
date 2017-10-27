@@ -2,10 +2,11 @@
 #Hey {{$name}},
 #Greetings from Wrestlemaniac Team
 
-Click the link bellow to change your e-mail to {{$newEmail}}.
-@component('mail::button', ['url' => config('app.url').'verifyChangeEmail/'.$verifyCode.'/'.$newEmail])
-Verify E-Mail
-@endcomponent
+Here is your code for changing your e-mail:
+
+{{$verifyCode}}
+
+If you didn't requested this e-mail just ignore it.
 
 Thanks,<br>
 {{ config('app.name') }}
