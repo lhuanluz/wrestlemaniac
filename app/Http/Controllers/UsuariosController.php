@@ -140,7 +140,7 @@ class UsuariosController extends Controller
         return view('changeEmail');
     }
     public function sendChangeEmail(){  //Função para mandar o e-mail de troca de e-mail
-        $code = base64_encode(str_random(40)); //Gerar o codigo para verificação
+        $code = rand(1000,9999); //Gerar o codigo para verificação
         DB::table('users') // Consulta sql para atualizar a coluna do codigo referente ao usuario logado
         ->where('email', Auth::user()->email)
         ->update([
@@ -148,12 +148,15 @@ class UsuariosController extends Controller
             ]);
             Mail::to(Auth::user()->email)//Função para mandar o email para fila, utilizando o usuario logado                     
             ->queue(new alterEmail(Auth::user()));   
-            return view('changeEmail');         
+            return redirect()->route('vEmailR');         
+    }
+    public function verifyChangeEmailRedirect(){//Função so para testar o botao de enviar email 
+        return view('changeEmailConfirmed');
     }
     public function verifyChangeEmail(Request $request){
         $this->validate($request,[
             'code' => 'required|string',
-            'newEmail' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6'
         ]);                
         if (Hash::check($request->password, Auth::user()->password))
@@ -161,7 +164,7 @@ class UsuariosController extends Controller
          DB::table('users')
          ->where('email', Auth::user()->email)
          ->update([
-             'email' => $request->newEmail,
+             'email' => $request->email,
              'verified' => 1,
              'verifyCode' => null
          ]);

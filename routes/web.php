@@ -12,7 +12,6 @@
 */
 
 
-
 // Início de rotas para todas as funções derivadas do painel ADMIN
 Route::prefix('admin')->middleware('auth.admin')->group(function (){
     //Rota para a home do painel admin
@@ -172,17 +171,18 @@ Route::get('/gameRules', function () {
     return view('gameRules');
 })->middleware('auth.logado')->name('gameRules');
 
-Route::get('/howToPlay', function () {
-    return view('howToPlay');
-})->name('howToPlay');
-
-
-Auth::routes();
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {
     return view('faq/faq');
 })->name('faq');
+
+Route::get('/howToPlay', function () {
+    return view('howToPlay');
+})->name('howToPlay');
+
+Auth::routes();
+
 
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
@@ -192,6 +192,7 @@ Route::get('/emailConfirm/{code}', 'UsuariosController@emailVerify')->name('veri
 Route::get('/emailReConfirm', 'UsuariosController@emailReVerify')->name('reVerifyEmail');
 Route::get('/changeEmail', 'UsuariosController@changeEmail')->name('changeEmail');
 Route::get('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sEmail');
-Route::post('/verifyChangeEmail','UsuariosController@verifyChangeEmail')->name('vEmail');
+Route::get('/verifyChangeEmail','UsuariosController@verifyChangeEmailRedirect')->name('vEmailR');
+Route::post('/verifyChangeEmail/confirm','UsuariosController@verifyChangeEmail')->name('vEmail');
 
 

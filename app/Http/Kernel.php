@@ -26,6 +26,7 @@ class Kernel extends HttpKernel
         'auth.admin' => Middleware\RedirectIfNotAdmin::class,
         'auth.admin2' => Middleware\RedirectIfNotAdmin2::class,
         'auth.admin3' => Middleware\RedirectIfNotAdmin3::class,
+        'auth.verified' => Middleware\RedirectIfNotVerified::class,
         'auth.logado' => Middleware\RedirectIfNotLogged::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
