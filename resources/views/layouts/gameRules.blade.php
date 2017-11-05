@@ -66,7 +66,7 @@
 
                         @if (Auth::guest())
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="#play">How to Play</a></li>
+                            <li><a href="{{ route('howToPlay') }}">How to Play</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>
@@ -76,7 +76,9 @@
                             <li><a href="{{ route('home') }}">Home</a></li>
 
                             <li><a href="{{route('leagueHome')}}">League</a></li>
-                            
+
+                             <li><a href="{{route('statistics')}}">Rank</a></li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Market <span class="caret"></span>

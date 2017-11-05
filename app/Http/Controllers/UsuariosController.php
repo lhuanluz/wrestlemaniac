@@ -15,30 +15,38 @@ class UsuariosController extends Controller
     
     
     
-    public function selectPhoto(Request $request){
+    public function comprarIcone(Request $request){
         $this->validate($request,[
-            'photo' => 'required'
+            'iconID' => 'required'
         ]);
-        $userId = Auth::user()->id;
-         DB::table('users')
-            ->where('id', $userId)
-            ->update([
-                'photo' => $request->photo
-                ]);
-        return redirect()->route('home');
+        $icon = DB::table('icons')->where('id',$request->iconID);
+        $user = Auth::user();
+        if($user->wc >= $icon->price){
+            $wcRestante = $user->wv - $icon->price;
+            DB::table('user_icons')->insert([
+                ['user_id' => $user->id, 'icon_id' => $icon->id]
+            ]);
+            DB::table('users')->update([
+                'wc' => $wcRestante
+            ]);
+        }
+        return redirect()->route('iconStore');
     }
 
-    public function selectPhotoRedirect(){
+    public function iconStore(){
         $user = Auth::user();
-        if($user->type == 'Pro'){
-            $imagens = DB::table('images')->orderBy('name')->get();
-        }else{
-            $imagens = DB::table('images')->where('type','Free')->orderBy('name')->get();
-        }
-        return view('selectPhoto',[
-            'imagens' => $imagens, // Lista de Imagens
-            ]);
+        $iconsNaoComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id NOT IN (
+                SELECT users_icons.icon_id FROM users_icons WHERE users_icons.user_id = $user->id)
+            "));
         
+    }
+    public function escolhaDeIcon(){
+        $user = Auth::user();
+        $iconsComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id IN (
+                SELECT users_icons.icon_id FROM users_icons WHERE users_icons.user_id = $user->id)
+            "));
     }
 
     public function addPhoto(Request $request){
@@ -104,13 +112,6 @@ class UsuariosController extends Controller
             return redirect()->route('home')->withMessage("Password Change Failed");
         }
     }
-    /*public function comprarIconeRedirect(){
-        $icones = DB::table('icons') 
-        return view('comprarIcone');
-    }
-    public function comprarIcone(Request $request){
-
-    }*/
     //Funcao para verificar email de usuarios novos
     public function emailVerify($code){
        $user = DB::table('users')

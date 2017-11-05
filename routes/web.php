@@ -165,7 +165,13 @@ Route::prefix('league')->middleware('auth.logado')->group(function () {
         Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
         Route::post('/createLeague','LeagueController@criarLiga')->name('criarLiga');
         Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
-    });
+});
+
+Route::prefix('iconStore')->middleware('auth.logado')->group(function () {
+    Route::get('/','UsuariosController@iconStore')->name('iconStore');
+    Route::post('buy','UsuariosController@comprarIcone')->name('buyIcon');
+
+});
 //Rotas Rank Usuario Cash
 Route::get('statistics','RankingController@statistics')->middleware('auth.logado')->name('statistics');
 Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
@@ -188,6 +194,9 @@ Route::get('/howToPlay', function () {
 Auth::routes();
 
 
+
+
+/*
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
 Route::get('alterPass', 'UsuariosController@alterPass')->name('pass');
@@ -198,5 +207,6 @@ Route::get('/changeEmail', 'UsuariosController@changeEmail')->name('changeEmail'
 Route::get('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sEmail');
 Route::get('/verifyChangeEmail','UsuariosController@verifyChangeEmailRedirect')->name('vEmailR');
 Route::post('/verifyChangeEmail/confirm','UsuariosController@verifyChangeEmail')->name('vEmail');
+*/
 
 
