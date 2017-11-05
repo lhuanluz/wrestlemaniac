@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="wrapper">
                 <!-- FORMULARIO -->
-                <form action="{{route('addIcon')}}" method="post" name="Add_Icon_Form" class="form-create" enctype="multipart/form-data" id="enviar">       
+                <form action="{{route('addIcon')}}" method="post" name="Add_Icon_Form" class="form-create" enctype="multipart/form-data">       
                     {{ csrf_field()  }}
 
                     @if (count($errors) > 0)
@@ -21,7 +21,7 @@
                     <!-- Campos -->  
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" placeholder="Name" autofocus="" class="form-control"/>
+                        <input type="text" name="name" autofocus="" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Tier</label>
@@ -30,12 +30,7 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="number" name="price" placeholder=""  class="form-control"/>
                     </div>
                     <div class="">
                         <label>Image </label>
@@ -43,9 +38,10 @@
                     </div>
                     
                     <!-- BOTÃO -->
-                    <br/>    
+                    <br/>
+                    <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="editar" type="Submit">Add Icon</button>    
                 </form>    
-                <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="editar" type="Submit" onClick="teste()">Add Icon</button>     
+                     
                 <!-- FORMULARIO [FIM] -->
             </div>
         </div>

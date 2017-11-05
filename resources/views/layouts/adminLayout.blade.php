@@ -164,6 +164,16 @@
                                     <li><a href="{{ route('editPpvVisibilityRedirect') }}"><i class="zmdi zmdi-eye"></i>Edit PPV Visibility</a></li>
                                 </ul>
                             </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('addIconRedirect') }}"><i class="zmdi zmdi-plus"></i>Add Icon</a></li>
+                                    <li><a href="{{ route('editIconNameRedirect') }}"><i class="zmdi zmdi-edit"></i>Edit Icon Name</a></li>
+                                    <li><a href="{{ route('editIconTierRedirect') }}"><i class="zmdi zmdi-plus-circle-o-duplicate"></i>Edit Icon Tier</a></li>
+                                    <li><a href="{{ route('editIconPhotoRedirect') }}"><i class="zmdi zmdi-image"></i>Edit Icon Photo</a></li>
+                                    
+                                </ul>
+                            </li>
                             @endif
                             @if (Auth::user()->user_power >= 3)
                             <li class="has_sub">
@@ -182,19 +192,12 @@
                                     <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Leagues</a></li>
                                 </ul>
                             </li>
-                            @endif
-                            @if (Auth::user()->user_power >= 2)
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-widgets"></i> <span> Season </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('addIconRedirect') }}"><i class="zmdi zmdi-plus"></i>Add Icon</a></li>
-                                    <li><a href="{{ route('editIconNameRedirect') }}"><i class="zmdi zmdi-edit"></i>Edit Icon Name</a></li>
-                                    <li><a href="{{ route('editIconTierRedirect') }}"><i class="zmdi zmdi-plus-circle-o-duplicate"></i>Edit Icon Tier</a></li>
-                                    <li><a href="{{ route('editIconPriceRedirect') }}"><i class="zmdi zmdi-money"></i>Edit Icon Price</a></li>
-                                    <li><a href="{{ route('editIconPhotoRedirect') }}"><i class="zmdi zmdi-image"></i>Edit Icon Photo</a></li>
-                                    
+                                    <li><a href="{{ route('seasonResetRedirect') }}"><i class="zmdi zmdi-alert-triangle"></i>Season Reset</a></li>
                                 </ul>
-                            </li>                            
+                            </li>
                             @endif
                             <!--
                             <li class="has_sub">

@@ -93,16 +93,20 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     });
     //Rotas para funções relacionadas a icones
     Route::prefix('icons')->group(function(){
-    Route::post('addIcons','AdminController@addIcon')->name('addIcon');
-    Route::get('addIconRedirect','AdminController@addIconRedirect')->name('addIconRedirect');
-    Route::get('editIconNameRedirect','AdminController@editIconNameRedirect')->name('editIconNameRedirect');
-    Route::post('editIconName','AdminController@editIconName')->name('editIconName');
-    Route::get('editIconTierRedirect','AdminController@editIconTierRedirect')->name('editIconTierRedirect');
-    Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
-    Route::get('editIconPriceRedirect','AdminController@editIconPriceRedirect')->name('editIconPriceRedirect');
-    Route::post('editIconPrice','AdminController@editIconPrice')->name('editIconPrice');
-    Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
-    Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
+        Route::post('addIcons','AdminController@addIcon')->name('addIcon');
+        Route::get('addIconRedirect','AdminController@addIconRedirect')->name('addIconRedirect');
+        Route::get('editIconNameRedirect','AdminController@editIconNameRedirect')->name('editIconNameRedirect');
+        Route::post('editIconName','AdminController@editIconName')->name('editIconName');
+        Route::get('editIconTierRedirect','AdminController@editIconTierRedirect')->name('editIconTierRedirect');
+        Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
+        Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
+        Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
+    });
+    //Rotas para funções relacionadas ao season reset
+    Route::prefix('season')->middleware('auth.admin3')->group(function(){
+        // Rotas para resetar a season
+        Route::get('reset','AdminController@resetarSeasonRedirect')->name('seasonResetRedirect');
+        Route::post('reset/confirm','AdminController@resetarSeason')->name('seasonReset');
     });
 });
 // Fim de rotas para todas as funções derivadas do painel ADMIN

@@ -1,5 +1,5 @@
 @extends('layouts/adminLayout')
-@section('title', $user->name.' Info')
+@section('title', $user->name.'\'s Info')
 @section('conteudo_principal')
     <div class="card-box">
         <div class="container-fluid">
@@ -13,7 +13,6 @@
                                     <th>Photo</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Verified</th>
                                 </tr>
                             </thead>
 
@@ -23,11 +22,6 @@
                                         <td><img src="{{url($user->photo)}}" class="img-circle-admin-check" alt=""></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        @if($user->verified == 1)
-                                            <td>Yes</td>
-                                        @else
-                                            <td>No</td>
-                                        @endif
                             </tbody>
                         </table>
                     </div>
@@ -42,13 +36,13 @@
                             <h4 class="header-title m-t-0 m-b-30">TEAM <span class="label label-danger">RAW</span></h4>
 
                             <div class="inbox-widget nicescroll" style="height: 315px;">
-                                    <?php $i =1?>
+                                    <?php $i=1; $cashRaw=$rawTeam->team_cash;$cashSmack=$smackdownTeam->team_cash;$cashPPV=$ppvTeam->team_cash;?>
                                     @foreach($superstarsRaw as $superstarRaw)
                                     <div class="inbox-item">
                                         <div class="inbox-item-img"><img src="{{url($superstarRaw->image)}}" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author"><b>{{$i.'º) '.$superstarRaw->name}}</b></p>
                                     </div>
-                                    <?php $i++?>
+                                    <?php $i++;$cashRaw+=$superstarRaw->price;?>
                                     @endforeach    
                             </div>
                         </div>
@@ -65,7 +59,7 @@
                                         <div class="inbox-item-img"><img src="{{url($superstarSmack->image)}}" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author"><b>{{$i.'º) '.$superstarSmack->name}}</b></p>
                                     </div>
-                                    <?php $i++?>
+                                    <?php $i++;$cashSmack+=$superstarSmack->price;?>
                                     @endforeach    
                             </div>
                         </div>
@@ -82,7 +76,7 @@
                                         <div class="inbox-item-img"><img src="{{url($superstarPpv->image)}}" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author"><b>{{$i.'º) '.$superstarPpv->name}}</b></p>
                                     </div>
-                                    <?php $i++?>
+                                    <?php $i++;$cashPPV+=$superstarPpv->price;?>
                                     @endforeach    
                             </div>
                         </div>
@@ -93,7 +87,6 @@
             <h4 class="header-title m-t-0 m-b-30">User Cash</h4>
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                        
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -106,9 +99,9 @@
 
                             <tbody>
                                     <tr>
-                                        <td>CASH DO TIME</td>
-                                        <td>CASH DO TIME</td>
-                                        <td>CASH DO TIME</td>
+                                        <td>{{$cashRaw}}</td>
+                                        <td>{{$cashSmack}}</td>
+                                        <td>{{$cashPPV}}</td>
                                         <td>{{$user->wc}}</td>
                             </tbody>
                         </table>

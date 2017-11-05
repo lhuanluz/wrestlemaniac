@@ -35,6 +35,7 @@ class RankingController extends Controller
                 ->get();
             
             $topLeagues = DB::table('leagues')
+            ->where('id','!=',1)
             ->orderBy('league_points','desc')
             ->limit(10)
             ->get();

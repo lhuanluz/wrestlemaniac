@@ -194,6 +194,11 @@ I8,        8        ,8I                                            88           
                 return view('admin/checarUsuario');
             }
 
+        // Redirects do Season Reset
+            public function resetarSeasonRedirect(){
+                return view('admin/seasonReset');
+            }
+            
     // FUNÇÕES
 // INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
@@ -495,7 +500,13 @@ I8,        8        ,8I                                            88           
         $quantidade = DB::table($tabela)->count('id'); // Define a quantidade de times que existem na tabela
 
         // Caso a ação seja para abrir o Mercado
+        $statusAtual = DB::table('configs')->first();
+        if ($action == $statusAtual->$coluna) {
+            return redirect()->route('painelAdmin');
+            die();
+        }
         if($action == 'Aberto'){
+            
             DB::table('configs')->update([
                 $coluna => $action // Altera o mercado desejado para aberto
             ]);
@@ -1023,7 +1034,6 @@ I8,        8        ,8I                                            88           
         $this->validate($request,[
             'name' => 'required',// define que o nome é obrigatorio
             'tier' => 'required',// define que o type é obrigatorio
-            'price' => 'required',// define que o price é obrigatorio
             'imagem'   => 'image|required' // define que a imagem do icone é requirida para o icone ser cadastrado
         ]);
             //fim da vlidação
@@ -1034,12 +1044,24 @@ I8,        8        ,8I                                            88           
         $imagem = $request->imagem;  // Recebe a imagem na variável $imagem
         $imagem->storeAs('icons',$nomeDaImagem,'public'); // Armazena a imagem na pasta icons com o nome da imagem
     // Fim do salvamente da imagem
-    
+
+    // Inicio Cálculo do preço
+        if ($request->tier == 1) {
+            $preço = 25.00;
+        }else if ($request->tier == 2) {
+            $preço = 50.00;
+        }else if ($request->tier == 3) {
+            $preço = 75.00;
+        }else {
+            $preço = 100.00;
+        }
+    // Fim Cálculo do preço
+
     // Início do salvamento do icone no banco de dados
         $icon = new Icon(); // Cria um novo icone na variável $icon
         $icon->name = $request->get('name'); // Define que o nome do icone será o passado no formulário
         $icon->tier = $request->get('tier'); // Define que o tier do icone será o recebido no formulário
-        $icon->price = $request->get('price'); // Define que o preco sera o recebido no formulario
+        $icon->price = $preço; // Define que o preço é mediante o tier escolhido no formulário
         $icon->img_url = $caminho; // Define o url da imagem do icone
         $icon->save(); // Salva o icone criado no banco de dados
         return redirect()->route('addIconRedirect');
@@ -1135,5 +1157,44 @@ I8,        8        ,8I                                            88           
              'img_url' => $caminho
          ]);
         return redirect()->route('editIconPhotoRedirect');
+    }
+    public function resetarSeason(){
+        DB::table('superstars')->where('name','!=','None')
+        ->update([
+            'price' => 1000,
+            'points' => 0.0,
+            'last_points' => 0.0
+        ]);
+        DB::table('raw_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 4000
+        ]);
+        DB::table('smackdown_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 4000
+        ]);
+        DB::table('ppv_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 0
+        ]);
+        return redirect()->route('painelAdmin');
     }
 }
