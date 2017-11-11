@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!-- Home CSS -->
     <link href="{{ url('css/home.css') }}" rel="stylesheet">
@@ -65,6 +66,19 @@
                     </a>
                 </div>
 
+                <!-- ÍCONE DE NOTIFICAÇÃO
+                <div class="notification-div">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <i class="fa fa-bell" aria-hidden="true"></i><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="">Notification 01</a></li>
+                        <li><a href="">Notification 02</a></li>
+                        <li><a href="">Notification 03</a></li>
+                    </ul>
+                </div>
+                -->
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <!--<ul class="nav navbar-nav">
@@ -72,18 +86,20 @@
                     </ul>-->
 
                     <!-- Right Side Of Navbar -->
-                    <ul id="menu" class="nav navbar-nav navbar-right">
+                    <!-- <ul id="menu" class="nav navbar-nav navbar-right"> -->
                         <!-- Authentication Links -->
 
                         @if (Auth::guest())
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('howToPlay') }}">How to Play</a></li>
+                        <ul id="menu-public" class="nav navbar-nav navbar-right">
+                            <!-- <li><a href="{{ route('home') }}">Home</a></li> -->
+                            <!-- <li><a href="{{ route('howToPlay') }}">How to Play</a></li> -->
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                            <li><a href="{{ route('login') }}">Log In</a></li>
-                            
+                            <li><a href="{{ route('register') }}">SIGN UP</a></li>
+                            <li><a href="{{ route('login') }}">LOG IN</a></li>
+                         <ul>   
                         @else
                             <!-- Verificação Admin-->
+                    <ul id="menu-user" class="nav navbar-nav navbar-left">
                             <li><a href="{{ route('home') }}">Home</a></li>
 
                             <li><a href="{{route('leagueHome')}}">League</a></li>
@@ -95,12 +111,12 @@
                                     Market <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{route('mercadoRawHome')}}">RAW</a></li>
-                                    <li><a href="{{route('mercadoSmackdownHome')}}">SMACKDOWN</a></li>
-                                    <li><a href="{{route('mercadoPpvHome')}}">PAY-PER-VIEW</a></li>
+                                    <li><a href="{{route('mercadoRawHome')}}">Raw</a></li>
+                                    <li><a href="{{route('mercadoSmackdownHome')}}">Smackdown</a></li>
+                                    <li><a href="{{route('mercadoPpvHome')}}">Pay Per View</a></li>
                                 </ul>
                             </li>                            
-
+                        
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Help <span class="caret"></span>
@@ -110,38 +126,88 @@
                                     <li><a href="{{ route('faq') }}">FAQ</a></li>
                                 </ul>
                             </li>
+                    </ul><!-- menu-user navbar-left -->
+
+                    
+                            <ul id="menu-user" class="nav navbar-nav navbar-right">                               
+                                <li class="dropdown user-dropdown"> 
+                                                
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <div class="avatar-nav" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                                        <i aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>                                    
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        @if(Auth::user()->user_power >= 1)
+                                        <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
+                                        @endif
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul> <!-- menu-user navbar-right -->
                             
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    @if(Auth::user()->user_power >= 1)
-                                    <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
-                                    @endif
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
                         @endif
-                    </ul>
+                    <!--</ul>-->
                 </div>
             </div>
         </nav>
 
         @yield('content')
-    
-            <footer class="container-fluid footer">
+            <footer>
+                <div class="container-fluid">
+                    <div class="row">                        
+
+                        <div class="col-sm-3 col-md-3 footer-logo">
+                            <ul>
+                                <li><a href="{{ url('/') }}">Wrestlemaniac Inc.</a></li>
+                                <li>Los Angeles, CA</li>
+                            </ul>
+                            <a href="https://www.facebook.com/TheWrestlemaniac/" target="_blank"><img src="{{ url('img/facebook-icon.png') }}" alt="Facebook" ></a>
+                        </div>
+
+                        <div class="col-sm-9 col-md-9 footer-menu">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>Company</li>
+                                        <li><a href="#">Contact us</a></li>
+                                        <li><a href="#">About Wrestlemaniac</a></li>
+                                        <li><a href="#">Terms of Use</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>Help</li>
+                                        <li><a href="#">How it Works</a></li>
+                                        <li><a href="#">How to Play</a></li>
+                                        <li><a href="#">Rules and Scoring</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>MORE</li>
+                                        <li><a href="#">News &amp Tips</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </footer>
+
+            <!-- <footer class="container-fluid footer">
                 <div class="row social">
                     <div class="container-fluid footer-container">
                         <a class="logo_footer" href="{{ url('/') }}">
@@ -159,12 +225,13 @@
                     </div>
                 </div>
                 
-                <!-- <div class="row copy">
+                <div class="row copy">
                     <div class="container-fluid copy-container">
                         <p>Developed by <span>Grounder</span></p>
-                    </div> -->
+                    </div>
                 </div>
-            </footer>
+            </footer> -->
+           
     </div>
 
     <!-- Scripts -->

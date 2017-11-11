@@ -2,61 +2,82 @@
 
 @section('content')
 @if (Auth::guest())
-<div id="" class="banner"> <!-- BANNER -->
-    <div class="container-fluid main">
+<section class="play-free">
+    <div class="container-fluid">
         <div class="row">
-            <div class="presentation">
-                <h2>WRESTLEMANIAC is a WWE Fantasy Game!</h2>
-                <h3>Made by fans to fans!<h3/>
+            <div class="col-sm-6 col-md-6">
+                <h2>The WWE Wrestling Fantansy Game</h2>
+                <p>Made by fans to fans</p>
+                <p>Join Us!</p>
+                <div class="play-free-btn"><a href="#">Play Free</a></div>
+            </div>
+            <div class="col-sm-6 col-md-6 superstars-banner">
+                <img src="{{ url('img/superstars.png') }}" alt="John Cena, Roman Reigns and AJ Styles on the main banner">
             </div>
         </div>
     </div>
-</div>
-        
-<!-- <div class="container weekly">  WEEKLY BEST 
-    <h2>WEEKLY BEST</h2>
-    <div class="separador"></div>
-    <img src="{{ url('img/weekly_best.jpg') }}"/>
-</div> -->
+</section>
 
-<div class="container-fluid play"> <!-- HOW TO PLAY -->
-    <h2>HOW TO PLAY</h2>
-    <div class="separador"></div>
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 account">
-            <img src="{{ url('img/account_icon.png') }}"/>
-            <h3>Create your account</h3>
-            <p>Earn your initial amount of game cash</p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 team">
-            <img src="{{ url('img/team_icon.png') }}"/>
-            <h3>Build your team</h3>
-            <p>Go through our market and hire Superstars</p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wwe">
-            <img src="{{ url('img/wwe_icon.png') }}"/>
-            <h3>Enjoy WWE shows</h3>
-            <p>Cheers for your Superstars to performe well and win matches!</p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 score">
-            <img src="{{ url('img/score_icon.png') }}"/>
-            <h3>Score<br/>points</h3>
-            <p>Have fun climbing de the Rank right to the TOP!</p>
+<section class="section-2">
+    <div class="shadow"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <img src="{{ url('img/devices.png') }}" alt="Devices">
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <h3>Become the advocate of your favorite WWE Superstars</h3>
+                <p>In Wrestlemaniac you become the manager and advocate of a team of superstars.</p>
+                <p>Your mission is to hire the Superstars you believe in to be part of your selected team.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="section-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <h3>Watch, Cheers &amp Score</h3>
+                <p>There is no roast or event simulation. Wrestlemaniac works with the live WWE events</p>
+                <p>Enjoy the shows and cheers for your superstars! The better the performance, the higher you will score!</p>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <img src="{{ url('img/friends.png') }}" alt="Friends cheering">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <img src="{{ url('img/the-bar.png') }}" alt="Cesaro and Sheamus">
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <h3>Challenge your friends!</h3>
+                <p>Create your own private league to dispute with your friends and against orther leagues!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endif
 
 @if (!Auth::guest())
 <div class="container-fluid user-panel"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
-    <div class="row profile">
-        <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
-        </div> <!-- .AVATAR -->
 
-        <div class="user-info">
-            <h3>Welcome,</h3>
-            <h2>{{ Auth::user()->name }}</h2>
-            <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
+    <div class="row profile">
+        <div class="col-md-6">
+            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
+            </div> <!-- .AVATAR -->
+
+            <div class="user-info">
+                <h2>{{ Auth::user()->name }}</h2>
+                <h3>Undergrounder</h3>                
+                <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
+            </div>
         </div>
 
         <div class="profile-smd">
