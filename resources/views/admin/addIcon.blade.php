@@ -21,7 +21,13 @@
                     <!-- Campos -->  
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" autofocus="" class="form-control"/>
+                         <input list="names" name="name" class="form-control" autofocus="">
+                        <datalist id="names">
+                                @foreach($superstars as $superstar){
+                                    <option value="{{$superstar->name}}">
+                                }
+                                @endforeach
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label>Tier</label>

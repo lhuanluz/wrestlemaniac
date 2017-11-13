@@ -198,7 +198,15 @@
                                     <li><a href="{{ route('seasonResetRedirect') }}"><i class="zmdi zmdi-alert-triangle"></i>Season Reset</a></li>
                                 </ul>
                             </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-ticket-star"></i> <span> Belts </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('configBelts') }}"><i class="zmdi zmdi-settings"></i>Config Belts</a></li>
+                                    <li><a href="{{ route('verifyBelts') }}"><i class="zmdi zmdi-globe"></i>Verify Belts</a></li>
+                                </ul>
+                            </li>
                             @endif
+                            
                             <!--
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-text"></i><span class="label label-warning pull-right">7</span><span> Forms </span> </a>

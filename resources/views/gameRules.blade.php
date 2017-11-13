@@ -1,4 +1,4 @@
-@extends('layouts/gameRules')
+@extends('layouts/app')
 
 @section('content')
 <div class="wrapper faq">

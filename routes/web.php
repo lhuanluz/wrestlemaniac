@@ -108,6 +108,11 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('reset','AdminController@resetarSeasonRedirect')->name('seasonResetRedirect');
         Route::post('reset/confirm','AdminController@resetarSeason')->name('seasonReset');
     });
+    Route::prefix('belts')->middleware('auth.admin3')->group(function(){
+        // Rotas para resetar a season
+        Route::get('config','AdminController@configurarBelts')->name('configBelts');
+        Route::get('verify','AdminController@verificarBelts')->name('verifyBelts');
+    });
 });
 // Fim de rotas para todas as funções derivadas do painel ADMIN
 

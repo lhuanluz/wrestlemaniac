@@ -12,7 +12,7 @@
                 <div class="play-free-btn"><a href="#">Play Free</a></div>
             </div>
             <div class="col-sm-6 col-md-6 superstars-banner">
-                <img src="{{ url('img/superstars.png') }}" alt="John Cena, Roman Reigns and AJ Styles on the main banner">
+                <img src="{{ url($bannerR)}}" alt="John Cena, Roman Reigns and AJ Styles on the main banner">
             </div>
         </div>
     </div>
@@ -75,7 +75,10 @@
 
             <div class="user-info">
                 <h2>{{ Auth::user()->name }}</h2>
-                <h3>Undergrounder</h3>                
+                @if($liga->id != 1)
+                <h3>{{$liga->league_name}}</h3>
+                @else
+                @endif                
                 <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
             </div>
         </div>
