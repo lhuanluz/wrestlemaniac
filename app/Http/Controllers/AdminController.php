@@ -506,7 +506,21 @@ I8,        8        ,8I                                            88           
             die();
         }
         if($action == 'Aberto'){
-            
+            $timeDoUser = DB::table($tabela)->where('user_id',Auth::user()->id)->first();
+            $wcBonus = 0;
+            if($timeDoUser->superstar01 != 103){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar02 != 102){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar03 != 101){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar04 != 100){
+                $wcBonus=+2;
+            }
+            DB::table('users')->where('id',Auth::user()->id)->increment('wc',$wcBonus);
             DB::table('configs')->update([
                 $coluna => $action // Altera o mercado desejado para aberto
             ]);
@@ -563,21 +577,23 @@ I8,        8        ,8I                                            88           
                 for ($i=1; $i <= $quantidade ; $i++) { 
                     // Pega os superstars de cada time
                     $team = DB::table($tabela)->where('id',$i)->first();
-
-                    $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->value('points');
-                    $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->value('points');
-                    $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->value('points');
-                    $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->value('points');
-
-                    $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points'); // Recebe os pontos totais do time
-                    $pontos = $superstar01 + $superstar02 + $superstar03 + $superstar04; // Define que os pontos atuais serão a soma dos pontos dos superstars
-                    $total_pontos = $ult_pontos + $pontos; // Define que os pontos totais do time serão os anteriores mais os atuais
-                    
-                    // Atualiza os pontos do jogador
-                    DB::table($tabela)->where('id',$i)->update([
-                        'team_points' => $pontos,
-                        'team_total_points' => $total_pontos
-                    ]);         
+                    if($team != NULL){
+                        $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->value('points');
+                        $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->value('points');
+                        $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->value('points');
+                        $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->value('points');
+    
+                        $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points'); // Recebe os pontos totais do time
+                        $pontos = $superstar01 + $superstar02 + $superstar03 + $superstar04; // Define que os pontos atuais serão a soma dos pontos dos superstars
+                        $total_pontos = $ult_pontos + $pontos; // Define que os pontos totais do time serão os anteriores mais os atuais
+                        
+                        // Atualiza os pontos do jogador
+                        DB::table($tabela)->where('id',$i)->update([
+                            'team_points' => $pontos,
+                            'team_total_points' => $total_pontos
+                        ]);
+                    }
+                           
                 }
             }
             else{ // Caso o mercado seja de PPV

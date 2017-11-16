@@ -41,12 +41,27 @@ class UsuariosController extends Controller
             "));
         
     }
-    public function escolhaDeIcon(){
+    public function escolhaDeIconRedirect(){
         $user = Auth::user();
+        if($user->user_power > 0){
+            $iconsComprados = DB::table('icons')->get();
+        }else{
         $iconsComprados = DB::select( 
             DB::raw("SELECT * FROM icons WHERE icons.id IN (
-                SELECT users_icons.icon_id FROM users_icons WHERE users_icons.user_id = $user->id)
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
             "));
+        }
+        return view('selectPhoto',[
+            'iconsComprados' => $iconsComprados
+        ]);
+    }
+
+    public function selecionarIcon(Request $request){
+        DB::table('users')->where('id',Auth::user()->id)->update([
+            'photo' => $request->photo
+        ]);
+
+        return redirect()->route('home');
     }
 
     public function addPhoto(Request $request){

@@ -179,8 +179,8 @@ Route::prefix('iconStore')->middleware('auth.logado')->group(function () {
 });
 //Rotas Rank Usuario Cash
 Route::get('statistics','RankingController@statistics')->middleware('auth.logado')->name('statistics');
-Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
-Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->middleware('auth.logado')->name('selectPhoto');
+Route::get('selectPhoto','UsuariosController@escolhaDeIconRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
+Route::post('selectPhoto/confirm','UsuariosController@selecionarIcon')->middleware('auth.logado')->name('selectPhoto');
 
 Route::get('/gameRules', function () {
     return view('gameRules');
