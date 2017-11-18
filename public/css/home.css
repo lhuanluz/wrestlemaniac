@@ -89,7 +89,7 @@ body {
 
 #menu-user .dropdown-menu {
     background-color: #1f2020;
-    margin-top: 11px;
+    margin-top: 8px;
     border: none;
 }
 
@@ -574,7 +574,7 @@ footer .row div {
     }
 
     .navbar-left {
-        margin-left: 28px;
+        margin-left: 18px;
     }
 
     #menu-public li a {
@@ -582,7 +582,7 @@ footer .row div {
     }
 
     #menu-user li a {
-        margin-right: 8px;
+        margin-right: 0;
         font-size: 14px;
     }
 
