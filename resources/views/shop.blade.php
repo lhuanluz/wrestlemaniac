@@ -47,7 +47,7 @@
         <div class="separador"></div> 
             <ul id="ulItens">
                 @foreach($iconsNaoComprados as $iconNaoComprado)
-                <li class="pontos">
+                <li class="pontosSelect">
                     <form method="post" action="{{route('buyIcon')}}"  name="Edit_User_Photo" class="form-create">
                     {{ csrf_field()  }}
                         

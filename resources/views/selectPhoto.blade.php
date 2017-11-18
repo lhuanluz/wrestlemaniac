@@ -39,7 +39,7 @@
         {{ csrf_field()  }}
             <ul id="ulItens">
                 @foreach($iconsComprados as $iconComprado)
-                <li class="pontos">
+                <li class="pontosSelect">
                     <div class="photoBase">
                     <label>
                         <input type="radio" name="photo" value="{{$iconComprado->img_url}}" onChange='this.form.submit();'/>
