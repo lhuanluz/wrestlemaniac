@@ -113,18 +113,44 @@ class LeagueController extends Controller
     public function entrarLiga(Request $request){
         // Autenticação
         $this->validate($request,[
-            'leagueName'      => 'required'
+            'name'      => 'required',
+            'secret_password' => 'required'
         ]);
-        $user = Auth::user();
-        if($user->id_league == 1){  
+        if(Auth::user()->id_league == 1){  
             // Pega a liga que o usuário digitou
             $league = DB::table('leagues')
-                ->where('league_name',$request->leagueName)
+                ->where('league_name',$request->name)
                 ->first();
-            $userId = Auth::user()->id; // Pega o id do usuário
-            DB::table('league_notifications')->insert([
-                ['id_league' => $league->id, 'id_user' => $user->id]
-            ]);
+            $quantidade = DB::table('users')->where('id_league',$league->id)->count(); // Pega quantos usuários da liga existem
+            // Confirma se a senha que ele digito bate com a da liga
+            if (Hash::check($request->secret_password, $league->secret_password)) {
+                // Se confirmar
+                $userId = Auth::user()->id; // Pega o id do usuário
+                $dono = DB::table('users')->where('id',$league->owner)->first();// Recebe o dono
+                if($dono->type == 'Pro'){ // Confere se o dono é pro
+                    // Adiciona o jogador a liga
+                    DB::table('users')
+                        ->where('id',$userId)
+                        ->update([
+                            'id_league' => $league->id
+                        ]);
+                }else{ // Caso a liga não seja pro
+                    if($quantidade < 5){ // Verifica se a liga tem menos de 5 membros
+                        // Adiciona o jogador a liga
+                        DB::table('users')
+                        ->where('id',$userId)
+                        ->update([
+                            'id_league' => $league->id
+                        ]);
+                    }else{
+                        return redirect()->route('leagueHome');
+                    }
+                }
+                
+            }else{
+                //NÃO ACERTOU A PALAVRA CHAVE
+                return redirect()->route('leagueHome');
+            }
             return redirect()->route('leagueHome');
         }else{
             return redirect()->route('leagueHome');
