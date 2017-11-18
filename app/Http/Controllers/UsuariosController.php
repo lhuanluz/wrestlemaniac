@@ -6,85 +6,61 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use Mail;
+use App\Mail\NewUserVerify;
+use App\Mail\alterEmail;
 
 class UsuariosController extends Controller
-{
-    //
-
-    public function editarEmail(){
-
-        return view('editEmail');
-    }
-    public function editarEmailRequest(Request $request){
-        $this->validate($request,[
-            'emailAntigo' => 'required',
-            'email' => 'required'
-        ]);
-         DB::table('users')
-            ->where('email', $request->emailAntigo)
-            ->update([
-                'email' => $request->email
-                ]);
-        return redirect()->route('painelAdmin');
-    }
-
-    public function editarNome(){
-
-        return view('editNome');
-    }
-    public function editarNomeRequest(Request $request){
-        $this->validate($request,[
-            'email' => 'required',
-            'nome' => 'required'
-        ]);
-         DB::table('users')
-            ->where('email', $request->email)
-            ->update([
-                'name' => $request->nome
-                ]);
-        return redirect()->route('painelAdmin');
-    }
-
-    public function editarAdmin(){
-
-        return view('editAdmin');
-    }
-    public function editarAdminRequest(Request $request){
-        $this->validate($request,[
-            'email' => 'required',
-            'nivel' => 'required'
-        ]);
-         DB::table('users')
-            ->where('email', $request->email)
-            ->update([
-                'user_power' => $request->nivel
-                ]);
-        return redirect()->route('painelAdmin');
-    }
-    public function selectPhoto(Request $request){
-        $this->validate($request,[
-            'photo' => 'required'
-        ]);
-        $userId = Auth::user()->id;
-         DB::table('users')
-            ->where('id', $userId)
-            ->update([
-                'photo' => $request->photo
-                ]);
-        return redirect()->route('home');
-    }
-
-    public function selectPhotoRedirect(){
+{    
+    
+    
+    public function comprarIcone(Request $request){
+        $icon = DB::table('icons')->where('id',$request->iconID)->first();
         $user = Auth::user();
-        if($user->type == 'Pro'){
-            $imagens = DB::table('images')->orderBy('name')->get();
+        if($user->wc >= $icon->price){
+            $wcRestante = $user->wc - $icon->price;
+            DB::table('user_icons')->insert([
+                ['user_id' => $user->id, 'icon_id' => $icon->id]
+            ]);
+            DB::table('users')->where('id',Auth::user()->id)->update([
+                'wc' => $wcRestante
+            ]);
+        }
+        return redirect()->route('selectPhotoRedirect');
+    }
+
+    public function iconStore(){
+        $user = Auth::user();
+        $iconsNaoComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id NOT IN (
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id)
+            AND icons.tier < 5"));
+        return view('shop',[
+            'iconsNaoComprados' => $iconsNaoComprados
+        ]);
+        
+    }
+    public function escolhaDeIconRedirect(){
+        $user = Auth::user();
+        if($user->user_power > 0){
+            $iconsComprados = DB::table('icons')->get();
         }else{
-            $imagens = DB::table('images')->where('type','Free')->orderBy('name')->get();
+        $iconsComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id IN (
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
+            "));
         }
         return view('selectPhoto',[
-            'imagens' => $imagens, // Lista de Imagens
-            ]);
-        
+            'iconsComprados' => $iconsComprados
+        ]);
+    }
+
+    public function selecionarIcon(Request $request){
+        DB::table('users')->where('id',Auth::user()->id)->update([
+            'photo' => $request->photo
+        ]);
+
+        return redirect()->route('home');
     }
 
     public function addPhoto(Request $request){
@@ -110,24 +86,6 @@ class UsuariosController extends Controller
 
     public function addPhotoRedirect(){
         return view('addPhotos');
-    }
-
-    public function givePro(Request $request){
-        $this->validate($request,[
-            'email' => 'required',
-            'tipo' => 'required'
-        ]);
-        DB::table('users')
-            ->where('email',$request->email)
-            ->update([
-                'type' => $request->tipo
-            ]);
-
-        return redirect()->route('painelAdmin');
-    }
-
-    public function giveProRedirect(){
-        return view('givePro');
     }
 
     public function alterName(){
@@ -166,6 +124,68 @@ class UsuariosController extends Controller
             return redirect()->route('home')->withMessage("Password Changed");
         }else{
             return redirect()->route('home')->withMessage("Password Change Failed");
+        }
     }
-}
+    //Funcao para verificar email de usuarios novos
+    public function emailVerify($code){
+       $user = DB::table('users')
+       ->where('verifyCode',$code)
+       ->first();
+        DB::table('users')
+        ->where('email', $user->email)
+        ->update([
+            'verified' => 1,
+            'verifyCode' => null
+        ]);
+        return redirect()->route('home');
+    }
+    //Funcao para verifica email de usuarios antigos logados
+    public function emailReVerify(){
+        $code = base64_encode(str_random(40));
+        DB::table('users')
+        ->where('email', Auth::user()->email)
+        ->update([
+            'verifyCode' => $code
+        ]);
+        Mail::to(Auth::user()->email)->queue(new NewUserVerify(Auth::user()));
+        return redirect()->route('home');
+    }
+    
+    public function changeEmail(){//Função so para testar o botao de enviar email 
+        return view('changeEmail');
+    }
+    public function sendChangeEmail(){  //Função para mandar o e-mail de troca de e-mail
+        $code = rand(1000,9999); //Gerar o codigo para verificação
+        DB::table('users') // Consulta sql para atualizar a coluna do codigo referente ao usuario logado
+        ->where('email', Auth::user()->email)
+        ->update([
+            'verifyCode' => $code
+            ]);
+            Mail::to(Auth::user()->email)//Função para mandar o email para fila, utilizando o usuario logado                     
+            ->queue(new alterEmail(Auth::user()));   
+            return redirect()->route('vEmailR');         
+    }
+    public function verifyChangeEmailRedirect(){//Função so para testar o botao de enviar email 
+        return view('changeEmailConfirmed');
+    }
+    public function verifyChangeEmail(Request $request){
+        $this->validate($request,[
+            'code' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6'
+        ]);                
+        if (Hash::check($request->password, Auth::user()->password))
+        {
+         DB::table('users')
+         ->where('email', Auth::user()->email)
+         ->update([
+             'email' => $request->email,
+             'verified' => 1,
+             'verifyCode' => null
+         ]);
+        }
+         return redirect()->route('home');
+    }
+    
+
 }

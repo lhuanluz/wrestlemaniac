@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','user_power','id_league','type','photo'];
+        'name', 'email', 'password','user_power','id_league','type','photo','verifyCode','wc'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -56,6 +56,16 @@ class User extends Authenticatable
     {
         $isAdmin = Auth::user()->user_power;
         if ($isAdmin >= 2){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    public function isAdmin3()
+    {
+        $isAdmin = Auth::user()->user_power;
+        if ($isAdmin >= 3){
             return true;
         }else{
             return false;

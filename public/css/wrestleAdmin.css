@@ -20,3 +20,16 @@
     color: white;
     margin-left:20px; 
 }
+.img-circle-admin-check {
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+}
+.card-box{
+    box-shadow: none;
+}
+.img-thumbnail {
+    border: 0px solid black;
+    box-shadow: 0px 3px 6px #141516;
+    padding: 0px;
+}

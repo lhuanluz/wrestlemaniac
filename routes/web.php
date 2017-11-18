@@ -12,7 +12,6 @@
 */
 
 
-
 // Início de rotas para todas as funções derivadas do painel ADMIN
 Route::prefix('admin')->middleware('auth.admin')->group(function (){
     //Rota para a home do painel admin
@@ -55,18 +54,28 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
         Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
     });
-    //Rotas Para Editar Usuarios
-    Route::prefix('user')->group(function (){
-        Route::get('editEmail','UsuariosController@editarEmail')->name('editEmail');
-        Route::post('editEmail/confirm','UsuariosController@editarEmailRequest')->name('editEmailR');
-        Route::get('editNome','UsuariosController@editarNome')->name('editNome');
-        Route::post('editNome/confirm','UsuariosController@editarNomeRequest')->name('editNomeR');
-        Route::get('editAdmin','UsuariosController@editarAdmin')->name('editAdmin');
-        Route::post('editAdmin/confirm','UsuariosController@editarAdminRequest')->name('editAdminR');
-        Route::get('givePro','UsuariosController@giveProRedirect')->name('giveProRedirect');
-        Route::post('givePro/confirm','UsuariosController@givePro')->name('givePro');
+    // Rotas Para Editar Usuarios
+    Route::prefix('user')->middleware('auth.admin3')->group(function (){
+        // Rotas para editar o email do usuário
+        Route::get('edit-email','AdminController@editarUsuarioEmailRedirect')->name('editUserEmailRedirect');
+        Route::post('edit-email/confirm','AdminController@editarUsuarioEmail')->name('editUserEmail');
+        // Rotas para editar o nome do usuário
+        Route::get('edit-name','AdminController@editarUsuarioNomeRedirect')->name('editUserNameRedirect');
+        Route::post('edit-name/confirm','AdminController@editarUsuarioNome')->name('editUserName');
+        // Rotas para dar ao usuário permissões ADMIN
+        Route::get('create-admin','AdminController@criarAdminRedirect')->name('createAdminRedirect');
+        Route::post('create-admin/confirm','AdminController@criarAdmin')->name('createAdmin');
+        // Rotas para dar ao usuário o sistema PRO
+        Route::get('give-pro','AdminController@darProRedirect')->name('giveProRedirect');
+        Route::post('give-pro/confirm','AdminController@darPro')->name('givePro');
+        // Rotas para checar usuário
+        Route::get('check-user','AdminController@checarUsuarioRedirect')->name('checkUserRedirect');
+        Route::post('check-user/confirm','AdminController@checarUsuarioConfirmar')->name('checkUserConfirm');
+        Route::post('check-user/view','AdminController@checarUsuario')->name('checkUser');
+
+
     });
-    Route::prefix('leagues')->group(function (){ 
+    Route::prefix('leagues')->middleware('auth.admin3')->group(function (){ 
         Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');
 
     });
@@ -81,6 +90,31 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::get('delete','AvisoController@deleteWarning')->name('dWarning');
         Route::post('delete/confirm','AvisoController@deleteWarningRequest')->name('dWarningR');
 
+    });
+    //Rotas para funções relacionadas a icones
+    Route::prefix('icons')->group(function(){
+        Route::post('addIcons','AdminController@addIcon')->name('addIcon');
+        Route::get('addIconRedirect','AdminController@addIconRedirect')->name('addIconRedirect');
+        Route::get('editIconNameRedirect','AdminController@editIconNameRedirect')->name('editIconNameRedirect');
+        Route::post('editIconName','AdminController@editIconName')->name('editIconName');
+        Route::get('editIconTierRedirect','AdminController@editIconTierRedirect')->name('editIconTierRedirect');
+        Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
+        Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
+        Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
+        Route::get('giveIcon','AdminController@darIconRedirct')->name('giveIconRedirect');
+        Route::post('giveIcon/confirm','AdminController@darIcon')->name('giveIcon');
+
+    });
+    //Rotas para funções relacionadas ao season reset
+    Route::prefix('season')->middleware('auth.admin3')->group(function(){
+        // Rotas para resetar a season
+        Route::get('reset','AdminController@resetarSeasonRedirect')->name('seasonResetRedirect');
+        Route::post('reset/confirm','AdminController@resetarSeason')->name('seasonReset');
+    });
+    Route::prefix('belts')->middleware('auth.admin3')->group(function(){
+        // Rotas para resetar a season
+        Route::get('config','AdminController@configurarBelts')->name('configBelts');
+        Route::get('verify','AdminController@verificarBelts')->name('verifyBelts');
     });
 });
 // Fim de rotas para todas as funções derivadas do painel ADMIN
@@ -139,29 +173,57 @@ Route::prefix('league')->middleware('auth.logado')->group(function () {
         Route::post('/joinLeague','LeagueController@entrarLiga')->name('entrarLiga');
         Route::post('/createLeague','LeagueController@criarLiga')->name('criarLiga');
         Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
-    });
+});
+
+Route::prefix('icon-store')->middleware('auth.logado')->group(function () {
+    Route::get('/','UsuariosController@iconStore')->name('iconStore');
+    Route::post('buy','UsuariosController@comprarIcone')->name('buyIcon');
+
+});
 //Rotas Rank Usuario Cash
 Route::get('statistics','RankingController@statistics')->middleware('auth.logado')->name('statistics');
-Route::get('selectPhoto','UsuariosController@selectPhotoRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
-Route::post('selectPhoto/confirm','UsuariosController@selectPhoto')->middleware('auth.logado')->name('selectPhoto');
+Route::get('selectPhoto','UsuariosController@escolhaDeIconRedirect')->middleware('auth.logado')->name('selectPhotoRedirect');
+Route::post('selectPhoto/confirm','UsuariosController@selecionarIcon')->middleware('auth.logado')->name('selectPhoto');
 
 Route::get('/gameRules', function () {
     return view('gameRules');
 })->middleware('auth.logado')->name('gameRules');
 
+<<<<<<< HEAD
 Route::get('/howToPlay', function () {
     return view('howToPlay');
 })->name('howToPlay');
 
 
 Auth::routes();
+=======
+>>>>>>> origin/wrestlemaniacV2
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {
     return view('faq/faq');
 })->name('faq');
 
+Route::get('/howToPlay', function () {
+    return view('howToPlay');
+})->name('howToPlay');
+
+Auth::routes();
+
+
+
+
+/*
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
 Route::get('alterPass', 'UsuariosController@alterPass')->name('pass');
 Route::post('alterPassR', 'UsuariosController@alterPassRequest')->name('passR');
+Route::get('/emailConfirm/{code}', 'UsuariosController@emailVerify')->name('verifyEmail');
+Route::get('/emailReConfirm', 'UsuariosController@emailReVerify')->name('reVerifyEmail');
+Route::get('/changeEmail', 'UsuariosController@changeEmail')->name('changeEmail');
+Route::get('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sEmail');
+Route::get('/verifyChangeEmail','UsuariosController@verifyChangeEmailRedirect')->name('vEmailR');
+Route::post('/verifyChangeEmail/confirm','UsuariosController@verifyChangeEmail')->name('vEmail');
+*/
+
+

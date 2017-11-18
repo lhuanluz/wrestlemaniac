@@ -12,7 +12,11 @@ return [
     | any other location as required by the application or its packages.
     */
 
+<<<<<<< HEAD
     'name' => env('APP_NAME', 'Wrestlemaniac'),
+=======
+    'name' =>'Wrestlemaniac',
+>>>>>>> origin/wrestlemaniacV2
 
     /*
     |--------------------------------------------------------------------------

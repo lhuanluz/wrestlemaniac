@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\superstar;
+use App\Models\Icon;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -169,6 +171,34 @@ I8,        8        ,8I                                            88           
                 return view('admin/editarVisibilidadePpv');
             }
 
+        // Redirects do Usuário
+            public function darProRedirect(){
+                // Retorna o usuário para a página de dar PRO
+                return view('admin/darPro');
+            }
+                
+            public function criarAdminRedirect(){
+                // Retorna o usuário para a página de criar admin
+                return view('admin/criarAdmin');
+            }
+
+            public function editarUsuarioEmailRedirect(){
+                // Retorna o usuário para a página de editar email do usuário
+                return view('admin/editarUsuarioEmail');
+            }
+            public function editarUsuarioNomeRedirect(){
+                // Retorna o usuário para a página de editar o nome do usuário
+                return view('admin/editarUsuarioNome');
+            }
+            public function checarUsuarioRedirect(){
+                return view('admin/checarUsuario');
+            }
+
+        // Redirects do Season Reset
+            public function resetarSeasonRedirect(){
+                return view('admin/seasonReset');
+            }
+            
     // FUNÇÕES
 // INÍCIO FUNÇÕES SUPERSTAR
         public function criarSuperstar(Request $request){
@@ -470,7 +500,27 @@ I8,        8        ,8I                                            88           
         $quantidade = DB::table($tabela)->count('id'); // Define a quantidade de times que existem na tabela
 
         // Caso a ação seja para abrir o Mercado
+        $statusAtual = DB::table('configs')->first();
+        if ($action == $statusAtual->$coluna) {
+            return redirect()->route('painelAdmin');
+            die();
+        }
         if($action == 'Aberto'){
+            $timeDoUser = DB::table($tabela)->where('user_id',Auth::user()->id)->first();
+            $wcBonus = 0;
+            if($timeDoUser->superstar01 != 103){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar02 != 102){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar03 != 101){
+                $wcBonus=+2;
+            }
+            if($timeDoUser->superstar04 != 100){
+                $wcBonus=+2;
+            }
+            DB::table('users')->where('id',Auth::user()->id)->increment('wc',$wcBonus);
             DB::table('configs')->update([
                 $coluna => $action // Altera o mercado desejado para aberto
             ]);
@@ -527,21 +577,23 @@ I8,        8        ,8I                                            88           
                 for ($i=1; $i <= $quantidade ; $i++) { 
                     // Pega os superstars de cada time
                     $team = DB::table($tabela)->where('id',$i)->first();
-
-                    $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->value('points');
-                    $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->value('points');
-                    $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->value('points');
-                    $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->value('points');
-
-                    $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points'); // Recebe os pontos totais do time
-                    $pontos = $superstar01 + $superstar02 + $superstar03 + $superstar04; // Define que os pontos atuais serão a soma dos pontos dos superstars
-                    $total_pontos = $ult_pontos + $pontos; // Define que os pontos totais do time serão os anteriores mais os atuais
-                    
-                    // Atualiza os pontos do jogador
-                    DB::table($tabela)->where('id',$i)->update([
-                        'team_points' => $pontos,
-                        'team_total_points' => $total_pontos
-                    ]);         
+                    if($team != NULL){
+                        $superstar01 = DB::table('superstars')->where('id',$team->superstar01)->value('points');
+                        $superstar02 = DB::table('superstars')->where('id',$team->superstar02)->value('points');
+                        $superstar03 = DB::table('superstars')->where('id',$team->superstar03)->value('points');
+                        $superstar04 = DB::table('superstars')->where('id',$team->superstar04)->value('points');
+    
+                        $ult_pontos = DB::table($tabela)->where('id',$i)->value('team_total_points'); // Recebe os pontos totais do time
+                        $pontos = $superstar01 + $superstar02 + $superstar03 + $superstar04; // Define que os pontos atuais serão a soma dos pontos dos superstars
+                        $total_pontos = $ult_pontos + $pontos; // Define que os pontos totais do time serão os anteriores mais os atuais
+                        
+                        // Atualiza os pontos do jogador
+                        DB::table($tabela)->where('id',$i)->update([
+                            'team_points' => $pontos,
+                            'team_total_points' => $total_pontos
+                        ]);
+                    }
+                           
                 }
             }
             else{ // Caso o mercado seja de PPV
@@ -893,5 +945,383 @@ I8,        8        ,8I                                            88           
 
     }
 // FIM FUNÇÕES MERCADO
+// INÍCIO FUNÇÕES USUÁRIO
+    public function darPro(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'tipo' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email',$request->email)
+            ->update([
+                'type' => $request->tipo
+            ]);
 
+        return redirect()->route('giveProRedirect');
+    }
+
+    public function criarAdmin(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nivel' => 'required',
+            'role' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'user_power' => $request->nivel,
+                'role' => $request->role
+                ]);
+        return redirect()->route('createAdminRedirect');
+    }
+
+    public function editarUsuarioEmail(Request $request){
+        $this->validate($request,[
+            'emailAntigo' => 'required',
+            'email' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->emailAntigo)
+            ->update([
+                'email' => $request->email
+                ]);
+        return redirect()->route('editUserEmailRedirect');
+    }
+    public function editarUsuarioNome(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nome' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'name' => $request->nome
+                ]);
+        return redirect()->route('editUserNameRedirect');
+    }
+    public function checarUsuario(Request $request){
+
+        $user = DB::table('users')->where('email',$request->email)->first();
+        $rawTeam = DB::table('raw_teams')->where('user_id',$user->id)->first();
+        $smackdownTeam = DB::table('smackdown_teams')->where('user_id',$user->id)->first();
+        $ppvTeam = DB::table('ppv_teams')->where('user_id',$user->id)->first();
+
+        $superstarsRaw = DB::table('superstars')
+                        ->whereIn('id',[$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04])
+                        ->get();
+        $superstarsSmackdown = DB::table('superstars')
+                        ->whereIn('id',[$smackdownTeam->superstar01,$smackdownTeam->superstar02,$smackdownTeam->superstar03,$smackdownTeam->superstar04])
+                        ->get();
+        $superstarsPpv = DB::table('superstars')
+                        ->whereIn('id',[$ppvTeam->superstar01,$ppvTeam->superstar02,$ppvTeam->superstar03,$ppvTeam->superstar04])
+                        ->get();
+        $leagueInfo = DB::table('leagues')->where('id',$user->id_league)->first();
+        $leagueMembers = DB::table('users')->where('id_league',$user->id_league)->first();
+
+        return view('admin/infoUsuario',[
+            'user' => $user,
+            'rawTeam' => $rawTeam,
+            'smackdownTeam' => $smackdownTeam,
+            'ppvTeam' => $ppvTeam,
+            'superstarsRaw' => $superstarsRaw,
+            'superstarsSmackdown' => $superstarsSmackdown,
+            'superstarsPpv' => $superstarsPpv,
+            'leagueInfo' => $leagueInfo,
+            'leagueMembers' => $leagueMembers
+            ]);
+    }
+    public function checarUsuarioConfirmar(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+
+        $usuarios = DB::table('users')->join('leagues', 'users.id_league', '=', 'leagues.id')->where('name','like','%'.$request->name.'%')->get();
+
+        return view('admin/confirmarUsuarioCheck',[
+            'usuarios' => $usuarios
+        ]);
+    }
+    public function addIconRedirect(){
+        $superstars = DB::table('superstars')->get();
+        return view('admin/addIcon',[
+            'superstars' => $superstars,
+            
+            ]);
+    }
+    //Funcao para adicionar icone
+    public function addIcon(Request $request){
+        $this->validate($request,[
+            'name' => 'required',// define que o nome é obrigatorio
+            'tier' => 'required',// define que o type é obrigatorio
+            'imagem'   => 'image|required' // define que a imagem do icone é requirida para o icone ser cadastrado
+        ]);
+            //fim da vlidação
+
+        // Início do salvamento da imagem no "/storage/icons/nomeDaImagem.png"
+        $nomeDaImagem = $request->imagem->getClientOriginalName(); // Pega o nome da imagem que foi feita upload
+        $caminho = 'storage/icons/'.$nomeDaImagem; // Define o caminho que será criado com o nome da imagem
+        $imagem = $request->imagem;  // Recebe a imagem na variável $imagem
+        $imagem->storeAs('icons',$nomeDaImagem,'public'); // Armazena a imagem na pasta icons com o nome da imagem
+    // Fim do salvamente da imagem
+
+    // Inicio Cálculo do preço
+        if ($request->tier == 1) {
+            $preço = 25.00;
+        }else if ($request->tier == 2) {
+            $preço = 50.00;
+        }else if ($request->tier == 3) {
+            $preço = 75.00;
+        }else {
+            $preço = 100.00;
+        }
+    // Fim Cálculo do preço
+
+    // Início do salvamento do icone no banco de dados
+        $icon = new Icon(); // Cria um novo icone na variável $icon
+        $icon->name = $request->get('name'); // Define que o nome do icone será o passado no formulário
+        $icon->tier = $request->get('tier'); // Define que o tier do icone será o recebido no formulário
+        $icon->price = $preço; // Define que o preço é mediante o tier escolhido no formulário
+        $icon->img_url = $caminho; // Define o url da imagem do icone
+        $icon->save(); // Salva o icone criado no banco de dados
+        return redirect()->route('addIconRedirect');
+    }
+    public function editIconNameRedirect(){
+        return view('admin/editIconName');
+    }
+    public function editIconName(Request $request){
+        $this->validate($request,[
+            'oldName' => 'required',// define que o nome antigo é obrigatorio
+            'tier' => 'required',// define que o tier é obrigatorio
+            'newName' => 'required'// define que o nome novo é obrigatorio            
+        ]);
+        DB::table('icons')
+        ->where([
+            ['name', '=', $request->oldName],
+            ['tier', '=', $request->tier]
+        ])->update([
+            'name' => $request->newName
+        ]);
+        
+        return redirect()->route('editIconNameRedirect');
+    }
+    public function editIconTierRedirect(){
+        return view('admin/editIconTier');
+    }
+    public function editIconTier(Request $request){
+        $this->validate($request,[
+            'name' => 'required',// define que o nome antigo é obrigatorio
+            'tier' => 'required',// define que o tier é obrigatorio
+            'newTier' => 'required'// define que a nova tier é obrigatorio            
+        ]);
+        DB::table('icons')
+        ->where([
+            ['name', '=', $request->name],
+            ['tier', '=', $request->tier]
+        ])->update([
+            'tier' => $request->newTier
+        ]);
+        
+        return redirect()->route('editIconTierRedirect');
+    }
+    public function editIconPriceRedirect(){
+        return view('admin/editIconPrice');
+    }
+    public function editIconPrice(Request $request){
+        $this->validate($request,[
+            'name' => 'required',// define que o nome antigo é obrigatorio
+            'tier' => 'required',// define que o tier é obrigatorio
+            'newPrice' => 'required'// define que a nova tier é obrigatorio            
+        ]);
+        DB::table('icons')
+        ->where([
+            ['name', '=', $request->name],
+            ['tier', '=', $request->tier]
+        ])->update([
+            'price' => $request->newPrice
+        ]);
+        
+        return redirect()->route('editIconPriceRedirect');
+    }
+    public function editIconPhotoRedirect(){     
+        Storage::delete(env('APP_URL').'/'.'storage/icons/pqefp1.jpg');     
+        return view('admin/editIconPhoto');
+    }
+    public function editIconPhoto(Request $request){
+        $this->validate($request,[
+            'name' => 'required',// define que o nome antigo é obrigatorio
+            'tier' => 'required',// define que o tier é obrigatorio
+            'imagem'   => 'image|required' // define que a imagem do icone é requirida para o icone ser editado           
+        ]);        
+            /*
+        $photo = DB::table('icons')// SQL para pegar endereço da foto antiga
+        ->select('img_url')
+        ->where([
+            ['name', '=', $request->name],
+            ['tier', '=', $request->tier]
+        ])->get();
+        Storage::delete($photo);// Deleta a foto antiga
+          */
+        // Início do armazenamento da imagem no "/storage/icons/nomeDaImagem.png"
+        $nomeDaImagem = $request->imagem->getClientOriginalName(); // Pega o nome da imagem que foi feita upload
+        $caminho = 'storage/icons/'.$nomeDaImagem; // Define o caminho que será criado com o nome da imagem
+        $imagem = $request->imagem;  // Recebe a imagem na variável $imagem
+        $imagem->storeAs('icons',$nomeDaImagem,'public'); // Armazena a imagem na pasta icons com o nome da imagem
+         // Fim do salvamente da imagem
+
+         DB::table('icons')// SQL para atualizar a coluna img_url
+         ->where([
+             ['name', '=', $request->name],
+             ['tier', '=', $request->tier]
+         ])->update([
+             'img_url' => $caminho
+         ]);
+        return redirect()->route('editIconPhotoRedirect');
+    }
+    public function resetarSeason(){
+        DB::table('superstars')->where('name','!=','None')
+        ->update([
+            'price' => 1000,
+            'points' => 0.0,
+            'last_points' => 0.0
+        ]);
+        DB::table('raw_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 4000
+        ]);
+        DB::table('smackdown_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 4000
+        ]);
+        DB::table('ppv_teams')
+        ->update([
+            'superstar01' => 103,
+            'superstar02' => 102,
+            'superstar03' => 101,
+            'superstar04' => 100,
+            'team_points' => 0.0,
+            'team_total_points' => 0.0,
+            'team_cash' => 0
+        ]);
+        return redirect()->route('painelAdmin');
+    }
+    public function configurarBelts(){
+        $top1Raw = DB::table('raw_teams')
+        ->orderBy('team_total_points','desc')->first();
+
+        $top1Smack = DB::table('smackdown_teams')
+        ->orderBy('team_total_points','desc')->first();
+
+        $top1League = DB::table('leagues')
+        ->orderBy('league_points','desc')->first();
+
+        DB::table('user_belts')->where('id',1)->update([
+            'user_id' => $top1Raw->user_id,
+            'days' => 1
+        ]);
+        DB::table('user_belts')->where('id',2)->update([
+            'user_id' => $top1Smack->user_id,
+            'days' => 1
+        ]);
+        DB::table('league_belts')->where('id',1)->update([
+            'id_league' => $top1League->id,
+            'days' => 1
+        ]);
+        return redirect()->route('painelAdmin');  
+    }
+    public function verificarBelts(){
+        $atualChampRaw = DB::table('user_belts')->where('id',1)->first();
+        $atualChampSmack = DB::table('user_belts')->where('id',2)->first();
+        $atualChampLeague = DB::table('league_belts')->first();
+
+        $top1Raw = DB::table('raw_teams')
+        ->orderBy('team_total_points','desc')->first();
+
+        $top1Smack = DB::table('smackdown_teams')
+        ->orderBy('team_total_points','desc')->first();
+
+        $top1League = DB::table('leagues')
+        ->orderBy('league_points','desc')->first();
+
+        if ($atualChampRaw->user_id != $top1Raw->user_id) {
+            DB::table('user_belts_history')->insert([
+                'id_user' => $atualChampRaw->user_id,
+                'id_belt' => 1,
+                'days' => $atualChampRaw->days
+            ]);
+            DB::table('user_belts')->where('id',1)->update([
+                'user_id' => $top1Raw->user_id,
+                'days' => 1
+            ]);
+        }else{
+            DB::table('user_belts')->where('id',1)->increment('days');
+        }
+
+        if ($atualChampSmack->user_id != $top1Smack->user_id) {
+            DB::table('user_belts_history')->insert([
+                'id_user' => $atualChampSmack->user_id,
+                'id_belt' => 2,
+                'days' => $atualChampSmack->days
+            ]);
+            DB::table('user_belts')->where('id',2)->update([
+                'user_id' => $top1Smack->user_id,
+                'days' => 1
+            ]);
+        }else{
+            DB::table('user_belts')->where('id',2)->increment('days');
+        }
+
+        if ($atualChampLeague->id_league != $top1League->id) {
+            DB::table('league_belts_history')->insert([
+                'id_league' => $atualChampLeague->league_id,
+                'id_belt' => 1,
+                'days' => $atualChampLeague->days
+            ]);
+            DB::table('league_belts')->where('id',1)->update([
+                'id_league' => $top1League->id,
+                'days' => 1
+            ]);
+        }else{
+            DB::table('league_belts')->where('id',1)->increment('days');
+        }
+        return redirect()->route('painelAdmin');  
+    }
+    public function darIconRedirct(){
+        $icons = DB::table('icons')->get();
+        return view('admin/darIcon',[
+            'icons' => $icons
+        ]);
+    }
+    public function darIcon(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'tier' => 'required'
+        ]);
+        $users = DB::table('users')->orderBy('id','desc')->first();
+        $icon = DB::table('icons')->where([
+            ['name',$request->name],['tier',$request->tier],])->first();
+        for ($i=1; $i <= $users->id; $i++) {
+            $user = DB::table('users')->where('id',$i)->first();
+            if ($user == NULL){
+
+            }else{
+                DB::table('user_icons')->insert([
+                    ['user_id' => $user->id, 'icon_id' => $icon->id]
+                ]);
+            }
+        }
+        return redirect()->route('giveIconRedirect');
+    }
 }

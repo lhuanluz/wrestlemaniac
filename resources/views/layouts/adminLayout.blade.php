@@ -22,6 +22,11 @@
         <link href="{{ url('css/responsive.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('plugins/fileuploads/css/dropify.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ url('css/wrestleAdmin.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/plugins/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/plugins/datatables/buttons.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/plugins/datatables/fixedHeader.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/plugins/datatables/responsive.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/plugins/datatables/scroller.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -138,7 +143,7 @@
                             <li>
                                 <a href="{{ route('painelAdmin') }}" class="waves-effect {{route::is('painelAdmin') ? 'active' : '' }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                             </li>
-                            @if(Auth::user()->user_power >=2)
+                            @if (Auth::user()->user_power >=2)
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-star"></i> <span> Superstars </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
@@ -160,8 +165,26 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('addIconRedirect') }}"><i class="zmdi zmdi-plus"></i>Add Icon</a></li>
+                                    <li><a href="{{ route('editIconNameRedirect') }}"><i class="zmdi zmdi-edit"></i>Edit Icon Name</a></li>
+                                    <li><a href="{{ route('editIconTierRedirect') }}"><i class="zmdi zmdi-plus-circle-o-duplicate"></i>Edit Icon Tier</a></li>
+                                    <li><a href="{{ route('editIconPhotoRedirect') }}"><i class="zmdi zmdi-image"></i>Edit Icon Photo</a></li>
+                                    <li><a href="{{ route('giveIconRedirect') }}"><i class="zmdi zmdi-album"></i>Give Icon</a></li>
+                                    
+                                </ul>
+                            </li>
+                            @endif
+                            @if (Auth::user()->user_power >= 3)
+                            <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-accounts"></i> <span> Users </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
+                                    <li><a href="{{ route('editUserNameRedirect') }}"><i class="zmdi zmdi-account-box-mail"></i>Edit Name</a></li>
+                                    <li><a href="{{ route('editUserEmailRedirect') }}"><i class="zmdi zmdi-email"></i>Edit Email</a></li>
+                                    <li><a href="{{ route('giveProRedirect') }}"><i class="zmdi zmdi-cake"></i>Give Pro</a></li>
+                                    <li><a href="{{ route('createAdminRedirect') }}"><i class="zmdi zmdi-coffee"></i>Create Admin</a></li>
+                                    <li><a href="{{ route('checkUserRedirect') }}"><i class="zmdi zmdi-search"></i>Check User</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
@@ -170,8 +193,21 @@
                                     <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Leagues</a></li>
                                 </ul>
                             </li>
-                            @else
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-widgets"></i> <span> Season </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('seasonResetRedirect') }}"><i class="zmdi zmdi-alert-triangle"></i>Season Reset</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-ticket-star"></i> <span> Belts </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('configBelts') }}"><i class="zmdi zmdi-settings"></i>Config Belts</a></li>
+                                    <li><a href="{{ route('verifyBelts') }}"><i class="zmdi zmdi-globe"></i>Verify Belts</a></li>
+                                </ul>
+                            </li>
                             @endif
+                            
                             <!--
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-text"></i><span class="label label-warning pull-right">7</span><span> Forms </span> </a>
@@ -399,6 +435,21 @@
         <!-- App js -->
         <script src="{{ url('js/jquery.core.js') }}"></script>
         <script src="{{ url('js/jquery.app.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/jszip.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
+        <script src="{{ url('assets/pages/datatables.init.js') }}"></script>
 
         <script src="{{ url('plugins/fileuploads/js/dropify.min.js') }}"></script>
         <script type="text/javascript">
