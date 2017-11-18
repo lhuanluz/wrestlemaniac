@@ -189,15 +189,12 @@ Route::get('/gameRules', function () {
     return view('gameRules');
 })->middleware('auth.logado')->name('gameRules');
 
-<<<<<<< HEAD
 Route::get('/howToPlay', function () {
     return view('howToPlay');
 })->name('howToPlay');
 
 
 Auth::routes();
-=======
->>>>>>> origin/wrestlemaniacV2
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {

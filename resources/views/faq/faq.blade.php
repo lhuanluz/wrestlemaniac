@@ -49,8 +49,6 @@
         </div>
 
         <div class="pergunta">
-<<<<<<< HEAD
-=======
             <button data-toggle="collapse" data-target="#pergunta10" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     What is WC ?	
@@ -64,7 +62,6 @@
         </div>
 
         <div class="pergunta">
->>>>>>> origin/wrestlemaniacV2
             <button data-toggle="collapse" data-target="#pergunta4" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     How the score system works?
@@ -77,11 +74,7 @@
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
-<<<<<<< HEAD
-
-=======
         
->>>>>>> origin/wrestlemaniacV2
         <div class="pergunta">
             <button data-toggle="collapse" data-target="#pergunta5" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
@@ -91,11 +84,7 @@
             <div id="pergunta5" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Raw Market opens at: As Soon as the show ends<br>
-<<<<<<< HEAD
-                Raw Market closes at: Mondays 3:00 PM PST
-=======
                 Raw Market closes at: Mondays 10:00 PM UTC
->>>>>>> origin/wrestlemaniacV2
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
@@ -109,11 +98,7 @@
             <div id="pergunta6" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Smackdown Market opens at: As Soon as the show ends<br>
-<<<<<<< HEAD
-                Smackdown Market closes at: Tuesdays 3:00 PM PST
-=======
                 Smackdown Market closes at: Tuesdays 10:00 PM UTC
->>>>>>> origin/wrestlemaniacV2
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
@@ -127,11 +112,7 @@
             <div id="pergunta7" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Smackdown Market opens at: Wednesdays (On the PPV week)<br>
-<<<<<<< HEAD
-	            Smackdown Market closes at: Sundays 3:00 PM PST
-=======
 	            Smackdown Market closes at: Sundays 10:00 PM UTC
->>>>>>> origin/wrestlemaniacV2
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
