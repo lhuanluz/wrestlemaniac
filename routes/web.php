@@ -210,7 +210,7 @@ Auth::routes();
 
 
 
-/*
+
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');
 Route::get('alterPass', 'UsuariosController@alterPass')->name('pass');
@@ -221,6 +221,6 @@ Route::get('/changeEmail', 'UsuariosController@changeEmail')->name('changeEmail'
 Route::get('/sendChangeEmail','UsuariosController@sendChangeEmail')->name('sEmail');
 Route::get('/verifyChangeEmail','UsuariosController@verifyChangeEmailRedirect')->name('vEmailR');
 Route::post('/verifyChangeEmail/confirm','UsuariosController@verifyChangeEmail')->name('vEmail');
-*/
+
 
 
