@@ -24,14 +24,14 @@
         
         @if($iconsComprados == NULL)
             <center>
-                <h2>You don't have any icons yet</h2>
+                <h2>You don't have any icons yet, buy some on the <a href="{{route('iconStore')}}">Icon Store</a></h2>
             </center>
             
         @else
         <h2>Select Your Photo</h2>
         <div id="wrapSearch">
             <form action="" autocomplete="on">
-                <input id="txtBusca" name="search" type="text" placeholder="Sarch for your icon"><input id="search_submit" value="Rechercher" type="submit">
+                <input id="txtBusca" name="search" type="text" placeholder="Search for your icon"><input id="search_submit" value="Rechercher" type="submit">
             </form>
         </div>
         <div class="iconsPos">

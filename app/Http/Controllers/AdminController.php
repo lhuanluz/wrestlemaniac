@@ -1298,4 +1298,30 @@ I8,        8        ,8I                                            88           
         }
         return redirect()->route('painelAdmin');  
     }
+    public function darIconRedirct(){
+        $icons = DB::table('icons')->get();
+        return view('admin/darIcon',[
+            'icons' => $icons
+        ]);
+    }
+    public function darIcon(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'tier' => 'required'
+        ]);
+        $users = DB::table('users')->orderBy('id','desc')->first();
+        $icon = DB::table('icons')->where([
+            ['name',$request->name],['tier',$request->tier],])->first();
+        for ($i=1; $i <= $users->id; $i++) {
+            $user = DB::table('users')->where('id',$i)->first();
+            if ($user == NULL){
+
+            }else{
+                DB::table('user_icons')->insert([
+                    ['user_id' => $user->id, 'icon_id' => $icon->id]
+                ]);
+            }
+        }
+        return redirect()->route('giveIconRedirect');
+    }
 }

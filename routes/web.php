@@ -101,6 +101,9 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
         Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
         Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
+        Route::get('giveIcon','AdminController@darIconRedirct')->name('giveIconRedirect');
+        Route::post('giveIcon/confirm','AdminController@darIcon')->name('giveIcon');
+
     });
     //Rotas para funções relacionadas ao season reset
     Route::prefix('season')->middleware('auth.admin3')->group(function(){
@@ -172,7 +175,7 @@ Route::prefix('league')->middleware('auth.logado')->group(function () {
         Route::get('/deleteLeague','LeagueController@deletarLiga')->name('deletarLiga');
 });
 
-Route::prefix('iconStore')->middleware('auth.logado')->group(function () {
+Route::prefix('icon-store')->middleware('auth.logado')->group(function () {
     Route::get('/','UsuariosController@iconStore')->name('iconStore');
     Route::post('buy','UsuariosController@comprarIcone')->name('buyIcon');
 
@@ -195,10 +198,6 @@ Route::get('/faq', function () {
 Route::get('/howToPlay', function () {
     return view('howToPlay');
 })->name('howToPlay');
-
-Route::get('/shop', function() {
-    return view('shop');
-})->name('shop');
 
 Auth::routes();
 

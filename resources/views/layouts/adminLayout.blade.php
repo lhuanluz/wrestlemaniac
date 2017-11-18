@@ -171,6 +171,7 @@
                                     <li><a href="{{ route('editIconNameRedirect') }}"><i class="zmdi zmdi-edit"></i>Edit Icon Name</a></li>
                                     <li><a href="{{ route('editIconTierRedirect') }}"><i class="zmdi zmdi-plus-circle-o-duplicate"></i>Edit Icon Tier</a></li>
                                     <li><a href="{{ route('editIconPhotoRedirect') }}"><i class="zmdi zmdi-image"></i>Edit Icon Photo</a></li>
+                                    <li><a href="{{ route('giveIconRedirect') }}"><i class="zmdi zmdi-album"></i>Give Icon</a></li>
                                     
                                 </ul>
                             </li>

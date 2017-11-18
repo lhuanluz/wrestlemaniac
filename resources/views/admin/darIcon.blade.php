@@ -1,11 +1,11 @@
 @extends('layouts/adminLayout')
-@section('title', 'Edit Icon Name')
+@section('title', 'Give Icon')
 @section('conteudo_principal')
     <div class="card-box">
         <div class="container-fluid">
             <div class="wrapper">
                 <!-- FORMULARIO -->
-                <form action="{{route('editIconName')}}" method="post" name="Edit_Icon_Name_Form" class="form-create" enctype="multipart/form-data" id="enviar">       
+                <form action="{{route('giveIcon')}}" method="post" name="Add_Icon_Form" class="form-create" enctype="multipart/form-data">       
                     {{ csrf_field()  }}
 
                     @if (count($errors) > 0)
@@ -18,10 +18,16 @@
                         </div>
                     @endif
 
-                    <!-- Campos -->  
+                    <!-- Campos -->
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="oldName" placeholder="Name" autofocus="" class="form-control"/>
+                         <input list="names" name="name" class="form-control" autofocus="">
+                        <datalist id="names">
+                                @foreach($icons as $icon){
+                                    <option value="{{$icon->name}}">
+                                }
+                                @endforeach
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label>Tier</label>
@@ -33,15 +39,12 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>New Name</label>
-                        <input type="text" name="newName" placeholder="New Name" autofocus="" class="form-control"/>
-                    </div>                    
                     
                     <!-- BOTÃO -->
-                    <br/>    
+                    <br/>
+                    <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="editar" type="Submit">Give Icon</button>    
                 </form>    
-                <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="editar" type="Submit" onClick="teste()">Edit Icon Name</button>     
+                     
                 <!-- FORMULARIO [FIM] -->
             </div>
         </div>

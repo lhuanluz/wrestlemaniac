@@ -123,7 +123,7 @@
                                 </ul>
                             </li>
                             
-                            <li><a href="{{route('shop')}}">Shop</a></li>
+                            <li><a href="{{route('iconStore')}}">Icon Store</a></li>
                         
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

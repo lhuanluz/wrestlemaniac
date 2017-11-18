@@ -37,7 +37,7 @@
                                                         <td><button class="btn btn-danger btn-block"  name="Submit" value="dar" type="Submit">Check</button></td>
                                                     @else
                                                         <td>No</td>
-                                                        <td><button class="btn btn-danger btn-block"  name="Submit" value="dar" type="Submit" disabled>Check</button></td>
+                                                        <td><button class="btn btn-danger btn-block"  name="Submit" value="dar" type="Submit">Check</button></td>
                                                     @endif
                                                     <input type="hidden" name="email" value="{{$usuario->email}}"/>
                                                 </tr>
