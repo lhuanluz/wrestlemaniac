@@ -27,8 +27,14 @@
     <!-- Home CSS -->
     <link href="{{ url('css/home.css') }}" rel="stylesheet">
 
+    <!-- Profile CSS -->
+    <link href="{{ url('css/profile.css') }}" rel="stylesheet">
+
     <!-- Market CSS -->
     <link href="{{ url('css/market.css') }}" rel="stylesheet">
+
+    <!-- Shop CSS -->
+    <link href="{{ url('css/shop.css') }}" rel="stylesheet">
 
     <!-- FAQ CSS -->
     <link href="{{ url('css/faq.css') }}" rel="stylesheet">
@@ -115,7 +121,9 @@
                                     <li><a href="{{route('mercadoSmackdownHome')}}">Smackdown</a></li>
                                     <li><a href="{{route('mercadoPpvHome')}}">Pay Per View</a></li>
                                 </ul>
-                            </li>                            
+                            </li>
+                            
+                            <li><a href="{{route('shop')}}">Shop</a></li>
                         
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

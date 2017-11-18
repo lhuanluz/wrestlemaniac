@@ -196,6 +196,10 @@ Route::get('/howToPlay', function () {
     return view('howToPlay');
 })->name('howToPlay');
 
+Route::get('/shop', function() {
+    return view('shop');
+})->name('shop');
+
 Auth::routes();
 
 

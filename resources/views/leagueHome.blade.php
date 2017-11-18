@@ -28,13 +28,6 @@
             </div>
         </div> <!-- LEAGUE-PROFILE -->
 
-        <div class="row league-team">
-            @foreach($membros as $membro)
-            <div class="avatar" style="background: url({{$membro->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
-            @endforeach
-        </div> <!-- LEAGUE-TEAM -->
-
-
         <div class="row league-scores raw">
             
             <div class="col-md-9">

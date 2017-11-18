@@ -204,7 +204,7 @@ body {
 */
 
 .user-panel {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 100px;
     max-width: 1140px;
 }
@@ -219,14 +219,14 @@ body {
     border-radius: 4px;
     box-shadow: 0px 2px 2px #95999c;
     padding: 15px 5px;
-}  
+}
 
 .avatar {
     height: 165px;
     width: 165px;
     border-radius: 100px;
     float: left;
-    box-shadow: 1px 2px 0px #95999c;
+    box-shadow: 0px 2px 0px #95999c;
 }
 
 .user-info {
@@ -1823,16 +1823,16 @@ footer .row div {
 
 .brand-section .head {
     height: 65px;
-    background-color: #d7182a;
+    background-color: #fff;
     border-radius: 4px;
-    box-shadow: 0px 3px 6px #676767;
-    text-shadow: 0px 3px 6px #141516;
+    box-shadow: 0px 2px 1px #95999c;
+    text-shadow: 0px 2px 1px #000;
     margin-bottom: 7px;
 }
 
 .brand-section .head h2 {
     font-size: 30px;
-    color: #fff;
+    color: #d7182a;
     text-align: left;
     display: inline-block;
     font-weight: bold;
@@ -1848,12 +1848,12 @@ footer .row div {
 
 .brand-section .head .market-open {
     color: #00ff00;
-    text-shadow: 0px 3px 6px #00531b;
+    text-shadow: 0px 2px 1px #000;
 }
 
 .brand-section .head .market-closed {
     color: #a9aeb3;
-    text-shadow: 0px 3px 6px #141516;
+    text-shadow: 0px 2px 1px #000;
 }
 
 .brand-team {
@@ -2124,6 +2124,7 @@ footer .row div {
         height: 43px;
         margin-bottom: 7px;
         letter-spacing: 0.01em;
+        text-shadow: 0px 1px 0px #000;
     }
 
     .brand-section .head h2 {
@@ -2134,6 +2135,11 @@ footer .row div {
     .brand-section .head p {
         font-size: 18px;
         margin: 10px 13px 0 0;
+    }
+
+    .brand-section .head .market-open,
+    .brand-section .head .market-closed {
+        text-shadow: 0px 1px 0px #000;
     }
 
     /* BOX INFO DA BRAND */
@@ -2212,7 +2218,7 @@ footer .row div {
         text-align: center;
         font-size: 16px;
         font-weight: bold;
-        box-shadow: 0px 3px 6px #676767;
+        box-shadow: 0px 2px 1px #95999c;
         margin-bottom: 5px;        
     }
 
