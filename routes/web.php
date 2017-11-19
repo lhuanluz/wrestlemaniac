@@ -189,27 +189,15 @@ Route::get('/gameRules', function () {
     return view('gameRules');
 })->middleware('auth.logado')->name('gameRules');
 
-Route::get('/howToPlay', function () {
+Route::get('/how-to-play', function () {
     return view('howToPlay');
 })->name('howToPlay');
 
-
-Auth::routes();
 Route::get('/', 'InicioController@homeRedirect')->name('home');
 
 Route::get('/faq', function () {
     return view('faq/faq');
 })->name('faq');
-
-Route::get('/howToPlay', function () {
-    return view('howToPlay');
-})->name('howToPlay');
-
-Auth::routes();
-
-
-
-
 
 Route::get('alterName', 'UsuariosController@alterName')->name('name');
 Route::post('alterNameR', 'UsuariosController@alterNameRequest')->name('nameR');

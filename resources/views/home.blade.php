@@ -9,7 +9,7 @@
                 <h2>The WWE Wrestling Fantansy Game</h2>
                 <p>Made by fans to fans</p>
                 <p>Join Us!</p>
-                <div class="play-free-btn"><a href="#">Play Free</a></div>
+                <div class="play-free-btn"><a href="{{url('register')}}">Play Free</a></div>
             </div>
             <div class="col-sm-6 col-md-6 superstars-banner">
                 <img src="{{ url($bannerR)}}" alt="John Cena, Roman Reigns and AJ Styles on the main banner">

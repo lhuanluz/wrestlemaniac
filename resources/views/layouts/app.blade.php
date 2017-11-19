@@ -197,9 +197,11 @@
                                 <div class="col-md-4">
                                     <ul>
                                         <li>Help</li>
-                                        <li><a href="#">How it Works</a></li>
-                                        <li><a href="#">How to Play</a></li>
-                                        <li><a href="#">Rules and Scoring</a></li>
+                                        <!--<li><a href="#">How it Works</a></li>-->
+                                        <li><a href="{{route('howToPlay')}}">How to Play</a></li>
+                                        @if(!Auth::guest)
+                                        <li><a href="{{route('gameRules')}}">Rules and Scoring</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="col-md-4">

@@ -386,6 +386,7 @@ class MarketController extends Controller
             $superstars = DB::table('superstars')
                 ->where('brand','Raw')
                 ->OrWhere('brand','Smackdown')
+                ->orwhere('brand','Nenhuma')
                  ->orderBy('name', 'asc')->get();
         }else{
             $superstars = DB::table('superstars')
@@ -414,6 +415,7 @@ class MarketController extends Controller
             $superstars = DB::table('superstars')
                 ->where('brand','Raw')
                 ->OrWhere('brand','Smackdown')
+                ->orwhere('brand','Nenhuma')
                  ->orderBy('price', 'asc')->get();
         }else{
             $superstars = DB::table('superstars')
@@ -442,6 +444,7 @@ class MarketController extends Controller
             $superstars = DB::table('superstars')
                 ->where('brand','Raw')
                 ->OrWhere('brand','Smackdown')
+                ->orwhere('brand','Nenhuma')
                  ->orderBy('price', 'desc')->get();
         }else{
             $superstars = DB::table('superstars')
@@ -470,6 +473,7 @@ class MarketController extends Controller
             $superstars = DB::table('superstars')
                 ->where('brand','Raw')
                 ->OrWhere('brand','Smackdown')
+                ->orwhere('brand','Nenhuma')
                  ->orderBy('points', 'asc')->get();
         }else{
             $superstars = DB::table('superstars')
@@ -497,6 +501,7 @@ class MarketController extends Controller
             $superstars = DB::table('superstars')
                 ->where('brand','Raw')
                 ->OrWhere('brand','Smackdown')
+                ->orwhere('brand','Nenhuma')
                  ->orderBy('points', 'desc')->get();
         }else{
             $superstars = DB::table('superstars')
