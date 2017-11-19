@@ -188,9 +188,9 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span> Leagues </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span> Ranks </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Leagues</a></li>
+                                    <li><a href="{{ route('updateLeagues') }}"><i class="zmdi zmdi-lock"></i>Update Ranks</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">

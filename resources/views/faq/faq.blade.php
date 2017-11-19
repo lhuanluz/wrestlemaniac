@@ -62,15 +62,29 @@
         </div>
 
         <div class="pergunta">
+            <button data-toggle="collapse" data-target="#pergunta11" class="btn btn-block perguntaTexto btn-lg">
+                <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
+                    How to get WC ?	
+                <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
+            </button>
+            <div id="pergunta11" class="collapse alert-info">
+                <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
+                    You earn 2 WC's for each superstars on your team when the market closes.</br>
+                    If you're in the TOP 10 you earn 5 WC's more than the usual.   
+                <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="pergunta">
             <button data-toggle="collapse" data-target="#pergunta4" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
-                    How the score system works?
+                    How the superstar score system works?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
             <div id="pergunta4" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
-                We have a whole PDF explaning every detailed rule that we can apply to a superstar, if you want to
-                checkout every single rule just download our Core Rulebook and enjoy our craziness.
+                We have a whole PDF explaning every detailed rule that we can apply to a superstar, if you want to</br>
+                checkout every single rule just check or download our Core Rulebook and enjoy our craziness.
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
