@@ -59,7 +59,7 @@
                                     <img src="{{ ('img/wc.png') }}" alt="Wrestling Coin">
                                     <p>{{ $iconNaoComprado->price }}</p>
                                 </div>
-                                @if(Auth::user()->wc < $iconNaoComprado->price || Auth::user()->user_power > 0)
+                                @if(Auth::user()->wc < $iconNaoComprado->price)
                                 <button type="submit" class="btn btn-shop" disabled>BUY</button>
                                 @else
                                 <button type="submit" class="btn btn-shop">BUY</button>
