@@ -41,6 +41,7 @@ class UsuariosController extends Controller
         
     }
     public function escolhaDeIconRedirect(){
+        $user = Auth::user();
         $iconsComprados = DB::select( 
             DB::raw("SELECT * FROM icons WHERE icons.id IN (
                 SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
