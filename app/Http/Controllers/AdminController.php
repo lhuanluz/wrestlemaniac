@@ -506,21 +506,24 @@ I8,        8        ,8I                                            88           
             die();
         }
         if($action == 'Aberto'){
-            $timeDoUser = DB::table($tabela)->where('user_id',Auth::user()->id)->first();
-            $wcBonus = 0;
-            if($timeDoUser->superstar01 != 103){
-                $wcBonus=+2;
+            for ($i=1; $i <=  $quantidade; $i++) { 
+                $timeDoUser = DB::table($tabela)->where('user_id',$i)->first();
+                $wcBonus = 0;
+                if($timeDoUser->superstar01 != 103){
+                    $wcBonus= $wcBonus + 2;
+                }
+                if($timeDoUser->superstar02 != 102){
+                    $wcBonus= $wcBonus + 2;
+                }
+                if($timeDoUser->superstar03 != 101){
+                    $wcBonus= $wcBonus + 2;
+                }
+                if($timeDoUser->superstar04 != 100){
+                    $wcBonus= $wcBonus + 2;
+                }
+                DB::table('users')->where('id',$i)->increment('wc',$wcBonus);
             }
-            if($timeDoUser->superstar02 != 102){
-                $wcBonus=+2;
-            }
-            if($timeDoUser->superstar03 != 101){
-                $wcBonus=+2;
-            }
-            if($timeDoUser->superstar04 != 100){
-                $wcBonus=+2;
-            }
-            DB::table('users')->where('id',Auth::user()->id)->increment('wc',$wcBonus);
+            
             DB::table('configs')->update([
                 $coluna => $action // Altera o mercado desejado para aberto
             ]);
