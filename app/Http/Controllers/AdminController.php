@@ -508,20 +508,23 @@ I8,        8        ,8I                                            88           
         if($action == 'Aberto'){
             for ($i=1; $i <=  $quantidade; $i++) { 
                 $timeDoUser = DB::table($tabela)->where('user_id',$i)->first();
-                $wcBonus = 0;
-                if($timeDoUser->superstar01 != 103){
-                    $wcBonus= $wcBonus + 2;
+                if($timeDoUser != NULL){
+                    $wcBonus = 0;
+                    if($timeDoUser->superstar01 != 103){
+                        $wcBonus += 2;
+                    }
+                    if($timeDoUser->superstar02 != 102){
+                        $wcBonus += 2;
+                    }
+                    if($timeDoUser->superstar03 != 101){
+                        $wcBonus += 2;
+                    }
+                    if($timeDoUser->superstar04 != 100){
+                        $wcBonus += 2;
+                    }
+                    DB::table('users')->where('id',$timeDoUser->user_id)->increment('wc',$wcBonus);
                 }
-                if($timeDoUser->superstar02 != 102){
-                    $wcBonus= $wcBonus + 2;
-                }
-                if($timeDoUser->superstar03 != 101){
-                    $wcBonus= $wcBonus + 2;
-                }
-                if($timeDoUser->superstar04 != 100){
-                    $wcBonus= $wcBonus + 2;
-                }
-                DB::table('users')->where('id',$i)->increment('wc',$wcBonus);
+                
             }
             
             DB::table('configs')->update([
@@ -709,6 +712,73 @@ I8,        8        ,8I                                            88           
                         'team_points' => 0.0,
                         'team_total_points' => 0.0
                     ]);
+                }
+            }
+            if ($mercado == 'Raw') { // CASO SEJA RAW
+                $topRawTotalPoints = DB::table('raw_teams')
+                ->join('users', 'raw_teams.user_id', '=', 'users.id')
+                ->orderBy('team_total_points', 'desc')
+                ->limit(10)
+                ->get();
+                
+                foreach ($topRawTotalPoints as $userRaw) {
+                    DB::table('users')->where('id',$userRaw->id)->increment('wc',5);
+                }
+
+            }elseif ($mercado == 'Smackdown') { // CASO SEJA SMACKDOWN
+                $topSmackdownTotalPoints = DB::table('smackdown_teams')
+                ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
+                ->orderBy('team_total_points', 'desc')
+                ->limit(10)
+                ->get();
+
+                foreach ($topSmackdownTotalPoints as $userSmack) {
+                    DB::table('users')->where('id',$userSmack->id)->increment('wc',5);
+                }
+
+            }else{ // CASO SEJA PPV
+                $brand = DB::table('configs')->value('ppvBrand');
+                if ($brand == "Raw") { // CASO O PPV SEJA RAW
+                    $topRawTotalPoints = DB::table('raw_teams')
+                    ->join('users', 'raw_teams.user_id', '=', 'users.id')
+                    ->orderBy('team_total_points', 'desc')
+                    ->limit(10)
+                    ->get();
+
+                    foreach ($topRawTotalPoints as $userRaw) {
+                        DB::table('users')->where('id',$userRaw->id)->increment('wc',5);
+                    }
+
+                }elseif ($brand == "Smackdown") { // CASO O PPV SEJA SMACKDOWN
+                    $topSmackdownTotalPoints = DB::table('smackdown_teams')
+                    ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
+                    ->orderBy('team_total_points', 'desc')
+                    ->limit(10)
+                    ->get();
+
+                    foreach ($topSmackdownTotalPoints as $userSmack) {
+                        DB::table('users')->where('id',$userSmack->id)->increment('wc',5);
+                    }
+
+                }else { //CASO O PPV SEJA DUAL BRAND
+                    $topRawTotalPoints = DB::table('raw_teams')
+                    ->join('users', 'raw_teams.user_id', '=', 'users.id')
+                    ->orderBy('team_total_points', 'desc')
+                    ->limit(10)
+                    ->get();
+        
+                    $topSmackdownTotalPoints = DB::table('smackdown_teams')
+                        ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
+                        ->orderBy('team_total_points', 'desc')
+                        ->limit(10)
+                        ->get();
+                    
+                    foreach ($topRawTotalPoints as $userRaw) {
+                        DB::table('users')->where('id',$userRaw->id)->increment('wc',5);
+                    }
+                    foreach ($topSmackdownTotalPoints as $userSmack) {
+                        DB::table('users')->where('id',$userSmack->id)->increment('wc',5);
+                    }
                 }
             }
         // CASO SEJA DESEJADO FECHAR O MERCADO
