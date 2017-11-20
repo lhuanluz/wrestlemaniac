@@ -24,12 +24,14 @@ class RankingController extends Controller
 
             $topRawTotalPoints = DB::table('raw_teams')
                 ->join('users', 'raw_teams.user_id', '=', 'users.id')
+                ->whereNotIn('user_id', [1, 2, 3,4])
                 ->orderBy('team_total_points', 'desc')
                 ->limit(10)
                 ->get();
 
             $topSmackdownTotalPoints = DB::table('smackdown_teams')
                 ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
+                ->whereNotIn('user_id', [1, 2, 3,4])
                 ->orderBy('team_total_points', 'desc')
                 ->limit(10)
                 ->get();
