@@ -574,7 +574,7 @@ footer .row div {
     }
 
     .navbar-left {
-        margin-left: 18px;
+        margin-left: 10px;
     }
 
     #menu-public li a {
@@ -584,6 +584,8 @@ footer .row div {
     #menu-user li a {
         margin-right: 0;
         font-size: 14px;
+        padding-right: 7px;
+        padding-left: 7px;
     }
 
 
@@ -755,7 +757,6 @@ footer .row div {
         height: 30px;
     }
 }
-
 
 @media (min-width: 576px) and (max-width: 767px) {
 
@@ -1632,6 +1633,10 @@ footer .row div {
 @media (max-width: 767px) {
 
     /* SEÇÃO DOS TIMES DO USUARIO */
+    .user-panel {
+        max-width: 280px;
+        margin-top: 30px;
+    }
     
     /* BOX DE NOME DA BRAND */
     .brand-section {
