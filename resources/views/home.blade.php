@@ -106,48 +106,7 @@
 </div> <!-- PROFILE-CONTAINER -->
 
 
-<div class="container-fluid user-panel"> <!-- HTML DA PÁGINA INICIAL DO USUÁRIO LOGADO -->
-
-
-    <!-- <div class="row profile">
-        <div class="col-md-6">
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
-            </div> AVATAR 
-
-            <div class="user-info">
-                <h2>{{ Auth::user()->name }}</h2>
-                @if($liga->id != 1)
-                <h3>{{$liga->league_name}}</h3>
-                @else
-                @endif                
-                <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
-            </div>
-        </div>
-
-        <div class="profile-smd">
-            <h2>SMACKDOWN</h2>
-            <h3>{{$smackdownTeam->team_total_points}}</h3>
-            <p>#{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p>
-        </div>
-
-        <div class="divisor"></div>
-
-        <div class="profile-raw">
-            <h2>RAW</h2>
-            <h3>{{$rawTeam->team_total_points}}</h3>
-            <p>#{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p>
-        </div> -->
-
-        <!-- 
-        <div class="divisor"></div>
-         
-        <div class="profile-srank">
-            <h2>SUPER RANK</h2>
-            <h3>{{$totalTeam}}</h3>
-            <p>#7</p>
-        </div> 
-        -->
-    <!--</div>-->
+<div class="container-fluid user-panel">
 
     <div class="row brand-section"> <!-- RAW .BRAND-SECTION -->
         
