@@ -1014,24 +1014,6 @@ I8,        8        ,8I                                            88           
                 }
             }
         }
-        $topRawTotalPoints = DB::table('raw_teams')
-            ->join('users', 'raw_teams.user_id', '=', 'users.id')
-            ->orderBy('team_total_points', 'desc')
-            ->limit(10)
-            ->get();
-
-        $topSmackdownTotalPoints = DB::table('smackdown_teams')
-            ->join('users', 'smackdown_teams.user_id', '=', 'users.id')
-            ->orderBy('team_total_points', 'desc')
-            ->limit(10)
-            ->get();
-        
-        foreach ($topRawTotalPoints as $userRaw) {
-            DB::table('users')->where('id',$userRaw->id)->increment('wc',5);
-        }
-        foreach ($topSmackdownTotalPoints as $userSmack) {
-            DB::table('users')->where('id',$userSmack->id)->increment('wc',5);
-        }
         return redirect()->route('painelAdmin');
 
     }
