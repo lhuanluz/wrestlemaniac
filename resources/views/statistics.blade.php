@@ -6,13 +6,13 @@
     <div class="row league-rank">
             <ul>
                 <li>LEAGUE RANK</li>
-                @foreach($topLeagues as $topLeague)
                 <?php
                 $posL = 1; 
                 ?>
-                
+                @foreach($topLeagues as $topLeague)
+
                 <li>
-                    <p>{{ array_search($topLeague->id, $positionLeague) + 1}}º</p>
+                    <p>{{$posL}}º</p>
                     <p>{{$topLeague->league_name}}</p>
                     <p>{{number_format($topLeague->league_points, 2, ',', ' ')}}</p>
                 </li>
@@ -26,12 +26,12 @@
         <div class="league-raw col-md-6">
                 <ul>
                     <li>RAW</li>
-                    @foreach($topRawTotalPoints as $topRawTotalPoint)
                     <?php
                     $pos = 1; 
                     ?>
+                    @foreach($topRawTotalPoints as $topRawTotalPoint) 
                     <li>
-                        <p>{{ array_search($topRawTotalPoint->id, $positionRaw) + 1}}º</p>
+                        <p>{{$pos}}º</p>
                         <div class="avatar" style="background: url({{$topRawTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
                         <p>{{$topRawTotalPoint->name}}</p>
                         <p>{{$topRawTotalPoint->team_total_points}}</p>
@@ -45,12 +45,13 @@
         <div class="league-smd col-md-6">
                 <ul>
                     <li>SMACKDOWN</li>
-                    @foreach($topSmackdownTotalPoints as $topSmackdownTotalPoint)
                     <?php
                     $pos = 1; 
                     ?>
+                    @foreach($topSmackdownTotalPoints as $topSmackdownTotalPoint)
+                    
                     <li>
-                        <p>{{ array_search($topSmackdownTotalPoint->id, $positionSmack) + 1}}º</p>
+                        <p>{{$pos}}º</p>
                         <div class="avatar" style="background: url({{$topSmackdownTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
                         <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
