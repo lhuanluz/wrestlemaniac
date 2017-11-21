@@ -1362,7 +1362,7 @@ I8,        8        ,8I                                            88           
 
         if ($atualChampLeague->id_league != $top1League->id) {
             DB::table('league_belts_history')->insert([
-                'id_league' => $atualChampLeague->league_id,
+                'id_league' => $atualChampLeague->id_league,
                 'id_belt' => 1,
                 'days' => $atualChampLeague->days
             ]);
