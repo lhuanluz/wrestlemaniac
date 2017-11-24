@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="wrapper faq">
-
+    </br>
     <div class="page-header">
-        <h1 class="title">Frequently Asked Questions <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
+        <h1 class="title titleFaq">Frequently Asked Questions <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
     </div>
 
     <center>
@@ -158,6 +158,7 @@
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
+        </br>
 
     </center>
 </div>

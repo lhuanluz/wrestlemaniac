@@ -1,5 +1,4 @@
 /*CSS DO FAQ*/
-
 .perguntaTexto {
     color:white;
     background-color: #141516;
@@ -7,9 +6,15 @@
 }
 .perguntaTexto:hover {
     color:white;
+    background-color: #D7182A;
 }
 .perguntaTexto:focus {
     color:white;
+    background-color: #D7182A;
+}
+.perguntaTexto:active {
+    color:white;
+    background-color: #D7182A;
 }
 
  .alert-info{
@@ -32,7 +37,9 @@
     width: 95%;
 }
 .faq{
-    margin-bottom: 1%;
+    margin-top: -40px;
+    margin-bottom: 0%;
+    background-image: url('https://i.pinimg.com/736x/b0/f8/70/b0f8708a0a36878f3029252120de3435--wallpaper-for-mobile-black-wallpaper.jpg');
 }
 .icon-outside{
   margin-right: 1%;
@@ -44,4 +51,7 @@
 }
 .invertido {
   transform: rotate(270deg) scaleX(-1);
+}
+.titleFaq{
+    color: white
 }
