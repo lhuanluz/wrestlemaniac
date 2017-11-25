@@ -34,7 +34,7 @@ class UsuariosController extends Controller
         $iconsNaoComprados = DB::select( 
             DB::raw("SELECT * FROM icons WHERE icons.id NOT IN (
                 SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id)
-            AND icons.tier < 5"));
+            AND icons.tier < 5 ORDER BY name"));
         return view('shop',[
             'iconsNaoComprados' => $iconsNaoComprados
         ]);
