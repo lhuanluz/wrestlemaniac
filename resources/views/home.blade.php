@@ -84,11 +84,6 @@
                 </div>
             </div>
 
-<<<<<<< Updated upstream
-<div class="container-fluid user-panel">
-
-    <div class="row brand-section"> <!-- RAW .BRAND-SECTION -->
-=======
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="row">            
                     <div class="col-xs-6 col-sm-6 col-md-6 raw">
@@ -124,7 +119,6 @@
     </div>
 
     <div class="container-fluid tab-content">
->>>>>>> Stashed changes
         
         <div id="raw-profile" class="profile-brand-info raw-profile tab-pane fade in active">
             
