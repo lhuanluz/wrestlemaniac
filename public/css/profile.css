@@ -1,7 +1,12 @@
-.profile-container {
+.profile {
+    max-width: 1140px;
+    margin: 0 auto;
     margin-top: 50px;
-    /* margin-bottom: 100px; */
-    max-width: 1140px; /* temporário - retornar para 1124px */
+    margin-bottom: 100px;
+}
+
+.profile-container {
+    margin-bottom: 30px;
 }
 
 .user-info1 {    
@@ -20,6 +25,10 @@
     box-shadow: 0px 2px 0px #95999c;
 }
 
+.user-info1 > div:nth-of-type(1) {
+    padding-right: 0;
+}
+
 .user-info1 .name {
     float: left;
     padding-left: 15px;
@@ -29,7 +38,7 @@
     color: #484b4d;
     margin-top: 10px;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 24px;
     margin-bottom: 13px;
 }
 
@@ -68,6 +77,11 @@
     text-align: right;
 }
 
+.user-info1 .raw {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
 .user-info1 .raw h2,
 .user-info1 .smd h2 {
     margin-top: 10px;
@@ -99,30 +113,245 @@
     width: 2px;
     background-color: #d9e0e6;
     position: absolute;
-    top: 11px;
+    top: 12px;
     right: 270px;
 }
 
+.profile-brand-nav {
+    background-color: #fff;
+    box-shadow: 0px 2px 1px #95999c;
+    border-radius: 4px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.profile-brand-nav ul {
+    list-style: none;
+    overflow: hidden;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.profile-brand-nav ul li {
+    float: left;
+}
+
+.profile-brand-nav a {
+    text-decoration: none;
+    color: #484b4d;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 0 30px;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 11px;
+    padding-top: 14px;
+    cursor: pointer;
+}
+
+.profile-brand-nav a:hover {
+    color: #d7182a;
+}
+
+.profile-brand-nav ul li:first-child {
+    margin-left: 0;
+}
+
+.active {
+    border-color: #d7182a !important;
+    color: #d7182a !important;
+}
+
+.profile-brand-info {
+    margin-bottom: 50px;
+}
+
+.profile-brand-info > div:nth-of-type(1) {
+    height: 108px;
+}
+
+.profile-brand-info ul {
+    list-style: none;
+    overflow: hidden;
+    padding-left: 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    box-shadow: 0px 2px 1px #95999c;
+    border-radius: 4px;
+    width: 900px;
+    float: left;
+}
+
+.profile-brand-info ul li {
+    padding-left: 0;
+    padding-top: 14px;
+    float: left;
+}
+
+.profile-brand-info ul li:first-child {
+    padding-left: 30px;
+    width: 165px;
+}
+
+.profile-brand-info ul li:nth-child(even) {
+    padding: 0;
+    margin: 14px 39px;
+}
+
+.profile-brand-info ul li:nth-child(5) {
+    width: 146px;
+}
+
+.profile-brand-info h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #484b4d;
+    margin: 0;
+}
+
+.profile-brand-info p {
+    color: #d7182a;
+    font-size: 45px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px #000;
+}
+
+ .profile-brand-info .divisor {
+    height: 77px;
+    width: 2px;
+    background-color: #d9e0e6;
+    margin: 0;
+}
+
+.ppv-profile ul li:nth-child(7) p {
+    font-size: 30px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.profile-market-status {
+    width: 220px;
+    background-color: #fff;
+    box-shadow: 0px 2px 1px #95999c;
+    border-radius: 4px;    
+    float: right;
+}
+
+.profile-market-status h3 {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.profile-market-status p {
+    text-align: center;
+}
+
+.profile-market-status p.market-open {
+    color: #00ff00;
+    text-shadow: 0px 2px 1px #000;
+}
+
+.profile-market-status p.market-closed {
+    color: #a9aeb3;
+    text-shadow: 0px 2px 1px #000;
+}
+
+.profile-team {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+    padding-left: 1px;
+}
+
+.profile-team div {
+    width: 271px;
+    height: 271px;
+    background-color: #141516;
+    float: left;
+    margin-right: 18px;    
+    border-radius: 4px;
+}
+
+.profile-team div:nth-of-type(4) {
+    margin-right: 0;
+}
+
+.profile-team img {
+    width: 263px;
+    height: 263px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.profile-team p {      
+    font-size: 20px; 
+    color: #fff;    
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 1px #000;
+    background: rgba(215, 24, 42, 0.75);
+    padding: 5px;
+    margin: 4px;
+    position: relative;
+    top: -42px;
+}
+
+.smd-profile .profile-team p {
+    background: rgba(59, 48, 254, 0.75);
+}
+
+.ppv-profile .profile-team p {
+    background: rgba(35, 40, 40, 0.75);
+}
+
+.profile-brand-info a {
+    text-align: center;
+    text-decoration: none;
+    width: 220px;
+    height: 60px;
+    display: block;
+    float: right;
+    margin-top: 30px;
+    background-color: #d7182a;
+    box-shadow: 0px 4px 0px #670901;
+    border-radius: 4px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    padding-top: 9px;
+    text-shadow: 0px 1px 1px #000;
+}
+
+.profile-brand-info a:active {
+    background-color: #a21623;
+    box-shadow: 0px 2px 0px #290401;
+    transform: translateY(3px);
+}
+
+
 @media (min-width: 992px) and (max-width: 1199px) {
 
+    .profile {
+        max-width: 945px;
+    }
+
     .user-info1 {
-        height: 183px;
+        height: 173px;
     }
 
     .profile-container {
         margin-top: 50px;
-        /* margin-bottom: 100px; */
-        max-width: 945px; /* temporário - retornar para 900px; */
+        max-width: 945px;
     }
 
     .user-info1 .avatar {
-        height: 150px;
-        width: 150px;
+        height: 140px;
+        width: 140px;
     }
 
     .user-info1 .name h2 {
         margin-top: 10px;
-        font-size: 24px;
         margin-bottom: 10px;
     }
 
@@ -131,7 +360,7 @@
     }
 
     .user-info1 .name p {
-        margin-top: 70px;
+        margin-top: 60px;
     }
 
     .user-info1 .raw h2,
@@ -141,7 +370,7 @@
 
     .user-info1 .raw h3,
     .user-info1 .smd h3 {
-        font-size: 75px;
+        font-size: 60px;
     }
 
     .user-info1 .raw p, 
@@ -150,36 +379,104 @@
     }
 
     .user-info1 .divisor {
-        height: 141px;
+        height: 125px;
         top: 10px;
         margin-left: 0;
         right: 235px;
+    }
+
+    .profile-brand-nav a {
+        font-size: 16px;
+    }
+
+    .profile-brand-info h3 {
+        font-size: 15px;
+    }
+
+    .profile-brand-info p {
+        font-size: 35px;
+    }
+
+    .profile-brand-info .divisor {
+        height: 62px;
+    }
+
+    .profile-brand-info ul li:first-child {
+        width: 155px;
+    }
+
+    .profile-brand-info ul li:nth-child(5) {
+        width: 125px;
+    }
+
+    .profile-brand-info ul {
+        width: 750px;
+    }
+
+    .profile-brand-info ul li:nth-child(even) {
+        margin: 14px 27px;
+    }
+
+    .profile-brand-info > div:nth-of-type(1) {
+        height: 93px;
+    }
+
+    .profile-market-status {
+        width: 175px;
+    }
+
+    .ppv-profile ul li:nth-child(7) p {
+        margin-top: 3px;
+        font-size: 26px;
+    }
+
+    .profile-team div {
+        width: 222px;
+        height: 222px;
+    }
+
+    .profile-team img {
+        width: 215px;
+        height: 215px;
+        margin-top: 3px;
+        margin-left: 3px;
+    }
+
+    .profile-team p {
+        font-size: 20px;
+    }
+
+    .profile-brand-info a {
+        width: 175px;
+        height: 54px;
+        font-size: 24px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     
+    .profile {
+        max-width: 721px;
+        margin-top: 30px;
+    }
+
     .user-info1 {
-        height: 180px;
+        height: 148px;
+        padding: 5px;
     }
 
     .profile-container {
-        margin-top: 50px;
-        /* margin-bottom: 100px; */
-        max-width: 945px; /* temporário - retornar para 900px; */
+        margin-bottom: 20px;
     }
 
     .user-info1 .avatar {
         height: 120px;
         width: 120px;
-        margin-top: 10px;
+        margin-top: 9px;
     }
 
     .user-info1 .name h2 {
-        margin-top: 10px;
-        font-size: 20px;
-        margin-bottom: 10px;
-        width: 131px;
+        font-size: 18px;
     }
 
     .user-info1 .name h3 {
@@ -187,12 +484,16 @@
     }
 
     .user-info1 .name p {
-        margin-top: 65px;
+        margin-top: 55px;
     }
 
     .user-info1 .raw,
     .user-info1 .smd {
         padding: 0;
+    }
+
+    .user-info1 .raw {
+        padding-right: 15px;
     }
 
     .user-info1 .raw h2,
@@ -202,48 +503,135 @@
 
     .user-info1 .raw h3,
     .user-info1 .smd h3 {
-        font-size: 70px;
+        font-size: 46px;
     }
 
     .user-info1 .raw p, 
     .user-info1 .smd p {
         font-size: 20px;
+        margin: 5px auto;
     }
 
     .user-info1 .divisor {
-        height: 130px;
+        height: 108px;
         top: 10px;
         right: 175px;
+    }
+
+    .profile-brand-nav {
+        margin-bottom: 14px;
+    }
+
+    .profile-brand-nav a {
+        font-size: 14px;
+        padding: 14px 20px 11px;
+    }
+
+    .profile-brand-info h3 {
+        font-size: 14px;
+    }
+
+    .profile-brand-info p {
+        font-size: 28px;
+    }
+
+    .profile-brand-info .divisor {
+        height: 51px;
+    }
+
+    .profile-brand-info ul li:first-child {
+        width: 125px;
+        padding-left: 20px;
+    }
+
+    .profile-brand-info ul li:nth-child(5) {
+        width: 100px;
+    }
+
+    .profile-brand-info ul {
+        width: 590px;
+    }
+
+    .profile-brand-info ul li:nth-child(even) {
+        margin: 14px 18px;
+    }
+
+    .profile-brand-info > div:nth-of-type(1) {
+        height: 84px;
+    }
+
+    .profile-market-status {
+        width: 117px;
+    }
+
+    .ppv-profile ul li:nth-child(7) p {
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
+    .profile-team {
+        margin-top: 14px;
+    }
+
+    .profile-team div {
+        width: 169px;
+        height: 169px;
+        margin-right: 14px;
+    }
+
+    .profile-team img {
+        width: 162px;
+        height: 162px;
+        margin-top: 3px;
+        margin-left: 3px;
+    }
+
+    .profile-team p {
+        font-size: 14px;
+        top: -34px;
+    }
+
+    .profile-brand-info a {
+        width: 166px;
+        height: 46px;
+        margin-top: 20px;
+        font-size: 20px;
     }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
 
+    .profile {
+        margin-top: 20px;
+        max-width: 530px;
+    }
+
     .user-info1 {
-        height: auto;
+        height: 101px;
+        border-radius: 0;
+        padding: 5px;
+        padding-right: 0;
+        margin-bottom: 15px;
     }
 
     .profile-container {
-        margin-top: 25px;
-        /* margin-bottom: 100px; */
-        max-width: 280px; /* temporário - retornar para 900px; */
+        margin: 0;
     }
 
     .user-info1 .avatar {
-        height: 120px;
-        width: 120px;
-        margin-top: 10px;
+        height: 80px;
+        width: 80px;
+        margin-top: 4px;
     }
 
     .user-info1 .name {
-        width: 120px; 
+        width: 177px; 
     }
 
     .user-info1 .name h2 {
-        margin-top: 10px;
-        font-size: 16px;
+        margin-top: 5px;
+        font-size: 15px;
         margin-bottom: 10px;
-        width: 105px;
     }
 
     .user-info1 .name h3 {
@@ -251,11 +639,16 @@
     }
 
     .user-info1 .name p {
-        margin-top: 65px;
+        margin-top: 24px;
+    }
+
+    .user-info1 .name p a {
+        font-size: 12px;
     }
 
     .user-info1 div:nth-of-type(1) {
         overflow: hidden;
+        padding-left: 5px;
     }
 
     .user-info1 div:nth-of-type(2) {
@@ -266,21 +659,24 @@
     .user-info1 .smd {
         padding: 0;
         float: left;
-        width: 120px;
     }
 
     .user-info1 .raw {
-        padding-right: 30px;
+        padding-right: 20px;
     }
 
     .user-info1 .raw h2,
     .user-info1 .smd h2 {
-        font-size: 15px;
+        font-size: 13px;
+        margin-top: 5px;
     }
 
     .user-info1 .raw h3,
     .user-info1 .smd h3 {
-        font-size: 45px;
+        font-size: 34px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        text-shadow: 0px 1px 1px #000;
     }
 
     .user-info1 .raw p, 
@@ -289,47 +685,148 @@
     }
 
     .user-info1 .divisor {
-        height: 85px;
-        top: 12px;
-        right: 136px;
+        height: 78px;
+        top: 6px;
+        right: 128px;
+    }
+
+    .profile-brand-nav {
+        margin-bottom: 10px;
+    }
+
+    .profile-brand-nav a {
+        font-size: 11px;
+        padding: 9px 16px 6px;
+    }
+
+    .profile-brand-info h3 {
+        font-size: 11px;
+    }
+
+    .profile-brand-info p {
+        font-size: 20px;
+        text-shadow: 0px 1px 0px #000;
+    }
+
+    .profile-brand-info .divisor {
+        height: 40px;
+    }
+
+    .profile-brand-info ul li:first-child {
+        width: 80px;
+        padding-left: 16px;
+    }
+
+    .profile-brand-info ul li:nth-child(5) {
+        width: 80px;
+    }
+
+    .profile-brand-info ul {
+        width: 430px;
+    }
+
+    .profile-brand-info ul li {
+        padding-top: 10px;
+    }
+
+    .profile-brand-info ul li:nth-child(even) {
+        margin: 10px 14px;
+    }
+
+    .profile-brand-info > div:nth-of-type(1) {
+        height: 63px;
+    }
+
+    .profile-market-status {
+        width: 90px;
+    }
+
+    .profile-market-status h3 {
+        margin-top: 10px;
+    }
+
+    .ppv-profile ul li:nth-child(7) p {
+        margin-top: 5px;
+        font-size: 13px;
+    }
+
+    .profile-team {
+        margin-top: 10px;
+        padding-left: 0;
+    }
+
+    .profile-team div {
+        width: 125px;
+        height: 125px;
+        margin-right: 10px;
+    }
+
+    .profile-team img {
+        width: 118px;
+        height: 118px;
+        margin-top: 3px;
+        margin-left: 3px;
+    }
+
+    .profile-team p {
+        font-size: 10px;
+        top: -28px;
+    }
+
+    .profile-brand-info a {
+        width: 125px;
+        height: 35px;
+        margin-top: 15px;
+        font-size: 18px;
+        padding-top: 5px;
     }
 }
 
 @media (max-width: 575px) {
     
+    .profile {
+        max-width: 320px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    
     .user-info1 {
         height: auto;
+        padding: 5px;
     }
 
     .profile-container {
         margin-top: 25px;
-        /* margin-bottom: 100px; */
-        max-width: 280px; /* temporário - retornar para 900px; */
+        margin-bottom: 17px;
     }
 
     .user-info1 .avatar {
-        height: 120px;
-        width: 120px;
-        margin-top: 10px;
+        height: 90px;
+        width: 90px;
+        margin-top: 5px;
     }
 
     .user-info1 .name {
-        width: 120px; 
+        padding-left: 15px; 
     }
 
     .user-info1 .name h2 {
         margin-top: 10px;
-        font-size: 16px;
-        margin-bottom: 10px;
-        width: 105px;
+        font-size: 18px;
+        margin-bottom: 8px;
+        width: 190px;
     }
 
     .user-info1 .name h3 {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .user-info1 .name p {
-        margin-top: 65px;
+        margin-top: 25px;
+    }
+
+    .user-info1 .name p a {
+        font-size: 12px;
     }
 
     .user-info1 div:nth-of-type(1) {
@@ -340,15 +837,18 @@
         float: left;
     }
 
+    .user-info1 > div {
+        width: 310px;
+    }
+
     .user-info1 .raw,
     .user-info1 .smd {
         padding: 0;
         float: left;
-        width: 120px;
     }
 
     .user-info1 .raw {
-        padding-right: 30px;
+        padding-right: 15px;
     }
 
     .user-info1 .raw h2,
@@ -358,7 +858,7 @@
 
     .user-info1 .raw h3,
     .user-info1 .smd h3 {
-        font-size: 45px;
+        font-size: 35px;
     }
 
     .user-info1 .raw p, 
@@ -367,8 +867,121 @@
     }
 
     .user-info1 .divisor {
-        height: 85px;
-        top: 12px;
-        right: 136px;
+        height: 77px;
+        top: 11px;
+        right: 143px;
+    }
+
+    .profile-brand-nav {
+        margin-bottom: 10px;
+    }
+
+    .profile-brand-nav a {
+        font-size: 14px;
+        padding: 9px 18px 6px;
+    }
+
+    .profile-brand-info h3 {
+        font-size: 14px;
+    }
+
+    .profile-brand-info p {
+        font-size: 26px;
+        text-shadow: 0px 1px 0px #000;
+    }
+
+    .profile-market-status p.market-open,
+    .profile-market-status p.market-closed {
+        text-shadow: 0px 1px 0px #000;
+    }
+
+    .profile-brand-info .divisor {
+        height: 50px;
+    }
+
+    .profile-brand-info ul li:first-child {
+        width: 100px;
+        padding-left: 23px;
+    }
+
+    .profile-brand-info ul li:nth-child(5) {
+        width: 82px;
+        margin-left: 23px;
+    }
+
+    .profile-brand-info ul li:nth-child(4) {
+        display: none;
+    }
+
+    .profile-brand-info ul {
+        width: 320px;
+    }
+
+    .profile-brand-info ul li {
+        padding-top: 10px;
+    }
+
+    .profile-brand-info ul li:nth-child(even) {
+        margin: 10px 40px;
+    }
+
+    .profile-brand-info ul li:nth-child(6) {
+        margin-left: 35px;
+    }
+
+    .profile-brand-info > div:nth-of-type(1) {
+        height: 63px;
+    }
+
+    .profile-market-status {
+        width: 320px;
+        margin-top: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .profile-market-status h3 {
+        margin-top: 10px;
+    }
+
+    .ppv-profile ul li:nth-child(7) p {
+        margin-top: 5px;
+        font-size: 18px;
+    }
+
+    .profile-team {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 0;
+    }
+
+    .profile-team div {
+        width: 230px;
+        height: 230px;
+        margin-right: 10px;
+        margin-bottom: 15px;
+        margin-left: 45px;
+    }
+
+    .profile-team img {
+        width: 223px;
+        height: 223px;
+        margin-top: 3px;
+        margin-left: 3px;
+    }
+
+    .profile-team p {
+        font-size: 18px;
+        top: -39px;
+    }
+
+    .profile-brand-info a {
+        width: 150px;
+        height: 48px;
+        margin-top: 15px;
+        font-size: 24px;
+        padding-top: 5px;
+        float: none;
+        margin: 0 auto;
     }
 }

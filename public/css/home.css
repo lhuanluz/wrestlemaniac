@@ -203,63 +203,10 @@ body {
 }
 */
 
-.user-panel {
-    /* margin-top: 50px; */
-    margin-bottom: 100px;
-    max-width: 1140px;
-}
-
 .container-fluid {
     padding: 0;
 }
 
-.profile {    
-    height: 200px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0px 2px 2px #95999c;
-    padding: 15px 5px;
-}
-
-.avatar {
-    height: 165px;
-    width: 165px;
-    border-radius: 100px;
-    float: left;
-    box-shadow: 0px 2px 0px #95999c;
-}
-
-.user-info {
-    display: inline-block;
-    margin-left:20px;
-    float: left;
-}
-
-.user-info p a {
-    font-size: 19px;
-    text-decoration: none;
-    color: #fff;
-}
-
-.user-info p a:hover {
-    text-decoration: underline;
-}
-
-.user-info h2 {
-    color: #484b4d;
-    margin-top: 10px;
-    /*margin-bottom: 0px;*/
-    font-weight: bold;
-    font-size: 30px;
-    /*width: 218px;
-    height: 125px;*/
-}
-
-.user-info h3 {
-    font-size: 18px;
-    color: #484b4d;
-    margin: 0px;
-}
 
 /* SECTION-2 */
 .section-2 {
@@ -268,7 +215,7 @@ body {
 }
 
 .section-2 .row div:nth-of-type(1) {
-    margin-top: 20px;
+    margin-top: 19px;
 }
 
 .shadow {
@@ -574,7 +521,11 @@ footer .row div {
     }
 
     .navbar-left {
+<<<<<<< Updated upstream
         margin-left: 10px;
+=======
+        margin-left: 0px;
+>>>>>>> Stashed changes
     }
 
     #menu-public li a {
@@ -583,6 +534,7 @@ footer .row div {
 
     #menu-user li a {
         margin-right: 0;
+        padding: 6px;
         font-size: 14px;
         padding-right: 7px;
         padding-left: 7px;
@@ -603,7 +555,7 @@ footer .row div {
     }
 
     .navbar-brand > img {
-        width: 160px;
+        width: 132px;
         margin-top: 3px;
     }
 
@@ -764,8 +716,13 @@ footer .row div {
         padding-right: 10px;
     }
 
+    .navbar-brand {
+        margin-bottom: 0;
+        padding-top: 12px;
+    }
+
     .navbar-brand > img {
-        width: 160px;
+        width: 120px;
     }
 
     .nav>li {
@@ -816,32 +773,31 @@ footer .row div {
         background-color: #fff;
     }
         
-        /*Efeito do menu hamburguer clicado*/
+    /*Efeito do menu hamburguer clicado*/
     .navbar-default .navbar-toggle:focus, 
     .navbar-default .navbar-toggle:hover {
         background-color: transparent;    
-    }
-        
-        /*Efeito do menu hamburguer clicado*/
-    .navbar-default .navbar-toggle:focus .icon-bar,
-    .navbar-default .navbar-toggle:hover .icon-bar {
-        background-color: #d7182a;
-    }
+    }      
     
     #menu-user .dropdown-menu {
         margin-top: 0;
     }
     
     .navbar-toggle {
-        padding: 8px 7px;
+        padding: 7px 5px;
         margin-top: 13px;
         margin-bottom: 5px;
+    }
+
+    .navbar-toggle .icon-bar {
+        width: 18px;
+        height: 1px;
     }
     
     /* BANNER PLAY-FREE */
     
     .row {
-        max-width: 576px;
+        max-width: 540px;
         margin: 0 auto;
     }
 
@@ -1028,9 +984,8 @@ footer .row div {
     }
 
     .footer-logo {
-        width: 360px;
         margin: 0 auto;
-        margin-top: 40px;
+        margin-top: 50px;
     }
 
     .footer-menu {
@@ -1039,13 +994,17 @@ footer .row div {
         margin-top: 50px;
     }
 
+    .footer-menu .row {
+        padding-left: 20px;
+    }
+
     .footer-menu div > div {
-        width: 180px;
+        width: 130px;
         float: left;
     }
 
     .footer-menu div > div:nth-of-type(3) {
-        float: none;
+        width: 80px;
     }
 
     .footer-menu div > div:nth-of-type(1) {
@@ -1053,15 +1012,17 @@ footer .row div {
     }
 
     .footer-menu ul li:first-child {
-        font-size: 14px;
+        font-size: 13px;
+        margin-bottom: 10px;
     }
 
     .footer-menu ul li a {
-        font-size: 12px;
+        font-size: 11px;
+        margin-bottom: 5px;
     }
 
     .footer-logo ul li a {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .footer-logo ul li:last-child {
@@ -1124,12 +1085,6 @@ footer .row div {
     .navbar-default .navbar-toggle:hover {
         background-color: transparent;    
     }
-    
-    /*Efeito do menu hamburguer clicado*/
-    .navbar-default .navbar-toggle:focus .icon-bar,
-    .navbar-default .navbar-toggle:hover .icon-bar {
-        background-color: #d7182a;
-    }
 
     #menu-user .dropdown-menu {
         margin-top: 0;
@@ -1153,11 +1108,6 @@ footer .row div {
 
     .play-free {
         height: 518px;
-    }
-
-    .row {
-        max-width: 320px;
-        margin: 0 auto;
     }
 
     .play-free h2 {
@@ -1340,6 +1290,10 @@ footer .row div {
         padding-bottom: 60px;
     }
 
+    footer .row {
+        width: 220px;
+    }
+
     .footer-logo {
         width: 160px;
         margin: 0 auto;
@@ -1375,6 +1329,7 @@ footer .row div {
 }
 
 
+<<<<<<< Updated upstream
 
 
 
@@ -1598,6 +1553,8 @@ footer .row div {
     padding-top: 2px;
 }
 
+=======
+>>>>>>> Stashed changes
 .login, .register {
     padding-top: 70px;
     min-height: 93vh;
@@ -1606,7 +1563,11 @@ footer .row div {
 
 .panel-default > .login-heading,
 .panel-default > .register-heading {
+<<<<<<< Updated upstream
     background-color: #141516;
+=======
+    background-color: #d7182a;
+>>>>>>> Stashed changes
     font-size: 22px;
     font-weight: bold;
     color: #fff;
@@ -1616,14 +1577,19 @@ footer .row div {
 
 .login-body,
 .register-body {
+<<<<<<< Updated upstream
     background-color: #fff;
     box-shadow: 0px 2px 1px #95999c;
+=======
+    background-color: #d9e0e6;
+>>>>>>> Stashed changes
 }
 
 .user-panel .alert {
     max-width: 1140px;
     margin: 0 auto;
     margin-bottom: 50px;
+<<<<<<< Updated upstream
 }
 
 
@@ -1918,3 +1884,6 @@ footer .row div {
     }
 }
 
+=======
+}
+>>>>>>> Stashed changes
