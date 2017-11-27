@@ -101,7 +101,7 @@
 
                             <tbody>
                                 <tr>
-                                    <td>Points</td>
+                                    <td>Rank</td>
                                     <td>{{array_search($user->id, $positionRaw)+ 1}}º</td>
                                     <td>{{array_search($user->id, $positionSmackdown)+ 1}}º</td>
                                     <td></td>
