@@ -249,7 +249,7 @@
             <div>
                 <ul>
                     <li>
-                        <h3>Last PPV Score</h3>
+                        <h3>Score</h3>
                         <p>{{$ppvTeam->team_points}}</p>
                     </li>
                     <li><div class="divisor"></div></li>
