@@ -135,7 +135,7 @@ class LeagueController extends Controller
                             'id_league' => $league->id
                         ]);
                 }else{ // Caso a liga não seja pro
-                    if($quantidade < 5){ // Verifica se a liga tem menos de 5 membros
+                    if($quantidade < 10){ // Verifica se a liga tem menos de 10 membros
                         // Adiciona o jogador a liga
                         DB::table('users')
                         ->where('id',$userId)

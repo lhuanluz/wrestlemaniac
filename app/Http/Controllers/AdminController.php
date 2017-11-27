@@ -171,6 +171,11 @@ I8,        8        ,8I                                            88           
                 return view('admin/editarVisibilidadePpv');
             }
 
+            public function editarPpvNomeRedirect(){
+                // Retorna o usuário para a página de edição da visibilidade do PPV
+                return view('admin/editarPpvNome');
+            }
+
         // Redirects do Usuário
             public function darProRedirect(){
                 // Retorna o usuário para a página de dar PRO
@@ -708,9 +713,11 @@ I8,        8        ,8I                                            88           
                         ]);
                     }
                     // Resete os pontos feitos para o próximo PPV
+                    $timePpvUser = DB::table('ppv_teams')->where('user_id',$i)->first();
+                    $pontosAntigo = $timePpvUser->team_total_points + $timePpvUser->team_points;
                     DB::table('ppv_teams')->where('user_id',$i)->update([
-                        'team_points' => 0.0,
-                        'team_total_points' => 0.0
+                        'team_points' => $pontos_ganho,
+                        'team_total_points' => $pontosAntigo
                     ]);
                 }
             }
@@ -1090,7 +1097,12 @@ I8,        8        ,8I                                            88           
                         ->get();
         $leagueInfo = DB::table('leagues')->where('id',$user->id_league)->first();
         $leagueMembers = DB::table('users')->where('id_league',$user->id_league)->first();
-
+        $positionRaw = DB::table('raw_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $positionSmackdown = DB::table('smackdown_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $iconsComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id IN (
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
+            "));
         return view('admin/infoUsuario',[
             'user' => $user,
             'rawTeam' => $rawTeam,
@@ -1100,7 +1112,10 @@ I8,        8        ,8I                                            88           
             'superstarsSmackdown' => $superstarsSmackdown,
             'superstarsPpv' => $superstarsPpv,
             'leagueInfo' => $leagueInfo,
-            'leagueMembers' => $leagueMembers
+            'leagueMembers' => $leagueMembers,
+            'positionRaw' => $positionRaw,
+            'positionSmackdown' => $positionSmackdown,
+            'iconsComprados' => $iconsComprados
             ]);
     }
     public function checarUsuarioConfirmar(Request $request)
@@ -1400,5 +1415,15 @@ I8,        8        ,8I                                            88           
             }
         }
         return redirect()->route('giveIconRedirect');
+    }
+
+    public function editarPpvNome(Request $request){
+        $this->validate($request,[
+            'name' => 'required|max:19'
+        ]);
+        DB::table('configs')->update([
+            'ppvName' => $request->name
+        ]);
+        return redirect()->route('editPpvNameRedirect');
     }
 }

@@ -66,168 +66,235 @@
 @endif
 
 @if (!Auth::guest())
-<div class="container-fluid profile-container">
-    <div class="row user-info1">
-        <div class="col-sm-5 col-md-5">
-            <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
-            </div> <!-- .AVATAR -->
-            <div class="name">
-                <h2>{{ Auth::user()->name }}</h2>
-                @if($liga->id != 1)
-                <h3><a href="{{route('leagueHome')}}">{{$liga->league_name}}</a></h3>
-                @else
-                @endif                
-                <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
-            </div>
-        </div>
 
-        <div class="col-sm-7 col-md-7">
-            <div class="row">            
-                <div class="col-sm-6 col-md-6 raw">
-                    <h2>RAW</h2>
-                    <h3>{{$rawTeam->team_total_points}}</h3>
-                    <p>{{ array_search(Auth::user()->id, $positionRaw) + 1 }}º</p>
+<section class="profile">
+
+    <div class="container-fluid profile-container">
+        <div class="row user-info1">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="avatar" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000">
+                </div> <!-- .AVATAR -->
+                <div class="name">
+                    <h2>{{ Auth::user()->name }}</h2>
+                    @if($liga->id != 1)
+                    <h3><a href="{{route('leagueHome')}}">{{$liga->league_name}}</a></h3>
+                    @else
+                    @endif                
+                    <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Change Icon</a></p> 
                 </div>
+            </div>
 
-                <div class="divisor"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="row">            
+                    <div class="col-xs-6 col-sm-6 col-md-6 raw">
+                        <h2>RAW</h2>
+                        <h3>{{$rawTeam->team_total_points}}</h3>
+                        <p>{{ array_search(Auth::user()->id, $positionRaw) + 1 }}º</p>
+                    </div>
 
-                <div class="col-sm-6 col-md-6 smd">
+                    <div class="divisor"></div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 smd">
+                        
+                        <h2>SMACKDOWN</h2>
+                        <h3>{{$smackdownTeam->team_total_points}}</h3>
+                        <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}º</p>
+                    </div>
+                </div>            
+            </div>
+
+        </div> <!-- USER-INFO -->
+
+
+    </div> <!-- PROFILE-CONTAINER -->
+
+    <div class="container-fluid">
+        <nav class="profile-brand-nav">
+            <ul data-toggle="tab">
+                <li class="active"><a data-toggle="tab" class="active" href="#raw-profile">RAW</a></li>
+                <li><a data-toggle="tab" href="#smd-profile">SMACKDOWN</a></li>
+                <li><a data-toggle="tab" href="#ppv-profile">PAY PER VIEW</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container-fluid tab-content">
+        
+        <div id="raw-profile" class="profile-brand-info raw-profile tab-pane fade in active">
+            
+            <div>
+                <ul>
+                    <li>
+                        <h3>Total Score</h3>
+                        <p>{{$rawTeam->team_total_points}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Last Show Score</h3>
+                        <p>{{$rawTeam->team_points}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Ranking</h3>
+                        <p>{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                    <?php $totalCashRaw = $rawTeam->team_cash?>
+                    <?php $totalCashSmack = $smackdownTeam->team_cash?>
+                    <?php $totalCashPPV = $ppvTeam->team_cash?>
+                    @foreach($superstars as $superstar)
+                    @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashRaw +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
+                    @foreach($superstars as $superstar)
+                    @if($smackdownTeam->superstar01 != $superstar->id  && $smackdownTeam->superstar02 != $superstar->id && $smackdownTeam->superstar03 != $superstar->id && $smackdownTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashSmack +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
+                    @foreach($superstars as $superstar)
+                    @if($ppvTeam->superstar01 != $superstar->id  && $ppvTeam->superstar02 != $superstar->id && $ppvTeam->superstar03 != $superstar->id && $ppvTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashPPV +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
                     
-                    <h2>SMACKDOWN</h2>
-                    <h3>{{$smackdownTeam->team_total_points}}</h3>
-                    <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}º</p>
+                        <h3>Total Cash</h3>
+                        <p>$ {{$totalCashRaw}}</p>
+                    </li>
+                </ul>
+
+                <div class="profile-market-status">
+                    <h3>Market Status</h3>
+                    @if($status->statusMercadoRaw == 'Aberto')
+                        <p class="market-open">OPEN</p>
+                    @else
+                        <p class="market-closed">CLOSED</p>
+                    @endif
                 </div>
             </div>            
-        </div>
 
-    </div> <!-- USER-INFO -->
-
-
-</div> <!-- PROFILE-CONTAINER -->
-
-
-<div class="container-fluid user-panel">
-
-    <div class="row brand-section"> <!-- RAW .BRAND-SECTION -->
-        
-        <div class="head"> <!-- .HEAD -->
-            <h2>RAW</h2>
-            @if($status->statusMercadoRaw == 'Aberto')
-                <p class="market-open">OPEN</p>
-            @else
-                <p class="market-closed">CLOSED</p>
-            @endif
-        </div>
-
-        <div class="brand-team"> <!-- .BRAND-TEAM -->
-            <div class="team-info"> <!-- .TEAM-INFO -->
-                <ul>
-                    <li>Total Score: <p> {{$rawTeam->team_total_points}}</p></li>
-                    <li>Last Show Score: <p>{{$rawTeam->team_points}}</p></li>
-                    <li>Rank: <p>{{ array_search(Auth::user()->id, $positionRaw) + 1 }}</p></li>
-                    <li class="raw-cash">$ {{number_format($rawTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoRawHome')}}"><li>GO TO MARKET</li></a>
-                </ul>
-            </div> <!-- .TEAM-INFO -->
-            @foreach($superstars as $superstar)
-            @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
-            @else
-            <div>
-                <img src="{{url($superstar->image)}}"/>
-                <div class="star-name raw-bg">
-                    <p>{{$superstar->name}}</p>
+            <div class="profile-team">
+                @foreach($superstars as $superstar)
+                @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
+                @else
+                <div>
+                    <img src="{{url($superstar->image)}}" alt="">
+                    <p>{{$superstar->name}}</p>              
                 </div>
-                <!--<img src="{{url($superstar->image)}}"/>-->
-            </div>
-            @endif
-            @endforeach
-            <div class="mobile-market-btn raw-btn"><a href="{{route('mercadoRawHome')}}">GO TO MARKET</a></div>
-        </div> <!-- .BRAND-TEAM -->
+                @endif
+                @endforeach
+            </div>           
 
-    </div> <!-- RAW .BRAND-SECTION -->
+            <a href="{{route('mercadoRawHome')}}">MARKET</a>           
 
-
-    <div class="row brand-section"> <!-- SMACKDOWN .BRAND-SECTION -->
-        
-        <div class="head"> <!-- .HEAD -->
-            <h2>SMACKDOWN</h2>
-            @if($status->statusMercadoSmackdown == 'Aberto')
-                <p class="market-open">OPEN</p>
-            @else
-                <p class="market-closed">CLOSED</p>
-            @endif
         </div>
 
-        <div class="brand-team"> <!-- .BRAND-TEAM -->
-            <div class="team-info"> <!-- .TEAM-INFO -->
-                <ul>
-                    <li>Total Score: <p>{{$smackdownTeam->team_total_points}}</p></li>
-                    <li>Last Show Score: <p>{{$smackdownTeam->team_points}}</p></li>
-                    <li>Rank: <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p></li>
-                    <li class="smd-cash">$ {{number_format($smackdownTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoSmackdownHome')}}"><li>GO TO MARKET</li></a>
-                </ul>
-            </div> <!-- .TEAM-INFO -->
-            @foreach($superstars as $superstar)
-            @if($smackdownTeam->superstar01 != $superstar->id  && $smackdownTeam->superstar02 != $superstar->id && $smackdownTeam->superstar03 != $superstar->id && $smackdownTeam->superstar04 != $superstar->id)
-            @else
+        <div id="smd-profile" class="profile-brand-info smd-profile tab-pane fade">
+            
             <div>
-                <img src="{{url($superstar->image)}}"/>
-                <div class="star-name smd-bg">
-                    <p>{{$superstar->name}}</p>
-                </div>
-            </div>
-            @endif
-            @endforeach
-            <div class="mobile-market-btn smd-btn"><a href="{{route('mercadoSmackdownHome')}}">GO TO MARKET</a></div>
-        </div> <!-- .BRAND-TEAM -->
-
-    </div> <!-- SMACKDOWN .BRAND-SECTION -->
-
-    <div class="row brand-section"> <!-- PPV .BRAND-SECTION -->
-        
-        <div class="head"> <!-- .HEAD -->
-            <h2>PAY PER VIEW</h2>
-            @if($status->statusMercadoPPV == 'Aberto')
-                <p class="market-open">OPEN</p>
-            @else
-                <p class="market-closed">CLOSED</p>
-            @endif
-        </div>
-
-        <div class="brand-team"> <!-- .BRAND-TEAM -->
-            <div class="team-info info-ppv"> <!-- .TEAM-INFO -->
                 <ul>
-                    @if($status->ppvBrand == 'Smackdown')
-                    <li>Brand: <p style="color:blue;">{{$status->ppvBrand}}</p></li>
-                    @elseif($status->ppvBrand == 'Raw')
-                    <li>Brand: <p style="color:red;">{{$status->ppvBrand}}</p></li>
+                    <li>
+                        <h3>Total Score</h3>
+                        <p>{{$smackdownTeam->team_total_points}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Last Show Score</h3>
+                        <p>{{$smackdownTeam->team_points}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Ranking</h3>
+                        <p>{{ array_search(Auth::user()->id, $positionSmackdown) + 1 }}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Total Cash</h3>
+                        <p>$ {{$totalCashSmack}}</p>
+                    </li>
+                </ul>
+
+                <div class="profile-market-status">
+                    <h3>Market Status</h3>
+                    @if($status->statusMercadoSmackdown == 'Aberto')
+                        <p class="market-open">OPEN</p>
                     @else
-                    <li>Brand: <p style="color:black;">{{$status->ppvBrand}}</p></li>
+                        <p class="market-closed">CLOSED</p>
                     @endif
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li class="ppv-cash">$ {{number_format($ppvTeam->team_cash)}}</li>
-                    <a href="{{route('mercadoPpvHome')}}"><li>GO TO MARKET</li></a>
-                </ul>
-            </div> <!-- .TEAM-INFO -->
-            @foreach($superstars as $superstar)
-            @if($ppvTeam->superstar01 != $superstar->id  && $ppvTeam->superstar02 != $superstar->id && $ppvTeam->superstar03 != $superstar->id && $ppvTeam->superstar04 != $superstar->id)
-            @else
-            <div>
-                <img src="{{url($superstar->image)}}"/>
-                <div class="star-name ppv-bg">
-                    <p>{{$superstar->name}}</p>
                 </div>
+            </div>            
+
+            <div class="profile-team">
+                @foreach($superstars as $superstar)
+                @if($smackdownTeam->superstar01 != $superstar->id  && $smackdownTeam->superstar02 != $superstar->id && $smackdownTeam->superstar03 != $superstar->id && $smackdownTeam->superstar04 != $superstar->id)
+                @else
+                <div>
+                    <img src="{{url($superstar->image)}}" alt="">
+                    <p>{{$superstar->name}}</p>                    
+                </div>
+                @endif
+                @endforeach
             </div>
-            @endif
-            @endforeach
 
-            <div class="mobile-market-btn ppv-btn"><a href="{{route('mercadoPpvHome')}}">GO TO MARKET</a></div>
-        </div> <!-- .BRAND-TEAM -->
+            <a href="{{route('mercadoSmackdownHome')}}">MARKET</a>
 
-    </div> <!-- PPV .BRAND-SECTION -->    
-</div>
+        </div>
+
+        <div id="ppv-profile" class="profile-brand-info ppv-profile tab-pane fade">
+            
+            <div>
+                <ul>
+                    <li>
+                        <h3>Score</h3>
+                        <p>{{$ppvTeam->team_points}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li>
+                        <h3>Total Cash</h3>
+                        <p>$ {{$totalCashPPV}}</p>
+                    </li>
+                    <li><div class="divisor"></div></li>
+                    <li class="ppvNameMenu">
+                        <h3>Name</h3>   
+                        <p class="ppvName">{{$status->ppvName}}</p>        
+                    </li>
+                </ul>
+
+                <div class="profile-market-status">
+                    <h3>Market Status</h3>
+                    @if($status->statusMercadoPPV == 'Aberto')
+                        <p class="market-open">OPEN</p>
+                    @else
+                        <p class="market-closed">CLOSED</p>
+                    @endif
+                </div>
+            </div>            
+
+            <div class="profile-team">
+                 @foreach($superstars as $superstar)
+                @if($ppvTeam->superstar01 != $superstar->id  && $ppvTeam->superstar02 != $superstar->id && $ppvTeam->superstar03 != $superstar->id && $ppvTeam->superstar04 != $superstar->id)
+                @else
+                <div>
+                    <img src="{{url($superstar->image)}}" alt="">
+                    <p>{{$superstar->name}}</p>                    
+                </div>
+                @endif
+                @endforeach
+            </div>
+
+            <a href="{{route('mercadoPpvHome')}}">MARKET</a>
+
+        </div> <!-- PPV-PROFILE -->
+
+    </div> <!-- TAB-CONTENT -->
+    
+
+</section> <!-- PROFILE -->
+
 @endif
 
 @endsection

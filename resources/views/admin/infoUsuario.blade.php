@@ -13,6 +13,7 @@
                                     <th>Photo</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>WC</th>
                                 </tr>
                             </thead>
 
@@ -22,6 +23,7 @@
                                         <td><img src="{{url($user->photo)}}" class="img-circle-admin-check" alt=""></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>{{$user->wc}}</td>
                             </tbody>
                         </table>
                     </div>
@@ -84,31 +86,71 @@
                 </div>
             </div>
             <div class="row">
-            <h4 class="header-title m-t-0 m-b-30">User Cash</h4>
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Cash <span class="label label-danger">RAW</span></th>
-                                    <th>Cash <span class="label label-primary">Smackdown</span></th>
-                                    <th>Cash <span class="label label-warning">Pay-Per-View</span></th>
-                                    <th>WC</th>
+                                    <th>User Market Data</th>
+                                    <th><span class="label label-danger">RAW</span></th>
+                                    <th><span class="label label-primary">Smackdown</span></th>
+                                    <th><span class="label label-warning">Pay-Per-View</span></th>
                                 </tr>
                             </thead>
+                            
 
                             <tbody>
-                                    <tr>
-                                        <td>{{$cashRaw}}</td>
-                                        <td>{{$cashSmack}}</td>
-                                        <td>{{$cashPPV}}</td>
-                                        <td>{{$user->wc}}</td>
+                                <tr>
+                                    <td>Points</td>
+                                    <td>{{array_search($user->id, $positionRaw)+ 1}}º</td>
+                                    <td>{{array_search($user->id, $positionSmackdown)+ 1}}º</td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Points</td>
+                                    <td>{{$rawTeam->team_points}}</td>
+                                    <td>{{$smackdownTeam->team_points}}</td>
+                                    <td>{{$ppvTeam->team_points}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Total Points</td>
+                                    <td>{{$rawTeam->team_total_points}}</td>
+                                    <td>{{$smackdownTeam->team_total_points}}</td>
+                                    <td>{{$ppvTeam->team_total_points}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Cash</td>
+                                    <td>{{$cashRaw}}</td>
+                                    <td>{{$cashSmack}}</td>
+                                    <td>{{$cashPPV}}</td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
                 </div><!-- end col -->
             </div>
             <!-- end row -->
+            <div class="row">
+                <div class="wrapper">
+                <h4 class="header-title m-t-0 m-b-30">User Icons</h4>
+                    <div class="col-lg-4">
+                        <div class="card-box">
+                            <div class="inbox-widget nicescroll" style="height: 315px;">
+                                    @foreach($iconsComprados as $iconComprado)
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="{{url($iconComprado->img_url)}}" class="img-circle" alt=""></div>
+                                        <p class="inbox-item-author"><b>{{$iconComprado->name}}</b></p>
+                                        </div>
+                                    @endforeach    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection 

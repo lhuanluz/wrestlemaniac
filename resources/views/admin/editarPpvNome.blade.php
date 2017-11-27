@@ -1,17 +1,11 @@
 @extends('layouts/adminLayout')
-
+@section('title', 'Edit PPV Name')
 @section('conteudo_principal')
-<div class="container-fluid">
-    <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Delete
-                        </h1>
-                    </div>
-                </div>
+<div class="card-box">
+    <div class="container-fluid">
         <div class="wrapper">
             <!-- FORMULARIO -->
-            <form method="post" action="{{route('dWarningR')}}"  name="Delete_Warning" class="form-create">       
+            <form method="post" action="{{route('editPpvName')}}"  name="Edit_User_Email" class="form-create" id="enviar">       
                 {{ csrf_field()  }}
 
                 @if (count($errors) > 0)
@@ -26,15 +20,16 @@
 
                 <!-- Campos -->  
                 <div class="form-group">
-                    <label>Title</label>
-                   <input type="title" name="title" class="form-control">                
-                </div>                
+                    <label>Name</label>
+                   <input type="text" name="name" class="form-control">                
+                </div>
                 <!-- BOTÃO -->
                 <br/>
-                <button class="btn btn-primary btn-block btn-lg"  name="Submit" value="criar" type="Submit">Delete Warning</button>     
-
-            </form>         
+            </form>
+            <button class="btn btn-danger btn-block btn-lg btn-rounded"  name="Submit" value="dar" type="Submit" onClick="teste()">Edit</button>
+                     
             <!-- FORMULARIO [FIM] -->
         </div>
     </div>
+</div>
 @endsection 

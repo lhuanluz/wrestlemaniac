@@ -9,8 +9,8 @@
 
 
  .lutador {
-     width:250px;
-     height: 460px;
+     width: 241px;
+     height: 451px;
      border: 1px solid !important;
      border-radius: 10px;
      padding: 5px;
@@ -21,8 +21,8 @@
 }
 
  .lutador img {
-     width: 238px;
-     height: 238px;
+     width: 229px;
+     height: 229px;
      border-radius: 10px;
  }
 .pontos {
@@ -79,10 +79,13 @@
     margin-right: 5%;
 }
 .ppv {
-    background-color:#0d9222;
+    background-color: #1F2323;
     color: white;
 }
 .ppv:hover{
-     background-color: #0b7e1e;
+     background-color: #4B4E4E;
      color: white;
+}
+.mercadoSearch {
+    margin-top: -88px !important;
 }

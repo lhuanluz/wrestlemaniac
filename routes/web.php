@@ -53,6 +53,9 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
         // Rotas para editar a visibilidade do PPV
         Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
         Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
+        // Rotas para editar o nome do PPV
+        Route::get('edit-ppv-name','AdminController@editarPpvNomeRedirect')->name('editPpvNameRedirect');
+        Route::post('edit-ppv-name/confirm','AdminController@editarPpvNome')->name('editPpvName');
     });
     // Rotas Para Editar Usuarios
     Route::prefix('user')->middleware('auth.admin3')->group(function (){

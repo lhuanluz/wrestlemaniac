@@ -161,6 +161,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('editMarketStatusRedirect') }}"><i class="zmdi zmdi-lock"></i>Edit Status</a></li>
                                     <li><a href="{{ route('editPpvBrandRedirect') }}"><i class="zmdi zmdi-flag"></i>Edit PPV Brand</a></li>
+                                    <li><a href="{{ route('editPpvNameRedirect') }}"><i class="zmdi zmdi-comment-edit"></i>Edit PPV Name</a></li>
                                     <li><a href="{{ route('editPpvVisibilityRedirect') }}"><i class="zmdi zmdi-eye"></i>Edit PPV Visibility</a></li>
                                 </ul>
                             </li>

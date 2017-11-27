@@ -141,19 +141,19 @@
                                 <li class="dropdown user-dropdown"> 
                                                 
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <div class="avatar-nav" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                                    <div class="avatar-nav" style="background: url(/{{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
                                         <i aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>                                    
 
                                     <ul class="dropdown-menu" role="menu">
                                         @if(Auth::user()->user_power >= 1)
-                                        <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
+                                        <li><a href="{{ route('painelAdmin') }}"><i class="fa fa-birthday-cake"></i> Admin</a></li>
                                         @endif
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
+                                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Log Out
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -175,7 +175,7 @@
                 <div class="container-fluid">
                     <div class="row">                        
 
-                        <div class="col-sm-3 col-md-3 footer-logo">
+                        <div class="col-xs-3 col-sm-3 col-md-3 footer-logo">
                             <ul>
                                 <li><a href="{{ url('/') }}">Wrestlemaniac Inc.</a></li>
                                 <li>Los Angeles, CA</li>
@@ -183,9 +183,9 @@
                             <a href="https://www.facebook.com/TheWrestlemaniac/" target="_blank"><img src="{{ url('img/facebook-icon.png') }}" alt="Facebook" ></a>
                         </div>
 
-                        <div class="col-sm-9 col-md-9 footer-menu">
+                        <div class="col-xs-9 col-sm-9 col-md-9 footer-menu">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-xs-4 col-sm-4 col-md-4">
                                     <ul>
                                         <li>Company</li>
                                         <li><a href="#">Contact us</a></li>
@@ -194,7 +194,7 @@
                                         <li><a href="#">Privacy Policy</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-xs-4 col-sm-4 col-md-4">
                                     <ul>
                                         <li>Help</li>
                                         <li><a href="#">How it Works</a></li>
@@ -202,7 +202,7 @@
                                         <li><a href="#">Rules and Scoring</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-xs-4 col-sm-4 col-md-4">
                                     <ul>
                                         <li>MORE</li>
                                         <li><a href="#">News &amp Tips</a></li>
@@ -214,45 +214,20 @@
                     </div>
                 </div>
             </footer>
-
-            <!-- <footer class="container-fluid footer">
-                <div class="row social">
-                    <div class="container-fluid footer-container">
-                        <a class="logo_footer" href="{{ url('/') }}">
-                            <img src="{{ url('img/logo_rodape.png') }}"/>
-                        </a>
-                        <a id="media" href="https://www.facebook.com/TheWrestlemaniac/" target="_blank">
-                            <img src="{{ url('img/facebook_icon.png') }}"/>
-                        </a>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                        
-                    </div>
-                </div>
-                
-                <div class="row copy">
-                    <div class="container-fluid copy-container">
-                        <p>Developed by <span>Grounder</span></p>
-                    </div>
-                </div>
-            </footer> -->
            
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-104800147-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+        ga('create', 'UA-104800147-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>

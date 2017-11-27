@@ -227,3 +227,16 @@
     float: right;
     margin-right: 8px;
 }
+.imgRankBelt {
+    position: absolute;
+    width: 40px;
+    top: 14%;
+    left: 13.8%;
+}
+.imgRankBeltLeague {
+    /* position: absolute; */
+    width: 96px;
+    margin-top: 1%;
+    margin-right: 1%;
+    float: left;
+}

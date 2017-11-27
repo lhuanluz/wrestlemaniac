@@ -13,6 +13,9 @@
 
                 <li>
                     <p>{{$posL}}º</p>
+                    @if($posL == 1)
+                        <img class="imgRankBeltLeague" src="/storage/belts/league.png"/>
+                    @endif
                     <p>{{$topLeague->league_name}}</p>
                     <p>{{number_format($topLeague->league_points, 2, ',', ' ')}}</p>
                 </li>
@@ -32,7 +35,10 @@
                     @foreach($topRawTotalPoints as $topRawTotalPoint) 
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$topRawTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        @if($pos == 1)
+                        <img class="imgRankBelt" src="/storage/belts/raw.png"/>
+                        @endif
+                        <div class="avatar" style="background: url({{$topRawTotalPoint->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$topRawTotalPoint->name}}</p>
                         <p>{{$topRawTotalPoint->team_total_points}}</p>
                     </li>
@@ -52,7 +58,10 @@
                     
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$topSmackdownTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        @if($pos == 1)
+                        <img class="imgRankBelt" src="/storage/belts/smackdown.png"/>
+                        @endif
+                        <div class="avatar" style="background: url({{$topSmackdownTotalPoint->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
                         <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
                     </li>
