@@ -31,7 +31,7 @@
         <h2>Select Your Photo</h2>
         <div id="wrapSearch">
             <form action="" autocomplete="on">
-                <input id="txtBusca" name="search" type="text" placeholder="Search for an icon"><input id="search_submit" value="Rechercher" type="submit">
+                <input id="txtBusca" name="search" type="text" placeholder="Search for an icon"><input id="search_submit" value="Rechercher" type="">
             </form>
         </div>
         <div class="iconsPos">

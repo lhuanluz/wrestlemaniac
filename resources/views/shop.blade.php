@@ -34,7 +34,7 @@
             <p>{{Auth::user()->wc}}</p>
             <div id="wrapSearchShop">
             <form action="" autocomplete="on">
-                <input id="txtBusca" name="search" type="text" placeholder="Search for an icon"><input id="search_submit" value="Rechercher" type="submit">
+                <input id="txtBusca" name="search" type="text" placeholder="Search for an icon"><input id="search_submit" value="Rechercher" type="">
             </form>
         </div>
         </div>

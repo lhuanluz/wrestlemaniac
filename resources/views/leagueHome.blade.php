@@ -40,7 +40,7 @@
                     @foreach($membrosRaw as $membroRaw)
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$membroRaw->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <div class="avatar" style="background: url({{$membroRaw->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$membroRaw->name}}</p>
                         <p>{{$membroRaw->team_total_points}}</p>
                     </li>
@@ -75,7 +75,7 @@
                     @foreach($membrosSmackdown as $membroSmackdown)
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$membroSmackdown->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <div class="avatar" style="background: url({{$membroSmackdown->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$membroSmackdown->name}}</p>
                         <p>{{$membroSmackdown->team_total_points}}</p>
                     </li>

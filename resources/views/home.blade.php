@@ -80,7 +80,7 @@
                     <h3><a href="{{route('leagueHome')}}">{{$liga->league_name}}</a></h3>
                     @else
                     @endif                
-                    <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Edit Photo</a></p> 
+                    <p><a href="{{route('selectPhotoRedirect')}}"><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Change Icon</a></p> 
                 </div>
             </div>
 
@@ -140,8 +140,30 @@
                     </li>
                     <li><div class="divisor"></div></li>
                     <li>
+                    <?php $totalCashRaw = $rawTeam->team_cash?>
+                    <?php $totalCashSmack = $smackdownTeam->team_cash?>
+                    <?php $totalCashPPV = $ppvTeam->team_cash?>
+                    @foreach($superstars as $superstar)
+                    @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashRaw +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
+                    @foreach($superstars as $superstar)
+                    @if($smackdownTeam->superstar01 != $superstar->id  && $smackdownTeam->superstar02 != $superstar->id && $smackdownTeam->superstar03 != $superstar->id && $smackdownTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashSmack +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
+                    @foreach($superstars as $superstar)
+                    @if($ppvTeam->superstar01 != $superstar->id  && $ppvTeam->superstar02 != $superstar->id && $ppvTeam->superstar03 != $superstar->id && $ppvTeam->superstar04 != $superstar->id)
+                    @else    
+                        <?php $totalCashPPV +=  $superstar->price ?>           
+                    @endif
+                    @endforeach
+                    
                         <h3>Total Cash</h3>
-                        <p>$ 8012</p>
+                        <p>$ {{$totalCashRaw}}</p>
                     </li>
                 </ul>
 
@@ -161,7 +183,7 @@
                 @else
                 <div>
                     <img src="{{url($superstar->image)}}" alt="">
-                    <p>{{$superstar->name}}</p>                    
+                    <p>{{$superstar->name}}</p>              
                 </div>
                 @endif
                 @endforeach
@@ -192,7 +214,7 @@
                     <li><div class="divisor"></div></li>
                     <li>
                         <h3>Total Cash</h3>
-                        <p>$ 8012</p>
+                        <p>$ {{$totalCashSmack}}</p>
                     </li>
                 </ul>
 
@@ -227,29 +249,18 @@
             <div>
                 <ul>
                     <li>
-                        <h3>Total Score</h3>
-                        <p>278.50</p>
-                    </li>
-                    <li><div class="divisor"></div></li>
-                    <li>
-                        <h3>Last Show Score</h3>
-                        <p>21.40</p>
+                        <h3>Last PPV Score</h3>
+                        <p>{{$ppvTeam->team_points}}</p>
                     </li>
                     <li><div class="divisor"></div></li>
                     <li>
                         <h3>Total Cash</h3>
-                        <p>$ {{$ppvTeam->team_cash}}</p>
+                        <p>$ {{$totalCashPPV}}</p>
                     </li>
                     <li><div class="divisor"></div></li>
-                    <li>
-                        <h3>Brand</h3>
-                        @if($status->ppvBrand == 'Smackdown')
-                            <p>{{$status->ppvBrand}}</p>
-                        @elseif($status->ppvBrand == 'Raw')
-                            <p>{{$status->ppvBrand}}</p>
-                        @else
-                            <p>{{$status->ppvBrand}}</p>
-                        @endif
+                    <li class="ppvNameMenu">
+                        <h3>Name</h3>   
+                        <p class="ppvName">{{$status->ppvName}}</p>        
                     </li>
                 </ul>
 

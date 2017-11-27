@@ -32,7 +32,7 @@
                     @foreach($topRawTotalPoints as $topRawTotalPoint) 
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$topRawTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <div class="avatar" style="background: url({{$topRawTotalPoint->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$topRawTotalPoint->name}}</p>
                         <p>{{$topRawTotalPoint->team_total_points}}</p>
                     </li>
@@ -52,7 +52,7 @@
                     
                     <li>
                         <p>{{$pos}}º</p>
-                        <div class="avatar" style="background: url({{$topSmackdownTotalPoint->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                        <div class="avatar" style="background: url({{$topSmackdownTotalPoint->photo}}) center center no-repeat; background-size: cover;"></div>
                         <p>{{$topSmackdownTotalPoint->name}}</p>
                         <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
                     </li>

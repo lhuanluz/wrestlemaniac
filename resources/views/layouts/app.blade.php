@@ -141,19 +141,19 @@
                                 <li class="dropdown user-dropdown"> 
                                                 
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <div class="avatar-nav" style="background: url({{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
+                                    <div class="avatar-nav" style="background: url(/{{Auth::user()->photo}}) center center no-repeat; background-size: cover; background-color: #000"></div>
                                         <i aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>                                    
 
                                     <ul class="dropdown-menu" role="menu">
                                         @if(Auth::user()->user_power >= 1)
-                                        <li><a href="{{ route('painelAdmin') }}">Admin</a></li>
+                                        <li><a href="{{ route('painelAdmin') }}"><i class="fa fa-birthday-cake"></i> Admin</a></li>
                                         @endif
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Log Out
+                                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Log Out
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
