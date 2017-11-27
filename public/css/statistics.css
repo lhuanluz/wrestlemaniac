@@ -234,9 +234,7 @@
     left: 13.8%;
 }
 .imgRankBeltLeague {
-    /* position: absolute; */
     width: 96px;
     margin-top: 1%;
-    margin-right: 1%;
-    float: left;
+    margin-left: 1%;
 }
