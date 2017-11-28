@@ -17,6 +17,16 @@ class UsuariosController extends Controller
     public function comprarIcone(Request $request){
         $icon = DB::table('icons')->where('id',$request->iconID)->first();
         $user = Auth::user();
+        $iconsComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id IN (
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
+            "));
+        foreach ($iconsComprados as $iconComprado) {
+            if ($iconComprado->id == $icon->id) {
+                return redirect()->route('iconStore');
+                die();
+            }
+        }
         if($user->wc >= $icon->price){
             $wcRestante = $user->wc - $icon->price;
             DB::table('user_icons')->insert([
