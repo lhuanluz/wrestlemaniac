@@ -2,7 +2,221 @@
 /*CSS MERCADO*/
 
 .market {
-    width: 1140px;
-    padding: 0;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 50px;
 }
 
+.raw-banner {
+    height: 263px;
+    background: url(../img/banner-raw.jpg) center center no-repeat rgb(215, 24, 42);
+}
+
+.market-team {
+    width: 1140px;
+    padding-top: 40px;
+    margin: 0px auto;
+}
+
+.market-team h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(72, 75, 77);
+}
+
+.market-team .row .your-team {
+    height: auto;
+    width: 275px;
+    background-color: rgb(20, 21, 22);
+    margin-right: 13px;
+    border-radius: 4px;
+    padding: 0px;
+}
+
+.market-team .d1 {
+    height: 271px;
+}
+
+.market-team img {
+    width: 266px;
+    height: 266px;
+    margin: 5px 0px 0px 5px;
+}
+
+.market-team .d1 p {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+    position: relative;
+    top: -42px;
+    background: rgba(215, 24, 42, 0.75);
+    padding: 5px;
+    margin: 4px;
+}
+
+.market-team .d2 {
+    padding-left: 23px;
+    list-style: none;
+    margin: 10px 0px;
+    overflow: auto;
+}
+
+.market-team .d2 li {
+    float: left;
+}
+
+.market-team .d2 li p:nth-of-type(1) {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.market-team .d2 li p:nth-of-type(2) {
+    font-size: 34px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.market-team .divisor {
+    height: 58px;
+    width: 2px;
+    background-color: rgb(72, 75, 77);
+    margin: 2px 38px;
+}
+
+.market-team .your-team a {
+    text-align: center;
+    text-transform: uppercase;
+    width: 257px;
+    height: 50px;
+    display: block;
+    background-color: rgb(215, 24, 42);
+    box-shadow: rgb(103, 9, 1) 0px 4px 0px;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding-top: 4px;
+    margin-left: 9px;
+    margin-bottom: 15px;
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.market-team .your-team a:active {
+    background-color: #a21623;
+    box-shadow: 0px 2px 0px #290401;
+    transform: translateY(3px);
+}
+
+.market-team .row div:last-child {
+    margin-right: 0px;
+}
+
+.market-info {
+    background-color: rgb(248, 248, 248);
+    box-shadow: rgb(149, 153, 156) 0px 2px 1px;
+    height: 115px;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+.market-info ul {
+    padding-left: 15px;
+    padding-top: 14px;
+    list-style: none;
+    overflow: hidden;
+}
+
+.market-info ul li {
+    float: left;
+}
+
+.market-info ul li p:nth-of-type(1) {
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: rgb(72, 75, 77);
+}
+
+.market-info ul li p:nth-of-type(2) {
+    font-size: 45px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: rgb(215, 24, 42);
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+}
+
+.market-info .divisor {
+    background-color: rgb(217, 224, 230);
+    height: 77px;
+    margin: 2px 46px;
+}
+
+.market-info ul li p.market-open {
+    color: rgb(0, 255, 0);
+    text-shadow: rgb(0, 0, 0) 0px 2px 1px;
+}
+
+.market-info ul li p.market-closed {
+    color: #a9aeb3;
+    text-shadow: 0px 2px 1px #000;
+}
+
+.market-team a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.sell-all {
+    text-align: center;
+    text-transform: uppercase;
+    width: 257px;
+    height: 43px;
+    display: block;
+    background-color: rgb(215, 24, 42);
+    box-shadow: rgb(103, 9, 1) 0px 4px 0px;
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 4px;
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    margin: 36px 0px 15px 15px;
+    text-decoration: none;
+}
+
+.sell-all:active {
+    background-color: #a21623;
+    box-shadow: 0px 2px 0px #290401;
+    transform: translateY(3px);
+}
+
+.confirm-team {
+    text-align: center;
+    text-transform: uppercase;
+    width: 257px;
+    height: 43px;
+    display: block;
+    background-color: rgb(63, 215, 63);
+    box-shadow: rgb(2, 112, 48) 0px 4px 0px;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding-top: 4px;
+    margin-left: 15px;
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.confirm-team:active {
+    background-color: #32ab32;
+    box-shadow: 0px 2px 0px #012811;
+    transform: translateY(3px);
+}
