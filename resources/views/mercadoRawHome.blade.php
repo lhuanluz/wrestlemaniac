@@ -124,6 +124,43 @@
     <section class="container-fluid marketplace">
         <div class="row">
             <h2>Market</h2>
+            
+            <div id="wrapSearch" class="mercadoSearch">
+                <form action="" autocomplete="on">
+                    <input id="txtBusca" name="search" type="text" placeholder="Search for a superstar"><input id="search_submit" value="Rechercher" type="">
+                </form>
+            </div>
+
+            <div class="controles"> 
+                <!-- Sempre veremos o botÃ£o Nameâ–² -->
+                <a href="{{route('mercadoRawHome')}}">Nameâ–²</a>
+                <!-- Condiciona que os botÃµes Priceâ–² e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
+                -> Estivermos vendo a Home do Mercado
+                ->Estivermos Vendo o Priceâ–¼ ou Pointsâ–¼
+                -->
+                @if(Route::is('mercadoRawHome')|| Route::is('mercadoRawPriceDesc') ||Route::is('mercadoRawPointsDesc'))
+                    <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
+                    <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
+                @endif
+                <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
+                -> Estivermos vendo o Priceâ–²
+                -->
+                @if(Route::is('mercadoRawPriceAsc'))
+                    <a href="{{route('mercadoRawPriceDesc')}}">Priceâ–¼</a>
+                    <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
+                @endif  
+                <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
+                -> Estivermos vendo o Pointsâ–²
+                -->
+                @if(Route::is('mercadoRawPointsAsc'))
+                    <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
+                    <a href="{{route('mercadoRawPointsDesc')}}">Pointsâ–¼</a>
+                @endif
+            </div>     
+
+
+            
+
             <div class="separador"></div>
             <div class="container-fluid market-superstar">
                 <div class="row">
@@ -144,7 +181,7 @@
                                     <li class="divisor"></li> 
                                     <li>
                                         <p>Appreciation</p> 
-                                        <p>$ 85</p>
+                                        <p><span>+</span>$ 85</p>
                                     </li> 
                                     <li class="divisor"></li> 
                                     <li>
@@ -163,8 +200,6 @@
         </div>
         
     </section>
-
-
 
 
 
