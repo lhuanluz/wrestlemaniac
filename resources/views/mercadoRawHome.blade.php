@@ -4,6 +4,9 @@
 
     <section class="raw-banner"></section>
     <section class="market">
+        @if($status == 'Fechado')
+        <div class="alert alert-danger" role="alert">RAW Market is Closed!</div>
+        @endif
         <div class="container-fluid market-team">
             <h2>Your Team</h2> 
             <div class="row">
@@ -118,6 +121,49 @@
         </div>
     </section>
 
+    <section class="container-fluid marketplace">
+        <div class="row">
+            <h2>Market</h2>
+            <div class="separador"></div>
+            <div class="container-fluid market-superstar">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="{{ url('img/roman_reigns2.png') }}" alt="Superstar image">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Roman Reigns</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <ul>
+                                    <li>
+                                        <p>Last Show Score</p> 
+                                        <p>8.5</p>
+                                    </li> 
+                                    <li class="divisor"></li> 
+                                    <li>
+                                        <p>Appreciation</p> 
+                                        <p>$ 85</p>
+                                    </li> 
+                                    <li class="divisor"></li> 
+                                    <li>
+                                        <p>Price</p> 
+                                        <p>$ 1275</p>
+                                    </li>   
+                                    <li>
+                                        <a href="#" class="btn-buy">Buy</a>
+                                    </li>               
+                                </ul>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
 
 
 
@@ -139,9 +185,7 @@
 
 	</script>
 
-    @if($status == 'Fechado')
-        <div class="alert alert-danger" role="alert">RAW Market is Closed!</div>
-    @endif
+
 
     <div class="page-header">
         <h1 class="title">Your Team<i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
