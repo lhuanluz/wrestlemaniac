@@ -15,28 +15,37 @@
                     @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
                     @else
                     <?php
-                    
                     $precoASerAbatido += $superstar->price;
                     ?>
-                <div class="col-md-3 your-team">
-                    <div class="d1">
-                        <img src="{{ url($superstar->image) }}" alt="{{$superstar->name}}">
-                        <p>{{$superstar->name}}</p>
-                    </div> 
+                
+                    <div class="col-md-3 your-team">
+                        <div class="d1">
+                            <img src="{{ url($superstar->image) }}" alt="{{$superstar->name}}">
+                            <p>{{$superstar->name}}</p>
+                        </div> 
 
-                    <ul class="d2">
-                        <li>
-                            <p>Score</p>
-                            <p>{{$superstar->points}}</p>
-                        </li> 
-                        <li class="divisor"></li> 
-                        <li>
-                            <p>Price</p> 
-                            <p>$ {{$superstar->price}}</p>
-                        </li>
-                    </ul> 
-                    <a href="#">Sell</a>
-                </div> 
+                        <ul class="d2">
+                            <li>
+                                <p>Score</p>
+                                <p>{{$superstar->points}}</p>
+                            </li> 
+                            <li class="divisor"></li> 
+                            <li>
+                                <p>Price</p> 
+                                <p>$ {{$superstar->price}}</p>
+                            </li>
+                        </ul>
+                        <form id="vender{{$superstar->name}}" class="lutador-info" action="{{route('venderSuperstarRaw')}}" method="post">
+                            {{ csrf_field()  }}
+                            <input type="hidden" name="name" value="{{$superstar->name}}"/>
+                            @if($superstar->name == 'None') 
+                            <a disabled>Can't Sell</a>
+                            @else
+                            <a href="javascript:{}" onclick="document.getElementById('vender{{$superstar->name}}').submit(); return false;" class="btn-buy">Sell</a>
+                            @endif
+                        </form> 
+                    </div>
+                
                     @endif
                 @endforeach
                 
@@ -119,9 +128,9 @@
             <div class="separador"></div>
             <ul id="ulItens">
             @foreach($superstars as $superstar)
+                <li class="pontosSelect">
                 @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
                 @else
-                <li class="pontosSelect">
                 <div class="container-fluid market-superstar">
                     <div class="row">
                             <div class="col-md-2 superstar-img">
@@ -152,14 +161,32 @@
                                                 <p><span>+</span>$ {{$superstar->points * 10}}</p>
                                                 @endif
                                                 
-                                            </li> 
+                                            </li>
+                                            @if($superstar->champion >= 1)
+                                            <li hidden>champion</li> 
+                                            @endif
                                             <li class="divisor"></li> 
                                             <li>
                                                 <p>Price</p> 
                                                 <p>$ {{$superstar->price}}</p>
                                             </li>   
                                             <li>
-                                                <a href="#" class="btn-buy">Buy</a>
+                                                @if(Auth::user())
+                                                    <form id="comprar{{$superstar->name}}" class="lutador-info" action="{{route('comprarSuperstarRaw')}}" method="post">
+                                                        {{ csrf_field()  }}
+                                                    <input type="hidden" name="name" value="{{$superstar->name}}"/>
+                                                    @if($rawTeam->superstar01 != 103 && $rawTeam->superstar02 != 102 && $rawTeam->superstar03 != 101 && $rawTeam->superstar04 != 100 )
+                                                        
+                                                    @elseif($rawTeam->team_cash < $superstar->price)
+                                                        
+                                                    @elseif($status == 'Fechado')
+                                                        
+                                                    @else
+                                                        
+                                                        <a href="javascript:{}" onclick="document.getElementById('comprar{{$superstar->name}}').submit(); return false;" class="btn-buy">Buy</a>
+                                                    @endif
+                                                    </form>
+                                                @endif
                                             </li>               
                                         </ul>      
                                     </div>
@@ -167,8 +194,8 @@
                             </div>
                         </div>
                     </div>
-                </li>
                 @endif
+                </li>
             @endforeach
             </ul>    
             
@@ -185,8 +212,8 @@
                 $("#txtBusca").keyup(function(){
                     var texto = $(this).val();
                     
-                    $("#ulItens li").css("display", "inline");
-                    $("#ulItens li").each(function(){
+                    $("#ulItens li.pontosSelect").css("display", "inline");
+                    $("#ulItens li.pontosSelect").each(function(){
                         if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
                             $(this).css("display", "none");
                     });
@@ -194,163 +221,4 @@
             });
 
 	</script>
-
-
-
-    <div class="page-header">
-        <h1 class="title">Your Team<i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
-    </div>
-    <div class="info">
-    <center>
-        <h3>Info</h3>
-        <h5 class="btn-info btn-lg btn-block"><i class="fa fa-star-half-o icon fa-lg" aria-hidden="true"></i> Weekly Points: {{$rawTeam->team_points}}</h5>
-        <h5 class="btn-warning btn-lg btn-block"><i class="fa fa-star icon fa-lg" aria-hidden="true"></i> Total Points: {{$rawTeam->team_total_points}}</h5>
-        <h5 class="btn-success btn-lg btn-block"><i class="glyphicon glyphicon-piggy-bank icon fa-lg"></i> Cash: {{$rawTeam->team_cash}}</h5>
-        
-       </center> 
-    </div> <!-- DIV INFO-->
-        
-        @foreach($superstars as $superstar)
-            @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
-            @else
-
-            <div class="meuTime">
-                <img src="{{url($superstar->image)}}" alt="Card image cap">
-                <form class="lutador-info" action="{{route('venderSuperstarRaw')}}" method="post">
-                {{ csrf_field()  }}
-                    <center>
-                    <!-- Mostra o nome do Superstar -->
-                    <u><h4>{{$superstar->name}}</h4></u>
-                    <input type="hidden" name="name" value="{{$superstar->name}}"/>
-                    <!-- Verifica se o Superstar apareceu no Ãºltimo show -->
-                    @if($superstar->last_show == 1)
-                        <div class="alert-success">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        Appeard on Last Show
-                        </div>
-                    @else
-                        <div class="alert-danger" >
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        Didn't appeard on Last Show
-                        </div>
-                    @endif
-                    <!-- Mostra os Pontos Atuais / Ãšltimos -->
-                    <h2 class="pontos">{{$superstar->points . ' / ' . $superstar->last_points}}</h2>
-                    <!-- Mostra o PreÃ§o -->
-                    <h2 class="preÃ§o" name="price"><span class="glyphicon glyphicon-usd"></span>{{$superstar->price}}</h2>
-                    <!-- Verifica se o UsuÃ¡rio estÃ¡ cadastrado, caso contrÃ¡rio nÃ£o mostra os botÃµes para comprar -->
-                    @if($superstar->name == 'None')
-                    <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
-                    <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Can't Sell
-                    </button>
-                    @elseif($status == 'Fechado')
-                        <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
-                            <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Market is Closed!
-                        </button>
-                    @else
-                    <button type="Submit" class="btn btn-danger btn-group-justified">
-                    <i class="fa fa-thumbs-o-down fa-lg icon" aria-hidden="true"></i>Sell
-                    </button>
-                    @endif
-                    </center>
-                </form>
-            </div> <!-- DIV meuTime -->
-            @endif
-        @endforeach
-
-    <div class="controladores btn-group-justified">
-        <div class="page-header">
-            <h1 class="title">Market<i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
-        </div>
-        <!-- Sempre veremos o botÃ£o Nameâ–² -->
-        <a href="{{route('mercadoRawHome')}}">Nameâ–²</a>
-        <!-- Condiciona que os botÃµes Priceâ–² e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
-        -> Estivermos vendo a Home do Mercado
-        ->Estivermos Vendo o Priceâ–¼ ou Pointsâ–¼
-        -->
-        @if(Route::is('mercadoRawHome')|| Route::is('mercadoRawPriceDesc') ||Route::is('mercadoRawPointsDesc'))
-            <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
-            <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
-        @endif
-        <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
-        -> Estivermos vendo o Priceâ–²
-        -->
-        @if(Route::is('mercadoRawPriceAsc'))
-            <a href="{{route('mercadoRawPriceDesc')}}">Priceâ–¼</a>
-            <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
-        @endif  
-        <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
-        -> Estivermos vendo o Pointsâ–²
-        -->
-        @if(Route::is('mercadoRawPointsAsc'))
-            <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
-            <a href="{{route('mercadoRawPointsDesc')}}">Pointsâ–¼</a>
-        @endif
-        <div id="wrapSearch" class="mercadoSearch">
-            <form action="" autocomplete="on">
-                <input id="txtBusca" name="search" type="text" placeholder="Search for a superstar"><input id="search_submit" value="Rechercher" type="">
-            </form>
-        </div>      
-    </div> <!-- DIV CONTROLADORES -->
-    
-    <!-- Listamento de Superstars-->
-    <div class="container market">
-        <ul id="ulItens">
-            @foreach($superstars as $superstar)
-                <li class="pontosSelect">
-                @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
-                @else
-                <div class="lutador">
-                    <img src="{{url($superstar->image)}}" alt="Card image cap">
-                    <form class="lutador-info" action="{{route('comprarSuperstarRaw')}}" method="post">
-                    {{ csrf_field()  }}
-                        <center>
-                        <!-- Mostra o nome do Superstar -->
-                        <u><h4>{{$superstar->name}}</h4></u>
-                        <input type="hidden" name="name" value="{{$superstar->name}}"/>
-                        <!-- Verifica se o Superstar apareceu no Ãºltimo show -->
-                        @if($superstar->last_show == 1)
-                            <div class="alert-success">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            Appeard on Last Show
-                            </div>
-                        @else
-                            <div class="alert-danger" >
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Didn't appeard on Last Show
-                            </div>
-                        @endif
-                        <!-- Mostra os Pontos Atuais / Ãšltimos -->
-                        <h2 class="pontos">{{$superstar->points . ' / ' . $superstar->last_points}}</h2>
-                        <!-- Mostra o PreÃ§o -->
-                        <h2 class="preÃ§o" name="price"><span class="glyphicon glyphicon-usd"></span>{{$superstar->price}}</h2>
-                        <!-- Verifica se o UsuÃ¡rio estÃ¡ cadastrado, caso contrÃ¡rio nÃ£o mostra os botÃµes para comprar -->
-                        @if(Auth::user())
-                            <!-- Caso seja um Superstar do RAW mostra botÃ£o vermelho -->
-                                @if($rawTeam->superstar01 != 103 && $rawTeam->superstar02 != 102 && $rawTeam->superstar03 != 101 && $rawTeam->superstar04 != 100 )
-                                    <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
-                                    <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Not enough space
-                                    </button>
-                                @elseif($rawTeam->team_cash < $superstar->price)
-                                    <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
-                                    <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Not enough cash
-                                    </button>
-                                @elseif($status == 'Fechado')
-                                    <button type="Submit" class="btn btn-danger btn-group-justified" disabled>
-                                        <i class="fa fa-exclamation-circle fa-lg icon" aria-hidden="true"></i>Market is Closed!
-                                    </button>
-                                @else
-                                    <button type="Submit" class="btn btn-danger btn-group-justified">
-                                    <i class="fa fa-thumbs-o-up fa-lg icon" aria-hidden="true"></i>Buy
-                                    </button>
-                                @endif
-                        @endif
-                        </center>
-                    </form>
-                </div> <!-- DIV LUTADOR -->
-                @endif
-                </li>
-            @endforeach
-        </ul>
-    </div> <!-- DIV CONTAINER > LUTADOR -->
 @endsection
