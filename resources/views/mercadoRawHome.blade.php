@@ -9,83 +9,38 @@
         @endif
         <div class="container-fluid market-team">
             <h2>Your Team</h2> 
+            <?php $precoASerAbatido = 0; ?>
             <div class="row">
+                @foreach($superstars as $superstar)
+                    @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
+                    @else
+                    <?php
+                    
+                    $precoASerAbatido += $superstar->price;
+                    ?>
                 <div class="col-md-3 your-team">
                     <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns">
-                        <p>Roman Reigns</p>
+                        <img src="{{ url($superstar->image) }}" alt="{{$superstar->name}}">
+                        <p>{{$superstar->name}}</p>
                     </div> 
 
                     <ul class="d2">
                         <li>
                             <p>Score</p>
-                            <p>8.5</p>
+                            <p>{{$superstar->points}}</p>
                         </li> 
                         <li class="divisor"></li> 
                         <li>
                             <p>Price</p> 
-                            <p>$ 1275</p>
+                            <p>$ {{$superstar->price}}</p>
                         </li>
                     </ul> 
                     <a href="#">Sell</a>
                 </div> 
+                    @endif
+                @endforeach
                 
-                <div class="col-md-3 your-team">
-                    <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
-                        <p>Roman Reigns</p>
-                    </div> 
-                    <ul class="d2">
-                        <li>
-                            <p>Score</p> 
-                            <p>8.5</p>
-                        </li> 
-                        <li class="divisor"></li> 
-                        <li>
-                            <p>Price</p> 
-                            <p>$ 1275</p>
-                        </li>
-                    </ul> 
-                    <a href="#">Sell</a>
-                </div> 
                 
-                <div class="col-md-3 your-team">
-                    <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
-                        <p>Roman Reigns</p>
-                    </div> 
-                    <ul class="d2">
-                        <li>
-                            <p>Score</p> 
-                            <p>8.5</p>
-                        </li> 
-                        <li class="divisor"></li> 
-                        <li>
-                            <p>Price</p> 
-                            <p>$ 1275</p>
-                        </li>
-                    </ul> 
-                    <a href="#">Sell</a>
-                </div> 
-                
-                <div class="col-md-3 your-team">
-                    <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
-                        <p>Roman Reigns</p>
-                    </div> 
-                    <ul class="d2">
-                        <li>
-                            <p>Score</p> 
-                            <p>8.5</p>
-                        </li> 
-                        <li class="divisor"></li> 
-                        <li>
-                            <p>Price</p> 
-                            <p>$ 1275</p>
-                        </li>
-                    </ul> 
-                    <a href="#">Sell</a>
-                </div>
             </div> 
             
             <div class="row"> <!-- MARKET INFO -->
@@ -93,7 +48,7 @@
                     <ul>
                         <li>
                             <p>Total Cash</p> 
-                            <p>$ 7112</p>
+                            <p>$ {{$rawTeam->team_cash + $precoASerAbatido}}</p>
                         </li> 
                         <li class="divisor"></li> 
                         <li>
@@ -108,7 +63,11 @@
                         <li class="divisor"></li> 
                         <li>
                             <p>Market Status</p>
+                            @if($status == 'Aberto')
                             <p class="market-open">OPEN</p>
+                            @else
+                            <p class="market-close">CLOSED</p>
+                            @endif
                         </li>                    
                     </ul>                
                 </div> 
@@ -162,41 +121,61 @@
             
 
             <div class="separador"></div>
-            <div class="container-fluid market-superstar">
-                <div class="row">
-                    <div class="col-md-2 superstar-img">
-                        <img src="{{ url('img/roman_reigns3.png') }}" alt="Superstar image">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>Roman Reigns</h3>
+            <ul id="ulItens">
+            @foreach($superstars as $superstar)
+                @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
+                @else
+                <li class="pontosSelect">
+                <div class="container-fluid market-superstar">
+                    <div class="row">
+                            <div class="col-md-2 superstar-img">
+                                <img src="{{ url($superstar->image) }}" alt="Superstar image">
                             </div>
-                            <div class="col-md-12">
-                                <ul>
-                                    <li>
-                                        <p>Last Show Score</p> 
-                                        <p>8.5</p>
-                                    </li> 
-                                    <li class="divisor"></li> 
-                                    <li>
-                                        <p>Appreciation</p> 
-                                        <p><span>+</span>$ 85</p>
-                                    </li> 
-                                    <li class="divisor"></li> 
-                                    <li>
-                                        <p>Price</p> 
-                                        <p>$ 1275</p>
-                                    </li>   
-                                    <li>
-                                        <a href="#" class="btn-buy">Buy</a>
-                                    </li>               
-                                </ul>      
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>{{$superstar->name}}</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <ul>
+                                            <li>
+                                                <p>Last Show Score</p> 
+                                                <p>{{$superstar->points}}</p>
+                                            </li> 
+                                            <li class="divisor"></li> 
+                                            <li>
+                                                <p>Appreciation</p>
+
+                                                @if($superstar->points < 3.0)
+                                                    @if($superstar->price - (100 - $superstar->points * 10) <= 500)
+                                                        <p><span>+</span>$ 0</p>
+                                                    @else
+                                                        <p><span>-</span>$ {{(100 - $superstar->points * 10)}}</p>
+                                                    @endif
+                                                @else 
+                                                <p><span>+</span>$ {{$superstar->points * 10}}</p>
+                                                @endif
+                                                
+                                            </li> 
+                                            <li class="divisor"></li> 
+                                            <li>
+                                                <p>Price</p> 
+                                                <p>$ {{$superstar->price}}</p>
+                                            </li>   
+                                            <li>
+                                                <a href="#" class="btn-buy">Buy</a>
+                                            </li>               
+                                        </ul>      
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </li>
+                @endif
+            @endforeach
+            </ul>    
+            
         </div>
         
     </section>
