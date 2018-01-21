@@ -11,6 +11,11 @@
     background: url(../img/banner-raw.jpg) center center no-repeat rgb(215, 24, 42);
 }
 
+.smd-banner {
+    height: 263px;
+    background: url(../img/banner-smackdown.jpg) center center no-repeat rgb(100, 100, 241);
+}
+
 .market-team {
     width: 1140px;
     padding-top: 40px;
@@ -155,7 +160,7 @@
 .market-info .divisor {
     background-color: rgb(217, 224, 230);
     height: 77px;
-    margin: 2px 46px;
+    margin: 2px 44px;
 }
 
 .market-info ul li p.market-open {
@@ -244,15 +249,18 @@
 }
 
 .marketplace .market-superstar {
-    height: 204px;
+    height: 197px;
     border-radius: 4px;
     background-color: #fff;
     box-shadow: rgb(149, 153, 156) 0px 2px 1px;
 }
 
 .marketplace .market-superstar img {
-    height: 197px;
+    height: 190px;
     margin-top: 7px;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .marketplace .market-superstar ul {
@@ -323,6 +331,14 @@
     background-color: #32ab32;
     box-shadow: 0px 2px 0px #012811;
     transform: translateY(3px);
+}
+
+.marketplace .market-superstar .superstar-img {
+    background-color: #141516;
+    padding-left: 0;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .controles {

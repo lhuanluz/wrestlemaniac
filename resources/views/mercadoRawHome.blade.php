@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-3 your-team">
                     <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns.png" alt="Roman Reigns">
+                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns">
                         <p>Roman Reigns</p>
                     </div> 
 
@@ -32,7 +32,7 @@
                 
                 <div class="col-md-3 your-team">
                     <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns.png" alt="Roman Reigns"> 
+                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
                         <p>Roman Reigns</p>
                     </div> 
                     <ul class="d2">
@@ -51,7 +51,7 @@
                 
                 <div class="col-md-3 your-team">
                     <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns.png" alt="Roman Reigns"> 
+                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
                         <p>Roman Reigns</p>
                     </div> 
                     <ul class="d2">
@@ -70,7 +70,7 @@
                 
                 <div class="col-md-3 your-team">
                     <div class="d1">
-                        <img src="http://localhost:8000/img/roman_reigns.png" alt="Roman Reigns"> 
+                        <img src="http://localhost:8000/img/roman_reigns3.png" alt="Roman Reigns"> 
                         <p>Roman Reigns</p>
                     </div> 
                     <ul class="d2">
@@ -88,7 +88,7 @@
                 </div>
             </div> 
             
-            <div class="row">
+            <div class="row"> <!-- MARKET INFO -->
                 <div class="market-info col-md-9">
                     <ul>
                         <li>
@@ -98,7 +98,7 @@
                         <li class="divisor"></li> 
                         <li>
                             <p>Cash Available</p> 
-                            <p>$ 68</p>
+                            <p>$ {{$rawTeam->team_cash}}</p>
                         </li> 
                         <li class="divisor"></li> 
                         <li>
@@ -164,8 +164,8 @@
             <div class="separador"></div>
             <div class="container-fluid market-superstar">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="{{ url('img/roman_reigns2.png') }}" alt="Superstar image">
+                    <div class="col-md-2 superstar-img">
+                        <img src="{{ url('img/roman_reigns3.png') }}" alt="Superstar image">
                     </div>
                     <div class="col-md-10">
                         <div class="row">
@@ -238,6 +238,7 @@
         @foreach($superstars as $superstar)
             @if($rawTeam->superstar01 != $superstar->id  && $rawTeam->superstar02 != $superstar->id && $rawTeam->superstar03 != $superstar->id && $rawTeam->superstar04 != $superstar->id)
             @else
+
             <div class="meuTime">
                 <img src="{{url($superstar->image)}}" alt="Card image cap">
                 <form class="lutador-info" action="{{route('venderSuperstarRaw')}}" method="post">
