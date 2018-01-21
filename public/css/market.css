@@ -253,6 +253,7 @@
     border-radius: 4px;
     background-color: #fff;
     box-shadow: rgb(149, 153, 156) 0px 2px 1px;
+    margin-bottom: 20px;
 }
 
 .marketplace .market-superstar img {
@@ -293,10 +294,18 @@
     text-shadow: rgb(0, 0, 0) 0px 1px 1px;
 }
 
-.marketplace .market-superstar span {
+.marketplace .market-superstar .positive {
     font-size: 45px;
     font-weight: bold;
     color: rgb(63, 215, 63);
+    text-shadow: rgb(0, 0, 0) 0px 1px 1px;
+    margin-right: 10px;
+}
+
+.marketplace .market-superstar .negative {
+    font-size: 45px;
+    font-weight: bold;
+    color: rgb(169, 174, 179);
     text-shadow: rgb(0, 0, 0) 0px 1px 1px;
     margin-right: 10px;
 }
@@ -357,3 +366,7 @@
 .controles a:hover {
     color: rgb(72, 75, 77);
 }
+
+#ulItens {
+    padding: 0;
+} 

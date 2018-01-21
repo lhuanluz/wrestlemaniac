@@ -56,11 +56,7 @@
                             <p>$ {{$rawTeam->team_cash}}</p>
                         </li> 
                         <li class="divisor"></li> 
-                        <li>
-                            <p>Last Show Balance</p> 
-                            <p>$ 405</p>
-                        </li> 
-                        <li class="divisor"></li> 
+
                         <li>
                             <p>Market Status</p>
                             @if($status == 'Aberto')
@@ -148,9 +144,9 @@
 
                                                 @if($superstar->points < 3.0)
                                                     @if($superstar->price - (100 - $superstar->points * 10) <= 500)
-                                                        <p><span>+</span>$ 0</p>
+                                                        <p><span class="positive">+</span>$ 0</p>
                                                     @else
-                                                        <p><span>-</span>$ {{(100 - $superstar->points * 10)}}</p>
+                                                        <p><span class="negative">-</span>$ {{(100 - $superstar->points * 10)}}</p>
                                                     @endif
                                                 @else 
                                                 <p><span>+</span>$ {{$superstar->points * 10}}</p>
