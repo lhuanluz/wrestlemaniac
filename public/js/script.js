@@ -8,7 +8,7 @@ function newFunction() {
     });
 }
 
-function newFunction() {
+function newFunction2() {
     $('.rank-tabs a').click(function () {
         $('.rank-tabs a').removeClass('active');
         $(this).addClass('active');
