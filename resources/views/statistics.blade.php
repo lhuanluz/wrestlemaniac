@@ -2,6 +2,170 @@
 
 @section('content')
 
+<section class="rank-banner">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>RANK</h2>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid rank-tabs">
+
+    <div class="container-fluid">
+        <nav>
+            <ul data-toggle="tab">
+                <li class="active"><a data-toggle="tab" class="active" href="#raw">RAW</a></li>
+                <li><a data-toggle="tab" href="#smd">SMACKDOWN</a></li>
+                <li><a data-toggle="tab" href="#leagues">LEAGUES</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="tab-content">
+
+        <div id="raw" class="rank-player tab-pane fade in active">
+            <div class="top3">
+                <div class="row">
+                    <ul>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>2º</p>
+                            <p>Melquesedeque Gomes</p>
+                            <p>999.99</p>
+                        </li>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>1º</p>
+                            <img src="/storage/belts/raw.png" class="belt-icon">
+                            <p>Melquesedeque Gomes</p>
+                            <p>999.99</p>
+                        </li>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>3º</p>
+                            <p>Melquesedeque Gomes</p>
+                            <p>999.99</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rank-info">
+                <ul>
+                    <li>Position</li>
+                    <li>Player</li>
+                    <li>Score</li>
+                </ul>
+            </div>
+
+            <div class="top10">
+
+                <ul>
+                    <li>4º</li>
+                    <li><img src="{{ url('img/roman_reigns3.png') }}" alt=""></li>
+                    <li>Melquesedeque Gomes</li>
+                    <li>999.99</li>
+                </ul>
+
+                <ul>
+                    <li>5º</li>
+                    <li><img src="{{ url('img/roman_reigns3.png') }}" alt=""></li>
+                    <li>Melquesedeque Gomes</li>
+                    <li>999.99</li>
+                </ul>
+            </div>            
+        </div>
+
+        <div id="smd" class="tab-pane fade">
+
+            <div class="top3">
+                <div class="row smd">
+                    <ul>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>2º</p>
+                            <p>Luan Luz</p>
+                            <p>999.99</p>
+                        </li>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>1º</p>
+                            <img src="/storage/belts/smackdown.png" class="belt-icon">
+                            <p>Luan Luz</p>
+                            <p>999.99</p>
+                        </li>
+                        <li>
+                            <img src="{{ url('img/roman_reigns3.png') }}" alt="User Icon">
+                            <p>3º</p>
+                            <p>Luan Luz</p>
+                            <p>999.99</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rank-info">
+                <ul>
+                    <li>Position</li>
+                    <li>Player</li>
+                    <li>Score</li>
+                </ul>
+            </div>
+
+            <div class="top10">
+
+                <ul class="smd">
+                    <li>4º</li>
+                    <li><img src="{{ url('img/roman_reigns3.png') }}" alt=""></li>
+                    <li>Melquesedeque Gomes</li>
+                    <li>999.99</li>
+                </ul>
+
+                <ul class="smd">
+                    <li>5º</li>
+                    <li><img src="{{ url('img/roman_reigns3.png') }}" alt=""></li>
+                    <li>Melquesedeque Gomes</li>
+                    <li>999.99</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="leagues" class="tab-pane fade">
+
+            <div class="rank-info">
+                <ul>
+                    <li>Position</li>
+                    <li>League</li>
+                    <li>Score</li>
+                </ul>
+            </div>
+
+            <div class="top10-league">
+
+                <ul class="league-champ">
+                    <li>1º</li>
+                    <li>Melquesedeque Gomes</li>
+                    <li><img src="/storage/belts/league.png" alt=""></li>
+                    <li>999.99</li>
+                </ul>
+
+                <ul>
+                    <li>2º</li>
+                    <li>Melquesedeque Gomes</li>
+                    <li>999.99</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+<!-- PÁGINA RANK ANTIGA -->
+
 <div class="container-fluid rank">
     <div class="row league-rank">
             <ul>

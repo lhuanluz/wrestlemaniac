@@ -1,3 +1,268 @@
+.rank-banner {
+    background: url(../img/banner_vermelho.jpg) center no-repeat;
+    height: 263px;
+    background-color: #d7182a;
+}
+
+.rank-banner h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 72px;
+    font-weight: bold;
+    margin-top: 85px;
+}
+
+.top3 {
+    height: 370px;
+    width: 1042px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 1px #95999c;
+    border-radius: 4px;
+}
+
+.top3 .row ul {
+    list-style: none;
+    overflow: hidden;
+    width: 630px;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 35px;
+    box-shadow: none;
+}
+
+.top3 ul li {
+    float: left;
+    text-align: center;
+    margin-right: 60px;
+    margin-top: 35px;
+    width: 170px;
+}
+
+.top3 ul li:nth-child(3) {
+    margin-right: 0;    
+}
+
+.top3 ul li:nth-child(2) {
+    margin-top: 0;
+}
+
+.top3 ul li img {
+    height: 135px;
+    width: 135px;
+    border-radius: 135px;
+    box-shadow: 0px 2px 0px #95999c;
+    background-color: #95999c;
+    position: relative;
+    z-index: 1;
+}
+
+.top3 ul li:nth-child(2) img {
+    height: 170px;
+    width: 170px;
+    border-radius: 170px;
+}
+
+.top3 ul li p:nth-of-type(1) {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d7182a;
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    padding-top: 13px;
+    padding-left: 5px;
+    margin: 0 auto;
+    margin-top: -34px;
+    box-shadow: 0px 2px 0px #96110d;
+    position: relative;
+    z-index: 2;
+}
+
+.top3 .smd li p:nth-of-type(1) {
+    background-color: #3b30fe;
+    box-shadow: 0px 2px 0px #16125a;
+}
+
+.top3 ul li p:nth-of-type(2), 
+.top3 ul li p:nth-of-type(3) {
+    font-size: 22px;
+    font-weight: bold;
+    color: #484b4d;
+    margin-top: 5px;
+    text-shadow: 0px 1px 0px #95999c;
+}
+
+.top3 ul li p:nth-of-type(3) {
+    font-size: 30px;
+    color: #d7182a;
+}
+
+.top3 .smd ul li p:nth-of-type(3) {
+    color: #3b30fe;
+}
+
+.top3 ul li:nth-child(2) .belt-icon {
+    width: 152px;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    position: relative;
+    z-index: 3;
+    margin-top: -48px;
+}
+
+.top3 ul li:nth-child(2) p:nth-of-type(1) {
+    display: none;
+}
+
+.rank-tabs {
+    width: 1042px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.rank-tabs ul {
+    list-style: none;
+    overflow: hidden;
+    padding-left: 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    box-shadow: 0px 2px 1px #95999c;
+    border-radius: 4px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.rank-tabs ul li {
+    float: left;
+}
+
+.rank-tabs a {
+    text-decoration: none;
+    color: #484b4d;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    padding: 0 30px;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 11px;
+    padding-top: 14px;
+    cursor: pointer;
+}
+
+.rank-tabs a:hover {
+    color: #d7182a;
+
+}
+
+.active {
+    border-color: #d7182a !important;
+    color: #d7182a !important;
+}
+
+
+.rank-info ul {
+    height: 42px;
+    margin-bottom: 10px;
+}
+
+.rank-info ul li {
+    margin-right: 100px;
+    margin-top: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #484b4d;
+    text-transform: uppercase;
+}
+
+.rank-info ul li:nth-child(1) {
+    margin-left: 30px;
+}
+
+.rank-info ul li:nth-child(3) {
+    float: right;
+    margin-right: 50px;
+}
+
+.top10 ul,
+.top10-league ul {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.top10 ul li,
+.top10-league ul li {
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: #484b4d;
+    text-shadow: 0px 1px 0px #95999c;
+}
+
+.top10 ul li:nth-child(1),
+.top10-league ul li:nth-child(1) {
+    margin: 20px 0 20px 56px;
+    color: #d7182a;
+}
+
+.top10 .smd li:nth-child(1) {
+    color: #3b30fe;
+}
+
+.top10 ul li img {
+    height: 57px;
+    width: 57px;
+    border-radius: 57px;
+    box-shadow: 0px 2px 0px #95999c;
+    margin-top: 7px;
+    margin-left: 50px;
+    background-color: #95999c;
+}
+
+.top10 ul li:nth-child(3) {
+    margin: 20px 0 20px 15px;
+}
+
+.top10-league .league-champ li:nth-child(3) {
+    float: left;
+}
+
+.top10-league .league-champ {
+    height: 74px;
+}
+
+.top10-league .league-champ img {
+    width: 96px;
+    margin-left: 25px;
+    margin-top: -5px;
+}
+
+.top10 ul li:nth-child(4),
+.top10-league ul li:nth-child(3),
+.top10-league .league-champ li:nth-child(4) {
+    margin: 20px 38px 20px 0;
+    float: right;
+    color: #d7182a;
+}
+
+.top10 .smd li:nth-child(4) {
+    color: #3b30fe;
+}
+
+.top10-league ul li:nth-child(2) {
+    margin: 20px 0 20px 122px;
+}
+
+
+
+/* PÁGINA RANK ANTIGA */
+
 .rank {
     max-width: 1042px;
 }
