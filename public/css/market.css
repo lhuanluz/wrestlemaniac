@@ -16,6 +16,12 @@
     background: url(../img/banner-smackdown.jpg) center center no-repeat rgb(100, 100, 241);
 }
 
+.ppv-banner {
+    height: 263px;
+    background: url(../img/rr.jpg) center center no-repeat rgb(0, 0, 0);
+    background-size: cover;
+}
+
 .market-team {
     width: 1140px;
     padding-top: 40px;
@@ -59,6 +65,14 @@
     background: rgba(215, 24, 42, 0.75);
     padding: 5px;
     margin: 4px;
+}
+
+.market-team .d1 .smd {
+    background: rgba(59, 48, 254, 0.75);
+}
+
+.market-team .d1 .ppv {
+    background: rgba(35, 40, 40, 0.75);
 }
 
 .market-team .d2 {

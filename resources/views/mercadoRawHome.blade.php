@@ -77,10 +77,10 @@
                     </ul>                
                 </div> 
                 
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <a href="#" class="sell-all">Sell all</a> 
                     <a href="#" class="confirm-team">Confirm team</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -95,36 +95,33 @@
                 </form>
             </div>
 
-            <div class="controles"> 
-                <!-- Sempre veremos o botÃ£o Nameâ–² -->
-                <a href="{{route('mercadoRawHome')}}">Nameâ–²</a>
-                <!-- Condiciona que os botÃµes Priceâ–² e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
+            <div class="controles">
+                <!-- Sempre veremos o botão Name▲ -->
+                <a href="{{route('mercadoRawHome')}}">Name ▲</a>
+                <!-- Condiciona que os botões Price▲ e Points▲  só irão aparecer quando:
                 -> Estivermos vendo a Home do Mercado
-                ->Estivermos Vendo o Priceâ–¼ ou Pointsâ–¼
+                ->Estivermos Vendo o Price▼ ou Points▼
                 -->
                 @if(Route::is('mercadoRawHome')|| Route::is('mercadoRawPriceDesc') ||Route::is('mercadoRawPointsDesc'))
-                    <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
-                    <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
+                    <a href="{{route('mercadoRawPriceAsc')}}">Price ▲</a>
+                    <a href="{{route('mercadoRawPointsAsc')}}">Points ▲</a>
                 @endif
-                <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
-                -> Estivermos vendo o Priceâ–²
+                <!-- Condiciona que os botões Price▼ e Points▲  só irão aparecer quando:
+                -> Estivermos vendo o Price▲
                 -->
                 @if(Route::is('mercadoRawPriceAsc'))
-                    <a href="{{route('mercadoRawPriceDesc')}}">Priceâ–¼</a>
-                    <a href="{{route('mercadoRawPointsAsc')}}">Pointsâ–²</a>
+                    <a href="{{route('mercadoRawPriceDesc')}}">Price ▼</a>
+                    <a href="{{route('mercadoRawPointsAsc')}}">Points ▲</a>
                 @endif  
-                <!-- Condiciona que os botÃµes Priceâ–¼ e Pointsâ–²  sÃ³ irÃ£o aparecer quando:
-                -> Estivermos vendo o Pointsâ–²
+                <!-- Condiciona que os botões Price▼ e Points▲  só irão aparecer quando:
+                -> Estivermos vendo o Points▲
                 -->
                 @if(Route::is('mercadoRawPointsAsc'))
-                    <a href="{{route('mercadoRawPriceAsc')}}">Priceâ–²</a>
-                    <a href="{{route('mercadoRawPointsDesc')}}">Pointsâ–¼</a>
-                @endif
-            </div>     
-
-
+                    <a href="{{route('mercadoRawPriceAsc')}}">Price ▲</a>
+                    <a href="{{route('mercadoRawPointsDesc')}}">Points ▼</a>
+                @endif  
+            </div> <!-- DIV CONTROLES -->
             
-
             <div class="separador"></div>
             <ul id="ulItens">
             @foreach($superstars as $superstar)
