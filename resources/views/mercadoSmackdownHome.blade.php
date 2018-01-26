@@ -135,10 +135,10 @@
                 @else
                 <div class="container-fluid market-superstar">
                     <div class="row">
-                            <div class="col-md-2 superstar-img">
+                            <div class="col-md-2 col-xs-12 superstar-img">
                                 <img src="{{ url($superstar->image) }}" alt="Superstar image">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10 col-xs-12">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>{{$superstar->name}}</h3>

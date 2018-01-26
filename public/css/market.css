@@ -1,6 +1,10 @@
 
 /*CSS MERCADO*/
 
+.row {
+    max-width: 1140px;
+}
+
 .market {
     background-color: rgb(255, 255, 255);
     padding-bottom: 70px;
@@ -23,7 +27,7 @@
 }
 
 .market-team {
-    width: 1140px;
+    max-width: 1140px;
     padding-top: 40px;
     margin: 0px auto;
 }
@@ -362,6 +366,7 @@
     border-radius: 4px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+    display: inline-block;
 }
 
 .controles {
@@ -384,3 +389,84 @@
 #ulItens {
     padding: 0;
 } 
+
+@media (max-width: 575px) {
+
+    .marketplace .market-superstar img {
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .marketplace .market-superstar .superstar-img {
+        border-radius: 4px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .marketplace .market-superstar h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top: 15px;
+    }
+
+    .marketplace .market-superstar {
+        height: auto;
+    }
+
+    .marketplace .market-superstar ul li p:nth-of-type(1) {
+        font-size: 16px;
+        float: left;
+        margin-top: 13px;
+    }
+
+    .marketplace .market-superstar ul li p:nth-of-type(2) {
+        font-size: 30px;
+        float: right;
+    }
+
+    .marketplace .market-superstar .divisor {
+        display: none;
+    }
+
+    .marketplace .market-superstar ul li {
+        width: 100%;
+    }
+
+    .marketplace .market-superstar .btn-buy {
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .market-info {
+        width: 320px;
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .market-info .divisor {
+        display: none;
+    }
+
+    .market-info ul li p:nth-of-type(2) {
+        font-size: 50px;
+    }
+
+    .market-team .row .your-team {
+        margin: 0 auto;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .market-team .row div:last-child {
+        margin: 0 auto;
+    }
+
+    .market-team h2 {
+       margin-left: 24px;
+    }
+}
