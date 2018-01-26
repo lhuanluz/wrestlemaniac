@@ -216,6 +216,10 @@
     color: #d7182a;
 }
 
+.top10 ul:nth-of-type(7) li:nth-of-type(1) {
+    margin-left: 42px;
+}
+
 .top10 .smd li:nth-child(1) {
     color: #3b30fe;
 }
