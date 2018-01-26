@@ -55,7 +55,7 @@
                                     <img src="/storage/belts/raw.png" class="belt-icon">
                                     <p>{{$topRawTotalPoint->name}}</p>
                                     <p>{{$topRawTotalPoint->team_total_points}}</p>
-                                    <p>7 day(s) as Champion</p>
+                                    <p>{{$RawChampionData->days}} day(s) as Champion</p>
                                 </li>
                             @endif
                             <?php $posRaw++; ?>
@@ -139,7 +139,7 @@
                                             <img src="/storage/belts/smackdown.png" class="belt-icon">
                                             <p>{{$topSmackdownTotalPoint->name}}</p>
                                             <p>{{$topSmackdownTotalPoint->team_total_points}}</p>
-                                            <p>7 day(s) as Champion</p>
+                                            <p>{{$SmackdownChampionData->days}} day(s) as Champion</p>
                                         </li>
                                     @endif
                                     <?php $posSmack++; ?>
@@ -211,7 +211,7 @@
                             <li>{{$posL}}º</li>
                             <li>{{$topLeague->league_name}}</li>
                             <li><img src="/storage/belts/league.png" alt=""></li>
-                            <li>7 day(s) as Champion</li>
+                            <li>{{$LeagueChampionData->days}} day(s) as Champions</li>
                             <li>{{number_format($topLeague->league_points, 2, ',', ' ')}}</li>
                         </ul>
                     @else
