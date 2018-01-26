@@ -47,14 +47,19 @@ class RankingController extends Controller
             $positionRaw = DB::table('raw_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
 
             $positionSmack = DB::table('smackdown_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray(); // Pega a posição/rank da liga por pontos
-
+            $RawChampionData = DB::table('user_belts')->where('id',1)->first();
+            $SmackdownChampionData = DB::table('user_belts')->where('id',2)->first();
+            $LeagueChampionData = DB::table('league_belts')->first();
                 return view('statistics',[
                     'positionSmack' => $positionSmack,
                     'positionRaw' => $positionRaw,
                     'positionLeague' => $positionLeague,
                     'topLeagues' => $topLeagues,
                     'topRawTotalPoints' => $topRawTotalPoints,
-                    'topSmackdownTotalPoints' => $topSmackdownTotalPoints
+                    'topSmackdownTotalPoints' => $topSmackdownTotalPoints,
+                    'LeagueChampionData' => $LeagueChampionData,
+                    'SmackdownChampionData' => $SmackdownChampionData,
+                    'RawChampionData' => $RawChampionData
                     ]);
     }
     public function rankSuperstarPoints(){

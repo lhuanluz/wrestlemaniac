@@ -59,7 +59,7 @@
 }
 
 #wrapSearch {
-    margin: 50px 100px;
+    margin: 50px 0;
     display: inline-block;
     position: relative;
     height: 60px;
@@ -70,7 +70,7 @@
   
   #txtBusca {
     height: 60px;
-    font-size: 55px;
+    font-size: 30px;
     display: inline-block;
     font-family: "Lato";
     font-weight: 100;
@@ -116,6 +116,7 @@
     opacity: 0.4;
     cursor: pointer;
     transition: opacity .4s ease;
+    background-size: 35px;
   }
 
 #search_submit:hover {
