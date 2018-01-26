@@ -35,13 +35,13 @@
                                 <p>$ {{$superstar->price}}</p>
                             </li>
                         </ul>
-                        <form id="vender{{$superstar->name}}" class="lutador-info" action="{{route('venderSuperstarRaw')}}" method="post">
+                        <form id="vender{{$superstar->id}}" class="lutador-info" action="{{route('venderSuperstarRaw')}}" method="post">
                             {{ csrf_field()  }}
                             <input type="hidden" name="name" value="{{$superstar->name}}"/>
                             @if($superstar->name == 'None') 
                             <a disabled>Can't Sell</a>
                             @else
-                            <a href="javascript:{}" onclick="document.getElementById('vender{{$superstar->name}}').submit(); return false;" class="btn-buy">Sell</a>
+                            <a href="javascript:{}" onclick="document.getElementById('vender{{$superstar->id}}').submit(); return false;" class="btn-buy">Sell</a>
                             @endif
                         </form> 
                     </div>
@@ -169,7 +169,7 @@
                                             </li>   
                                             <li>
                                                 @if(Auth::user())
-                                                    <form id="comprar{{$superstar->name}}" class="lutador-info" action="{{route('comprarSuperstarRaw')}}" method="post">
+                                                    <form id="comprar{{$superstar->id}}" class="lutador-info" action="{{route('comprarSuperstarRaw')}}" method="post">
                                                         {{ csrf_field()  }}
                                                     <input type="hidden" name="name" value="{{$superstar->name}}"/>
                                                     @if($rawTeam->superstar01 != 103 && $rawTeam->superstar02 != 102 && $rawTeam->superstar03 != 101 && $rawTeam->superstar04 != 100 )
@@ -180,7 +180,7 @@
                                                         
                                                     @else
                                                         
-                                                        <a href="javascript:{}" onclick="document.getElementById('comprar{{$superstar->name}}').submit(); return false;" class="btn-buy">Buy</a>
+                                                        <a href="javascript:{}" onclick="document.getElementById('comprar{{$superstar->id}}').submit(); return false;" class="btn-buy">Buy</a>
                                                     @endif
                                                     </form>
                                                 @endif
