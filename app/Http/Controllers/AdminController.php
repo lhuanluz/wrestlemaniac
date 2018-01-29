@@ -1021,6 +1021,7 @@ I8,        8        ,8I                                            88           
                 }
             }
         }
+        
         return redirect()->route('painelAdmin');
 
     }
