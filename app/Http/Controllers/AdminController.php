@@ -1300,16 +1300,6 @@ I8,        8        ,8I                                            88           
             'team_total_points' => 0.0,
             'team_cash' => 4000
         ]);
-        DB::table('ppv_teams')
-        ->update([
-            'superstar01' => 103,
-            'superstar02' => 102,
-            'superstar03' => 101,
-            'superstar04' => 100,
-            'team_points' => 0.0,
-            'team_total_points' => 0.0,
-            'team_cash' => 0
-        ]);
         DB::table('leagues')
         ->update([
             'league_points' => 0.0
