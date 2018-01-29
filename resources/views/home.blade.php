@@ -250,7 +250,7 @@
                 <ul>
                     <li>
                         <h3>Score</h3>
-                        <p>{{$ppv_teamS1->points + $ppv_teamS2->points + $ppv_teamS3->points + $ppv_teamS4->points}}</p>
+                        <p>{{$ppvTeam->team_points}}</p>
                     </li>
                     <li><div class="divisor"></div></li>
                     <li>

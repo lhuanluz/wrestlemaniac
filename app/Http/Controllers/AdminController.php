@@ -609,6 +609,9 @@ I8,        8        ,8I                                            88           
             }
             else{ // Caso o mercado seja de PPV
                 $brand = DB::table('configs')->value('ppvBrand');
+                DB::table('ppv_teams')->update([
+                    'team_points' => 0
+                ]);
                 // Executa as funções para todos os jogadores
                 for ($i=1; $i <= $quantidade ; $i++) { 
                     // Pega os superstars de cada time e seus preços
@@ -671,6 +674,9 @@ I8,        8        ,8I                                            88           
                     $valor_ganho = $preço1 + $preço2 + $preço3 + $preço4;
                     $pontos_ganho = $superstar01->points + $superstar02->points + $superstar03->points + $superstar04->points;
                     // Caso a brand for RAW
+                    DB::table('raw_teams')->where('user_id',$i)->update([
+                        'team_points' => $pontos_ganho,
+                    ]);
                     if ($brand == 'Raw') {
                         // Utilize o dinheiro e os pontos feitos no PPV para o RAW
                         $ult_cash = DB::table('raw_teams')->where('id',$i)->value('team_cash');

@@ -40,7 +40,7 @@
                         <form id="vender{{$superstar->id}}" class="lutador-info" action="{{route('venderSuperstarSmackdown')}}" method="post">
                             {{ csrf_field()  }}
                             <input type="hidden" name="name" value="{{$superstar->name}}"/>
-                            @if($superstar->name == 'None') 
+                            @if($superstar->name == 'None' || $status == 'Fechado') 
                             <a disabled>Can't Sell</a>
                             @else
                             <a href="javascript:{}" onclick="document.getElementById('vender{{$superstar->id}}').submit(); return false;" class="btn-buy">Sell</a>
