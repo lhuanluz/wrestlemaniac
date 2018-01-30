@@ -16,7 +16,7 @@
                                             <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#0c9550 "
                                                data-bgColor="#4af09c" value="{{$usuariosCadastrados}}"
                                                data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                               data-thickness=".15" data-max="1000"/>
+                                               data-thickness=".15" data-max="3000"/>
                                         </div>
 
                                         <div class="widget-detail-1">
