@@ -146,20 +146,28 @@
                                         <ul>
                                             <li>
                                                 <p>Last Show Score</p> 
+                                                @if($superstar->last_show == 1)
                                                 <p>{{$superstar->points}}</p>
+                                                @else
+                                                <p class="didnAppear">Didn't Appear</p>
+                                                @endif
                                             </li> 
                                             <li class="divisor"></li> 
                                             <li>
                                                 <p>Appreciation</p>
 
-                                                @if($superstar->points < 3.0)
-                                                    @if($superstar->price - (100 - $superstar->points * 10) <= 500)
-                                                        <p><span class="positive">+</span>$ 0</p>
-                                                    @else
-                                                        <p><span class="negative">-</span>$ {{(100 - $superstar->points * 10)}}</p>
+                                                @if($superstar->last_show == 1)
+                                                    @if($superstar->points < 3.0)
+                                                        @if($superstar->price - (100 - $superstar->points * 10) <= 500)
+                                                            <p><span class="positive">+</span>$ 0</p>
+                                                        @else
+                                                            <p><span class="negative">-</span>$ {{(100 - $superstar->points * 10)}}</p>
+                                                        @endif
+                                                    @else 
+                                                    <p><span class="positive">+</span>$ {{$superstar->points * 10}}</p>
                                                     @endif
-                                                @else 
-                                                <p><span>+</span>$ {{$superstar->points * 10}}</p>
+                                                @else
+                                                <p><span class="negative">-</span>$ 5%</p>
                                                 @endif
                                                 
                                             </li>

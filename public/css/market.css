@@ -10,6 +10,10 @@
     padding-bottom: 70px;
 }
 
+.didnAppear{
+    font-size: 25px !important;
+}
+
 .raw-banner {
     height: 263px;
     background: url(../img/banner-raw.jpg) center center no-repeat rgb(215, 24, 42);
