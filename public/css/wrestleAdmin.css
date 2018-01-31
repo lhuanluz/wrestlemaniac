@@ -56,3 +56,45 @@ img.img-circle.thumb-xl.img-thumbnail.m-b-10.championImageAdmin {
 h3.panel-title.beltNameAdmin {
     font-size: 12px;
 }
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('/images/123.gif') 50% 50% no-repeat rgba(0, 0, 0, 0.274);
+}
+
+
+.social ul li{
+  list-style:none;
+  padding-left:12px;
+  color:white;
+}
+li a{
+ text-decoration:none;
+}
+.social ul{
+  display:inline-flex;
+  padding-left: 60px;
+}
+
+.box{
+  width:45%;
+background: rgba(226,226,226,1);
+background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 10%, rgba(209,209,209,1) 98%, rgba(254,254,254,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(10%, rgba(219,219,219,1)), color-stop(98%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 10%, rgba(209,209,209,1) 98%, rgba(254,254,254,1) 100%);
+background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 10%, rgba(209,209,209,1) 98%, rgba(254,254,254,1) 100%);
+background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 10%, rgba(209,209,209,1) 98%, rgba(254,254,254,1) 100%);
+background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 10%, rgba(209,209,209,1) 98%, rgba(254,254,254,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
+
+}
+
+.outer-box{
+  margin-top:60px;
+  margin-left:450px;
+}

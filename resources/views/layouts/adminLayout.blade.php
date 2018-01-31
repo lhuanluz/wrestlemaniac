@@ -58,6 +58,9 @@
                         }
                       });
                     }
+                    $(window).load(function(){
+                        $('.loader').fadeOut();
+                   });
                     
                     
         </script>
@@ -66,7 +69,7 @@
 
 
     <body class="fixed-left">
-
+        <div class="loader"></div>
         <!-- Begin page -->
         <div id="wrapper">
 
