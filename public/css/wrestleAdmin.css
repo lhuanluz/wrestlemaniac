@@ -33,3 +33,26 @@
     box-shadow: 0px 3px 6px #141516;
     padding: 0px;
 }
+.panel-border.panel-green .panel-heading{
+    border-color: #0C9550 !important;
+    color: #0C9550 !important;
+}
+.panel-border.panel-red .panel-heading{
+    border-color: #F0504E !important;
+    color: #F0504E !important;
+}
+.panel-border.panel-blue .panel-heading{
+    border-color: #4D50EF !important;
+    color: #4D50EF !important;
+}
+.panel-border.panel-yellow .panel-heading{
+    border-color: #FFBD49 !important;
+    color: #FFBD49 !important;
+}
+img.img-circle.thumb-xl.img-thumbnail.m-b-10.championImageAdmin {
+    width: 100%;
+    height: auto;
+}
+h3.panel-title.beltNameAdmin {
+    font-size: 12px;
+}

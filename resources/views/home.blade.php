@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6 col-md-6">
-                <h2>The WWE Wrestling Fantansy Game</h2>
+                <h2>The WWE Wrestling Fantasy Game</h2>
                 <p>Made by fans for fans</p>
                 <p>Join Us!</p>
                 <div class="play-free-btn"><a href="{{url('register')}}">Play Free</a></div>

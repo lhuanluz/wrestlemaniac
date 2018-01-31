@@ -83,6 +83,9 @@ I8,        8        ,8I                                            88           
                 ) as juncao where id not in (103,102,101,100) group by id,juncao.name,juncao.image order by total desc limit 10');
 
             $mercados = DB::table('configs')->first();
+            $rawChampion = DB::table('user_belts')->join('users', 'user_belts.user_id', '=', 'users.id')->where('user_belts.id',1)->first();
+            $smackdownChampion = DB::table('user_belts')->join('users', 'user_belts.user_id', '=', 'users.id')->where('user_belts.id',2)->first();
+            $champions = DB::table('superstars')->where('champion','>=',1)->orderBy('brand')->get();
 
             return view('admin/painelAdmin',[
                 'usuariosCadastrados' => $usuariosCadastrados,
@@ -94,7 +97,10 @@ I8,        8        ,8I                                            88           
                 'mercados' => $mercados,
                 'top10Raw' => $top10Raw,
                 'top10Smack' => $top10Smack,
-                'top10Ppv' => $top10Ppv
+                'top10Ppv' => $top10Ppv,
+                'rawChampion' => $rawChampion,
+                'smackdownChampion' => $smackdownChampion,
+                'champions' => $champions
             ]);
         }
 

@@ -37,7 +37,7 @@
         <div class="pergunta">
             <button data-toggle="collapse" data-target="#pergunta3" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
-                    How do I buy superstas ?
+                    How can I hire superstas ?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
             <div id="pergunta3" class="collapse alert-info">
@@ -49,12 +49,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta10" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta4" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     What is WC ?	
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta10" class="collapse alert-info">
+            <div id="pergunta4" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                     WC is our virtual coin, you can buy icons with it. 
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
@@ -62,12 +62,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta11" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta5" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     How to get WC ?	
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta11" class="collapse alert-info">
+            <div id="pergunta5" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                     You earn 2 WC's for each superstars on your team when the market closes.</br>
                     If you're in the TOP 10 you earn 5 WC's more than the usual.   
@@ -76,12 +76,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta4" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta6" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     How the superstar score system works?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta4" class="collapse alert-info">
+            <div id="pergunta6" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 We have a whole PDF explaning every detailed rule that we can apply to a superstar, if you want to</br>
                 checkout every single rule just check or download our Core Rulebook and enjoy our craziness.
@@ -90,12 +90,12 @@
         </div>
         
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta5" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta7" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     When the Raw Market Opens / Closes?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta5" class="collapse alert-info">
+            <div id="pergunta7" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Raw Market opens at: As Soon as the show ends<br>
                 Raw Market closes at: Mondays 10:00 PM UTC
@@ -104,12 +104,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta6" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta8" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     When the Smackdown Market Opens / Closes?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta6" class="collapse alert-info">
+            <div id="pergunta8" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Smackdown Market opens at: As Soon as the show ends<br>
                 Smackdown Market closes at: Tuesdays 10:00 PM UTC
@@ -118,12 +118,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta7" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta9" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     When the PPV Market Opens / Closes?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta7" class="collapse alert-info">
+            <div id="pergunta9" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Smackdown Market opens at: Wednesdays (On the PPV week)<br>
 	            Smackdown Market closes at: Sundays 10:00 PM UTC
@@ -132,12 +132,12 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta8" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta10" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     How PPV works ?
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta8" class="collapse alert-info">
+            <div id="pergunta10" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
                 Pay-per-views are special events, as such we want to make it special for our system.<br>
                 So PPVs that are one branded use you points and cash earned there to boost your Raw or Smackdown team.<br>
@@ -147,14 +147,28 @@
         </div>
 
         <div class="pergunta">
-            <button data-toggle="collapse" data-target="#pergunta9" class="btn btn-block perguntaTexto btn-lg">
+            <button data-toggle="collapse" data-target="#pergunta11" class="btn btn-block perguntaTexto btn-lg">
                 <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
                     What is a League ?	
                 <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
             </button>
-            <div id="pergunta9" class="collapse alert-info">
+            <div id="pergunta11" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
-                Leagues are a group of people that play togheter focused in one thing, be the best stable on Wrestlemaniac, 
+                Leagues are a group of people that play togheter focused in one thing, be the best stable on Wrestlemaniac.<br>
+                Leagues are limited to 10 users
+                <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="pergunta">
+            <button data-toggle="collapse" data-target="#pergunta12" class="btn btn-block perguntaTexto btn-lg">
+                <i class="fa fa-question-circle fa-lg navbar-left icon-outside" aria-hidden="true"></i>
+                    When the season ends ?	
+                <i class="fa fa-chevron-down fa-lg navbar-right seta" aria-hidden="true"></i>
+            </button>
+            <div id="pergunta12" class="collapse alert-info">
+                <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
+                We have 4 seasons, one for each (Royal Rumble, Wrestlemania, Summerslam and Survivor Series).
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
         </div>
