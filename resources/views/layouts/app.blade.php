@@ -205,7 +205,7 @@
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <ul>
                                         <li>MORE</li>
-                                        <li><a href="#">News &amp Tips</a></li>
+                                        <li><a href="#">Wrestlemaniac is a fan product with no relationship with WWE, all images are property of World Wrestling Entertainment, Inc</a></li>
                                     </ul>
                                 </div>
                             </div>
