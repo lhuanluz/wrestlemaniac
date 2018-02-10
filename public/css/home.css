@@ -401,6 +401,9 @@ footer .row div {
     margin-top: 10px;
 }
 
+.textWhite{
+    color: #E2E3E3;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
     
     .ppvNameMenu {

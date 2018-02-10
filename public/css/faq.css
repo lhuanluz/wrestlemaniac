@@ -54,3 +54,8 @@
 .titleFaq{
     color: black
 }
+.faq-banner {
+    height: 263px;
+    background: url(../img/banner-faq.jpg) center center no-repeat rgb(215, 24, 42);
+    background-size: cover;
+}

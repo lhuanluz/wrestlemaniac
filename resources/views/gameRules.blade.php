@@ -1,11 +1,11 @@
 @extends('layouts/app')
 
 @section('content')
+<section class="gr-banner"></section>
 <div class="wrapper faq">
-
-    <div class="page-header">
-        <h1 class="title">Game Rules <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
-    </div>
+    <br/>
+    <br/>
+    <br/>
     <center>
     <embed src="/storage/files/wrestlemaniac.pdf" width="1066px" height="768px" />
     </center>
