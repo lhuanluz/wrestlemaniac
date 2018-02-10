@@ -30,6 +30,9 @@
     <!-- Profile CSS -->
     <link href="{{ url('css/profile.css') }}" rel="stylesheet">
 
+    <!-- Game Rules CSS -->
+    <link href="{{ url('css/gameRules.css') }}" rel="stylesheet">
+
     <!-- Market CSS -->
     <link href="{{ url('css/market.css') }}" rel="stylesheet">
 
@@ -181,6 +184,7 @@
                                 <li>Los Angeles, CA</li>
                             </ul>
                             <a href="https://www.facebook.com/TheWrestlemaniac/" target="_blank"><img src="{{ url('img/facebook-icon.png') }}" alt="Facebook" ></a>
+                            <a href="https://twitter.com/WrestlemaniacOF" target="_blank"><img src="{{ url('img/twitter-icon.png') }}" alt="Twitter" ></a>
                         </div>
 
                         <div class="col-xs-9 col-sm-9 col-md-9 footer-menu">
@@ -205,7 +209,7 @@
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <ul>
                                         <li>Copyrights</li>
-                                        <li><a href="#">Wrestlemaniac is a fan product with no relationship with WWE, all images are property of World Wrestling Entertainment, Inc</a></li>
+                                        <li class="textWhite">Wrestlemaniac is a fan product with no relationship with WWE, all images are property of World Wrestling Entertainment, Inc</li>
                                     </ul>
                                 </div>
                             </div>

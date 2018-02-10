@@ -1,12 +1,10 @@
 @extends('layouts/app')
 
 @section('content')
+<section class="faq-banner"></section>
 <div class="wrapper faq">
-    </br>
-    <div class="page-header">
-        <h1 class="title titleFaq">Frequently Asked Questions <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></h1>
-    </div>
-
+    <br/>
+    <br/>
     <center>
         <div class="pergunta">
             <button data-toggle="collapse" data-target="#pergunta1" class="btn btn-block perguntaTexto btn-lg">
@@ -154,7 +152,7 @@
             </button>
             <div id="pergunta11" class="collapse alert-info">
                 <i class="fa fa-level-up fa-rotate-90 navbar-left icon-inside" aria-hidden="true"></i>
-                Leagues are a group of people that play togheter focused in one thing, be the best stable on Wrestlemaniac.<br>
+                Leagues are a group of people that play together focused in one thing, be the best stable on Wrestlemaniac.<br>
                 Leagues are limited to 10 users
                 <i class="fa fa-level-up invertido navbar-right icon-inside" aria-hidden="true"></i>
             </div>
