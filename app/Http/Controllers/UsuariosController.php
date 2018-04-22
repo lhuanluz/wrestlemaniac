@@ -13,7 +13,28 @@ use App\Mail\alterEmail;
 class UsuariosController extends Controller
 {    
     
-    
+    public function darProRedirect(){
+        // Retorna o usuário para a página de dar PRO
+        return view('admin/darPro');
+    }
+        
+    public function criarAdminRedirect(){
+        // Retorna o usuário para a página de criar admin
+        return view('admin/criarAdmin');
+    }
+
+    public function editarUsuarioEmailRedirect(){
+        // Retorna o usuário para a página de editar email do usuário
+        return view('admin/editarUsuarioEmail');
+    }
+    public function editarUsuarioNomeRedirect(){
+        // Retorna o usuário para a página de editar o nome do usuário
+        return view('admin/editarUsuarioNome');
+    }
+    public function checarUsuarioRedirect(){
+        return view('admin/checarUsuario');
+    }
+
     public function comprarIcone(Request $request){
         $icon = DB::table('icons')->where('id',$request->iconID)->first();
         $user = Auth::user();
@@ -193,5 +214,109 @@ class UsuariosController extends Controller
          return redirect()->route('home');
     }
     
+    public function darPro(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'tipo' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email',$request->email)
+            ->update([
+                'type' => $request->tipo
+            ]);
+
+        return redirect()->route('giveProRedirect');
+    }
+
+    public function criarAdmin(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nivel' => 'required',
+            'role' => 'required'
+        ]);
+        DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'user_power' => $request->nivel,
+                'role' => $request->role
+                ]);
+        return redirect()->route('createAdminRedirect');
+    }
+
+    public function editarUsuarioEmail(Request $request){
+        $this->validate($request,[
+            'emailAntigo' => 'required',
+            'email' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->emailAntigo)
+            ->update([
+                'email' => $request->email
+                ]);
+        return redirect()->route('editUserEmailRedirect');
+    }
+    public function editarUsuarioNome(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nome' => 'required'
+        ]);
+         DB::table('users')
+            ->where('email', $request->email)
+            ->update([
+                'name' => $request->nome
+                ]);
+        return redirect()->route('editUserNameRedirect');
+    }
+    public function checarUsuario(Request $request){
+
+        $user = DB::table('users')->where('email',$request->email)->first();
+        $rawTeam = DB::table('raw_teams')->where('user_id',$user->id)->first();
+        $smackdownTeam = DB::table('smackdown_teams')->where('user_id',$user->id)->first();
+        $ppvTeam = DB::table('ppv_teams')->where('user_id',$user->id)->first();
+
+        $superstarsRaw = DB::table('superstars')
+                        ->whereIn('id',[$rawTeam->superstar01,$rawTeam->superstar02,$rawTeam->superstar03,$rawTeam->superstar04])
+                        ->get();
+        $superstarsSmackdown = DB::table('superstars')
+                        ->whereIn('id',[$smackdownTeam->superstar01,$smackdownTeam->superstar02,$smackdownTeam->superstar03,$smackdownTeam->superstar04])
+                        ->get();
+        $superstarsPpv = DB::table('superstars')
+                        ->whereIn('id',[$ppvTeam->superstar01,$ppvTeam->superstar02,$ppvTeam->superstar03,$ppvTeam->superstar04])
+                        ->get();
+        $leagueInfo = DB::table('leagues')->where('id',$user->id_league)->first();
+        $leagueMembers = DB::table('users')->where('id_league',$user->id_league)->first();
+        $positionRaw = DB::table('raw_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $positionSmackdown = DB::table('smackdown_teams')->orderBy('team_total_points', 'desc')->pluck('id')->toArray();
+        $iconsComprados = DB::select( 
+            DB::raw("SELECT * FROM icons WHERE icons.id IN (
+                SELECT user_icons.icon_id FROM user_icons WHERE user_icons.user_id = $user->id ORDER BY date) 
+            "));
+        return view('admin/infoUsuario',[
+            'user' => $user,
+            'rawTeam' => $rawTeam,
+            'smackdownTeam' => $smackdownTeam,
+            'ppvTeam' => $ppvTeam,
+            'superstarsRaw' => $superstarsRaw,
+            'superstarsSmackdown' => $superstarsSmackdown,
+            'superstarsPpv' => $superstarsPpv,
+            'leagueInfo' => $leagueInfo,
+            'leagueMembers' => $leagueMembers,
+            'positionRaw' => $positionRaw,
+            'positionSmackdown' => $positionSmackdown,
+            'iconsComprados' => $iconsComprados
+            ]);
+    }
+    public function checarUsuarioConfirmar(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+
+        $usuarios = DB::table('users')->join('leagues', 'users.id_league', '=', 'leagues.id')->where('name','like','%'.$request->name.'%')->get();
+
+        return view('admin/confirmarUsuarioCheck',[
+            'usuarios' => $usuarios
+        ]);
+    }
 
 }

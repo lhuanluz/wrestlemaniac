@@ -20,66 +20,66 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     // Rotas para edição de informações de superstars
     Route::prefix('superstar')->middleware('auth.admin2')->group(function (){
         // Rotas para criar superstars
-        Route::get('create-superstar','AdminController@criarSuperstarRedirect')->name('createSuperstarRedirect');
-        Route::post('create-superstar/confirm','AdminController@criarSuperstar')->name('createSuperstar');
+        Route::get('create-superstar','SuperstarsController@criarSuperstarRedirect')->name('createSuperstarRedirect');
+        Route::post('create-superstar/confirm','SuperstarsController@criarSuperstar')->name('createSuperstar');
         // Rotas para dar pontos a superstars
-        Route::get('add-points','AdminController@adicionarPontosRedirect')->name('addPointsRedirect');
-        Route::post('add-points/confirm','AdminController@adicionarPontos')->name('addPoints');
+        Route::get('add-points','SuperstarsController@adicionarPontosRedirect')->name('addPointsRedirect');
+        Route::post('add-points/confirm','SuperstarsController@adicionarPontos')->name('addPoints');
         // Rotas para dar campeão a superstars
-        Route::get('edit-champion','AdminController@editarChampionRedirect')->name('editChampionRedirect');
-        Route::post('edit-champion/confirm','AdminController@editarChampion')->name('editChampion');
+        Route::get('edit-champion','SuperstarsController@editarChampionRedirect')->name('editChampionRedirect');
+        Route::post('edit-champion/confirm','SuperstarsController@editarChampion')->name('editChampion');
         // Rotas para editar a foto dos superstars
-        Route::get('edit-photo','AdminController@editarFotoRedirect')->name('editPhotoRedirect');
-        Route::post('edit-photo/confirm','AdminController@editarFoto')->name('editPhoto');
+        Route::get('edit-photo','SuperstarsController@editarFotoRedirect')->name('editPhotoRedirect');
+        Route::post('edit-photo/confirm','SuperstarsController@editarFoto')->name('editPhoto');
         // Rotas para editar a brand dos superstars
-        Route::get('edit-brand','AdminController@editarBrandRedirect')->name('editBrandRedirect');
-        Route::post('edit-brand/confirm','AdminController@editarBrand')->name('editBrand');
+        Route::get('edit-brand','SuperstarsController@editarBrandRedirect')->name('editBrandRedirect');
+        Route::post('edit-brand/confirm','SuperstarsController@editarBrand')->name('editBrand');
         // Rotas para resetar superstars
-        Route::get('reset','AdminController@resetarSuperstarRedirect')->name('resetSuperstarRedirect');
-        Route::post('reset/confirm','AdminController@resetarSuperstar')->name('resetSuperstar');
+        Route::get('reset','SuperstarsController@resetarSuperstarRedirect')->name('resetSuperstarRedirect');
+        Route::post('reset/confirm','SuperstarsController@resetarSuperstar')->name('resetSuperstar');
         // Rotas para consertar superstars
-        Route::get('fix','AdminController@consertarSuperstarRedirect')->name('fixSuperstarRedirect');
-        Route::post('fix/confirm','AdminController@consertarSuperstar')->name('fixSuperstar');
+        Route::get('fix','SuperstarsController@consertarSuperstarRedirect')->name('fixSuperstarRedirect');
+        Route::post('fix/confirm','SuperstarsController@consertarSuperstar')->name('fixSuperstar');
 
     });
     // Rotas para edição de informações do mercado
     Route::prefix('market')->middleware('auth.admin2')->group(function (){
         // Rotas para editar o status do mercado 
-        Route::get('edit-status','AdminController@editarMercadoStatusRedirect')->name('editMarketStatusRedirect');
-        Route::post('edit-status/confirm','AdminController@editarMercadoStatus')->name('editMarketStatus');
+        Route::get('edit-status','MarketController@editarMercadoStatusRedirect')->name('editMarketStatusRedirect');
+        Route::post('edit-status/confirm','MarketController@editarMercadoStatus')->name('editMarketStatus');
         // Rotas para editar a brand do PPV
-        Route::get('edit-ppv-brand','AdminController@editarPpvBrandRedirect')->name('editPpvBrandRedirect');
-        Route::post('edit-ppv-brand/confirm','AdminController@editarPpvBrand')->name('editPpvBrand');
+        Route::get('edit-ppv-brand','MarketController@editarPpvBrandRedirect')->name('editPpvBrandRedirect');
+        Route::post('edit-ppv-brand/confirm','MarketController@editarPpvBrand')->name('editPpvBrand');
         // Rotas para editar a visibilidade do PPV
-        Route::get('edit-ppv-visibility','AdminController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
-        Route::post('edit-ppv-visibility/confirm','AdminController@editarPpvVisibilidade')->name('editPpvVisibility');
+        Route::get('edit-ppv-visibility','MarketController@editarPpvVisibilidadeRedirect')->name('editPpvVisibilityRedirect');
+        Route::post('edit-ppv-visibility/confirm','MarketController@editarPpvVisibilidade')->name('editPpvVisibility');
         // Rotas para editar o nome do PPV
-        Route::get('edit-ppv-name','AdminController@editarPpvNomeRedirect')->name('editPpvNameRedirect');
-        Route::post('edit-ppv-name/confirm','AdminController@editarPpvNome')->name('editPpvName');
+        Route::get('edit-ppv-name','MarketController@editarPpvNomeRedirect')->name('editPpvNameRedirect');
+        Route::post('edit-ppv-name/confirm','MarketController@editarPpvNome')->name('editPpvName');
     });
     // Rotas Para Editar Usuarios
     Route::prefix('user')->middleware('auth.admin3')->group(function (){
         // Rotas para editar o email do usuário
-        Route::get('edit-email','AdminController@editarUsuarioEmailRedirect')->name('editUserEmailRedirect');
-        Route::post('edit-email/confirm','AdminController@editarUsuarioEmail')->name('editUserEmail');
+        Route::get('edit-email','UsuariosController@editarUsuarioEmailRedirect')->name('editUserEmailRedirect');
+        Route::post('edit-email/confirm','UsuariosController@editarUsuarioEmail')->name('editUserEmail');
         // Rotas para editar o nome do usuário
-        Route::get('edit-name','AdminController@editarUsuarioNomeRedirect')->name('editUserNameRedirect');
-        Route::post('edit-name/confirm','AdminController@editarUsuarioNome')->name('editUserName');
+        Route::get('edit-name','UsuariosController@editarUsuarioNomeRedirect')->name('editUserNameRedirect');
+        Route::post('edit-name/confirm','UsuariosController@editarUsuarioNome')->name('editUserName');
         // Rotas para dar ao usuário permissões ADMIN
-        Route::get('create-admin','AdminController@criarAdminRedirect')->name('createAdminRedirect');
-        Route::post('create-admin/confirm','AdminController@criarAdmin')->name('createAdmin');
+        Route::get('create-admin','UsuariosController@criarAdminRedirect')->name('createAdminRedirect');
+        Route::post('create-admin/confirm','UsuariosController@criarAdmin')->name('createAdmin');
         // Rotas para dar ao usuário o sistema PRO
-        Route::get('give-pro','AdminController@darProRedirect')->name('giveProRedirect');
-        Route::post('give-pro/confirm','AdminController@darPro')->name('givePro');
+        Route::get('give-pro','UsuariosController@darProRedirect')->name('giveProRedirect');
+        Route::post('give-pro/confirm','UsuariosController@darPro')->name('givePro');
         // Rotas para checar usuário
-        Route::get('check-user','AdminController@checarUsuarioRedirect')->name('checkUserRedirect');
-        Route::post('check-user/confirm','AdminController@checarUsuarioConfirmar')->name('checkUserConfirm');
-        Route::post('check-user/view','AdminController@checarUsuario')->name('checkUser');
+        Route::get('check-user','UsuariosController@checarUsuarioRedirect')->name('checkUserRedirect');
+        Route::post('check-user/confirm','UsuariosController@checarUsuarioConfirmar')->name('checkUserConfirm');
+        Route::post('check-user/view','UsuariosController@checarUsuario')->name('checkUser');
 
 
     });
     Route::prefix('leagues')->middleware('auth.admin3')->group(function (){ 
-        Route::get('update','AdminController@atualizarLigas')->name('updateLeagues');
+        Route::get('update','LeagueController@atualizarLigas')->name('updateLeagues');
 
     });
     Route::prefix('photos')->group(function (){
@@ -96,28 +96,28 @@ Route::prefix('admin')->middleware('auth.admin')->group(function (){
     });
     //Rotas para funções relacionadas a icones
     Route::prefix('icons')->group(function(){
-        Route::post('addIcons','AdminController@addIcon')->name('addIcon');
-        Route::get('addIconRedirect','AdminController@addIconRedirect')->name('addIconRedirect');
-        Route::get('editIconNameRedirect','AdminController@editIconNameRedirect')->name('editIconNameRedirect');
-        Route::post('editIconName','AdminController@editIconName')->name('editIconName');
-        Route::get('editIconTierRedirect','AdminController@editIconTierRedirect')->name('editIconTierRedirect');
-        Route::post('editIconTier','AdminController@editIconTier')->name('editIconTier');
-        Route::get('editIconPhotoRedirect','AdminController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
-        Route::post('editIconPhoto','AdminController@editIconPhoto')->name('editIconPhoto');
-        Route::get('giveIcon','AdminController@darIconRedirct')->name('giveIconRedirect');
-        Route::post('giveIcon/confirm','AdminController@darIcon')->name('giveIcon');
+        Route::post('addIcons','IconController@addIcon')->name('addIcon');
+        Route::get('addIconRedirect','IconController@addIconRedirect')->name('addIconRedirect');
+        Route::get('editIconNameRedirect','IconController@editIconNameRedirect')->name('editIconNameRedirect');
+        Route::post('editIconName','IconController@editIconName')->name('editIconName');
+        Route::get('editIconTierRedirect','IconController@editIconTierRedirect')->name('editIconTierRedirect');
+        Route::post('editIconTier','IconController@editIconTier')->name('editIconTier');
+        Route::get('editIconPhotoRedirect','IconController@editIconPhotoRedirect')->name('editIconPhotoRedirect');
+        Route::post('editIconPhoto','IconController@editIconPhoto')->name('editIconPhoto');
+        Route::get('giveIcon','IconController@darIconRedirct')->name('giveIconRedirect');
+        Route::post('giveIcon/confirm','IconController@darIcon')->name('giveIcon');
 
     });
     //Rotas para funções relacionadas ao season reset
     Route::prefix('season')->middleware('auth.admin3')->group(function(){
         // Rotas para resetar a season
-        Route::get('reset','AdminController@resetarSeasonRedirect')->name('seasonResetRedirect');
-        Route::post('reset/confirm','AdminController@resetarSeason')->name('seasonReset');
+        Route::get('reset','SeasonController@resetarSeasonRedirect')->name('seasonResetRedirect');
+        Route::post('reset/confirm','SeasonController@resetarSeason')->name('seasonReset');
     });
     Route::prefix('belts')->middleware('auth.admin3')->group(function(){
         // Rotas para resetar a season
-        Route::get('config','AdminController@configurarBelts')->name('configBelts');
-        Route::get('verify','AdminController@verificarBelts')->name('verifyBelts');
+        Route::get('config','BeltController@configurarBelts')->name('configBelts');
+        Route::get('verify','BeltController@verificarBelts')->name('verifyBelts');
     });
 });
 // Fim de rotas para todas as funções derivadas do painel ADMIN
