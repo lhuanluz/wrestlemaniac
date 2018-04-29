@@ -37,24 +37,25 @@ class MarketController extends Controller
                  ->where('brand','Raw')
                  ->orwhere('brand','Nenhuma')
                  ->orderBy('name', 'asc')->get();
-        $userId = Auth::user()->id;
-        $rawTeam = DB::table('raw_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoRaw');
-        $superstarsFavoritos = DB::table('market_purchases')
-                    ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
-                    ->where('id_user',$userId)
-                    ->where('market','Raw')
-                    ->groupBy('id_superstar')
-                    ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
-                    ->get();
+            $userId = Auth::user()->id;
+            $rawTeam = DB::table('raw_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoRaw');
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Raw')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
 
-        return view('mercadoRawHome',[
-            'superstars' => $superstars,
-            'rawTeam' => $rawTeam,
-            'status' => $status,
-            'superstarsFavoritos' => $superstarsFavoritos]);
+            return view('mercadoRawHome',[
+                'superstars' => $superstars,
+                'rawTeam' => $rawTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
         
     }
@@ -63,17 +64,30 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Raw')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('price', 'asc')->get();
-        $userId = Auth::user()->id;
-        $rawTeam = DB::table('raw_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoRaw');
-         
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+            $superstars = DB::table('superstars')
+                        ->where('brand','Raw')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('price', 'asc')->get();
+            $userId = Auth::user()->id;
+            $rawTeam = DB::table('raw_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoRaw');
+            
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Raw')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoRawHome',[
+                'superstars' => $superstars,
+                'rawTeam' => $rawTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
 
@@ -81,17 +95,30 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Raw')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('price', 'desc')->get();
-        $userId = Auth::user()->id;
-        $rawTeam = DB::table('raw_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoRaw');
-         
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+            $superstars = DB::table('superstars')
+                        ->where('brand','Raw')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('price', 'desc')->get();
+            $userId = Auth::user()->id;
+            $rawTeam = DB::table('raw_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoRaw');
+            
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Raw')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoRawHome',[
+                'superstars' => $superstars,
+                'rawTeam' => $rawTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
 
@@ -99,34 +126,60 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Raw')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('points', 'asc')->get();
-        $userId = Auth::user()->id;
-        $rawTeam = DB::table('raw_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-      $status = DB::table('configs')->value('statusMercadoRaw');
-         
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+            $superstars = DB::table('superstars')
+                        ->where('brand','Raw')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('points', 'asc')->get();
+            $userId = Auth::user()->id;
+            $rawTeam = DB::table('raw_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoRaw');
+            
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Raw')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoRawHome',[
+                'superstars' => $superstars,
+                'rawTeam' => $rawTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
     public function mercadoRawPontosDecrescente(){
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Raw')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('points', 'desc')->get();
-        $userId = Auth::user()->id;
-        $rawTeam = DB::table('raw_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoRaw');
-         
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+            $superstars = DB::table('superstars')
+                        ->where('brand','Raw')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('points', 'desc')->get();
+            $userId = Auth::user()->id;
+            $rawTeam = DB::table('raw_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoRaw');
+            
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Raw')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoRawHome',[
+                'superstars' => $superstars,
+                'rawTeam' => $rawTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
     public function comprarSuperstarRaw(Request $request){
@@ -233,17 +286,30 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                 ->where('brand','Smackdown')
-                 ->orwhere('brand','Nenhuma')
-                 ->orderBy('name', 'asc')->get();
-        $userId = Auth::user()->id;
-        $smackdownTeam = DB::table('smackdown_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoSmackdown');
+            $superstars = DB::table('superstars')
+                    ->where('brand','Smackdown')
+                    ->orwhere('brand','Nenhuma')
+                    ->orderBy('name', 'asc')->get();
+            $userId = Auth::user()->id;
+            $smackdownTeam = DB::table('smackdown_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoSmackdown');
 
-        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Smackdown')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoSmackdownHome',[
+                'superstars' => $superstars,
+                'smackdownTeam' => $smackdownTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
 
@@ -251,17 +317,30 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Smackdown')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('price', 'asc')->get();
-        $userId = Auth::user()->id;
-        $smackdownTeam = DB::table('smackdown_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoSmackdown');
+            $superstars = DB::table('superstars')
+                        ->where('brand','Smackdown')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('price', 'asc')->get();
+            $userId = Auth::user()->id;
+            $smackdownTeam = DB::table('smackdown_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoSmackdown');
 
-        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Smackdown')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoSmackdownHome',[
+                'superstars' => $superstars,
+                'smackdownTeam' => $smackdownTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
 
@@ -269,17 +348,30 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Smackdown')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('price', 'desc')->get();
-        $userId = Auth::user()->id;
-        $smackdownTeam = DB::table('smackdown_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoSmackdown');
+            $superstars = DB::table('superstars')
+                        ->where('brand','Smackdown')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('price', 'desc')->get();
+            $userId = Auth::user()->id;
+            $smackdownTeam = DB::table('smackdown_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoSmackdown');
 
-        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Smackdown')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoSmackdownHome',[
+                'superstars' => $superstars,
+                'smackdownTeam' => $smackdownTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
 
@@ -287,34 +379,60 @@ class MarketController extends Controller
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Smackdown')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('points', 'asc')->get();
-        $userId = Auth::user()->id;
-        $smackdownTeam = DB::table('smackdown_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-       $status = DB::table('configs')->value('statusMercadoSmackdown');
+            $superstars = DB::table('superstars')
+                        ->where('brand','Smackdown')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('points', 'asc')->get();
+            $userId = Auth::user()->id;
+            $smackdownTeam = DB::table('smackdown_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoSmackdown');
 
-        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Smackdown')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoSmackdownHome',[
+                'superstars' => $superstars,
+                'smackdownTeam' => $rawsmackdownTeamTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
     public function mercadoSmackdownPontosDecrescente(){
         if (Auth::guest()) {
             return redirect()->route('inicio');
         }else{
-        $superstars = DB::table('superstars')
-                    ->where('brand','Smackdown')
-                    ->orwhere('brand','Nenhuma')
-                    ->orderBy('points', 'desc')->get();
-        $userId = Auth::user()->id;
-        $smackdownTeam = DB::table('smackdown_teams')
-                    ->where('user_id',$userId)
-                    ->first();
-        $status = DB::table('configs')->value('statusMercadoSmackdown');
+            $superstars = DB::table('superstars')
+                        ->where('brand','Smackdown')
+                        ->orwhere('brand','Nenhuma')
+                        ->orderBy('points', 'desc')->get();
+            $userId = Auth::user()->id;
+            $smackdownTeam = DB::table('smackdown_teams')
+                        ->where('user_id',$userId)
+                        ->first();
+            $status = DB::table('configs')->value('statusMercadoSmackdown');
 
-        return view('mercadoSmackdownHome',['superstars' => $superstars,'smackdownTeam' => $smackdownTeam,'status' => $status]);
+            $superstarsFavoritos = DB::table('market_purchases')
+                        ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                        ->where('id_user',$userId)
+                        ->where('market','Smackdown')
+                        ->groupBy('id_superstar')
+                        ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                        ->limit(7)
+                        ->get();
+
+            return view('mercadoSmackdownHome',[
+                'superstars' => $superstars,
+                'smackdownTeam' => $smackdownTeam,
+                'status' => $status,
+                'superstarsFavoritos' => $superstarsFavoritos]);
         }
     }
     public function comprarSuperstarSmackdown(Request $request){

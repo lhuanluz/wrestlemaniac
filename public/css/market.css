@@ -1,10 +1,15 @@
 
 /*CSS MERCADO*/
-
 .row {
     max-width: 1140px;
 }
-
+img.img-circle.img-thumbnail.img-responsive.superstarFavorito {
+    max-width: 9%;
+}
+.user-img {
+    text-align: center;
+    margin-top: 10px;
+}
 .market {
     background-color: rgb(255, 255, 255);
     padding-bottom: 70px;
@@ -403,6 +408,13 @@
         border-radius: 4px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
+    }
+
+    img.img-circle.img-thumbnail.img-responsive.superstarFavorito {
+        max-width: 34%;
+    }
+    .market {
+        padding-bottom: 0px;
     }
 
     .marketplace .market-superstar .superstar-img {

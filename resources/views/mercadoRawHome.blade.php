@@ -1,7 +1,6 @@
 @extends('layouts/app')
 
 @section('content')
-
     <section class="raw-banner"></section>
     <section class="market">
         @if($status == 'Fechado')
@@ -18,7 +17,7 @@
                     $precoASerAbatido += $superstar->price;
                     ?>
                 
-                    <div class="col-md-3 your-team">
+                    <div class="col-md-3 your-team" id="{{ $superstar->id }}">
                         <div class="d1">
                             <img src="{{ url($superstar->image) }}" alt="{{$superstar->name}}">
                             <p>{{$superstar->name}}</p>
@@ -84,13 +83,14 @@
             </div>
         </div>
     </section>
-    <div>
+        <div class="user-img">
         @foreach($superstarsFavoritos as $superstarFavorito)
-            <div class="user-img">
-                <a href="#{{ $superstarFavorito->id_superstar }}"><img src="{{ url($superstarFavorito->image) }}" alt="user-img"  class="img-circle img-thumbnail img-responsive"></a>
-            </div>
+                <a href="#{{ $superstarFavorito->id }}">
+                    <img src="{{ url($superstarFavorito->image) }}" class="img-circle img-thumbnail img-responsive superstarFavorito">
+                </a>
+            
         @endforeach
-    </div>
+        </div>
     
     <section class="container-fluid marketplace">
         <div class="row">
@@ -135,7 +135,7 @@
                 <li class="pontosSelect">
                 @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
                 @else
-                <div class="container-fluid market-superstar" id="#{{ $superstar->id }}">
+                <div class="container-fluid market-superstar" id="{{ $superstar->id }}">
                     <div class="row">
                             <div class="col-md-2 col-xs-12 superstar-img">
                                 <img src="{{ url($superstar->image) }}" alt="Superstar image">
@@ -232,5 +232,5 @@
                 });
             });
 
-	</script>
+    </script>
 @endsection
