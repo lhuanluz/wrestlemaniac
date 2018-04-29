@@ -41,9 +41,20 @@ class MarketController extends Controller
         $rawTeam = DB::table('raw_teams')
                     ->where('user_id',$userId)
                     ->first();
-         $status = DB::table('configs')->value('statusMercadoRaw');
+        $status = DB::table('configs')->value('statusMercadoRaw');
+        $superstarsFavoritos = DB::table('market_purchases')
+                    ->join('superstars', 'superstars.id', '=', 'market_purchases.id_superstar')
+                    ->where('id_user',$userId)
+                    ->where('market','Raw')
+                    ->groupBy('id_superstar')
+                    ->orderBy(\DB::raw('count(id_superstar)'), 'DESC')
+                    ->get();
 
-        return view('mercadoRawHome',['superstars' => $superstars,'rawTeam' => $rawTeam,'status' => $status]);
+        return view('mercadoRawHome',[
+            'superstars' => $superstars,
+            'rawTeam' => $rawTeam,
+            'status' => $status,
+            'superstarsFavoritos' => $superstarsFavoritos]);
         }
         
     }

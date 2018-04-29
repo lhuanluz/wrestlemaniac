@@ -54,7 +54,7 @@
             
             <div class="row"> <!-- MARKET INFO -->
                 <div class="market-info col-md-9">
-                    <ul>
+                   <ul>
                         <li>
                             <p>Total Cash</p> 
                             <p>$ {{$rawTeam->team_cash + $precoASerAbatido}}</p>
@@ -84,7 +84,14 @@
             </div>
         </div>
     </section>
-
+    <div>
+        @foreach($superstarsFavoritos as $superstarFavorito)
+            <div class="user-img">
+                <a href="#{{ $superstarFavorito->id_superstar }}"><img src="{{ url($superstarFavorito->image) }}" alt="user-img"  class="img-circle img-thumbnail img-responsive"></a>
+            </div>
+        @endforeach
+    </div>
+    
     <section class="container-fluid marketplace">
         <div class="row">
             <h2>Market</h2>
@@ -128,7 +135,7 @@
                 <li class="pontosSelect">
                 @if($superstar->id == 103 || $superstar->id == 102 || $superstar->id == 101 || $superstar->id == 100 || $rawTeam->superstar01 == $superstar->id  || $rawTeam->superstar02 == $superstar->id || $rawTeam->superstar03 == $superstar->id || $rawTeam->superstar04 == $superstar->id)
                 @else
-                <div class="container-fluid market-superstar">
+                <div class="container-fluid market-superstar" id="#{{ $superstar->id }}">
                     <div class="row">
                             <div class="col-md-2 col-xs-12 superstar-img">
                                 <img src="{{ url($superstar->image) }}" alt="Superstar image">
