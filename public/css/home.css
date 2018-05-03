@@ -6,6 +6,19 @@ body {
     background-color: #ededed;
 }
 
+.imagemLogin{
+    background-image: url(/img/teste1.jpg);
+    background-position-y: 41%;
+}
+.imagemRegister{
+    background-image: url(/img/arena.jpg);
+    background-position-y: 48%;
+    background-position-x: 47%;
+}
+.panel-default {
+    border-color: black !important;
+}
+
 /*CSS do menu*/
 .navbar {
     background-color: #141516;

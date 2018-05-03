@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid register">
+<div class="container-fluid register imagemRegister">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
             <div class="panel panel-default">
