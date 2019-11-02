@@ -1,4 +1,4 @@
 # wrestlemaniac
 
-## Only for study purposes
-## **WARNING**: Security issues
+### Only for study purposes
+**WARNING**: Security issues
